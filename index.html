@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZengaTax - Automação Fiscal Inteligente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#hero" class="nav-logo">
+                <img src="img/header.png" alt="ZengaTax Logo" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#our-solutions">Soluções</a>
+                <a href="#features">Funcionalidades</a>
+                <a href="#how-it-works">Como Funciona</a>
+                <a href="#clients">Clientes</a>
+                <a href="#plans">Planos</a>
+                <a href="#contact">Contato</a>
+            </div>
+            <a href="#" id="header-cta-button" class="cta-button">Vamos Conversar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+            <div class="pills-container">
+                <span class="pill">PROCESSAMENTO AUTOMÁTICO</span>
+                <span class="pill">SEM ECAC</span>
+                <span class="pill">TRANSMISSÃO EM LOTE</span>
+                <span class="pill">RECIBOS EM LOTE</span>
+                <span class="pill">MONITORAMENTO REAL-TIME</span>
+            </div>
+            <div class="hero-center">
+                <img src="img/logo.png" alt="Zenga Logo" class="hero-logo">
+                <div class="hero-text">
+                    <h1>Transmissão Automática MIT e DCTFWeb</h1>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-solutions" class="section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Nossas Soluções</h2>
+                <p class="section-subtitle animate-on-scroll">Automatize as principais obrigações fiscais com nossa plataforma integrada e inteligente.</p>
+                <div class="our-solutions-grid">
+                    <div class="our-solution-card animate-on-scroll" style="transition-delay: 100ms;">
+                        <div class="our-solution-icon">
+                            <i data-feather="file-text"></i>
+                        </div>
+                        <h3>MIT</h3>
+                        <p>Encerramento e controle total das suas obrigações, com acompanhamento visual em tela e exportação para planilhas.</p>
+                        <a href="#contact" class="card-link">Saiba Mais <i data-feather="arrow-right"></i></a>
+                    </div>
+                    <div class="our-solution-card animate-on-scroll" style="transition-delay: 250ms;">
+                        <div class="our-solution-icon">
+                            <i data-feather="send"></i>
+                        </div>
+                        <h3>DCTFWeb</h3>
+                        <p>Transmissão, download de recibos em lote e monitoramento completo do status em tela ou via planilhas detalhadas.</p>
+                        <a href="#contact" class="card-link">Saiba Mais <i data-feather="arrow-right"></i></a>
+                    </div>
+                    <div class="our-solution-card animate-on-scroll" style="transition-delay: 400ms;">
+                        <div class="our-solution-icon">
+                            <i data-feather="dollar-sign"></i>
+                        </div>
+                        <h3>DARF</h3>
+                        <p>Emissão e download em lote do DARF dos tributos do MIT (PIS, COFINS, IRPJ, CSLL, IPI) e também do DARF Previdenciário.</p>
+                        <a href="#contact" class="card-link">Saiba Mais <i data-feather="arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Agilidade que Transforma sua Rotina Fiscal</h2>
+                <div class="diferenciais-grid">
+                    <div class="diferencial-item animate-on-scroll" style="transition-delay: 100ms;">
+                        <i data-feather="upload-cloud" width="48" height="48"></i>
+                        <h3>Importação em Lote</h3>
+                        <p>Importe todos arquivos JSON do MIT de uma só vez, eliminando tarefas repetitivas.</p>
+                    </div>
+                    <div class="diferencial-item animate-on-scroll" style="transition-delay: 200ms;">
+                        <i data-feather="send" width="48" height="48"></i>
+                        <h3>Transmissão em Massa</h3>
+                        <p>Nossa plataforma envia automaticamente todos os arquivos para a fila de processamento, otimizando sua operação.</p>
+                    </div>
+                    <div class="diferencial-item animate-on-scroll" style="transition-delay: 300ms;">
+                        <i data-feather="bar-chart-2" width="48" height="48"></i>
+                        <h3>Acompanhamento Centralizado</h3>
+                        <p>Monitore o status de todas as obrigações em tempo real, exporte recibos e gerencie suas empresas com eficiência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="section section-dark">
+             <div class="container">
+                <h2 class="section-title animate-on-scroll">Soluções Completas para sua Operação</h2>
+                <div class="solutions-carousel-wrapper animate-on-scroll">
+                    <div class="solutions-carousel">
+                        <div class="solution-card">
+                             <div class="solution-card-icon-wrapper">
+                                 <i data-feather="cloud-lightning"></i>
+                            </div>
+                            <h3>Envio Automático por API</h3>
+                            <p>Integração direta que permite o envio de obrigações de forma automática e segura, sem a necessidade de intervenção humana e com total conformidade.</p>
+                        </div>
+                        <div class="solution-card">
+                             <div class="solution-card-icon-wrapper">
+                                 <i data-feather="layout"></i>
+                            </div>
+                            <h3>Telas Visuais para Controle Total</h3>
+                            <p>Oferecemos uma interface intuitiva e clara para que você tenha controle total sobre todas as etapas do processo, da importação ao recebimento do protocolo.</p>
+                        </div>
+                        <div class="solution-card">
+                             <div class="solution-card-icon-wrapper">
+                                 <i data-feather="watch"></i>
+                            </div>
+                            <h3>Acompanhamento em Tempo Real</h3>
+                            <p>Monitore o status de cada transmissão ao vivo. Saiba exatamente o que foi enviado, o que está em processamento e o que foi concluído com sucesso.</p>
+                        </div>
+                        <div class="solution-card">
+                             <div class="solution-card-icon-wrapper">
+                                 <i data-feather="pie-chart"></i>
+                            </div>
+                            <h3>Dashboards com Resultados</h3>
+                            <p>Transforme dados brutos em insights valiosos. Nossos dashboards apresentam relatórios de performance, economia de tempo e eficiência operacional.</p>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow prev"><i data-feather="chevron-left"></i></button>
+                    <button class="carousel-arrow next"><i data-feather="chevron-right"></i></button>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="section section-dark">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Facilite sua Rotina em 3 Passos Simples</h2>
+                <div class="how-it-works-wrapper">
+                    <div class="how-it-works-step animate-on-scroll" style="transition-delay: 100ms;">
+                        <div class="step-icon"><i data-feather="upload"></i></div>
+                        <h3>1. Upload dos Arquivos</h3>
+                        <p>Realize o upload em lote dos arquivos JSON gerados pelo seu Sistema Contábil.</p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="how-it-works-step animate-on-scroll" style="transition-delay: 250ms;">
+                        <div class="step-icon"><i data-feather="cpu"></i></div>
+                        <h3>2. Conformidade e Fila</h3>
+                        <p>O sistema valida e identifica as empresas pré-cadastradas, enviando para a fila de processamento.</p>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="how-it-works-step animate-on-scroll" style="transition-delay: 400ms;">
+                        <div class="step-icon"><i data-feather="check-circle"></i></div>
+                        <h3>3. Envio e Monitoramento</h3>
+                        <p>Acompanhe a transmissão automática dos arquivos e o status de cada um em tempo real.</p>
+                    </div>
+                </div>
+                 <div class="integrated-solution-box animate-on-scroll" style="transition-delay: 500ms;">
+                    <i data-feather="zap"></i>
+                    <div>
+                        <h4>Solução Integrada e Eficiente</h4>
+                        <p>Economize tempo transmitindo múltiplas declarações simultaneamente e obtenha os recibos da <strong>DCTFWeb junto do MIT</strong> sem esforço.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="clients" class="section section-dark">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">A Confiança que Nos Move</h2>
+                <div class="testimonial-wrapper animate-on-scroll">
+                    <div class="testimonial-slider-container">
+                        <div class="testimonial-track">
+                            <div class="testimonial-slide">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23e0f7fa'/%3E%3Ctext x='50' y='60' font-family='Quicksand, sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='%23042c4e'%3EWLP%3C/text%3E%3C/svg%3E" alt="Logo Wendell Lucas Paião" class="testimonial-logo">
+                                <h3 class="testimonial-author">Wendell Lucas Paião</h3>
+                                <div class="star-rating">
+                                    <i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i>
+                                </div>
+                                <p class="testimonial-text">"Ganhos expressivos em eficiência fiscal. A automação reduziu o retrabalho, a integração foi simples e o suporte é excelente. Recomendamos com confiança."</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23e0f7fa'/%3E%3Ctext x='50' y='60' font-family='Quicksand, sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='%23042c4e'%3EGC%3C/text%3E%3C/svg%3E" alt="Logo Guilherme Chalcoski" class="testimonial-logo">
+                                <h3 class="testimonial-author">Guilherme Chalcoski</h3>
+                                <span class="testimonial-title">Líder Fiscal na SCRYTA</span>
+                                <div class="star-rating">
+                                    <i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i>
+                                </div>
+                                <p class="testimonial-text">"O ZENGA transformou nossa rotina. As obrigações são entregues em minutos sem operação manual. Temos os recibos diretamente no sistema e não nos preocupamos mais."</p>
+                            </div>
+                            <div class="testimonial-slide">
+                               <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23e0f7fa'/%3E%3Ctext x='50' y='60' font-family='Quicksand, sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='%23042c4e'%3EAna%3C/text%3E%3C/svg%3E" alt="Logo Ana" class="testimonial-logo">
+                                <h3 class="testimonial-author">Ana</h3>
+                                 <div class="star-rating">
+                                    <i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i>
+                                </div>
+                                <p class="testimonial-text">"Adoramos o sistema! A entrega é super rápida, economizamos tempo e a aba do Simples Nacional facilitou muito. O ZENGA demonstrou eficiência e praticidade."</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23e0f7fa'/%3E%3Ctext x='50' y='60' font-family='Quicksand, sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='%23042c4e'%3EJH%3C/text%3E%3C/svg%3E" alt="Logo Juliana Huerta" class="testimonial-logo">
+                                <h3 class="testimonial-author">Juliana Huerta</h3>
+                                 <div class="star-rating">
+                                    <i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i>
+                                </div>
+                                <p class="testimonial-text">"Encontramos a automação necessária para superar a escassez de mão de obra e a instabilidade do Governo. Ganhamos eficiência, segurança e produtividade."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrow prev"><i data-feather="chevron-left"></i></button>
+                    <button class="slider-arrow next"><i data-feather="chevron-right"></i></button>
+                    <div class="testimonial-dots"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="plans" class="section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Planos Sob Medida Para o seu Sucesso</h2>
+                <div class="plans-grid">
+                    <div class="pricing-card animate-on-scroll">
+                        <div class="card-header">
+                            <h3>Plano Básico</h3>
+                            <p class="price">R$ 299,00</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="package-details">Pacote para <strong>100 CNPJs</strong> e <strong>2 Usuários</strong></p>
+                            <ul class="features-list">
+                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
+                                <li><i data-feather="check"></i>Acesso imediato aos recibos</li>
+                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
+                                <li><i data-feather="check"></i>Relatórios de processamento</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="cta-button plan-button">Quero este Plano</a>
+                        </div>
+                    </div>
+                    <div class="pricing-card featured animate-on-scroll" style="transition-delay: 150ms;">
+                        <div class="featured-badge">Mais Popular</div>
+                        <div class="card-header">
+                            <h3>Plano Avançado</h3>
+                            <p class="price">R$ 499,00</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="package-details">Pacote para <strong>200 CNPJs</strong> e <strong>4 Usuários</strong></p>
+                            <ul class="features-list">
+                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
+                                <li><i data-feather="check"></i>Acesso imediato aos recibos</li>
+                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
+                                <li><i data-feather="check"></i>Relatórios de processamento</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="cta-button plan-button">Quero este Plano</a>
+                        </div>
+                    </div>
+                    <div class="pricing-card animate-on-scroll" style="transition-delay: 300ms;">
+                        <div class="card-header">
+                            <h3>Plano Personalizado</h3>
+                            <p class="price">Consulte</p>
+                            <span class="price-period">Valor sob medida</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="package-details">CNPJs e Usuários <strong>Ilimitados</strong> ou <strong>Personalizados</strong></p>
+                            <ul class="features-list">
+                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
+                                <li><i data-feather="check"></i>Acesso imediato aos recibos</li>
+                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
+                                <li><i data-feather="check"></i>Relatórios de processamento</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="cta-button plan-button">Entrar em Contato</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="partners" class="section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Ecossistema de Parceiros Confiáveis</h2>
+                <div class="partners-grid animate-on-scroll">
+                    <div class="partner-card">
+                        <img src="https://logodownload.org/wp-content/uploads/2021/08/dominio-sistemas-logo.png" alt="Logo Domínio Sistemas">
+                    </div>
+                    <div class="partner-card">
+                        <img src="https://ajua.com.br/wp-content/uploads/2023/11/logo-SCI.png" alt="Logo SCI Sistemas">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="section section-dark">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Vamos Construir o Futuro. Juntos.</h2>
+                <div class="contact-wrapper animate-on-scroll">
+                    <div class="contact-info">
+                        <h3>Informações de Contato</h3>
+                        <p>Estamos prontos para ouvir sobre seu próximo grande projeto. Entre em contato e vamos agendar uma conversa.</p>
+                        <div class="contact-item">
+                            <i data-feather="mail" width="24"></i>
+                            <a href="mailto:zenga@scryta.com.br">zenga@scryta.com.br</a>
+                        </div>
+                        <div class="contact-item">
+                            <i data-feather="phone" width="24"></i>
+                            <a href="https://wa.me/5541987132156" target="_blank">+55 (41) 98713-2156</a>
+                        </div>
+                        <div class="contact-item">
+                            <i data-feather="map-pin" width="24"></i>
+                            <span>Rua Bom Jesus 212, Juvevê<br>Curitiba, Paraná - CEP 80035-010</span>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <h3>Siga Nossas Redes</h3>
+                        <p>Fique por dentro das novidades e conteúdos exclusivos sobre o mercado fiscal e de tecnologia.</p>
+                        <div class="contact-socials-grid">
+                            <a href="https://www.linkedin.com/company/zenga-tax" target="_blank" class="social-card">
+                                <i data-feather="linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.instagram.com/zengatax" target="_blank" class="social-card">
+                                <i data-feather="instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.youtube.com/@zengatax" target="_blank" class="social-card">
+                                <i data-feather="youtube"></i>
+                                <span>YouTube</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <img src="img/header.png" alt="ZengaTax Logo Footer" class="footer-logo">
+            <p class="footer-copyright">&copy; 2025 ZengaTax. Todos os direitos reservados. Construindo o futuro com código e criatividade.</p>
+            <div class="footer-socials">
+                <h4>Siga-nos</h4>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/zenga-tax" target="_blank" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                    <a href="https://www.instagram.com/zengatax" target="_blank" aria-label="Instagram"><i data-feather="instagram"></i></a>
+                    <a href="https://www.youtube.com/@zengatax" target="_blank" aria-label="YouTube"><i data-feather="youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="promoModalOverlay">
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
+            <div class="modal-image-column">
+                <img src="img/consultora.jpg" alt="Consultora ZengaTax sorrindo">
+            </div>
+            <div class="modal-content-column">
+                <span class="modal-tag">OFERTA EXCLUSIVA</span>
+                <h2>Teste o ZengaTax Gratuitamente!</h2>
+                <p>Descubra como nossa automação pode transformar sua rotina fiscal, economizando tempo e eliminando erros.</p>
+                <div class="modal-contact-info">
+                    <p>Fale conosco agora mesmo:</p>
+                    <div class="copy-item email-style">
+                        <a href="mailto:zenga@scryta.com.br"><i data-feather="mail"></i><span id="promo-email">zenga@scryta.com.br</span></a>
+                        <button class="copy-button" data-copy-target="promo-email" aria-label="Copiar email">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="copy-item whatsapp-style">
+                        <a href="https://wa.me/5541987132156" target="_blank"><i data-feather="phone"></i><span id="promo-phone">+55 (41) 98713-2156</span></a>
+                         <button class="copy-button" data-copy-target="promo-phone" aria-label="Copiar telefone">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="planModalOverlay">
+        <div class="modal-container-small">
+            <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
+            <div class="modal-content-column">
+                <span class="modal-tag">EXCELENTE ESCOLHA!</span>
+                <h2>Principais Pontos do ZengaTax</h2>
+                <ul class="modal-features-list">
+                    <li><i data-feather="check-circle"></i>Transmissão Automática de MIT e DCTFWeb</li>
+                    <li><i data-feather="check-circle"></i>Importação e Processamento em Lote</li>
+                    <li><i data-feather="check-circle"></i>Monitoramento em Tempo Real</li>
+                    <li><i data-feather="check-circle"></i>Download de Recibos e DARFs em Lote</li>
+                </ul>
+                <div class="modal-contact-info">
+                    <p>Entre em contato para ativar seu plano:</p>
+                     <div class="copy-item email-style">
+                        <a href="mailto:zenga@scryta.com.br"><i data-feather="mail"></i><span id="plan-email">zenga@scryta.com.br</span></a>
+                        <button class="copy-button" data-copy-target="plan-email" aria-label="Copiar email">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="copy-item whatsapp-style">
+                        <a href="https://wa.me/5541987132156" target="_blank"><i data-feather="phone"></i><span id="plan-phone">+55 (41) 98713-2156</span></a>
+                         <button class="copy-button" data-copy-target="plan-phone" aria-label="Copiar telefone">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="reinforcementModalOverlay">
+        <div class="modal-container-small">
+            <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
+            <div class="modal-content-column">
+                 <span class="modal-tag">ÚLTIMA CHAMADA</span>
+                <h2>Não perca esta oportunidade!</h2>
+                <p>Automatize sua rotina fiscal e ganhe tempo para focar no que realmente importa: o crescimento do seu negócio.</p>
+                <div class="modal-contact-info">
+                    <p>Fale com um de nossos especialistas:</p>
+                    <div class="copy-item email-style">
+                        <a href="mailto:zenga@scryta.com.br"><i data-feather="mail"></i><span id="reinforcement-email">zenga@scryta.com.br</span></a>
+                        <button class="copy-button" data-copy-target="reinforcement-email" aria-label="Copiar email">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="copy-item whatsapp-style">
+                        <a href="https://wa.me/5541987132156" target="_blank"><i data-feather="phone"></i><span id="reinforcement-phone">+55 (41) 98713-2156</span></a>
+                         <button class="copy-button" data-copy-target="reinforcement-phone" aria-label="Copiar telefone">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="contactModalOverlay">
+        <div class="modal-container-small">
+            <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
+            <div class="modal-content-column">
+                 <span class="modal-tag">VAMOS CONVERSAR</span>
+                <h2>Como podemos ajudar?</h2>
+                <p>Nossa equipe está pronta para entender seu desafio e mostrar como o ZengaTax pode transformar sua operação fiscal.</p>
+                <div class="modal-contact-info">
+                    <p>Escolha seu canal de preferência:</p>
+                    <div class="copy-item email-style">
+                        <a href="mailto:zenga@scryta.com.br"><i data-feather="mail"></i><span id="contact-email">zenga@scryta.com.br</span></a>
+                        <button class="copy-button" data-copy-target="contact-email" aria-label="Copiar email">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="copy-item whatsapp-style">
+                        <a href="https://wa.me/5541987132156" target="_blank"><i data-feather="phone"></i><span id="contact-phone">+55 (41) 98713-2156</span></a>
+                         <button class="copy-button" data-copy-target="contact-phone" aria-label="Copiar telefone">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="chatbot-container">
+        <div class="chatbot">
+            <div class="chatbot-fab" id="chatbot-fab">
+                <div class="chatbot-fab-bubble" id="chatbot-fab-bubble">
+                    Olá! 👋
+                </div>
+                <i class="icon-closed" data-feather="message-square"></i>
+                <i class="icon-open" data-feather="x"></i>
+            </div>
+        
+            <div class="chatbot-window" id="chatbot-window">
+                <div class="chatbot-header">
+                    <div class="chatbot-avatar">
+                        <img src="img/logo.png" alt="ZengaTax Logo">
+                    </div>
+                    <div class="chatbot-title">
+                        <h3>Assistente ZengaTax</h3>
+                        <span>Online</span>
+                    </div>
+                    <button class="chatbot-close-mobile" id="chatbot-close-mobile"><i data-feather="x"></i></button>
+                </div>
+                <div class="chatbot-messages" id="chatbot-messages">
+                </div>
+                <div class="chatbot-suggestion-chips" id="chatbot-suggestion-chips">
+                </div>
+                <div class="chatbot-input-area">
+                    <input type="text" id="chatbot-input" placeholder="Digite sua pergunta...">
+                    <button id="chatbot-send">
+                        <i data-feather="send"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="script.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
