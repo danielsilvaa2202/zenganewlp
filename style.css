@@ -314,7 +314,12 @@ body {
 }
 .testimonial-wrapper { position: relative; max-width: 900px; margin: 0 auto; }
 .testimonial-slider-container { max-width: 800px; margin: 0 auto; overflow: hidden; }
-.testimonial-track { display: flex; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+.testimonial-track {
+    display: flex;
+    transition: transform 1.2s ease-in-out;
+    will-change: transform; /* otimiza a animação */
+}
+
 .testimonial-slide {
     flex: 0 0 100%;
     padding: 50px 40px 40px;

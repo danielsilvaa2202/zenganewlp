@@ -122,11 +122,17 @@ document.addEventListener('DOMContentLoaded', function() {
             resetAutoPlay();
         });
         const startAutoPlay = () => {
-            autoPlayInterval = setInterval(() => {
-                const nextIndex = (currentIndex + 1) % slides.length;
-                goToTestimonialSlide(nextIndex);
-            }, 6000);
-        };
+    autoPlayInterval = setInterval(() => {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        goToTestimonialSlide(nextIndex);
+    }, 5000); // aumentei p/ 7s p/ dar tempo de leitura
+};
+
+track.addEventListener('transitionend', () => {
+    // só reinicia quando a animação terminar
+    resetAutoPlay();
+});
+
         const resetAutoPlay = () => {
             clearInterval(autoPlayInterval);
             startAutoPlay();
