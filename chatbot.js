@@ -99,21 +99,21 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (text.includes('dctfweb') || text.includes('dctf')) {
                 response.text = `Nossa solução para a <strong>DCTFWeb</strong> foi projetada para eliminar o trabalho manual. Com o ZengaTax, você consegue:<br><br>
                 - <strong>Transmitir em lote:</strong> Envie centenas de declarações de uma só vez, sem precisar acessar o eCAC.<br>
-                - <strong>Baixar recibos em lote:</strong> Obtenha todos os recibos de entrega com um único clique.<br>
+                - <strong>Baixar recibos e guias em lote:</strong> Obtenha todos os documentos com um único clique.<br>
                 - <strong>Monitorar o status:</strong> Acompanhe em tempo real o andamento de cada transmissão.`;
-                response.suggestions = ["O que é MIT?", "E o DARF?", "Agendar Reunião"];
+                response.suggestions = ["O que é MIT?", "E os DARFs?", "Agendar Reunião"];
             } else if (text.includes('mit')) {
                 response.text = `Com nossa automação para o <strong>MIT</strong> (Módulo de Integração Tributária), você tem o encerramento e o <strong>controle total</strong> das suas obrigações, com acompanhamento visual em tela e a possibilidade de exportar relatórios completos.`;
                 response.suggestions = ["E a DCTFWeb?", "Como funciona a importação?", "Ver Planos"];
             } else if (text.includes('darf')) {
-                 response.text = `Sim! Facilitamos a <strong>emissão e download em lote do DARF</strong>, tanto dos tributos do MIT (PIS, COFINS, IRPJ, CSLL, IPI) quanto do DARF Previdenciário gerado pela DCTFWeb.`;
+                 response.text = `Sim! Facilitamos a <strong>emissão e download em lote de Recibos e DARFs</strong>, tanto dos tributos do MIT (PIS, COFINS, IRPJ, CSLL, IPI) quanto do DARF Previdenciário gerado pela DCTFWeb.`;
                  response.suggestions = ["Como funciona?", "Ver Planos", "Agendar Reunião"];
             } else if (text.includes('como funciona') || text.includes('passos')) {
-                response.text = 'Nosso processo é simples e feito em 3 passos: <strong>1. Upload</strong> dos arquivos JSON. <strong>2. Validação</strong> e fila de processamento. <strong>3. Envio e Monitoramento</strong> em tempo real. Tudo para facilitar sua rotina!';
+                response.text = 'Nosso processo é simples e feito em 4 passos: <strong>1. Upload</strong> dos arquivos, <strong>2. Validação</strong> e fila, <strong>3. Envio e Monitoramento</strong> e <strong>4. Obtenção de Recibos e Guias</strong>. Tudo para facilitar sua rotina!';
                 response.suggestions = ["Quais as soluções?", "É seguro?", "Agendar Reunião"];
             } else if (text.includes('soluç')) {
                  response.text = `Nossas principais soluções de automação fiscal são para <strong>MIT</strong>, <strong>DCTFWeb</strong> e <strong>DARF</strong>. Qual delas você gostaria de conhecer melhor?`;
-                 response.suggestions = ["Sobre a DCTFWeb", "Sobre o MIT", "Sobre o DARF"];
+                 response.suggestions = ["Sobre a DCTFWeb", "Sobre o MIT", "Sobre os DARFs"];
             } else if (text.includes('importar') || text.includes('transmitir') || text.includes('lote')) {
                 response.text = 'Sim! Nossa plataforma é feita para otimizar seu tempo. Você pode fazer a <strong>importação de arquivos em lote</strong> e realizar a <strong>transmissão em massa</strong> para a fila de processamento, sem esforço manual.';
             } else if (text.includes('monitorar') || text.includes('acompanhar') || text.includes('status')) {

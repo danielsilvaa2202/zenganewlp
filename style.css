@@ -23,7 +23,7 @@ body {
 }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .header {
-    padding: 1rem 0;
+    padding: 1.4rem 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -37,11 +37,11 @@ body {
 .header-scrolled {
     background: rgba(4, 44, 78, 0.9);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    padding: 0.75rem 0;
+    padding: 1rem 0;
 }
 .navbar { display: flex; justify-content: space-between; align-items: center; }
-.nav-logo-img { height: 55px; transition: all 0.3s ease; }
-.header-scrolled .nav-logo-img { height: 50px; }
+.nav-logo-img { height: 70px; transition: all 0.3s ease; }
+.header-scrolled .nav-logo-img { height: 60px; }
 .nav-links a {
     color: var(--white-color);
     text-decoration: none;
@@ -297,7 +297,7 @@ body {
 .how-it-works-step h3 { font-size: 1.5rem; margin-bottom: 10px; }
 .how-it-works-step p { color: var(--text-color-light); }
 .step-connector {
-    flex: 0 1 150px; height: 2px;
+    flex: 0 1 120px; height: 2px;
     background: repeating-linear-gradient(90deg, var(--secondary-color), var(--secondary-color) 6px, transparent 6px, transparent 12px);
     margin-top: 40px;
 }
@@ -754,6 +754,10 @@ body {
     .testimonial-wrapper .slider-arrow { display: none; }
     .our-solutions-grid { grid-template-columns: 1fr; }
     .price { font-size: 2.2rem; }
+    .modal-container, .modal-container-small {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
     .modal-container {
         flex-direction: column;
         max-width: 380px;
@@ -796,8 +800,8 @@ body {
 .modal-header-logo {
     max-height: 85px;
     max-width: 150px;
-    margin: 0 auto 5px auto; /* centraliza horizontalmente */
-    display: block; /* garante que o margin auto funcione */
+    margin: 0 auto 15px auto;
+    display: block;
 }
 
 #promoModalOverlay .modal-tag {
@@ -855,6 +859,29 @@ body {
 #promoModalOverlay .copy-item.whatsapp-style .copy-button {
     display: none;
 }
+
+#planModalOverlay .modal-content-column {
+    padding: 25px 35px;
+}
+#planModalOverlay .modal-header-logo {
+    margin-bottom: 10px;
+    max-height: 75px;
+}
+#planModalOverlay h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+#planModalOverlay .modal-features-list {
+    margin: 10px 0;
+}
+#planModalOverlay .modal-features-list li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+#planModalOverlay .modal-contact-info p {
+    margin-bottom: 8px;
+}
+
 @media (max-width: 768px) {
     #promoModalOverlay .modal-container {
         flex-direction: column;
