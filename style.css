@@ -79,9 +79,9 @@ body {
     display: flex; align-items: center; justify-content: center;
     text-align: center; position: relative; overflow: hidden;
 }
-@keyframes move-twinkle-stars { 
-    from { background-position: 0 0; } 
-    to { background-position: 0 -10000px; } 
+@keyframes move-twinkle-stars {
+    from { background-position: 0 0; }
+    to { background-position: 0 -10000px; }
 }
 .stars, .stars2, .stars3 {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -412,26 +412,30 @@ body {
 .plan-button { width: 100%; text-align: center; }
 .pricing-card.featured .plan-button { background: var(--secondary-color); color: var(--white-color); }
 .pricing-card.featured .plan-button:hover { background: var(--primary-color); }
-#partners { background-color: var(--light-blue-bg); }
+#partners { background-color: var(--primary-color); }
+#partners .section-title { color: var(--white-color); }
 .partners-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px; align-items: center;
 }
 .partners-grid a { text-decoration: none; }
 .partner-card {
-    background-color: var(--white-color); border: 1px solid var(--border-light-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border-dark);
     border-radius: 15px; padding: 30px 40px; display: flex; justify-content: center;
     align-items: center; height: 140px; transition: all 0.3s ease;
 }
 .partner-card:hover {
-    transform: translateY(-10px); box-shadow: 0 20px 40px rgba(4, 44, 78, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     border-color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .partner-card img {
     max-height: 80px; width: auto; max-width: 100%;
-    filter: grayscale(100%); opacity: 0.6; transition: all 0.4s ease;
+    filter: brightness(0) invert(1); opacity: 0.7; transition: all 0.4s ease;
 }
-.partner-card:hover img { filter: grayscale(0%); opacity: 1; }
+.partner-card:hover img { opacity: 1; }
 .contact-wrapper {
     display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
     background: var(--card-bg-dark); padding: 50px; border-radius: 15px;
@@ -777,8 +781,6 @@ body {
         max-width: 100%;
     }
 }
-
-/* --- NOVOS ESTILOS PARA O MODAL PROMOCIONAL --- */
 #promoModalOverlay .modal-container {
     max-width: 900px;
 }
@@ -788,14 +790,39 @@ body {
 }
 #promoModalOverlay .modal-content-column {
     flex-basis: 50%;
-    padding: 40px;
+    padding: 30px 40px;
     text-align: center;
 }
+.modal-header-logo {
+    max-height: 85px;
+    max-width: 150px;
+    margin: 0 auto 5px auto; /* centraliza horizontalmente */
+    display: block; /* garante que o margin auto funcione */
+}
+
 #promoModalOverlay .modal-tag {
     align-self: center;
 }
+#promoModalOverlay h2 {
+    font-size: 1.9rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+#promoModalOverlay p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+#promoModalOverlay .modal-features-list {
+    text-align: left;
+    display: inline-block;
+    margin: 0 auto 15px auto;
+}
+#promoModalOverlay .modal-features-list li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
 #promoModalOverlay .modal-contact-info {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 #promoModalOverlay .modal-contact-info .copy-item.email-style {
     display: none;
@@ -804,7 +831,7 @@ body {
     background-color: #25D366;
     border-color: #128c7e;
     transition: all 0.3s ease;
-    padding: 15px 20px;
+    padding: 8px 14px;
     justify-content: center;
 }
 #promoModalOverlay .copy-item.whatsapp-style:hover {

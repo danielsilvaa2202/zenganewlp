@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(() => {
         if (promoModal) openModal(promoModal);
-    }, 3000);
+    }, 2000);
 
     [promoModal, planModal, reinforcementModal, contactModal].forEach(modal => {
         if(modal) {
