@@ -309,22 +309,48 @@ body {
 .integrated-solution-box i { color: var(--secondary-color); flex-shrink: 0; width: 40px; height: 40px; }
 .integrated-solution-box h4 { font-size: 1.3rem; margin-bottom: 5px; }
 .integrated-solution-box p { color: var(--text-color-light); }
+#clients {
+    padding-top: 60px;
+}
 .testimonial-wrapper { position: relative; max-width: 900px; margin: 0 auto; }
 .testimonial-slider-container { max-width: 800px; margin: 0 auto; overflow: hidden; }
 .testimonial-track { display: flex; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
 .testimonial-slide {
-    flex: 0 0 100%; padding: 50px 40px 40px; color: var(--white-color);
-    display: flex; flex-direction: column; align-items: center; position: relative;
-    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    flex: 0 0 100%;
+    padding: 50px 40px 40px;
+    color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--card-border-dark);
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(0, 170, 255, 0.15);
 }
 .testimonial-slide::before {
-    content: '“'; position: absolute; top: 0px; left: 20px; font-size: 120px;
-    font-weight: 700; color: rgba(0, 170, 255, 0.2); line-height: 1; z-index: -1;
+    content: '“';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 100px;
+    font-weight: 700;
+    line-height: 1;
+    z-index: -1;
+    background: -webkit-linear-gradient(45deg, var(--secondary-color), var(--primary-color-darker));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.15;
 }
 .testimonial-logo {
-    width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--secondary-color);
-    margin-bottom: 20px; box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--secondary-color);
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.5), 0 0 0 5px rgba(0, 170, 255, 0.1);
 }
 .testimonial-author { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
 .testimonial-title {
@@ -391,6 +417,7 @@ body {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px; align-items: center;
 }
+.partners-grid a { text-decoration: none; }
 .partner-card {
     background-color: var(--white-color); border: 1px solid var(--border-light-color);
     border-radius: 15px; padding: 30px 40px; display: flex; justify-content: center;
@@ -401,7 +428,7 @@ body {
     border-color: var(--secondary-color);
 }
 .partner-card img {
-    max-height: 80px; width: auto; max-width: 250px;
+    max-height: 80px; width: auto; max-width: 100%;
     filter: grayscale(100%); opacity: 0.6; transition: all 0.4s ease;
 }
 .partner-card:hover img { filter: grayscale(0%); opacity: 1; }
@@ -748,5 +775,66 @@ body {
     }
     .modal-container {
         max-width: 100%;
+    }
+}
+
+/* --- NOVOS ESTILOS PARA O MODAL PROMOCIONAL --- */
+#promoModalOverlay .modal-container {
+    max-width: 900px;
+}
+#promoModalOverlay .modal-image-column {
+    flex-basis: 50%;
+    display: block !important;
+}
+#promoModalOverlay .modal-content-column {
+    flex-basis: 50%;
+    padding: 40px;
+    text-align: center;
+}
+#promoModalOverlay .modal-tag {
+    align-self: center;
+}
+#promoModalOverlay .modal-contact-info {
+    margin-top: 25px;
+}
+#promoModalOverlay .modal-contact-info .copy-item.email-style {
+    display: none;
+}
+#promoModalOverlay .copy-item.whatsapp-style {
+    background-color: #25D366;
+    border-color: #128c7e;
+    transition: all 0.3s ease;
+    padding: 15px 20px;
+    justify-content: center;
+}
+#promoModalOverlay .copy-item.whatsapp-style:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+#promoModalOverlay .copy-item.whatsapp-style a {
+    margin-right: 0;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+}
+#promoModalOverlay .copy-item.whatsapp-style span {
+    color: var(--white-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+#promoModalOverlay .copy-item.whatsapp-style svg {
+    stroke: var(--white-color);
+}
+#promoModalOverlay .copy-item.whatsapp-style .copy-button {
+    display: none;
+}
+@media (max-width: 768px) {
+    #promoModalOverlay .modal-container {
+        flex-direction: column;
+        max-width: 380px;
+    }
+    #promoModalOverlay .modal-image-column {
+        height: 200px;
+        flex-basis: auto;
     }
 }
