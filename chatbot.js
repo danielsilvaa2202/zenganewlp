@@ -111,6 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (text.includes('como funciona') || text.includes('passos')) {
                 response.text = 'Nosso processo é simples e feito em 4 passos: <strong>1. Upload</strong> dos arquivos, <strong>2. Validação</strong> e fila, <strong>3. Envio e Monitoramento</strong> e <strong>4. Obtenção de Recibos e Guias</strong>. Tudo para facilitar sua rotina!';
                 response.suggestions = ["Quais as soluções?", "É seguro?", "Agendar Reunião"];
+            } else if (text.includes('seguro') || text.includes('segurança')) {
+                response.text = 'Com certeza! A segurança é nossa prioridade. O ZengaTax trabalha em total conformidade com a <strong>LGPD</strong> (Lei Geral de Proteção de Dados). Seus dados são armazenados em <strong>nuvem</strong> com os mais altos padrões de segurança e o acesso à plataforma é protegido por <strong>login individual</strong>.';
+                response.suggestions = ["Como funciona?", "Ver Planos", "Agendar Reunião"];
             } else if (text.includes('soluç')) {
                  response.text = `Nossas principais soluções de automação fiscal são para <strong>MIT</strong>, <strong>DCTFWeb</strong> e <strong>DARF</strong>. Qual delas você gostaria de conhecer melhor?`;
                  response.suggestions = ["Sobre a DCTFWeb", "Sobre o MIT", "Sobre os DARFs"];
