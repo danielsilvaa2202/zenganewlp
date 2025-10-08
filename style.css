@@ -65,7 +65,7 @@ body {
 .nav-links a {
     color: var(--white-color);
     text-decoration: none;
-    margin: 0 20px;
+    margin: 0 15px;
     font-weight: 600;
     font-size: 1rem;
     position: relative;
@@ -913,7 +913,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 50px; /* Espaçamento entre os logos */
+    gap: 50px;
     flex-wrap: wrap;
     margin-bottom: 10px;
 }
@@ -923,7 +923,6 @@ body {
     opacity: 0.9;
 }
 
-/* REGRA ATUALIZADA PARA SCRYTA E NVIDIA TAREM O MESMO TAMANHO */
 .footer-scryta-logo,
 .footer-nvidia-logo {
     height: 60px;
@@ -1426,9 +1425,9 @@ body {
 }
 .logo-slide img {
     max-width: 100%;
-    max-height: 50px; /* Ajuste se quiser logos maiores ou menores, considerando que são 500x500px */
+    max-height: 50px;
     width: auto;
-    opacity: 1; /* Logos em cor normal e visibilidade total */
+    opacity: 1;
     transition: all 0.4s ease;
 }
 
@@ -1437,7 +1436,6 @@ body {
 }
 
 .logo-slide:hover img {
-    /* Manter apenas o efeito de escala se desejar */
     transform: scale(1.1);
 }
 .logo-slide img[id^="scryta-partner-logo-carousel"] {
@@ -1584,4 +1582,101 @@ body {
     height: 25px;
     background-color: #f0f0f0;
     z-index: 1000;
+}
+
+/* =================================
+    ESTILO PARA A SEÇÃO DO BLOG
+   ================================= */
+#blog {
+    background-color: var(--light-blue-bg);
+}
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.blog-post-card {
+    background-color: var(--white-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(4, 44, 78, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.blog-post-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(4, 44, 78, 0.15);
+}
+.blog-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.blog-post-image {
+    position: relative;
+    width: 100%;
+    height: 300px; /* <-- CORREÇÃO: Altura ajustada para o card */
+    overflow: hidden;
+    background-color: var(--primary-color); /* Adiciona um background para preencher espaços */
+}
+.blog-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* <-- CORREÇÃO: Usar 'contain' para mostrar a imagem inteira */
+    object-position: center; /* Centraliza a imagem no espaço */
+    transition: transform 0.4s ease;
+}
+.blog-post-card:hover .blog-post-image img {
+    transform: scale(1.05);
+}
+.blog-post-category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+.blog-post-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.blog-post-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+.blog-post-excerpt {
+    font-size: 1rem;
+    color: var(--text-color-dark);
+    opacity: 0.8;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+.blog-post-readmore {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-top: auto;
+    transition: color 0.3s ease;
+}
+.blog-post-readmore i {
+    transition: transform 0.3s ease;
+}
+.blog-post-card:hover .blog-post-readmore {
+    color: var(--secondary-color);
+}
+.blog-post-card:hover .blog-post-readmore i {
+    transform: translateX(5px);
 }
