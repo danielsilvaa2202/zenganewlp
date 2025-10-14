@@ -16,6 +16,37 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chatbot.css">
+
+    <!-- Meta Pixel Code -->
+<script>
+
+  !function(f,b,e,v,n,t,s)
+
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+  n.queue=[];t=b.createElement(e);t.async=!0;
+
+  t.src=v;s=b.getElementsByTagName(e)[0];
+
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '709979164733785');
+
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+
+  src="https://www.facebook.com/tr?id=709979164733785&ev=PageView&noscript=1"
+
+/></noscript>
+<!-- End Meta Pixel Code -->
+ 
 </head>
 <body>
     <header class="header">
@@ -340,15 +371,28 @@
                 <h2 class="section-title animate-on-scroll">Fique por Dentro</h2>
                 <p class="section-subtitle animate-on-scroll">Acompanhe as últimas notícias, dicas e atualizações do universo fiscal e contábil em nosso blog.</p>
                 <div class="blog-grid">
-                    <div class="blog-post-card animate-on-scroll">
+                    <div class="blog-post-card animate-on-scroll" style="transition-delay: 100ms;">
                         <a href="paginas/reforma_inovacao.html" class="blog-card-link">
                             <div class="blog-post-image">
                                 <img src="img/blog/img1.png" alt="Imagem do Post sobre Reforma Tributária">
-                                <span class="blog-post-category">Legislação</span>
+                                <span class="blog-post-category">Inovação</span>
                             </div>
                             <div class="blog-post-content">
                                 <h3 class="blog-post-title">Reforma Tributária: O Guia Definitivo para a Inovação e Transição</h3>
-                                <p class="blog-post-excerpt">O sistema tributário brasileiro é complexo, mas a Reforma Tributária promete simplificar o cenário, aumentar a transparência e impulsionar a economia. Entenda o que muda...</p>
+                                <p class="blog-post-excerpt">A Reforma Tributária promete simplificar o cenário fiscal, mas como sua empresa pode navegar por essa década de transição? Entenda o que muda na prática...</p>
+                                <span class="blog-post-readmore">Continuar lendo <i data-feather="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-post-card animate-on-scroll" style="transition-delay: 250ms;">
+                        <a href="paginas/reforma_regimes.html" class="blog-card-link">
+                            <div class="blog-post-image">
+                                <img src="img/blog/img2.png" alt="Imagem do Post sobre Regimes Específicos">
+                                <span class="blog-post-category">Legislação</span>
+                            </div>
+                            <div class="blog-post-content">
+                                <h3 class="blog-post-title">Regimes Específicos e Diferenciados na Reforma Tributária</h3>
+                                <p class="blog-post-excerpt">Entenda como a criação de regimes específicos e diferenciados protege setores-chave da nossa economia, garantindo uma transição justa e eficiente para todos...</p>
                                 <span class="blog-post-readmore">Continuar lendo <i data-feather="arrow-right"></i></span>
                             </div>
                         </a>
