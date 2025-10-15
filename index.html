@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chatbot.css">
 
-    <!-- Meta Pixel Code -->
-<script>
+    <script>
 
   !function(f,b,e,v,n,t,s)
 
@@ -45,8 +44,6 @@
   src="https://www.facebook.com/tr?id=709979164733785&ev=PageView&noscript=1"
 
 /></noscript>
-<!-- End Meta Pixel Code -->
- 
 </head>
 <body>
     <header class="header">
@@ -286,10 +283,11 @@
                 <div id="map-container" class="animate-on-scroll"></div>
                 <div class="map-content animate-on-scroll" style="transition-delay: 200ms;">
                     <h2 class="section-title">Presente em Todo o Brasil</h2>
-                    <p class="section-subtitle">Nossa tecnologia alcança escritórios contábeis em mais de 10 estados, otimizando operações de norte a sul com uma solução robusta e escalável.</p>
+                    <p class="section-subtitle">Nossa tecnologia alcança escritórios contábeis em todo o país, otimizando operações de norte a sul com uma solução robusta e escalável.</p>
                     <ul class="states-list">
                         <li><i data-feather="map-pin"></i>São Paulo</li>
                         <li><i data-feather="map-pin"></i>Minas Gerais</li>
+                        <li><i data-feather="map-pin"></i>Espírito Santo</li>
                         <li><i data-feather="map-pin"></i>Paraná</li>
                         <li><i data-feather="map-pin"></i>Santa Catarina</li>
                         <li><i data-feather="map-pin"></i>Rio Grande do Sul</li>
@@ -302,64 +300,124 @@
                 </div>
             </div>
         </section>
+        
         <section id="plans" class="section">
             <div class="container">
                 <h2 class="section-title animate-on-scroll">Planos Sob Medida Para o seu Sucesso</h2>
+                <p class="section-subtitle animate-on-scroll">Escolha o plano ideal para a sua necessidade e comece a economizar tempo hoje mesmo.</p>
+
+                <div class="plan-switcher animate-on-scroll">
+                    <span class="switch-label monthly active">Mensal</span>
+                    <label class="switch">
+                        <input type="checkbox" id="price-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="switch-label annual">Anual <span class="discount-badge">Economize 15%</span></span>
+                </div>
+
                 <div class="plans-grid">
-                    <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-card free-plan animate-on-scroll">
                         <div class="card-header">
-                            <h3>Plano Básico</h3>
-                            <p class="price">Consulte</p>
+                            <h3>Gratuito</h3>
+                            <div class="price-container">
+                                <span class="price-value">Grátis</span>
+                            </div>
+                            <div class="annual-savings"></div>
                         </div>
                         <div class="card-body">
-                            <p class="package-details">Pacote para <strong>100 CNPJs</strong> e <strong>2 Usuários</strong></p>
+                            <p class="package-details">Ideal para começar e conhecer</p>
                             <ul class="features-list">
-                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
-                                <li><i data-feather="check"></i>Acesso imediato aos recibos e guias</li>
-                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
-                                <li><i data-feather="check"></i>Relatórios de processamento</li>
+                                <li><i data-feather="check"></i>1 Usuário</li>
+                                <li><i data-feather="check"></i>5 Empresas</li>
+                                <li><i data-feather="check"></i>10 Declarações</li>
+                                <li class="feature-disabled"><i data-feather="x-circle"></i>Guias DARF</li>
+                                <li class="feature-disabled"><i data-feather="x-circle"></i>Verificação Pend. Federal</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="cta-button plan-button">Começar Agora</a>
+                        </div>
+                    </div>
+
+                    <div class="pricing-card animate-on-scroll" style="transition-delay: 150ms;">
+                        <div class="card-header">
+                            <h3>Inicial</h3>
+                            <div class="price-container">
+                                <div class="price-monthly">
+                                    <span class="price-currency">R$ </span><span class="price-value">199</span><span class="price-period">,00 /mês</span>
+                                </div>
+                                <div class="price-annual">
+                                    <span class="installments">12x de</span>
+                                    <span class="price-currency">R$ </span><span class="price-value">169</span><span class="price-period">,15</span>
+                                </div>
+                            </div>
+                            <div class="annual-savings">Economize R$ 358,20</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="package-details">Para escritórios em crescimento</p>
+                            <ul class="features-list">
+                                <li><i data-feather="check"></i>5 Usuários</li>
+                                <li><i data-feather="check"></i>100 Empresas</li>
+                                <li><i data-feather="check"></i>200 Declarações</li>
+                                <li><i data-feather="check"></i>Guias DARF</li>
+                                <li class="feature-disabled"><i data-feather="x-circle"></i>Verificação Pend. Federal</li>
                             </ul>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="cta-button plan-button">Quero este Plano</a>
                         </div>
                     </div>
-                    <div class="pricing-card featured animate-on-scroll" style="transition-delay: 150ms;">
+
+                    <div class="pricing-card featured animate-on-scroll" style="transition-delay: 300ms;">
                         <div class="featured-badge">Mais Popular</div>
                         <div class="card-header">
-                            <h3>Plano Avançado</h3>
-                            <p class="price">Consulte</p>
+                            <h3>Pro</h3>
+                            <div class="price-container">
+                                <div class="price-monthly">
+                                    <span class="price-currency">R$ </span><span class="price-value">499</span><span class="price-period">,00 /mês</span>
+                                </div>
+                                <div class="price-annual">
+                                    <span class="installments">12x de</span>
+                                    <span class="price-currency">R$ </span><span class="price-value">424</span><span class="price-period">,15</span>
+                                </div>
+                            </div>
+                            <div class="annual-savings">Economize R$ 898,20</div>
                         </div>
                         <div class="card-body">
-                            <p class="package-details">Pacote para <strong>200 CNPJs</strong> e <strong>4 Usuários</strong></p>
+                           <p class="package-details">A solução completa para escalar</p>
                             <ul class="features-list">
-                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
-                                <li><i data-feather="check"></i>Acesso imediato aos recibos e guias</li>
-                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
-                                <li><i data-feather="check"></i>Relatórios de processamento</li>
+                                <li><i data-feather="check"></i>10 Usuários</li>
+                                <li><i data-feather="check"></i>200 Empresas</li>
+                                <li><i data-feather="check"></i>400 Declarações</li>
+                                <li><i data-feather="check"></i>Guias DARF</li>
+                                <li><i data-feather="check"></i>Verificação Pend. Federal</li>
                             </ul>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="cta-button plan-button">Quero este Plano</a>
                         </div>
                     </div>
-                    <div class="pricing-card animate-on-scroll" style="transition-delay: 300ms;">
+
+                    <div class="pricing-card animate-on-scroll" style="transition-delay: 450ms;">
                         <div class="card-header">
-                            <h3>Plano Personalizado</h3>
-                            <p class="price">Consulte</p>
-                            <span class="price-period">Valor sob medida</span>
+                            <h3>Plus</h3>
+                            <div class="price-container">
+                                <span class="price-value">Consultar</span>
+                            </div>
+                             <div class="annual-savings"></div>
                         </div>
                         <div class="card-body">
-                            <p class="package-details">CNPJs e Usuários <strong>Personalizados</strong></p>
+                            <p class="package-details">Para demandas personalizadas</p>
                             <ul class="features-list">
-                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
-                                <li><i data-feather="check"></i>Acesso imediato aos recibos e guias</li>
-                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
-                                <li><i data-feather="check"></i>Relatórios de processamento</li>
+                                <li><i data-feather="check"></i>Usuários Personalizados</li>
+                                <li><i data-feather="check"></i>Empresas Ilimitadas</li>
+                                <li><i data-feather="check"></i>Declarações Ilimitadas</li>
+                                <li><i data-feather="check"></i>Guias DARF</li>
+                                <li><i data-feather="check"></i>Verificação Pend. Federal</li>
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="cta-button plan-button">Entrar em Contato</a>
+                            <a href="#contact" class="cta-button plan-button">Entrar em Contato</a>
                         </div>
                     </div>
                 </div>
@@ -502,15 +560,10 @@
                     <li><i data-feather="check-circle"></i>Importação de múltiplos arquivos</li>
                 </ul>
                 <div class="modal-contact-info">
-                    <div class="copy-item whatsapp-style">
-                        <a href="https://wa.me/5541987132156" target="_blank">
-                            <i data-feather="message-circle"></i>
-                            <span id="promo-phone">Quero meu teste grátis</span>
-                        </a>
-                        <button class="copy-button" data-copy-target="promo-phone" aria-label="Copiar telefone">
-                            <i data-feather="copy"></i>
-                        </button>
-                    </div>
+                    <a href="https://wa.me/5541987132156?text=Ol%C3%A1!%20Gostaria%20de%20testar%20o%20ZengaTax%20gratuitamente." target="_blank" class="modal-whatsapp-button">
+                        <i data-feather="message-circle"></i>
+                        <span>Quero meu teste grátis</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -520,8 +573,9 @@
             <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
             <div class="modal-content-column">
                 <img src="img/headerdark.png" alt="ZengaTax Logo" class="modal-header-logo">
-                <span class="modal-tag">EXCELENTE ESCOLHA!</span>
-                <h2>Principais Pontos do ZengaTax</h2>
+                <span class="modal-tag">ÓTIMA ESCOLHA!</span>
+                <h2>Vamos Ativar seu Plano</h2>
+                <p class="modal-subtitle">Confira os principais benefícios que você terá acesso:</p>
                 <ul class="modal-features-list">
                     <li><i data-feather="check-circle"></i>Transmissão Automática de MIT e DCTFWeb</li>
                     <li><i data-feather="check-circle"></i>Importação e Processamento em Lote</li>
@@ -529,19 +583,10 @@
                     <li><i data-feather="check-circle"></i>Download de Recibos e Guias em Lote</li>
                 </ul>
                 <div class="modal-contact-info">
-                    <p>Entre em contato para ativar seu plano:</p>
-                    <div class="copy-item email-style">
-                        <a href="mailto:zenga@scryta.com.br"><i data-feather="mail"></i><span id="plan-email">zenga@scryta.com.br</span></a>
-                        <button class="copy-button" data-copy-target="plan-email" aria-label="Copiar email">
-                            <i data-feather="copy"></i>
-                        </button>
-                    </div>
-                    <div class="copy-item whatsapp-style">
-                        <a href="https://wa.me/5541987132156" target="_blank"><i data-feather="phone"></i><span id="plan-phone">+55 (41) 98713-2156</span></a>
-                        <button class="copy-button" data-copy-target="plan-phone" aria-label="Copiar telefone">
-                            <i data-feather="copy"></i>
-                        </button>
-                    </div>
+                    <a href="https://wa.me/5541987132156?text=Ol%C3%A1!%20Gostaria%20de%20ativar%20meu%20plano%20ZengaTax." target="_blank" class="modal-whatsapp-button">
+                        <i data-feather="message-circle"></i>
+                        <span>Ativar Plano via WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -636,5 +681,25 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js"></script>
     <script src="chatbot.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceToggle = document.getElementById('price-toggle');
+            const plansGrid = document.querySelector('.plans-grid');
+            const monthlyLabels = document.querySelectorAll('.switch-label.monthly');
+            const annualLabels = document.querySelectorAll('.switch-label.annual');
+
+            if (priceToggle && plansGrid) {
+                priceToggle.addEventListener('change', function() {
+                    const isAnnual = this.checked;
+
+                    plansGrid.classList.toggle('show-annual', isAnnual);
+
+                    monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
+                    annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
+                });
+            }
+        });
+    </script>
 </body>
 </html>

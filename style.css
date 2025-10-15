@@ -681,95 +681,6 @@ body {
     background-color: var(--secondary-color);
     transform: scale(1.2);
 }
-.plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    align-items: stretch;
-}
-.pricing-card {
-    background: var(--white-color);
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(4, 44, 78, 0.1);
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-.pricing-card:hover {
-    transform: translateY(-10px);
-}
-.pricing-card.featured {
-    border-color: var(--secondary-color);
-    position: relative;
-    transform: scale(1.05);
-}
-.featured-badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--secondary-color);
-    color: var(--white-color);
-    padding: 5px 20px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-.card-header {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-light-color);
-}
-.card-header h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-.price {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 10px 0;
-    color: var(--primary-color);
-}
-.price-period {
-    opacity: 0.6;
-}
-.card-body {
-    flex-grow: 1;
-    padding: 30px 0;
-}
-.package-details {
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 25px;
-}
-.features-list {
-    list-style: none;
-}
-.features-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-.features-list i {
-    color: var(--secondary-color);
-}
-.card-footer {
-    margin-top: auto;
-}
-.plan-button {
-    width: 100%;
-    text-align: center;
-}
-.pricing-card.featured .plan-button {
-    background: var(--secondary-color);
-    color: var(--white-color);
-}
-.pricing-card.featured .plan-button:hover {
-    background: var(--primary-color);
-}
 #partners {
     background-color: var(--primary-color);
 }
@@ -900,7 +811,6 @@ body {
     padding: 50px 0;
     border-top: 1px solid var(--border-light-color);
 }
-
 .footer-container {
     display: flex;
     flex-direction: column;
@@ -908,16 +818,14 @@ body {
     text-align: center;
     gap: 20px;
 }
-
 .footer-copyright {
     opacity: 0.8;
     font-size: 0.95rem;
     color: var(--primary-color);
-    white-space: nowrap; /* impede quebra de linha */
+    white-space: nowrap;
     margin: 0;
     text-align: center;
 }
-
 .footer-logos {
     display: flex;
     align-items: center;
@@ -926,18 +834,15 @@ body {
     flex-wrap: wrap;
     margin-bottom: 10px;
 }
-
 .footer-logo {
     height: 60px;
     opacity: 0.9;
 }
-
 .footer-scryta-logo,
 .footer-nvidia-logo {
     height: 60px;
     filter: none;
 }
-
 .footer-socials h4 {
     font-size: 1rem;
     font-weight: 600;
@@ -1260,26 +1165,79 @@ body {
 #promoModalOverlay .copy-item.whatsapp-style .copy-button {
     display: none;
 }
+#planModalOverlay .modal-container-small {
+    background: linear-gradient(145deg, var(--white-color), #f0f8ff);
+    overflow: hidden;
+}
+
 #planModalOverlay .modal-content-column {
-    padding: 25px 35px;
+    text-align: center;
+    padding: 30px 35px 35px 35px;
 }
+
 #planModalOverlay .modal-header-logo {
+    max-height: 80px;
     margin-bottom: 10px;
-    max-height: 75px;
 }
+
+#planModalOverlay .modal-tag {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    align-self: center;
+}
+
 #planModalOverlay h2 {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: var(--primary-color);
 }
+
+#planModalOverlay .modal-subtitle {
+    font-size: 1rem;
+    color: var(--text-color-dark);
+    opacity: 0.8;
+    margin: 5px auto 25px auto;
+    max-width: 400px;
+}
+
 #planModalOverlay .modal-features-list {
-    margin: 10px 0;
+    text-align: left;
+    display: inline-block;
+    margin-bottom: 30px;
+    border-top: 1px solid var(--border-light-color);
+    padding-top: 20px;
 }
+
 #planModalOverlay .modal-features-list li {
-    margin-bottom: 8px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
-#planModalOverlay .modal-contact-info p {
-    margin-bottom: 8px;
+
+.modal-whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #25D366;
+    color: var(--white-color);
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.15rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    border: none;
+}
+
+.modal-whatsapp-button:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
+.modal-whatsapp-button i {
+    width: 24px;
+    height: 24px;
 }
 .map-section-container {
     display: grid;
@@ -1305,11 +1263,11 @@ body {
 .states-list li {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     color: var(--text-color-dark);
-    font-size: 1.1rem;
+    font-size: 1rem; /* Fonte reduzida */
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Espaçamento vertical reduzido */
     opacity: 0.9;
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
@@ -1432,11 +1390,9 @@ body {
     opacity: 1;
     transition: all 0.4s ease;
 }
-
 .logo-slider:hover .logo-track {
     animation-play-state: paused;
 }
-
 .logo-slide:hover img {
     transform: scale(1.1);
 }
@@ -1453,17 +1409,19 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+@media (max-width: 1199px) {
+    .plans-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
 @media (max-width: 992px) {
     .contact-wrapper {
         grid-template-columns: 1fr;
     }
     .plans-grid {
-        grid-template-columns: 1fr;
-        max-width: 450px;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
         margin: 0 auto;
-    }
-    .pricing-card.featured {
-        transform: scale(1);
     }
     #how-it-works .how-it-works-wrapper {
         flex-direction: column;
@@ -1525,9 +1483,6 @@ body {
     .our-solutions-grid {
         grid-template-columns: 1fr;
     }
-    .price {
-        font-size: 2.2rem;
-    }
     .modal-container,
     .modal-container-small {
         max-height: 90vh;
@@ -1562,6 +1517,10 @@ body {
     .partners-grid {
         grid-template-columns: 1fr;
     }
+    .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
 }
 @media (max-width: 480px) {
     .modal-image-column {
@@ -1574,7 +1533,6 @@ body {
         column-count: 1;
     }
 }
-
 #map-container::after {
     content: '';
     position: absolute;
@@ -1585,10 +1543,6 @@ body {
     background-color: #f0f0f0;
     z-index: 1000;
 }
-
-/* =================================
-    ESTILO PARA A SEÇÃO DO BLOG
-   ================================= */
 #blog {
     background-color: var(--light-blue-bg);
 }
@@ -1618,15 +1572,15 @@ body {
 .blog-post-image {
     position: relative;
     width: 100%;
-    height: 300px; /* <-- CORREÇÃO: Altura ajustada para o card */
+    height: 300px;
     overflow: hidden;
-    background-color: var(--primary-color); /* Adiciona um background para preencher espaços */
+    background-color: var(--primary-color);
 }
 .blog-post-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* <-- CORREÇÃO: Usar 'contain' para mostrar a imagem inteira */
-    object-position: center; /* Centraliza a imagem no espaço */
+    object-fit: contain;
+    object-position: center;
     transition: transform 0.4s ease;
 }
 .blog-post-card:hover .blog-post-image img {
@@ -1681,4 +1635,334 @@ body {
 }
 .blog-post-card:hover .blog-post-readmore i {
     transform: translateX(5px);
+}
+
+#plans {
+    background-color: var(--light-blue-bg);
+    padding: 80px 0;
+}
+
+#plans .container {
+    max-width: 1280px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+@keyframes pulse-badge {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.plan-switcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+.switch-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+.switch-label.active {
+    opacity: 1;
+}
+.switch-label .discount-badge {
+    background-color: #25D366;
+    color: var(--white-color);
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    margin-left: 8px;
+    display: inline-block;
+    animation: pulse-badge 2.5s infinite;
+    transition: transform 0.3s ease;
+}
+.switch-label.annual.active .discount-badge {
+    animation: none;
+    transform: scale(1.1);
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked+.slider {
+    background-color: var(--secondary-color);
+}
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    align-items: stretch;
+}
+.pricing-card {
+    background: var(--white-color);
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(4, 44, 78, 0.08);
+    display: flex;
+    flex-direction: column;
+    padding: 22px 18px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(4, 44, 78, 0.12);
+}
+.pricing-card.free-plan {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+.pricing-card.free-plan .card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+.pricing-card.free-plan h3,
+.pricing-card.free-plan .price-value {
+    color: var(--white-color);
+}
+.pricing-card.free-plan .package-details,
+.pricing-card.free-plan .features-list li {
+    color: var(--text-color-light);
+}
+.pricing-card.free-plan .plan-button {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+}
+.pricing-card.free-plan .plan-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+}
+.pricing-card.featured {
+    border-color: var(--secondary-color);
+    position: relative;
+    transform: translateY(0);
+}
+.pricing-card.featured:hover {
+    transform: translateY(-8px);
+}
+.featured-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary-color);
+    color: var(--white-color);
+    padding: 4px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+.card-header {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light-color);
+}
+.card-header h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.price-container {
+    position: relative;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.price-monthly,
+.price-annual {
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+}
+.price-annual {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(100%);
+}
+.plans-grid.show-annual .price-monthly {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.plans-grid.show-annual .price-annual {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+.price-container .price-value {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+.price-container .price-currency {
+    font-size: 1.05rem;
+    margin-right: 5px; /* Adiciona um espaço à direita do "R$" */
+}
+.price-container .price-period {
+    font-size: 0.85rem;
+}
+.price-annual .price-value {
+    font-size: 1.9rem;
+}
+.annual-savings {
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #25D366;
+    margin-top: 5px;
+    height: 1.1em;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.plans-grid.show-annual .annual-savings {
+    opacity: 1;
+    transform: translateY(0);
+}
+.card-body {
+    flex-grow: 1;
+    padding: 18px 0;
+}
+.package-details {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+    color: var(--text-color-dark);
+    opacity: 0.8;
+}
+.features-list {
+    list-style: none;
+    padding-left: 5px;
+}
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--text-color-dark);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+.features-list i {
+    flex-shrink: 0;
+}
+.features-list i[data-feather="check"] {
+    color: var(--secondary-color);
+}
+.features-list i[data-feather="x-circle"] {
+    color: #ff6b6b;
+}
+.features-list li.feature-disabled {
+    color: #999;
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+.pricing-card.free-plan .features-list li.feature-disabled {
+    color: rgba(255, 255, 255, 0.5);
+}
+.card-footer {
+    margin-top: auto;
+    padding-top: 12px;
+}
+.plan-button {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 9px 22px;
+    font-size: 0.9rem;
+}
+.pricing-card.featured .plan-button {
+    background: var(--secondary-color);
+    color: var(--white-color);
+}
+.pricing-card.featured .plan-button:hover {
+    background: var(--primary-color);
+}
+
+@media (max-width: 1200px) {
+    #plans .container {
+        max-width: 980px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .plans-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+        gap: 25px;
+    }
+}
+
+.price-annual .installments {
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-right: 5px;
 }
