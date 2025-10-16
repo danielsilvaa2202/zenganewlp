@@ -229,7 +229,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     let mapInstance = null;
-
     function initBrazilMap() {
         if (mapInstance || typeof L === 'undefined') return;
         mapInstance = L.map('map-container', {
@@ -274,7 +273,6 @@ document.addEventListener('DOMContentLoaded', function() {
             direction: 'top',
             className: 'custom-leaflet-tooltip'
         });
-
         function getArc(start, end) {
             const points = [];
             const startLat = start[0];
@@ -336,4 +334,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         setTimeout(() => mapInstance.invalidateSize(), 400);
     }
+
+    // --- FAQ Accordion Logic (CORRIGIDO) ---
+    const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(clickedItem => {
+    const question = clickedItem.querySelector('.faq-question');
+
+    question.addEventListener('click', () => {
+        const answer = clickedItem.querySelector('.faq-answer');
+        const isOpening = !clickedItem.classList.contains('active');
+
+        // 1. Fecha todos os itens abertos
+        faqItems.forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.faq-answer').style.maxHeight = null; // Reseta para o valor do CSS (0)
+        });
+
+        // 2. Se o item clicado estava fechado, ele abre.
+        if (isOpening) {
+            clickedItem.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+    });
+});
 });

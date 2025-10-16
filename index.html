@@ -18,32 +18,20 @@
     <link rel="stylesheet" href="chatbot.css">
 
     <script>
-
-  !function(f,b,e,v,n,t,s)
-
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-
-  n.queue=[];t=b.createElement(e);t.async=!0;
-
-  t.src=v;s=b.getElementsByTagName(e)[0];
-
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-
-  'https://connect.facebook.net/en_US/fbevents.js');
-
-  fbq('init', '709979164733785');
-
-  fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-
-  src="https://www.facebook.com/tr?id=709979164733785&ev=PageView&noscript=1"
-
-/></noscript>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '709979164733785');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=709979164733785&ev=PageView&noscript=1"
+    /></noscript>
 </head>
 <body>
     <header class="header">
@@ -58,9 +46,12 @@
                 <a href="#clients">Clientes</a>
                 <a href="#plans">Planos</a>
                 <a href="#blog">Blog</a>
+                <a href="#faq">FAQ</a>
                 <a href="#contact">Contato</a>
             </div>
-            <a href="#" id="header-cta-button" class="cta-button">Vamos Conversar</a>
+            <div class="nav-actions">
+                <a href="https://app.zengatax.com.br" target="_blank" class="login-button">Login</a>
+            </div>
         </nav>
     </header>
     <main>
@@ -522,6 +513,100 @@
                 </div>
             </div>
         </section>
+        
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Perguntas Frequentes</h2>
+                <p class="section-subtitle animate-on-scroll">Tire suas dúvidas sobre como o ZengaTax pode revolucionar sua rotina fiscal.</p>
+                <div class="faq-container animate-on-scroll">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-item-icon-wrapper">
+                                <i data-feather="help-circle"></i>
+                            </div>
+                            <div class="faq-item-content">
+                                <h3>O que é o ZengaTax?</h3>
+                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O ZengaTax é uma plataforma de automação fiscal inteligente projetada para simplificar e acelerar a entrega de obrigações como MIT e DCTFWeb. Nosso sistema elimina a necessidade de acesso ao e-CAC, permitindo transmissões, downloads de recibos e emissão de guias em lote, tudo de forma centralizada e segura.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-item-icon-wrapper">
+                                <i data-feather="shield"></i>
+                            </div>
+                            <div class="faq-item-content">
+                                <h3>Como a plataforma garante a segurança dos meus dados?</h3>
+                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A segurança é nossa prioridade máxima. Utilizamos criptografia de ponta para proteger todas as informações transmitidas e armazenadas. Nossa infraestrutura robusta e em conformidade com as melhores práticas do mercado garante a confidencialidade e integridade dos dados de seus clientes.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-item-icon-wrapper">
+                                <i data-feather="cloud"></i>
+                            </div>
+                            <div class="faq-item-content">
+                                <h3>Preciso instalar algum software no meu computador?</h3>
+                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Não. O ZengaTax é uma plataforma 100% baseada na web. Você pode acessá-la de qualquer dispositivo com conexão à internet, sem a necessidade de instalações ou atualizações complexas. Isso garante flexibilidade e acesso imediato às nossas ferramentas de onde você estiver.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-item-icon-wrapper">
+                                <i data-feather="git-pull-request"></i>
+                            </div>
+                            <div class="faq-item-content">
+                                <h3>O ZengaTax se integra com meu sistema contábil atual?</h3>
+                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim. Nossa plataforma foi desenvolvida para ser flexível. O ZengaTax trabalha com os arquivos JSON gerados pelo seu sistema contábil. Basta exportar os arquivos do seu software atual e importá-los em lote em nossa plataforma para iniciar a automação. Também oferecemos integração via API para uma automação ainda mais profunda.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <div class="faq-question">
+                           <div class="faq-item-icon-wrapper">
+                                <i data-feather="file-text"></i>
+                            </div>
+                            <div class="faq-item-content">
+                                <h3>O que são MIT e DCTFWeb e por que automatizá-los?</h3>
+                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O Módulo de Integração Tributária (MIT) e a Declaração de Débitos e Créditos Tributários Federais Previdenciários e de Outras Entidades e Fundos (DCTFWeb) são obrigações fiscais essenciais. Automatizar seu envio economiza um tempo valioso, reduz drasticamente o risco de erros manuais, evita multas e permite que sua equipe foque em atividades estratégicas em vez de tarefas repetitivas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-item-icon-wrapper">
+                                <i data-feather="phone-call"></i>
+                            </div>
+                            <div class="faq-item-content">
+                                <h3>Que tipo de suporte vocês oferecem?</h3>
+                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Oferecemos suporte completo e humanizado para garantir que você tenha a melhor experiência. Nossa equipe de especialistas está disponível via WhatsApp, e-mail e telefone para ajudar com a implementação, tirar dúvidas e resolver qualquer questão rapidamente, garantindo que sua operação nunca pare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     <footer class="footer">
         <div class="container footer-container">
