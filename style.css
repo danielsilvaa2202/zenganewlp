@@ -1786,8 +1786,11 @@ body {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Define 2 colunas com tamanho mínimo de 320px, mas sem preenchimento automático (auto-fit) */
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
     gap: 30px;
+    /* Centraliza os itens caso haja espaço sobrando (ex: 3 itens em grid de 2 colunas) */
+    justify-content: center;
 }
 
 .blog-post-card {
@@ -2377,5 +2380,9 @@ input:checked+.slider:before {
         max-width: 320px;
         margin: 0 auto;
         gap: 25px;
+    }
+
+    .blog-grid {
+        grid-template-columns: minmax(320px, 1fr); /* Volta para 1 coluna */
     }
 }

@@ -16,22 +16,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chatbot.css">
-
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '709979164733785');
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=709979164733785&ev=PageView&noscript=1"
-    /></noscript>
 </head>
 <body>
     <header class="header">
@@ -46,12 +30,9 @@
                 <a href="#clients">Clientes</a>
                 <a href="#plans">Planos</a>
                 <a href="#blog">Blog</a>
-                <a href="#faq">FAQ</a>
                 <a href="#contact">Contato</a>
             </div>
-            <div class="nav-actions">
-                <a href="https://app.zengatax.com.br" target="_blank" class="login-button">Login</a>
-            </div>
+            <a href="#" id="header-cta-button" class="cta-button">Vamos Conversar</a>
         </nav>
     </header>
     <main>
@@ -274,11 +255,10 @@
                 <div id="map-container" class="animate-on-scroll"></div>
                 <div class="map-content animate-on-scroll" style="transition-delay: 200ms;">
                     <h2 class="section-title">Presente em Todo o Brasil</h2>
-                    <p class="section-subtitle">Nossa tecnologia alcança escritórios contábeis em todo o país, otimizando operações de norte a sul com uma solução robusta e escalável.</p>
+                    <p class="section-subtitle">Nossa tecnologia alcança escritórios contábeis em mais de 10 estados, otimizando operações de norte a sul com uma solução robusta e escalável.</p>
                     <ul class="states-list">
                         <li><i data-feather="map-pin"></i>São Paulo</li>
                         <li><i data-feather="map-pin"></i>Minas Gerais</li>
-                        <li><i data-feather="map-pin"></i>Espírito Santo</li>
                         <li><i data-feather="map-pin"></i>Paraná</li>
                         <li><i data-feather="map-pin"></i>Santa Catarina</li>
                         <li><i data-feather="map-pin"></i>Rio Grande do Sul</li>
@@ -291,124 +271,64 @@
                 </div>
             </div>
         </section>
-        
         <section id="plans" class="section">
             <div class="container">
                 <h2 class="section-title animate-on-scroll">Planos Sob Medida Para o seu Sucesso</h2>
-                <p class="section-subtitle animate-on-scroll">Escolha o plano ideal para a sua necessidade e comece a economizar tempo hoje mesmo.</p>
-
-                <div class="plan-switcher animate-on-scroll">
-                    <span class="switch-label monthly active">Mensal</span>
-                    <label class="switch">
-                        <input type="checkbox" id="price-toggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="switch-label annual">Anual <span class="discount-badge">Economize 15%</span></span>
-                </div>
-
                 <div class="plans-grid">
-                    <div class="pricing-card free-plan animate-on-scroll">
+                    <div class="pricing-card animate-on-scroll">
                         <div class="card-header">
-                            <h3>Gratuito</h3>
-                            <div class="price-container">
-                                <span class="price-value">Grátis</span>
-                            </div>
-                            <div class="annual-savings"></div>
+                            <h3>Plano Básico</h3>
+                            <p class="price">Consulte</p>
                         </div>
                         <div class="card-body">
-                            <p class="package-details">Ideal para começar e conhecer</p>
+                            <p class="package-details">Pacote para <strong>100 CNPJs</strong> e <strong>2 Usuários</strong></p>
                             <ul class="features-list">
-                                <li><i data-feather="check"></i>1 Usuário</li>
-                                <li><i data-feather="check"></i>5 Empresas</li>
-                                <li><i data-feather="check"></i>10 Declarações</li>
-                                <li class="feature-disabled"><i data-feather="x-circle"></i>Guias DARF</li>
-                                <li class="feature-disabled"><i data-feather="x-circle"></i>Verificação Pend. Federal</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="cta-button plan-button">Começar Agora</a>
-                        </div>
-                    </div>
-
-                    <div class="pricing-card animate-on-scroll" style="transition-delay: 150ms;">
-                        <div class="card-header">
-                            <h3>Inicial</h3>
-                            <div class="price-container">
-                                <div class="price-monthly">
-                                    <span class="price-currency">R$ </span><span class="price-value">199</span><span class="price-period">,00 /mês</span>
-                                </div>
-                                <div class="price-annual">
-                                    <span class="installments">12x de</span>
-                                    <span class="price-currency">R$ </span><span class="price-value">169</span><span class="price-period">,15</span>
-                                </div>
-                            </div>
-                            <div class="annual-savings">Economize R$ 358,20</div>
-                        </div>
-                        <div class="card-body">
-                            <p class="package-details">Para escritórios em crescimento</p>
-                            <ul class="features-list">
-                                <li><i data-feather="check"></i>5 Usuários</li>
-                                <li><i data-feather="check"></i>100 Empresas</li>
-                                <li><i data-feather="check"></i>200 Declarações</li>
-                                <li><i data-feather="check"></i>Guias DARF</li>
-                                <li class="feature-disabled"><i data-feather="x-circle"></i>Verificação Pend. Federal</li>
+                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
+                                <li><i data-feather="check"></i>Acesso imediato aos recibos e guias</li>
+                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
+                                <li><i data-feather="check"></i>Relatórios de processamento</li>
                             </ul>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="cta-button plan-button">Quero este Plano</a>
                         </div>
                     </div>
-
-                    <div class="pricing-card featured animate-on-scroll" style="transition-delay: 300ms;">
+                    <div class="pricing-card featured animate-on-scroll" style="transition-delay: 150ms;">
                         <div class="featured-badge">Mais Popular</div>
                         <div class="card-header">
-                            <h3>Pro</h3>
-                            <div class="price-container">
-                                <div class="price-monthly">
-                                    <span class="price-currency">R$ </span><span class="price-value">499</span><span class="price-period">,00 /mês</span>
-                                </div>
-                                <div class="price-annual">
-                                    <span class="installments">12x de</span>
-                                    <span class="price-currency">R$ </span><span class="price-value">424</span><span class="price-period">,15</span>
-                                </div>
-                            </div>
-                            <div class="annual-savings">Economize R$ 898,20</div>
+                            <h3>Plano Avançado</h3>
+                            <p class="price">Consulte</p>
                         </div>
                         <div class="card-body">
-                           <p class="package-details">A solução completa para escalar</p>
+                            <p class="package-details">Pacote para <strong>200 CNPJs</strong> e <strong>4 Usuários</strong></p>
                             <ul class="features-list">
-                                <li><i data-feather="check"></i>10 Usuários</li>
-                                <li><i data-feather="check"></i>200 Empresas</li>
-                                <li><i data-feather="check"></i>400 Declarações</li>
-                                <li><i data-feather="check"></i>Guias DARF</li>
-                                <li><i data-feather="check"></i>Verificação Pend. Federal</li>
+                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
+                                <li><i data-feather="check"></i>Acesso imediato aos recibos e guias</li>
+                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
+                                <li><i data-feather="check"></i>Relatórios de processamento</li>
                             </ul>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="cta-button plan-button">Quero este Plano</a>
                         </div>
                     </div>
-
-                    <div class="pricing-card animate-on-scroll" style="transition-delay: 450ms;">
+                    <div class="pricing-card animate-on-scroll" style="transition-delay: 300ms;">
                         <div class="card-header">
-                            <h3>Plus</h3>
-                            <div class="price-container">
-                                <span class="price-value">Consultar</span>
-                            </div>
-                             <div class="annual-savings"></div>
+                            <h3>Plano Personalizado</h3>
+                            <p class="price">Consulte</p>
+                            <span class="price-period">Valor sob medida</span>
                         </div>
                         <div class="card-body">
-                            <p class="package-details">Para demandas personalizadas</p>
+                            <p class="package-details">CNPJs e Usuários <strong>Personalizados</strong></p>
                             <ul class="features-list">
-                                <li><i data-feather="check"></i>Usuários Personalizados</li>
-                                <li><i data-feather="check"></i>Empresas Ilimitadas</li>
-                                <li><i data-feather="check"></i>Declarações Ilimitadas</li>
-                                <li><i data-feather="check"></i>Guias DARF</li>
-                                <li><i data-feather="check"></i>Verificação Pend. Federal</li>
+                                <li><i data-feather="check"></i>Transmissão MIT e DCTFWeb</li>
+                                <li><i data-feather="check"></i>Acesso imediato aos recibos e guias</li>
+                                <li><i data-feather="check"></i>Dashboard de acompanhamento</li>
+                                <li><i data-feather="check"></i>Relatórios de processamento</li>
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <a href="#contact" class="cta-button plan-button">Entrar em Contato</a>
+                            <a href="#" class="cta-button plan-button">Entrar em Contato</a>
                         </div>
                     </div>
                 </div>
@@ -423,7 +343,7 @@
                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 100ms;">
                         <a href="paginas/reforma_inovacao.html" class="blog-card-link">
                             <div class="blog-post-image">
-                                <img src="img/blog/img1.png" alt="Imagem do Post sobre Reforma Tributária">
+                                <img src="img/blog/img1.png" alt="Imagem do Post sobre Reforma Tributária: Inovação e Transição">
                                 <span class="blog-post-category">Inovação</span>
                             </div>
                             <div class="blog-post-content">
@@ -436,12 +356,25 @@
                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 250ms;">
                         <a href="paginas/reforma_regimes.html" class="blog-card-link">
                             <div class="blog-post-image">
-                                <img src="img/blog/img2.png" alt="Imagem do Post sobre Regimes Específicos">
+                                <img src="img/blog/img2.png" alt="Imagem do Post sobre Regimes Específicos e Diferenciados">
                                 <span class="blog-post-category">Legislação</span>
                             </div>
                             <div class="blog-post-content">
                                 <h3 class="blog-post-title">Regimes Específicos e Diferenciados na Reforma Tributária</h3>
                                 <p class="blog-post-excerpt">Entenda como a criação de regimes específicos e diferenciados protege setores-chave da nossa economia, garantindo uma transição justa e eficiente para todos...</p>
+                                <span class="blog-post-readmore">Continuar lendo <i data-feather="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 400ms;">
+                        <a href="paginas/reforma_assistida.html" class="blog-card-link">
+                            <div class="blog-post-image">
+                                <img src="img/blog/img3.png" alt="Imagem do Post sobre Apuração Assistida">
+                                <span class="blog-post-category">Tecnologia</span>
+                            </div>
+                            <div class="blog-post-content">
+                                <h3 class="blog-post-title">Apuração Assistida: A Revolução da Conformidade na Reforma Tributária</h3>
+                                <p class="blog-post-excerpt">Esqueça o modelo antigo! Com a Apuração Assistida, o Fisco calcula os tributos e sua equipe valida. Entenda essa mudança radical e seus impactos...</p>
                                 <span class="blog-post-readmore">Continuar lendo <i data-feather="arrow-right"></i></span>
                             </div>
                         </a>
@@ -513,100 +446,6 @@
                 </div>
             </div>
         </section>
-        
-        <section id="faq" class="section">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll">Perguntas Frequentes</h2>
-                <p class="section-subtitle animate-on-scroll">Tire suas dúvidas sobre como o ZengaTax pode revolucionar sua rotina fiscal.</p>
-                <div class="faq-container animate-on-scroll">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <div class="faq-item-icon-wrapper">
-                                <i data-feather="help-circle"></i>
-                            </div>
-                            <div class="faq-item-content">
-                                <h3>O que é o ZengaTax?</h3>
-                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>O ZengaTax é uma plataforma de automação fiscal inteligente projetada para simplificar e acelerar a entrega de obrigações como MIT e DCTFWeb. Nosso sistema elimina a necessidade de acesso ao e-CAC, permitindo transmissões, downloads de recibos e emissão de guias em lote, tudo de forma centralizada e segura.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <div class="faq-item-icon-wrapper">
-                                <i data-feather="shield"></i>
-                            </div>
-                            <div class="faq-item-content">
-                                <h3>Como a plataforma garante a segurança dos meus dados?</h3>
-                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>A segurança é nossa prioridade máxima. Utilizamos criptografia de ponta para proteger todas as informações transmitidas e armazenadas. Nossa infraestrutura robusta e em conformidade com as melhores práticas do mercado garante a confidencialidade e integridade dos dados de seus clientes.</p>
-                        </div>
-                    </div>
-                     <div class="faq-item">
-                        <div class="faq-question">
-                            <div class="faq-item-icon-wrapper">
-                                <i data-feather="cloud"></i>
-                            </div>
-                            <div class="faq-item-content">
-                                <h3>Preciso instalar algum software no meu computador?</h3>
-                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Não. O ZengaTax é uma plataforma 100% baseada na web. Você pode acessá-la de qualquer dispositivo com conexão à internet, sem a necessidade de instalações ou atualizações complexas. Isso garante flexibilidade e acesso imediato às nossas ferramentas de onde você estiver.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <div class="faq-item-icon-wrapper">
-                                <i data-feather="git-pull-request"></i>
-                            </div>
-                            <div class="faq-item-content">
-                                <h3>O ZengaTax se integra com meu sistema contábil atual?</h3>
-                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Sim. Nossa plataforma foi desenvolvida para ser flexível. O ZengaTax trabalha com os arquivos JSON gerados pelo seu sistema contábil. Basta exportar os arquivos do seu software atual e importá-los em lote em nossa plataforma para iniciar a automação. Também oferecemos integração via API para uma automação ainda mais profunda.</p>
-                        </div>
-                    </div>
-                     <div class="faq-item">
-                        <div class="faq-question">
-                           <div class="faq-item-icon-wrapper">
-                                <i data-feather="file-text"></i>
-                            </div>
-                            <div class="faq-item-content">
-                                <h3>O que são MIT e DCTFWeb e por que automatizá-los?</h3>
-                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>O Módulo de Integração Tributária (MIT) e a Declaração de Débitos e Créditos Tributários Federais Previdenciários e de Outras Entidades e Fundos (DCTFWeb) são obrigações fiscais essenciais. Automatizar seu envio economiza um tempo valioso, reduz drasticamente o risco de erros manuais, evita multas e permite que sua equipe foque em atividades estratégicas em vez de tarefas repetitivas.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <div class="faq-item-icon-wrapper">
-                                <i data-feather="phone-call"></i>
-                            </div>
-                            <div class="faq-item-content">
-                                <h3>Que tipo de suporte vocês oferecem?</h3>
-                                <div class="faq-icon"><i data-feather="chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Oferecemos suporte completo e humanizado para garantir que você tenha a melhor experiência. Nossa equipe de especialistas está disponível via WhatsApp, e-mail e telefone para ajudar com a implementação, tirar dúvidas e resolver qualquer questão rapidamente, garantindo que sua operação nunca pare.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
     <footer class="footer">
         <div class="container footer-container">
@@ -615,7 +454,7 @@
                 <img src="img/logoscryta.png" alt="Scryta Logo Footer" class="footer-scryta-logo">
                 <img src="img/nvidia-logo.png" alt="NVIDIA Logo Footer" class="footer-nvidia-logo">
             </div>
-            <p class="footer-copyright">&copy; 2025 ZengaTax. Todos os direitos reservados. Uma solução grupo SCRYTA.</p>
+            <p class="footer-copyright">&copy; 2025 ZengaTax. Todos os direitos reservados. Uma solução Scryta.</p>
             <div class="footer-socials">
                 <h4>Siga-nos</h4>
                 <div class="social-links">
@@ -645,10 +484,15 @@
                     <li><i data-feather="check-circle"></i>Importação de múltiplos arquivos</li>
                 </ul>
                 <div class="modal-contact-info">
-                    <a href="https://wa.me/5541987132156?text=Ol%C3%A1!%20Gostaria%20de%20testar%20o%20ZengaTax%20gratuitamente." target="_blank" class="modal-whatsapp-button">
-                        <i data-feather="message-circle"></i>
-                        <span>Quero meu teste grátis</span>
-                    </a>
+                    <div class="copy-item whatsapp-style">
+                        <a href="https://wa.me/5541987132156" target="_blank">
+                            <i data-feather="message-circle"></i>
+                            <span id="promo-phone">Quero meu teste grátis</span>
+                        </a>
+                        <button class="copy-button" data-copy-target="promo-phone" aria-label="Copiar telefone">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -658,9 +502,8 @@
             <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
             <div class="modal-content-column">
                 <img src="img/headerdark.png" alt="ZengaTax Logo" class="modal-header-logo">
-                <span class="modal-tag">ÓTIMA ESCOLHA!</span>
-                <h2>Vamos Ativar seu Plano</h2>
-                <p class="modal-subtitle">Confira os principais benefícios que você terá acesso:</p>
+                <span class="modal-tag">EXCELENTE ESCOLHA!</span>
+                <h2>Principais Pontos do ZengaTax</h2>
                 <ul class="modal-features-list">
                     <li><i data-feather="check-circle"></i>Transmissão Automática de MIT e DCTFWeb</li>
                     <li><i data-feather="check-circle"></i>Importação e Processamento em Lote</li>
@@ -668,10 +511,19 @@
                     <li><i data-feather="check-circle"></i>Download de Recibos e Guias em Lote</li>
                 </ul>
                 <div class="modal-contact-info">
-                    <a href="https://wa.me/5541987132156?text=Ol%C3%A1!%20Gostaria%20de%20ativar%20meu%20plano%20ZengaTax." target="_blank" class="modal-whatsapp-button">
-                        <i data-feather="message-circle"></i>
-                        <span>Ativar Plano via WhatsApp</span>
-                    </a>
+                    <p>Entre em contato para ativar seu plano:</p>
+                    <div class="copy-item email-style">
+                        <a href="mailto:zenga@scryta.com.br"><i data-feather="mail"></i><span id="plan-email">zenga@scryta.com.br</span></a>
+                        <button class="copy-button" data-copy-target="plan-email" aria-label="Copiar email">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="copy-item whatsapp-style">
+                        <a href="https://wa.me/5541987132156" target="_blank"><i data-feather="phone"></i><span id="plan-phone">+55 (41) 98713-2156</span></a>
+                        <button class="copy-button" data-copy-target="plan-phone" aria-label="Copiar telefone">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -766,25 +618,5 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js"></script>
     <script src="chatbot.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const priceToggle = document.getElementById('price-toggle');
-            const plansGrid = document.querySelector('.plans-grid');
-            const monthlyLabels = document.querySelectorAll('.switch-label.monthly');
-            const annualLabels = document.querySelectorAll('.switch-label.annual');
-
-            if (priceToggle && plansGrid) {
-                priceToggle.addEventListener('change', function() {
-                    const isAnnual = this.checked;
-
-                    plansGrid.classList.toggle('show-annual', isAnnual);
-
-                    monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
-                    annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
-                });
-            }
-        });
-    </script>
 </body>
 </html>
