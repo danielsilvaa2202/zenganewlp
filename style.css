@@ -808,55 +808,69 @@ body {
     color: var(--white-color);
 }
 
+.partners-grid a {
+    text-decoration: none;
+}
+
 .partners-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1000px;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1200px;
     margin: 0 auto;
-    gap: 40px;
+    gap: 50px;
     align-items: center;
 }
 
 .partners-grid a {
     text-decoration: none;
-}
-
-.partner-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--card-border-dark);
-    border-radius: 15px;
-    padding: 30px 40px;
+    transition: transform 0.3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 140px;
-    transition: all 0.3s ease;
 }
 
-.partner-card:hover {
+.partners-grid a:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    border-color: var(--secondary-color);
-    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.partner-card {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    transition: none;
 }
 
 .partner-card img {
-    max-height: 80px;
+    max-height: 150px;
     width: auto;
     max-width: 100%;
-    filter: brightness(0) invert(1);
-    opacity: 0.7;
-    transition: all 0.4s ease;
-}
-
-.partner-card:hover img {
     opacity: 1;
+    transition: none;
 }
 
 .partner-card img#scryta-partner-logo {
     filter: none;
     opacity: 1;
-    max-height: 110px;
+    max-height: 150px;
+}
+
+@media (max-width: 992px) {
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
 }
 
 .contact-wrapper {
