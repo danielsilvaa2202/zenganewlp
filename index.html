@@ -792,65 +792,27 @@
     <script src="chatbot.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            const priceToggle = document.getElementById('price-toggle');
-            const plansGrid = document.querySelector('.plans-grid');
-            const monthlyLabels = document.querySelectorAll('.switch-label.monthly');
-            const annualLabels = document.querySelectorAll('.switch-label.annual');
+    document.addEventListener('DOMContentLoaded', () => {
 
-            if (priceToggle && plansGrid && monthlyLabels.length > 0 && annualLabels.length > 0) {
-                priceToggle.addEventListener('change', function() {
-                    const isAnnual = this.checked;
-                    plansGrid.classList.toggle('show-annual', isAnnual);
-                    monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
-                    annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
-                });
-            } else {
-                console.error("Elementos do seletor de preço não encontrados.");
-            }
+        const priceToggle = document.getElementById('price-toggle');
+        const plansGrid = document.querySelector('.plans-grid');
+        const monthlyLabels = document.querySelectorAll('.switch-label.monthly');
+        const annualLabels = document.querySelectorAll('.switch-label.annual');
 
-            const faqItems = document.querySelectorAll('.faq-item');
-            if (faqItems.length > 0) {
-                faqItems.forEach(item => {
-                    const question = item.querySelector('.faq-question');
-                    const answer = item.querySelector('.faq-answer');
-                    
-                    if (question && answer) {
-                        question.addEventListener('click', () => {
-                            const isActive = item.classList.contains('active');
-                            
-                            faqItems.forEach(otherItem => {
-                                if (otherItem !== item && otherItem.classList.contains('active')) {
-                                    otherItem.classList.remove('active');
-                                    otherItem.querySelector('.faq-answer').style.maxHeight = null;
-                                }
-                            });
+        if (priceToggle && plansGrid && monthlyLabels.length > 0 && annualLabels.length > 0) {
+            priceToggle.addEventListener('change', function() {
+                const isAnnual = this.checked;
+                plansGrid.classList.toggle('show-annual', isAnnual);
+                monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
+                annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
+            });
+        }
 
-                            item.classList.toggle('active');
-                            if (item.classList.contains('active')) {
-                                setTimeout(() => {
-                                   answer.style.maxHeight = answer.scrollHeight + "px";
-                                }, 50); 
-                            } else {
-                                answer.style.maxHeight = null;
-                            }
-                        });
-                    } else {
-                         console.error("Elemento .faq-question ou .faq-answer não encontrado em um .faq-item.");
-                    }
-                });
-            } else {
-                 console.warn("Nenhum item de FAQ (.faq-item) encontrado na página.");
-            }
+        try {
+            feather.replace();
+        } catch (e) {}
 
-             try {
-                 feather.replace();
-             } catch (e) {
-                 console.error("Erro ao inicializar Feather Icons:", e);
-             }
-
-        });
-    </script>
+    });
+</script>
 </body>
 </html>

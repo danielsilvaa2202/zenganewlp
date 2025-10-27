@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         if (nextButton) {
-           nextButton.addEventListener('click', () => {
+            nextButton.addEventListener('click', () => {
                 nextSlide();
                 resetInterval();
             });
         }
-         if (prevButton) {
+        if (prevButton) {
             prevButton.addEventListener('click', () => {
                 prevSlide();
                 resetInterval();
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateDots();
         };
 
-        if(nextButton) {
+        if (nextButton) {
             nextButton.addEventListener('click', () => {
                 const nextIndex = (currentIndex + 1) % slides.length;
                 goToTestimonialSlide(nextIndex);
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        if(prevButton) {
+        if (prevButton) {
             prevButton.addEventListener('click', () => {
                 const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
                 goToTestimonialSlide(prevIndex);
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (promoModal) {
         setTimeout(() => {
-             openModal(promoModal);
+            openModal(promoModal);
         }, 5000);
     }
 
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) {
             const closeBtn = modal.querySelector('.modal-close');
             if (closeBtn) {
-                 closeBtn.addEventListener('click', () => closeModal(modal));
+                closeBtn.addEventListener('click', () => closeModal(modal));
             }
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) {
@@ -234,21 +234,22 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             const parentCard = event.target.closest('.pricing-card');
             if (parentCard && (parentCard.querySelector('h3').innerText.toLowerCase() === 'plus' || parentCard.querySelector('.price-value').innerText.toLowerCase() === 'consultar')) {
-                 const contactSection = document.getElementById('contact');
-                 if(contactSection) {
-                     contactSection.scrollIntoView({ behavior: 'smooth' });
-                 }
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             } else if (parentCard && parentCard.classList.contains('free-plan')) {
-                 openModal(contactModal);
-            }
-             else {
-                 openModal(planModal);
+                openModal(contactModal);
+            } else {
+                openModal(planModal);
             }
         });
     });
 
     const headerCtaButton = document.getElementById('header-cta-button');
-     if (headerCtaButton) {
+    if (headerCtaButton) {
         headerCtaButton.addEventListener('click', (event) => {
             event.preventDefault();
             openModal(contactModal);
@@ -266,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isNearBottom) {
                 scrollTimeout = setTimeout(() => {
                     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
-                         openModal(reinforcementModal);
+                        openModal(reinforcementModal);
                         reinforcementModalShown = true;
                     }
                 }, 5000);
@@ -291,16 +292,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         button.classList.remove('copied');
                         feather.replace();
                     }, 2000);
-                }).catch(err => {
-                    console.error('Falha ao copiar:', err);
-                });
-            } else {
-                console.error(`Elemento com ID '${targetId}' não encontrado para cópia.`);
+                }).catch(err => {});
             }
         });
     });
 
     let mapInstance = null;
+
     function initBrazilMap() {
         if (mapInstance || typeof L === 'undefined' || !document.getElementById('map-container')) return;
 
@@ -326,19 +324,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const zengaHQ = [-25.4411, -49.2908];
 
-             const ufCoordinates = {
-                 'PE': { lat: -8.0476, lon: -34.8770, name: 'Pernambuco' },
-                 'SP': { lat: -23.5505, lon: -46.6333, name: 'São Paulo' },
-                 'MG': { lat: -19.9167, lon: -43.9345, name: 'Minas Gerais' },
-                 'ES': { lat: -20.3192, lon: -40.3378, name: 'Espírito Santo'},
-                 'AM': { lat: -3.1190, lon: -60.0217, name: 'Amazonas' },
-                 'MT': { lat: -15.6014, lon: -56.0977, name: 'Mato Grosso' },
-                 'PR': { lat: -25.4284, lon: -49.2733, name: 'Paraná' },
-                 'SC': { lat: -27.5954, lon: -48.5480, name: 'Santa Catarina' },
-                 'RS': { lat: -30.0346, lon: -51.2177, name: 'Rio Grande do Sul' },
-                 'RO': { lat: -10.83, lon: -63.22, name: 'Rondônia' },
-                 'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' }
-             };
+            const ufCoordinates = {
+                'PE': {
+                    lat: -8.0476,
+                    lon: -34.8770,
+                    name: 'Pernambuco'
+                },
+                'SP': {
+                    lat: -23.5505,
+                    lon: -46.6333,
+                    name: 'São Paulo'
+                },
+                'MG': {
+                    lat: -19.9167,
+                    lon: -43.9345,
+                    name: 'Minas Gerais'
+                },
+                'ES': {
+                    lat: -20.3192,
+                    lon: -40.3378,
+                    name: 'Espírito Santo'
+                },
+                'AM': {
+                    lat: -3.1190,
+                    lon: -60.0217,
+                    name: 'Amazonas'
+                },
+                'MT': {
+                    lat: -15.6014,
+                    lon: -56.0977,
+                    name: 'Mato Grosso'
+                },
+                'PR': {
+                    lat: -25.4284,
+                    lon: -49.2733,
+                    name: 'Paraná'
+                },
+                'SC': {
+                    lat: -27.5954,
+                    lon: -48.5480,
+                    name: 'Santa Catarina'
+                },
+                'RS': {
+                    lat: -30.0346,
+                    lon: -51.2177,
+                    name: 'Rio Grande do Sul'
+                },
+                'RO': {
+                    lat: -10.83,
+                    lon: -63.22,
+                    name: 'Rondônia'
+                },
+                'TO': {
+                    lat: -10.1848,
+                    lon: -48.3338,
+                    name: 'Tocantins'
+                }
+            };
 
             const clientUFs = ['PE', 'MG', 'SP', 'AM', 'SP', 'SP', 'SP', 'MT', 'PR', 'PR', 'MG', 'SC', 'RS', 'RO', 'TO', 'ES'];
 
@@ -374,28 +416,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 return points;
             }
 
-             const drawnLocations = {};
+            const drawnLocations = {};
 
             clientUFs.forEach((uf, index) => {
                 const loc = ufCoordinates[uf];
                 if (!loc) return;
 
-                 const offsetLat = (Math.random() - 0.5) * 0.8;
-                 const offsetLon = (Math.random() - 0.5) * 0.8;
-                 const destination = [loc.lat + offsetLat, loc.lon + offsetLon];
+                const offsetLat = (Math.random() - 0.5) * 0.8;
+                const offsetLon = (Math.random() - 0.5) * 0.8;
+                const destination = [loc.lat + offsetLat, loc.lon + offsetLon];
 
                 const isHqState = loc.name === 'Paraná';
-                 if (isHqState && Math.random() < 0.5) {
-                     if (!drawnLocations[loc.name]) {
-                         L.marker(destination, { icon: L.divIcon({ className: 'pulsing-marker', iconSize: [14, 14] }) })
-                           .addTo(mapInstance)
-                           .bindTooltip(loc.name, { permanent: false, direction: 'top', className: 'custom-leaflet-tooltip' });
-                         drawnLocations[loc.name] = true;
-                     } else {
-                          L.marker(destination, { icon: L.divIcon({ className: 'pulsing-marker', iconSize: [14, 14] }) }).addTo(mapInstance);
-                     }
-                     return;
-                 }
+                if (isHqState && Math.random() < 0.5) {
+                    if (!drawnLocations[loc.name]) {
+                        L.marker(destination, {
+                                icon: L.divIcon({
+                                    className: 'pulsing-marker',
+                                    iconSize: [14, 14]
+                                })
+                            })
+                            .addTo(mapInstance)
+                            .bindTooltip(loc.name, {
+                                permanent: false,
+                                direction: 'top',
+                                className: 'custom-leaflet-tooltip'
+                            });
+                        drawnLocations[loc.name] = true;
+                    } else {
+                        L.marker(destination, {
+                            icon: L.divIcon({
+                                className: 'pulsing-marker',
+                                iconSize: [14, 14]
+                            })
+                        }).addTo(mapInstance);
+                    }
+                    return;
+                }
 
                 const latlngs = getArc(zengaHQ, destination);
                 const line = L.polyline(latlngs, {
@@ -415,26 +471,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     iconSize: [14, 14]
                 });
 
-                 if (!drawnLocations[loc.name]) {
-                     L.marker(destination, { icon: customIcon })
-                         .addTo(mapInstance)
-                         .bindTooltip(loc.name, {
-                             permanent: false,
-                             direction: 'top',
-                             className: 'custom-leaflet-tooltip'
-                         });
-                     drawnLocations[loc.name] = true;
-                 } else {
-                     L.marker(destination, { icon: customIcon }).addTo(mapInstance);
-                 }
+                if (!drawnLocations[loc.name]) {
+                    L.marker(destination, {
+                            icon: customIcon
+                        })
+                        .addTo(mapInstance)
+                        .bindTooltip(loc.name, {
+                            permanent: false,
+                            direction: 'top',
+                            className: 'custom-leaflet-tooltip'
+                        });
+                    drawnLocations[loc.name] = true;
+                } else {
+                    L.marker(destination, {
+                        icon: customIcon
+                    }).addTo(mapInstance);
+                }
             });
 
-             setTimeout(() => mapInstance.invalidateSize(), 400);
+            setTimeout(() => mapInstance.invalidateSize(), 400);
 
         } catch (error) {
-            console.error("Erro ao inicializar o mapa:", error);
-             const mapContainer = document.getElementById('map-container');
-             if(mapContainer) mapContainer.innerHTML = "<p>Erro ao carregar o mapa.</p>";
+            const mapContainer = document.getElementById('map-container');
+            if (mapContainer) mapContainer.innerHTML = "<p>Erro ao carregar o mapa.</p>";
         }
     }
 
@@ -446,32 +505,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (question && answer) {
                 question.addEventListener('click', () => {
-                    const currentlyActive = clickedItem.classList.contains('active');
+                    const isCurrentlyActive = clickedItem.classList.contains('active');
 
                     faqItems.forEach(item => {
-                         item.classList.remove('active');
-                         item.querySelector('.faq-answer').style.maxHeight = null;
+                        if (item !== clickedItem) {
+                            item.classList.remove('active');
+                            item.querySelector('.faq-answer').style.maxHeight = null;
+                        }
                     });
 
-                    if (!currentlyActive) {
+                    if (isCurrentlyActive) {
+                        clickedItem.classList.remove('active');
+                        answer.style.maxHeight = null;
+                    } else {
                         clickedItem.classList.add('active');
-                         setTimeout(() => {
+                        setTimeout(() => {
                             answer.style.maxHeight = answer.scrollHeight + 'px';
-                         }, 10);
+                        }, 10);
                     }
                 });
-            } else {
-                console.error("Missing .faq-question or .faq-answer in an .faq-item");
             }
         });
-    } else {
-        console.warn("No FAQ items found on the page.");
     }
 
     try {
         feather.replace();
-    } catch (e) {
-        console.error("Erro ao inicializar Feather Icons no final:", e);
-    }
+    } catch (e) {}
 
 });
