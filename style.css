@@ -998,7 +998,8 @@ body {
 }
 
 .footer-scryta-logo,
-.footer-nvidia-logo {
+.footer-nvidia-logo,
+.footer-cwb-logo {
     height: 60px;
     filter: none;
 }
