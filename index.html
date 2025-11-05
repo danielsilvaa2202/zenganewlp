@@ -253,15 +253,6 @@
                                 <p class="testimonial-text">"Encontramos a automação necessária para superar a escassez de mão de obra e a instabilidade do Governo. Ganhamos eficiência, segurança e produtividade."</p>
                             </div>
                             <div class="testimonial-slide">
-                                <img src="img/clientes/severino.png" alt="Logo Severino | VIDAL" class="testimonial-logo">
-                                <h3 class="testimonial-author">Severino</h3>
-                                <span class="testimonial-title">VIDAL</span>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="testimonial-text">"Está ajudando bastante, principalmente na agilidade da entrega das obrigações, estou muito contente com essa situação. Com isso, estou economizando na questão de tempo, que hoje é muito importante."</p>
-                            </div>
-                            <div class="testimonial-slide">
                                 <img src="img/clientes/g3.png" alt="Logo G3 Gestão Contábil" class="testimonial-logo">
                                 <h3 class="testimonial-author">Eliane</h3>
                                 <span class="testimonial-title">G3 Gestão Contábil</span>
@@ -404,7 +395,7 @@
                             <div class="price-container">
                                 <span class="price-value">Consultar</span>
                             </div>
-                               <div class="annual-savings"></div>
+                             <div class="annual-savings"></div>
                         </div>
                         <div class="card-body">
                             <p class="package-details">Para demandas personalizadas</p>
@@ -468,8 +459,8 @@
                             </div>
                         </a>
                     </div>
-                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 550ms;">
-                        <a href="paginas/reforma_simples_nacional.html" class="blog-card-link">
+                    <div class="blog-post-card animate-on-scroll" style="transition-delay: 550ms;">
+                        <a href="paginas/reforma_simples.html" class="blog-card-link">
                             <div class="blog-post-image">
                                 <img src="img/blog/img4.png" alt="Imagem do Post sobre Simples Nacional na Reforma Tributária">
                                 <span class="blog-post-category">Regimes Tributários</span>
@@ -477,6 +468,19 @@
                             <div class="blog-post-content">
                                 <h3 class="blog-post-title">Reforma Tributária: O Que Altera para o Simples Nacional?</h3>
                                 <p class="blog-post-excerpt">O Simples continua, mas agora com uma escolha crucial: regime "puro" ou "híbrido"? Entenda a "guerra dos créditos" e os impactos no B2B...</p>
+                                <span class="blog-post-readmore">Continuar lendo <i data-feather="arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 700ms;">
+                        <a href="paginas/reforma_pratica.html" class="blog-card-link">
+                            <div class="blog-post-image">
+                                <img src="img/blog/img5.png" alt="Imagem do Post sobre Preparando Profissionais para a Reforma Tributária">
+                                <span class="blog-post-category">Gestão e Prática</span>
+                            </div>
+                            <div class="blog-post-content">
+                                <h3 class="blog-post-title">Reforma Tributária na Prática: Preparando Profissionais e Sistemas</h3>
+                                <p class="blog-post-excerpt">A transição para o IBS e a CBS exige um duplo movimento: entender a lei e adaptar as rotinas operacionais com tecnologia...</p>
                                 <span class="blog-post-readmore">Continuar lendo <i data-feather="arrow-right"></i></span>
                             </div>
                         </a>
@@ -660,7 +664,6 @@
                 <img src="img/logozengadark.png" alt="ZengaTax Logo Footer" class="footer-logo">
                 <img src="img/logoscryta.png" alt="Scryta Logo Footer" class="footer-scryta-logo">
                 <img src="img/nvidia-logo.png" alt="NVIDIA Logo Footer" class="footer-nvidia-logo">
-                <img src="img/parceiros/cwbstartups.png" alt="CWB Startups Logo Footer" class="footer-cwb-logo">
             </div>
             <p class="footer-copyright">&copy; 2025 ZengaTax. Todos os direitos reservados. Uma solução grupo SCRYTA.</p>
             <div class="footer-socials">
@@ -815,27 +818,53 @@
     <script src="chatbot.js"></script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const priceToggle = document.getElementById('price-toggle');
+            const plansGrid = document.querySelector('.plans-grid');
+            const monthlyLabels = document.querySelectorAll('.switch-label.monthly');
+            const annualLabels = document.querySelectorAll('.switch-label.annual');
 
-        const priceToggle = document.getElementById('price-toggle');
-        const plansGrid = document.querySelector('.plans-grid');
-        const monthlyLabels = document.querySelectorAll('.switch-label.monthly');
-        const annualLabels = document.querySelectorAll('.switch-label.annual');
+            if (priceToggle && plansGrid && monthlyLabels.length > 0 && annualLabels.length > 0) {
+                priceToggle.addEventListener('change', function() {
+                    const isAnnual = this.checked;
+                    plansGrid.classList.toggle('show-annual', isAnnual);
+                    monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
+                    annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
+                });
+            }
 
-        if (priceToggle && plansGrid && monthlyLabels.length > 0 && annualLabels.length > 0) {
-            priceToggle.addEventListener('change', function() {
-                const isAnnual = this.checked;
-                plansGrid.classList.toggle('show-annual', isAnnual);
-                monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
-                annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
-            });
-        }
+            const faqItems = document.querySelectorAll('.faq-item');
+            if (faqItems.length > 0) {
+                faqItems.forEach(clickedItem => {
+                    const question = clickedItem.querySelector('.faq-question');
+                    const answer = clickedItem.querySelector('.faq-answer');
 
-         try {
-             feather.replace();
-         } catch (e) {}
+                    if (question && answer) {
+                        question.addEventListener('click', () => {
+                            const currentlyActive = clickedItem.classList.contains('active');
 
-    });
-   </script>
+                            faqItems.forEach(item => {
+                                 item.classList.remove('active');
+                                 item.querySelector('.faq-answer').style.maxHeight = null;
+                            });
+
+                            if (!currentlyActive) {
+                                clickedItem.classList.add('active');
+                                 setTimeout(() => {
+                                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                                 }, 10);
+                            }
+                        });
+                    }
+                });
+            }
+
+             try {
+                 feather.replace();
+             } catch (e) {}
+
+        });
+    </script>
 </body>
 </html>
