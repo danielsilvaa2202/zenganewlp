@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Visual - Certificados Digitais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #042c4e;
+            --primary-light: #0a3a6b;
+            --accent-color: #007BFF;
+            --white-color: #FFFFFF;
+            --text-primary: #222;
+            --text-secondary: #555;
+            --bg-page: #f4f7fa;
+            --border-light: #eaeef2;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .main-header {
+            color: var(--white-color);
+            padding: 3rem 1.5rem 6rem 1.5rem;
+            text-align: center;
+            animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+        .header-logo {
+            max-width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        .main-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        .main-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+        }
+        .back-link:hover { opacity: 1; color: #fff; background: rgba(0,0,0,0.3); transform: translateY(-2px); }
+        .container {
+            max-width: 900px;
+            margin: -4rem auto 3rem auto;
+            background: var(--bg-page);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+            animation-fill-mode: backwards;
+            counter-reset: step-counter;
+        }
+        .fixed-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            text-decoration: none;
+            color: var(--primary-color);
+            background: var(--white-color);
+            padding: 10px 14px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-light);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 48px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .nav-item:hover {
+            max-width: 240px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateX(-5px);
+        }
+        .nav-item.active {
+            max-width: 240px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            box-shadow: 0 8px 20px rgba(4, 44, 78, 0.25);
+            border-color: transparent;
+        }
+        .nav-text {
+            opacity: 0;
+            margin-right: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: opacity 0.3s ease 0.1s;
+        }
+        .nav-item:hover .nav-text, .nav-item.active .nav-text { opacity: 1; }
+        .nav-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+        .nav-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+        .step {
+            padding: 3rem 3.5rem;
+            border-bottom: 1px solid var(--border-light);
+            scroll-margin-top: 2rem;
+        }
+        .step:last-child { border-bottom: none; padding-bottom: 4rem; }
+        .step h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 60px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+        }
+        .step h2::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(4, 44, 78, 0.3);
+        }
+        .step h3 { font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1rem; }
+        .step p { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.05rem; }
+        .step strong { color: var(--text-primary); font-weight: 600; }
+        .step img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin: 0.5rem 0 1.5rem 0;
+            border: 1px solid var(--border-light);
+            transition: transform 0.35s ease;
+        }
+        .step img:hover { transform: scale(1.015); }
+        .step .small-img { width: auto; max-width: 200px; display: block; margin: 1.5rem auto; background: #fff; padding: 10px; }
+        .step .medium-img { width: auto; max-width: 500px; display: block; margin: 1.5rem auto; }
+        .step ul { list-style: none; margin: 1.5rem 0; }
+        .step li { position: relative; padding-left: 35px; margin-bottom: 1rem; color: var(--text-secondary); }
+        .step li::before { content: ''; position: absolute; left: 0; top: 6px; width: 8px; height: 15px; border: solid var(--accent-color); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+        .key-point {
+            background: var(--white-color);
+            border: 1px solid var(--border-light);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.25rem 1.5rem 1.25rem 1.75rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+        .key-point::before { content: '💡'; font-size: 2rem; margin-right: 1.25rem; line-height: 1; transform: translateY(-2px); }
+        .key-point p { margin: 0; color: var(--text-secondary); font-size: 1rem; }
+        @media (max-width: 1250px) { .fixed-nav { display: none; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="back-link">← Central de Ajuda</a>
+        <img src="assets/img/logo.png" alt="Logo" class="header-logo">
+        <h1>Guia Visual</h1>
+        <p>Gestão de Certificados Digitais</p>
+    </header>
+    <nav class="fixed-nav">
+        <a href="#acessando" class="nav-item active">
+            <span class="nav-text">Acessando</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></span>
+        </a>
+        <a href="#importando" class="nav-item">
+            <span class="nav-text">Importação</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg></span>
+        </a>
+        <a href="#vinculando" class="nav-item">
+            <span class="nav-text">Vinculando</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></span>
+        </a>
+    </nav>
+    <main class="container">
+        <section id="acessando" class="step">
+            <h2>Acessando o Módulo de Certificados</h2>
+            <p>Para iniciar a gestão dos certificados digitais, acesse o menu <strong>"Cadastros"</strong> na sua plataforma e, em seguida, clique na aba superior <strong>"Certificados"</strong>.</p>
+            <img src="assets/img/cadastro1.png" alt="Aba de Certificados no menu Cadastros">
+        </section>
+        <section id="importando" class="step">
+            <h2>Importando um Novo Certificado</h2>
+            <p>Na aba de Certificados, localize e clique no botão verde <strong>"Importar Certificado"</strong> para abrir a janela de inclusão.</p>
+            <img src="assets/img/cadastro2.png" alt="Botão Importar Certificado" class="small-img">
+            <p>Na janela que se abrirá, você deverá fornecer as informações do arquivo A1:</p>
+            <ul>
+                <li><strong>Arquivo PFX:</strong> Clique em "Escolher arquivo" para selecionar o certificado no seu computador.</li>
+                <li><strong>Senha:</strong> Informe a senha de instalação do certificado.</li>
+                <li><strong>CPF do Responsável:</strong> Informe o CPF da pessoa responsável pela entrega.</li>
+            </ul>
+            <img src="assets/img/cadastro3.png" alt="Modal de importação de certificado" class="medium-img">
+            <div class="key-point">
+                <p><strong>Atenção ao CPF:</strong> Usamos este dado para a confecção automática dos arquivos <strong>MIT sem movimento</strong>. O CPF informado não precisa ser necessariamente do titular do certificado digital, mas deve pertencer ao responsável legal pela entrega das obrigações.</p>
+            </div>
+        </section>
+        <section id="vinculando" class="step">
+            <h2>Vinculando à Empresa</h2>
+            <p>Após importar o certificado, você precisa definir quais empresas o utilizarão. Volte para a aba <strong>"Empresas"</strong> (no menu Cadastros) e localize a empresa desejada.</p>
+            <p>Clique no ícone de opções (três pontinhos) na linha da empresa para abrir o painel de edição lateral.</p>
+            <img src="assets/img/cadastro4.png" alt="Painel de edição da empresa" class="medium-img">
+            <p>No painel de edição:</p>
+            <ul>
+                <li>Role até o final para encontrar o campo <strong>"Certificado"</strong>.</li>
+                <li>Selecione na lista o certificado que você acabou de importar.</li>
+                <li>Clique no botão azul <strong>"Salvar"</strong> para finalizar o vínculo.</li>
+            </ul>
+        </section>
+    </main>
+    <script>
+        const sections = document.querySelectorAll('.step');
+        const navItems = document.querySelectorAll('.nav-item');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

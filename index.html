@@ -446,7 +446,7 @@
                             </div>
                         </a>
                     </div>
-                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 400ms;">
+                      <div class="blog-post-card animate-on-scroll" style="transition-delay: 400ms;">
                         <a href="paginas/reforma_assistida.html" class="blog-card-link">
                             <div class="blog-post-image">
                                 <img src="img/blog/img3.png" alt="Imagem do Post sobre Apuração Assistida">
@@ -472,7 +472,7 @@
                             </div>
                         </a>
                     </div>
-                     <div class="blog-post-card animate-on-scroll" style="transition-delay: 700ms;">
+                      <div class="blog-post-card animate-on-scroll" style="transition-delay: 700ms;">
                         <a href="paginas/reforma_pratica.html" class="blog-card-link">
                             <div class="blog-post-image">
                                 <img src="img/blog/img5.png" alt="Imagem do Post sobre Preparando Profissionais para a Reforma Tributária">
@@ -568,6 +568,19 @@
             <div class="container">
                 <h2 class="section-title animate-on-scroll">Perguntas Frequentes</h2>
                 <p class="section-subtitle animate-on-scroll">Tire suas dúvidas sobre como o ZengaTax pode revolucionar sua rotina fiscal.</p>
+                
+                <div class="manual-cta animate-on-scroll">
+                    <div class="manual-cta-icon">
+                        <i data-feather="book-open"></i>
+                    </div>
+                    <div class="manual-cta-content">
+                        <h3>Manual do Usuário ZengaTax</h3>
+                        <p>Precisa de ajuda detalhada? Acesse nossa documentação completa com guias passo-a-passo.</p>
+                    </div>
+                    <a href="manualzinho/index.html" target="_blank" class="manual-cta-button">
+                        Acessar Manual <i data-feather="arrow-right"></i>
+                    </a>
+                </div>
                 <div class="faq-container animate-on-scroll">
                     <div class="faq-item">
                         <div class="faq-question">
@@ -597,7 +610,7 @@
                             <p>A segurança é nossa prioridade máxima. Utilizamos criptografia de ponta para proteger todas as informações transmitidas e armazenadas. Nossa infraestrutura robusta e em conformidade com as melhores práticas do mercado garante a confidencialidade e integridade dos dados de seus clientes.</p>
                         </div>
                     </div>
-                     <div class="faq-item">
+                      <div class="faq-item">
                         <div class="faq-question">
                             <div class="faq-item-icon-wrapper">
                                 <i data-feather="cloud"></i>
@@ -625,7 +638,7 @@
                             <p>Sim. Nossa plataforma foi desenvolvida para ser flexível. O ZengaTax trabalha com os arquivos JSON gerados pelo seu sistema contábil. Basta exportar os arquivos do seu software atual e importá-los em lote em nossa plataforma para iniciar a automação. Também oferecemos integração via API para uma automação ainda mais profunda.</p>
                         </div>
                     </div>
-                     <div class="faq-item">
+                      <div class="faq-item">
                         <div class="faq-question">
                             <div class="faq-item-icon-wrapper">
                                 <i data-feather="file-text"></i>
@@ -831,32 +844,6 @@
                     plansGrid.classList.toggle('show-annual', isAnnual);
                     monthlyLabels.forEach(l => l.classList.toggle('active', !isAnnual));
                     annualLabels.forEach(l => l.classList.toggle('active', isAnnual));
-                });
-            }
-
-            const faqItems = document.querySelectorAll('.faq-item');
-            if (faqItems.length > 0) {
-                faqItems.forEach(clickedItem => {
-                    const question = clickedItem.querySelector('.faq-question');
-                    const answer = clickedItem.querySelector('.faq-answer');
-
-                    if (question && answer) {
-                        question.addEventListener('click', () => {
-                            const currentlyActive = clickedItem.classList.contains('active');
-
-                            faqItems.forEach(item => {
-                                 item.classList.remove('active');
-                                 item.querySelector('.faq-answer').style.maxHeight = null;
-                            });
-
-                            if (!currentlyActive) {
-                                clickedItem.classList.add('active');
-                                 setTimeout(() => {
-                                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                                 }, 10);
-                            }
-                        });
-                    }
                 });
             }
 

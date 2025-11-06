@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Ajuda - Plataforma Fiscal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #042c4e;
+            --primary-light: #0a3a6b;
+            --accent-color: #007BFF;
+            --text-primary: #222;
+            --text-secondary: #555;
+            --bg-page: #f4f7fa;
+            --white: #FFFFFF;
+            --border-light: #eaeef2;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-page);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .hero {
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 4rem 1.5rem 7rem 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        .hero-logo {
+            max-width: 140px;
+            height: auto;
+            display: block;
+            margin: 0 auto 2rem auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .search-box input:focus {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        .search-icon {
+            position: absolute;
+            left: 1.3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+        .container {
+            max-width: 1100px;
+            margin: -4rem auto 4rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            z-index: 2;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+        .card.disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background: #fafafa;
+        }
+        .card.disabled:hover {
+            transform: none;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+            border-color: var(--border-light);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        .card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .card-tags {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tag {
+            background: var(--bg-page);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .soon-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #eee;
+            color: #777;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            display: none;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <img src="assets/img/logo.png" alt="Logo" class="hero-logo">
+        <h1>Central de Ajuda</h1>
+        <p>Encontre manuais, tutoriais e guias rápidos para dominar nossa plataforma.</p>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Qual manual você está procurando?">
+        </div>
+    </header>
+    <main class="container">
+        <div class="grid" id="manualGrid">
+            
+            <a href="manual_plataforma.html" class="card" data-search="mit darf dctfweb fiscal completo geral">
+                <div class="card-icon">🚀</div>
+                <h3>Manual Principal da Plataforma</h3>
+                <p>Guia completo de uso: Módulo MIT, envio de DCTFWeb, emissão de DARFs e consulta de Situação Fiscal.</p>
+                <div class="card-tags">
+                    <span class="tag">Essencial</span>
+                    <span class="tag">MIT</span>
+                    <span class="tag">Fiscal</span>
+                </div>
+            </a>
+
+            <a href="manual_certificado.html" class="card" data-search="certificado digital a1 a3 importar pfx senha cpf">
+                <div class="card-icon">🔐</div>
+                <h3>Importar Certificado Digital</h3>
+                <p>Passo a passo para cadastrar, atualizar certificados digitais A1 e vinculá-los às empresas.</p>
+                <div class="card-tags">
+                    <span class="tag">Configuração</span>
+                    <span class="tag">Segurança</span>
+                </div>
+            </a>
+
+            <a href="manual_empresa.html" class="card" data-search="cadastrar empresa nova cliente cnpj regime tributario">
+                <div class="card-icon">🏢</div>
+                <h3>Cadastrar Nova Empresa</h3>
+                <p>Aprenda a incluir novos clientes na sua base, configurando regime tributário e acessos.</p>
+                <div class="card-tags">
+                    <span class="tag">Cadastro</span>
+                    <span class="tag">Gestão</span>
+                </div>
+            </a>
+
+            <div class="no-results" id="noResultsMessage">
+                😕 Nenhum manual encontrado para sua pesquisa.
+            </div>
+        </div>
+    </main>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.card');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let hasVisibleCards = false;
+            cards.forEach(card => {
+                const searchText = (card.textContent + ' ' + card.getAttribute('data-search')).toLowerCase();
+                if (searchText.includes(term)) {
+                    card.style.display = 'flex';
+                    hasVisibleCards = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            noResultsMessage.style.display = hasVisibleCards ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Visual - Plataforma Fiscal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #042c4e;
+            --primary-light: #0a3a6b;
+            --accent-color: #007BFF;
+            --white-color: #FFFFFF;
+            --text-primary: #222;
+            --text-secondary: #555;
+            --bg-page: #f4f7fa;
+            --border-light: #eaeef2;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .main-header {
+            color: var(--white-color);
+            padding: 3rem 1.5rem 6rem 1.5rem;
+            text-align: center;
+            animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+        .header-logo {
+            max-width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        .main-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        .main-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+        }
+        .back-link:hover { opacity: 1; color: #fff; background: rgba(0,0,0,0.3); transform: translateY(-2px); }
+        .container {
+            max-width: 900px;
+            margin: -4rem auto 3rem auto;
+            background: var(--bg-page);
+            border-radius: 16px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+            animation-fill-mode: backwards;
+            counter-reset: step-counter;
+        }
+        .fixed-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px; /* Aumentado o espaçamento */
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            text-decoration: none;
+            color: var(--primary-color);
+            background: var(--white-color); /* Fundo branco sólido */
+            padding: 10px 14px; /* Aumentado o padding */
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra mais pronunciada */
+            border: 1px solid var(--border-light);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 48px; /* Tamanho base ligeiramente maior */
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .nav-item:hover {
+            max-width: 240px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateX(-5px);
+        }
+        .nav-item.active {
+            max-width: 240px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            box-shadow: 0 8px 20px rgba(4, 44, 78, 0.25);
+            border-color: transparent;
+        }
+        .nav-text {
+            opacity: 0;
+            margin-right: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: opacity 0.3s ease 0.1s;
+        }
+        .nav-item:hover .nav-text, .nav-item.active .nav-text { opacity: 1; }
+        .nav-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px; /* Ícones ligeiramente maiores */
+            height: 24px;
+        }
+        .nav-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+        .step {
+            padding: 3rem 3.5rem;
+            border-bottom: 1px solid var(--border-light);
+            scroll-margin-top: 2rem;
+        }
+        .step:last-child { border-bottom: none; padding-bottom: 4rem; }
+        .step h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 60px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+        }
+        .step h2::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(4, 44, 78, 0.3);
+        }
+        .step h3 { font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1rem; }
+        .step p { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.05rem; }
+        .step strong { color: var(--text-primary); font-weight: 600; }
+        .step img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin: 0.5rem 0 1.5rem 0;
+            border: 1px solid var(--border-light);
+            transition: transform 0.35s ease;
+        }
+        .step img:hover { transform: scale(1.015); }
+        .step .small-img { width: auto; max-width: 200px; display: block; margin: 1.5rem auto; background: #fff; padding: 10px; }
+        .step ul { list-style: none; margin: 1.5rem 0; }
+        .step li { position: relative; padding-left: 35px; margin-bottom: 1rem; color: var(--text-secondary); }
+        .step li::before { content: ''; position: absolute; left: 0; top: 6px; width: 8px; height: 15px; border: solid var(--accent-color); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+        .key-point {
+            background: var(--white-color);
+            border: 1px solid var(--border-light);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.25rem 1.5rem 1.25rem 1.75rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+        .key-point::before { content: '💡'; font-size: 2rem; margin-right: 1.25rem; line-height: 1; transform: translateY(-2px); }
+        .key-point p { margin: 0; color: var(--text-secondary); font-size: 1rem; }
+        .icon-text { display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.05rem; background: #fff; padding: 1rem; border-radius: 8px; border: 1px solid var(--border-light); }
+        .icon-text span { font-size: 1.5rem; margin-right: 1rem; line-height: 1.7; color: var(--primary-color); }
+        .icon-text p { margin-bottom: 0; }
+        .status-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
+        .status-tag.regular { background-color: #d4edda; color: #155724; }
+        .status-tag.irregular { background-color: #f8d7da; color: #721c24; }
+        @media (max-width: 1250px) { .fixed-nav { display: none; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="back-link">← Central de Ajuda</a>
+        <img src="assets/img/logo.png" alt="Logo" class="header-logo">
+        <h1>Guia Visual</h1>
+        <p>Plataforma Fiscal Completa</p>
+    </header>
+    <nav class="fixed-nav">
+        <a href="#tela-principal" class="nav-item active">
+            <span class="nav-text">Dashboard MIT</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg></span>
+        </a>
+        <a href="#envio-lote" class="nav-item">
+            <span class="nav-text">Upload</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg></span>
+        </a>
+        <a href="#acoes" class="nav-item">
+            <span class="nav-text">Ações MIT</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span>
+        </a>
+        <a href="#sem-movimento" class="nav-item">
+            <span class="nav-text">Sem Movimento</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/></svg></span>
+        </a>
+        <a href="#dctfweb" class="nav-item">
+            <span class="nav-text">DCTFWeb</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></span>
+        </a>
+        <a href="#darf-mit" class="nav-item">
+            <span class="nav-text">DARF MIT</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></span>
+        </a>
+        <a href="#darf-prev" class="nav-item">
+            <span class="nav-text">DARF Prev.</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 17H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2zM3 22l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2 4.5 3.5 3 2v20z"/></svg></span>
+        </a>
+        <a href="#situacao-fiscal" class="nav-item">
+            <span class="nav-text">Situação Fiscal</span>
+            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>
+        </a>
+    </nav>
+    <main class="container">
+        <section id="tela-principal" class="step">
+            <h2>Tela Principal: O Dashboard MIT</h2>
+            <p>Esta é a sua central de controle para o encerramento dos arquivos MIT. A tela principal oferece uma visão geral do status de processamento de todas as empresas.</p>
+            <img src="assets/img/image1.png" alt="Tela principal do Módulo MIT">
+            <p>Os cards no topo funcionam como <strong>filtros rápidos</strong>. Clicando em um deles, a lista abaixo é atualizada para mostrar apenas as empresas com aquele status:</p>
+            <ul>
+                <li><strong>Aguardando Arquivo:</strong> Empresas que ainda não tiveram arquivos enviados.</li>
+                <li><strong>Fila - MIT:</strong> Arquivos que estão na fila de processamento.</li>
+                <li><strong>Erros - MIT:</strong> Empresas onde ocorreu algum erro durante a apuração.</li>
+                <li><strong>MIT Encerrado:</strong> Obrigações processadas e finalizadas com sucesso.</li>
+            </ul>
+        </section>
+        <section id="envio-lote" class="step">
+            <h2>Envio de Arquivos em Lote</h2>
+            <p>Para iniciar o processo, clique no botão <strong>"Uploader"</strong>. Isso abrirá a janela de importação.</p>
+            <img src="assets/img/image2.png" alt="Modal de Envio em Lote">
+            <p>Aqui, basta arrastar e soltar os arquivos <strong>JSON</strong> gerados pelo seu sistema contábil, ou clicar em "Escolher Arquivo" para selecioná-los.</p>
+            <div class="key-point">
+                <p><strong>Transmissão Automática:</strong> Se o seletor <strong>'Transmitir DCTFWeb automaticamente'</strong> estiver ATIVADO, o sistema enviará a DCTFWeb para todas as empresas dos arquivos MIT que você está subindo.</p>
+            </div>
+        </section>
+        <section id="acoes" class="step">
+            <h2>Acompanhamento e Ações (MIT)</h2>
+            <p>Na lista de empresas, a coluna "Ações" permite interagir com cada obrigação processada.</p>
+            <img src="assets/img/image3.png" alt="Ícones de ações" class="small-img">
+            <div class="icon-text">
+                <span title="Visualizar">👁️</span>
+                <p><strong>Visualizar:</strong> Exibe o retorno fornecido pela Receita Federal (id da apuração, datas), servindo como comprovante.</p>
+            </div>
+            <div class="icon-text">
+                <span title="Reprocessar">🔄</span>
+                <p><strong>Reprocessar:</strong> Permite enviar novamente a obrigação para a fila de processamento se necessário.</p>
+            </div>
+        </section>
+        <section id="sem-movimento" class="step">
+            <h2>Geração de MIT Sem Movimento</h2>
+            <p>Ao clicar no botão <strong>"Sem movimento"</strong>, o seguinte modal é exibido, permitindo gerar o MIT sem movimento em massa, garantindo a carga para a DCTFWeb.</p>
+            <img src="assets/img/image4.png" alt="Modal de Geração MIT Sem Movimento">
+        </section>
+        <section id="dctfweb" class="step">
+            <h2>Módulo DCTFWeb</h2>
+            <p>Gerencie envios pendentes e consulte os já realizados. Use o botão <strong>'Exportar Lote'</strong> para baixar planilha e todos os recibos em `.zip`.</p>
+            <img src="assets/img/image5.png" alt="Tela principal do Módulo DCTFWeb">
+        </section>
+        <section id="darf-mit" class="step">
+            <h2>Módulo DARF | Emissão (MIT)</h2>
+            <p>As guias DARF referentes aos impostos do MIT são geradas <strong>automaticamente</strong> assim que o MIT é processado com sucesso.</p>
+            <img src="assets/img/image6.png" alt="Tela de emissão e consulta de DARF MIT">
+        </section>
+        <section id="darf-prev" class="step">
+            <h2>Módulo DARF | Previdenciário</h2>
+            <p>Clique em <strong>'Nova Emissão'</strong>, selecione as fontes (eSocial, Reinf, MIT) e as empresas desejadas para gerar as guias.</p>
+            <img src="assets/img/image8.png" alt="Modal de Nova Emissão de DARF Previdenciário">
+            <p>Após a emissão, baixe as guias individualmente ou use <strong>'Exportar Lote'</strong> para baixar todas de uma vez.</p>
+            <img src="assets/img/image7.png" alt="Tela principal do DARF Previdenciário">
+        </section>
+        <section id="situacao-fiscal" class="step">
+            <h2>Situação Fiscal (Pendências)</h2>
+            <p>Monitore se suas empresas estão <span class="status-tag regular">Regular</span> ou <span class="status-tag irregular">Irregular</span> na Receita Federal sem acessar o eCAC manualmente.</p>
+            <img src="assets/img/image9.png" alt="Solicitar Relatório">
+            <p>Clique em <strong>"Solicitar Relatório"</strong> e selecione a empresa. Após processamento, o status aparecerá na coluna "Situação".</p>
+            <img src="assets/img/image10.png" alt="Resultado Situação Fiscal">
+            <div class="key-point">
+                <p><strong>Relatório Oficial:</strong> Clique no ícone de download (📥) na linha da empresa Irregular para baixar o PDF detalhado das pendências.</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        const sections = document.querySelectorAll('.step');
+        const navItems = document.querySelectorAll('.nav-item');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

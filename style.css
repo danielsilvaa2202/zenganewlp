@@ -2416,3 +2416,146 @@ input:checked+.slider:before {
         margin: 0;
     }
 }
+
+.manual-cta {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color-darker));
+    color: var(--white-color);
+    padding: 30px 40px;
+    border-radius: 20px;
+    margin: 0 auto 50px auto; /* Centralizado e com margem inferior para separar do FAQ */
+    max-width: 1100px; /* Mesma largura máxima do container do FAQ */
+    box-shadow: 0 15px 40px rgba(4, 44, 78, 0.15);
+    gap: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manual-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(4, 44, 78, 0.25);
+}
+
+/* Elemento decorativo de fundo */
+.manual-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.manual-cta-icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.manual-cta-icon i {
+    width: 35px;
+    height: 35px;
+    color: var(--secondary-color);
+    filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.5));
+}
+
+.manual-cta-content {
+    flex-grow: 1;
+    z-index: 1;
+}
+
+.manual-cta-content h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--white-color);
+}
+
+.manual-cta-content p {
+    color: var(--text-color-light);
+    margin: 0;
+    font-size: 1.05rem;
+    max-width: 600px;
+}
+
+.manual-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 2;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.manual-cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
+    background-color: var(--white-color);
+    color: var(--primary-color);
+}
+
+.manual-cta-button i {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.manual-cta-button:hover i {
+    transform: translateX(5px);
+}
+
+/* =========================================
+   Responsividade do Banner do Manual
+========================================= */
+@media (max-width: 992px) {
+    .manual-cta {
+        padding: 25px 30px;
+    }
+    .manual-cta-content h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .manual-cta {
+        flex-direction: column;
+        text-align: center;
+        padding: 35px 25px;
+        gap: 25px;
+    }
+
+    .manual-cta-icon {
+        margin-bottom: 0;
+    }
+
+    .manual-cta-content p {
+        margin: 0 auto;
+    }
+
+    .manual-cta-button {
+        width: 100%;
+        justify-content: center;
+        max-width: 300px;
+    }
+}
