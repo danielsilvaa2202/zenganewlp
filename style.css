@@ -1799,17 +1799,85 @@ body {
     background-color: var(--light-blue-bg);
 }
 
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(320px, 1fr)); /* Força 2 colunas */
-    gap: 30px;
+.blog-carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px; 
 }
 
-/* Esta regra mágica centraliza o último item se ele for ímpar (como o 3º ou 5º) */
-.blog-grid .blog-post-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1; /* O item ocupa a linha inteira */
-    max-width: 50%; /* Mas sua largura é de apenas 1 coluna */
-    margin: 0 auto; /* E ele é centralizado na linha */
+.blog-carousel-container {
+    overflow: hidden;
+}
+
+.blog-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.blog-slide {
+    flex: 0 0 calc(100% / 2); 
+    padding: 0 15px; 
+    box-sizing: border-box; 
+}
+
+.blog-post-card {
+    width: 100%; 
+}
+
+#blog .slider-arrow {
+    position: absolute;
+    top: 40%; 
+    transform: translateY(-50%);
+    background-color: var(--white-color);
+    border: 1px solid var(--border-light-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#blog .slider-arrow:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--white-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+#blog .slider-arrow.prev {
+    left: 0px;
+}
+
+#blog .slider-arrow.next {
+    right: 0px;
+}
+
+.blog-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.blog-carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(4, 44, 78, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.blog-carousel-dots .dot.active {
+    background-color: var(--secondary-color);
+    transform: scale(1.2);
 }
 
 .blog-post-card {
@@ -2392,8 +2460,11 @@ input:checked+.slider:before {
         gap: 25px;
     }
 
-    .blog-grid .blog-post-card:last-child:nth-child(odd) {
-        max-width: 70%;
+    .blog-carousel-wrapper {
+        padding: 0 50px;
+    }
+    .blog-slide {
+        flex: 0 0 50%;
     }
 }
 
@@ -2405,15 +2476,15 @@ input:checked+.slider:before {
         gap: 25px;
     }
 
-    .blog-grid {
-        grid-template-columns: minmax(320px, 1fr);
+   .blog-carousel-wrapper {
+        padding: 0;
     }
-    
-    /* Reseta a regra de centralização em celulares */
-    .blog-grid .blog-post-card:last-child:nth-child(odd) {
-        grid-column: auto;
-        max-width: none;
-        margin: 0;
+    .blog-slide {
+        flex: 0 0 100%; 
+        padding: 0 10px; 
+    }
+     #blog .slider-arrow {
+        display: none;
     }
 }
 

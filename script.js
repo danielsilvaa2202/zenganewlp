@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         if (nextButton) {
-            nextButton.addEventListener('click', () => {
+           nextButton.addEventListener('click', () => {
                 nextSlide();
                 resetInterval();
             });
         }
-        if (prevButton) {
+         if (prevButton) {
             prevButton.addEventListener('click', () => {
                 prevSlide();
                 resetInterval();
@@ -188,6 +188,113 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateDots();
         startAutoPlay();
+    }
+
+    const blogWrapper = document.querySelector('.blog-carousel-wrapper');
+    if (blogWrapper) {
+        const track = blogWrapper.querySelector('.blog-track');
+        const slides = Array.from(track.children);
+        const nextButton = blogWrapper.querySelector('#blog-next');
+        const prevButton = blogWrapper.querySelector('#blog-prev');
+        const dotsNav = blogWrapper.querySelector('.blog-carousel-dots');
+        
+        let currentIndex = 0;
+        let slidesToShow = 2;
+        let slidesToScroll = 1; 
+        let maxIndex = slides.length - slidesToShow;
+        let autoPlayInterval;
+
+        function updateBlogMetrics() {
+            if (window.innerWidth <= 768) {
+                slidesToShow = 1;
+            } else {
+                slidesToShow = 2;
+            }
+            slidesToScroll = 1; 
+            maxIndex = slides.length - slidesToShow;
+            
+            if (dotsNav) {
+                dotsNav.innerHTML = '';
+                for (let i = 0; i <= maxIndex; i++) {
+                    const dot = document.createElement('button');
+                    dot.classList.add('dot');
+                    dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+                    dot.addEventListener('click', () => {
+                        goToBlogSlide(i);
+                        resetAutoPlayBlog();
+                    });
+                    dotsNav.appendChild(dot);
+                }
+            }
+            updateBlogDots();
+        }
+
+        function updateBlogDots() {
+            const dots = Array.from(dotsNav.children);
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[currentIndex]) {
+                dots[currentIndex].classList.add('active');
+            }
+        }
+
+        function goToBlogSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+            
+            const slideWidth = slides[0].offsetWidth;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            
+            updateBlogDots();
+        }
+
+        const nextBlogSlide = () => {
+            let nextIndex = currentIndex + slidesToScroll;
+            if (nextIndex > maxIndex) {
+                nextIndex = 0; 
+            }
+            goToBlogSlide(nextIndex);
+        };
+
+        const prevBlogSlide = () => {
+            let prevIndex = currentIndex - slidesToScroll;
+            if (prevIndex < 0) {
+                prevIndex = maxIndex; 
+            }
+            goToBlogSlide(prevIndex);
+        };
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                nextBlogSlide();
+                resetAutoPlayBlog();
+            });
+        }
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                prevBlogSlide();
+                resetAutoPlayBlog();
+            });
+        }
+
+        const startAutoPlayBlog = () => {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextBlogSlide, 7000);
+        };
+
+        const resetAutoPlayBlog = () => {
+            clearInterval(autoPlayInterval);
+            startAutoPlayBlog();
+        };
+        
+        window.addEventListener('resize', () => {
+            updateBlogMetrics();
+            goToBlogSlide(currentIndex); 
+        });
+        blogWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        blogWrapper.addEventListener('mouseleave', () => startAutoPlayBlog());
+        
+        updateBlogMetrics();
+        goToBlogSlide(0);
+        startAutoPlayBlog();
     }
 
     const openModal = (modal) => {
@@ -430,13 +537,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (isHqState && Math.random() < 0.5) {
                     if (!drawnLocations[loc.name]) {
                         L.marker(destination, {
-                                icon: L.divIcon({
-                                    className: 'pulsing-marker',
-                                    iconSize: [14, 14]
-                                })
+                            icon: L.divIcon({
+                                className: 'pulsing-marker',
+                                iconSize: [14, 14]
                             })
-                            .addTo(mapInstance)
-                            .bindTooltip(loc.name, {
+                        })
+                           .addTo(mapInstance)
+                           .bindTooltip(loc.name, {
                                 permanent: false,
                                 direction: 'top',
                                 className: 'custom-leaflet-tooltip'
