@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const dotsNav = blogWrapper.querySelector('.blog-carousel-dots');
         
         let currentIndex = 0;
-        let slidesToShow = 2;
+        let slidesToShow = 3;
         let slidesToScroll = 1; 
         let maxIndex = slides.length - slidesToShow;
         let autoPlayInterval;
@@ -207,8 +207,10 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateBlogMetrics() {
             if (window.innerWidth <= 768) {
                 slidesToShow = 1;
-            } else {
+            } else if (window.innerWidth <= 992) {
                 slidesToShow = 2;
+            } else {
+                slidesToShow = 3;
             }
             slidesToScroll = 1; 
             maxIndex = slides.length - slidesToShow;
