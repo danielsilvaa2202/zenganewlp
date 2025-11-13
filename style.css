@@ -1609,8 +1609,8 @@ body {
 
 .logo-track {
     display: flex;
-    width: calc(250px * 44);
-    animation: scroll-logos 60s linear infinite;
+    width: calc(250px * 12); 
+    animation: scroll-logos 25s linear infinite;
 }
 
 .logo-slide {
@@ -1627,6 +1627,14 @@ body {
     width: auto;
     opacity: 1;
     transition: all 0.4s ease;
+}
+
+.logo-slide img#scryta-partner-logo,
+.logo-slide img[src="img/parceiros/assespro.png"]
+{
+    max-height: 120px;
+    width: 100%;
+    object-fit: contain;
 }
 
 .logo-slider:hover .logo-track {
