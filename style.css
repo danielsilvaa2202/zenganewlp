@@ -1609,7 +1609,8 @@ body {
 
 .logo-track {
     display: flex;
-    width: calc(250px * 12); 
+    /* 7 logos x 2 (para o loop) = 14 */
+    width: calc(250px * 14); 
     animation: scroll-logos 25s linear infinite;
 }
 
@@ -1618,21 +1619,24 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Padding original restaurado */
     padding: 0 40px;
 }
 
 .logo-slide img {
     max-width: 100%;
-    max-height: 50px;
+    max-height: 50px; /* Padrão para logos largas */
     width: auto;
     opacity: 1;
     transition: all 0.4s ease;
 }
 
+/* Regra para logos quadradas/altas */
 .logo-slide img#scryta-partner-logo,
-.logo-slide img[src="img/parceiros/assespro.png"]
-{
-    max-height: 120px;
+.logo-slide img[src="img/parceiros/assespro.png"],
+.logo-slide img[src="img/parceiros/sescap.png"],
+.logo-slide img[src="img/parceiros/cwbstartups.png"] {
+    max-height: 100px;
     width: 100%;
     object-fit: contain;
 }
