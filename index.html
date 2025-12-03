@@ -17,6 +17,105 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chatbot.css">
 
+    <style>
+        .help-center-banner {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, #042c4e 0%, #074e8a 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(4, 44, 78, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .help-center-banner::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .help-center-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .help-center-content {
+            position: relative;
+            z-index: 1;
+            max-width: 60%;
+        }
+
+        .help-center-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .help-center-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+
+        .help-center-action {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-help-center {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #ffffff;
+            color: #042c4e;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-help-center:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background-color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .help-center-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .help-center-content {
+                max-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -784,7 +883,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="help-center-banner animate-on-scroll">
+                    <div class="help-center-content">
+                        <h3>Precisa de mais detalhes?</h3>
+                        <p>Acesse nossa <strong>Central de Ajuda</strong> completa para tutoriais, manuais passo a passo e documentação técnica.</p>
+                    </div>
+                    <div class="help-center-action">
+                        <a href="https://zengatax.com.br/manual/" target="_blank" class="btn-help-center">
+                            Acessar Manual <i data-feather="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+                </div>
         </section>
 
     </main>
