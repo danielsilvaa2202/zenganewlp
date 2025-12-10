@@ -1609,8 +1609,8 @@ body {
 
 .logo-track {
     display: flex;
-    /* 7 logos x 2 (para o loop) = 14 */
-    width: calc(250px * 14); 
+    /* Atualizado para 16 (8 logos x 2 grupos) */
+    width: calc(250px * 16); 
     animation: scroll-logos 25s linear infinite;
 }
 
@@ -1631,13 +1631,25 @@ body {
     transition: all 0.4s ease;
 }
 
+.logo-slide.logo-slide-narrow {
+    padding: 0 5px; /* Reduzido de 40px para 10px */
+}
+
 /* Regra para logos quadradas/altas */
 .logo-slide img#scryta-partner-logo,
 .logo-slide img[src="img/parceiros/assespro.png"],
 .logo-slide img[src="img/parceiros/sescap.png"],
-.logo-slide img[src="img/parceiros/cwbstartups.png"] {
+.logo-slide img[src="img/parceiros/cwbstartups.png"],
+.logo-slide img[src="img/parceiros/hotmilk.png"] {
     max-height: 100px;
     width: 100%;
+    object-fit: contain;
+}
+
+/* 3. Adicione esta NOVA regra específica para a Hotmilk ficar um pouco menor */
+.logo-slide img[src="img/parceiros/hotmilk.png"] {
+    max-height: 85px; /* Um pouco menor que os 100px padrões */
+    width: auto;
     object-fit: contain;
 }
 
