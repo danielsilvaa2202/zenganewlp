@@ -2654,3 +2654,24 @@ input:checked+.slider:before {
         max-width: 300px;
     }
 }
+
+.new-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff3e3e; /* Vermelho vibrante */
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(255, 62, 62, 0.4);
+    z-index: 10;
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 62, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(255, 62, 62, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 62, 0); }
+}
