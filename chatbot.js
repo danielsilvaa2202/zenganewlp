@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 response.text = `Com nossa automação para o <strong>MIT</strong> (Módulo de Integração Tributária), você tem o encerramento e o <strong>controle total</strong> das suas obrigações, com acompanhamento visual em tela e a possibilidade de exportar relatórios completos.`;
                 response.suggestions = ["E a DCTFWeb?", "Como funciona a importação?", "Ver Planos"];
             } else if (text.includes('darf')) {
-                 response.text = `Sim! Facilitamos a <strong>emissão e download em lote de Recibos e DARFs</strong>, tanto dos tributos do MIT (PIS, COFINS, IRPJ, CSLL, IPI) quanto do DARF Previdenciário gerado pela DCTFWeb.`;
+                 response.text = `Sim! Facilitamos a <strong>emissão e download em lote de Recibos e DARFs</strong>, tanto dos tributos do MIT (PIS, COFINS, IRPJ, CSLL, IPI) quanto Previdenciário e Reinf.`;
                  response.suggestions = ["Como funciona?", "Ver Planos", "Agendar Reunião"];
             } else if (text.includes('como funciona') || text.includes('passos')) {
                 response.text = 'Nosso processo é simples e feito em 4 passos: <strong>1. Upload</strong> dos arquivos, <strong>2. Validação</strong> e fila, <strong>3. Envio e Monitoramento</strong> e <strong>4. Obtenção de Recibos e Guias</strong>. Tudo para facilitar sua rotina!';
