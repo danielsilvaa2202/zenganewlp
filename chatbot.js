@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 botState = 'initial';
                 response.suggestions = initialSuggestions;
             } else if (text.includes('preço') || text.includes('plano') || text.includes('valor')) {
-                response.text = 'Temos planos flexíveis para atender sua necessidade! O plano <strong>Básico</strong> começa em R$ 299,00 e o <strong>Avançado</strong> em R$ 499,00. Também temos opções personalizadas. Você pode ver todos os detalhes na nossa seção de <a href="#plans" onclick="document.getElementById(\'chatbot-fab\').click()">Planos</a>.';
+                response.text = 'Temos planos flexíveis para atender sua necessidade! O plano <strong>Básico</strong> começa em R$ 399,00 e o <strong>Avançado</strong> em R$ 699,00. Também temos opções personalizadas. Você pode ver todos os detalhes na nossa seção de <a href="#plans" onclick="document.getElementById(\'chatbot-fab\').click()">Planos</a>.';
             } else if (text.includes('dctfweb') || text.includes('dctf')) {
                 response.text = `Nossa solução para a <strong>DCTFWeb</strong> foi projetada para eliminar o trabalho manual. Com o ZengaTax, você consegue:<br><br>
                 - <strong>Transmitir em lote:</strong> Envie centenas de declarações de uma só vez, sem precisar acessar o eCAC.<br>
