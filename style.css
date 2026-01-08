@@ -1610,9 +1610,9 @@ body {
 
 .logo-track {
     display: flex;
-    /* Atualizado para 16 (8 logos x 2 grupos) */
-    width: calc(250px * 16); 
-    animation: scroll-logos 25s linear infinite;
+    /* Atualizado para 18 (9 logos únicos x 2 grupos) */
+    width: calc(250px * 18); 
+    animation: scroll-logos 30s linear infinite; /* Aumentei um pouco o tempo para manter a velocidade suave */
 }
 
 .logo-slide {
@@ -2675,4 +2675,10 @@ input:checked+.slider:before {
     0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 62, 0.7); }
     70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(255, 62, 62, 0); }
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 62, 0); }
+}
+
+.logo-slide img[src="img/parceiros/faturagil.png"] {
+    max-height: 390px;
+    width: 100%;
+    object-fit: contain;
 }
