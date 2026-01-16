@@ -2682,3 +2682,10 @@ input:checked+.slider:before {
     width: 100%;
     object-fit: contain;
 }
+
+.pricing-card .card-header {
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
