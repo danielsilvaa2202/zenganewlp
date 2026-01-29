@@ -9,15 +9,33 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_package/favicon-16x16.png">
     <link rel="apple-touch-icon" href="img/favicon_package/favicon-256x256.png">
     <link rel="manifest" href="img/favicon_package/manifest.json">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="estilos/variaveis.css">
+    <link rel="stylesheet" href="estilos/global.css">
+    <link rel="stylesheet" href="estilos/header.css">
+    <link rel="stylesheet" href="estilos/hero.css">
+    <link rel="stylesheet" href="estilos/solucoes.css">
+    <link rel="stylesheet" href="estilos/como-funciona.css">
+    <link rel="stylesheet" href="estilos/depoimentos.css">
+    <link rel="stylesheet" href="estilos/parceiros.css">
+    <link rel="stylesheet" href="estilos/mapa.css">
+    <link rel="stylesheet" href="estilos/blog.css">
+    <link rel="stylesheet" href="estilos/planos.css">
+    <link rel="stylesheet" href="estilos/faq.css">
+    <link rel="stylesheet" href="estilos/contato-footer.css">
+    <link rel="stylesheet" href="estilos/modais.css">
+    <link rel="stylesheet" href="estilos/responsivo.css">
+
     <link rel="stylesheet" href="chatbot.css">
 
     <style>
+        /* Estilos específicos mantidos inline */
         .help-center-banner {
             margin-top: 4rem;
             background: linear-gradient(135deg, #042c4e 0%, #074e8a 100%);
@@ -605,7 +623,6 @@
                 <h2 class="section-title animate-on-scroll">Ecossistema de Parceiros</h2>
                 <div class="logo-slider animate-on-scroll">
                     <div class="logo-track">
-                        
                         <div class="logo-slide">
                             <a href="https://confi.net.br/" target="_blank">
                                 <img src="img/parceiros/confi.png" alt="Logo Confi">
@@ -621,19 +638,16 @@
                                 <img id="scryta-partner-logo" src="img/scrytaparceiro.png" alt="SCRYTA CONTÁBIL">
                             </a>
                         </div>
-
-                        <div class="logo-slide">
+                        <div class="logo-slide logo-serpro-container">
     <a href="https://www.serpro.gov.br/" target="_blank">
-        <img src="img/parceiros/serpro_branco.png" alt="Logo Serpro" style="transform: scale(1.2); max-height: 50px;">
+        <img src="img/parceiros/serpro_branco.png" alt="Logo Serpro" class="logo-destaque-serpro">
     </a>
 </div>
-
                         <div class="logo-slide">
-                    <a href="https://faturagil.com.br/" target="_blank">
-                        <img src="img/parceiros/faturagil.png" alt="Logo Faturágil">
-                    </a>
-                </div>
-
+                            <a href="https://faturagil.com.br/" target="_blank">
+                                <img src="img/parceiros/faturagil.png" alt="Logo Faturágil">
+                            </a>
+                        </div>
                         <div class="logo-slide">
                             <a href="https://assespropr.org.br/associadoslist/" target="_blank">
                                 <img src="img/parceiros/assespro.png" alt="Logo Assespro">
@@ -654,62 +668,63 @@
                                 <img src="img/parceiros/cwbstartups.png" alt="Logo CWB Startups">
                             </a>
                         </div>
-                        
-                        <div class="logo-slide logo-slide-narrow">
-                            <a href="https://hotmilk.pucpr.br/" target="_blank">
-                                <img src="img/parceiros/hotmilk.png" alt="Logo Hotmilk">
-                            </a>
-                        </div>
-
-                        <div class="logo-slide">
-                            <a href="https://confi.net.br/" target="_blank">
-                                <img src="img/parceiros/confi.png" alt="Logo Confi">
-                            </a>
-                        </div>
-                        <div class="logo-slide">
-                            <a href="https://www.instagram.com/rodrigo_salima/" target="_blank">
-                                <img src="img/parceiros/rodrigo.png" alt="Logo Rodrigo Salima">
-                            </a>
-                        </div>
-                        <div class="logo-slide">
-                            <a href="https://scryta.com.br/" target="_blank">
-                                <img id="scryta-partner-logo" src="img/scrytaparceiro.png" alt="SCRYTA CONTÁBIL">
-                            </a>
-                        </div>
-
-                        <div class="logo-slide">
-                    <a href="https://faturagil.com.br/" target="_blank">
-                        <img src="img/parceiros/faturagil.png" alt="Logo Faturágil">
-                    </a>
-                </div>
-
-                        <div class="logo-slide">
-                            <a href="https://assespropr.org.br/associadoslist/" target="_blank">
-                                <img src="img/parceiros/assespro.png" alt="Logo Assespro">
-                            </a>
-                        </div>
-                        <div class="logo-slide">
-                            <a href="https://www.scrytaacademy.com.br/" target="_blank">
-                                <img src="img/parceiros/scrytaacademy.png" alt="Logo Scryta Academy">
-                            </a>
-                        </div>
-                        <div class="logo-slide">
-                            <a href="https://sescap-pr.org.br/" target="_blank">
-                                <img src="img/parceiros/sescap.png" alt="Logo Sescap">
-                            </a>
-                        </div>
-                        <div class="logo-slide">
-                            <a href="https://cwbstartups.com.br/" target="_blank">
-                                <img src="img/parceiros/cwbstartups.png" alt="Logo CWB Startups">
-                            </a>
-                        </div>
-                        
                         <div class="logo-slide logo-slide-narrow">
                             <a href="#" target="_blank">
                                 <img src="img/parceiros/hotmilk.png" alt="Logo Hotmilk">
                             </a>
                         </div>
-                        
+
+                        <div class="logo-slide">
+                            <a href="https://confi.net.br/" target="_blank">
+                                <img src="img/parceiros/confi.png" alt="Logo Confi">
+                            </a>
+                        </div>
+                        <div class="logo-slide">
+                            <a href="https://www.instagram.com/rodrigo_salima/" target="_blank">
+                                <img src="img/parceiros/rodrigo.png" alt="Logo Rodrigo Salima">
+                            </a>
+                        </div>
+                        <div class="logo-slide">
+                            <a href="https://scryta.com.br/" target="_blank">
+                                <img id="scryta-partner-logo-dup" src="img/scrytaparceiro.png" alt="SCRYTA CONTÁBIL">
+                            </a>
+                        </div>
+                        <div class="logo-slide logo-serpro-container">
+    <a href="https://www.serpro.gov.br/" target="_blank">
+        <img src="img/parceiros/serpro_branco.png" alt="Logo Serpro" class="logo-destaque-serpro">
+    </a>
+</div>
+                        <div class="logo-slide">
+                            <a href="https://faturagil.com.br/" target="_blank">
+                                <img src="img/parceiros/faturagil.png" alt="Logo Faturágil">
+                            </a>
+                        </div>
+                        <div class="logo-slide">
+                            <a href="https://assespropr.org.br/associadoslist/" target="_blank">
+                                <img src="img/parceiros/assespro.png" alt="Logo Assespro">
+                            </a>
+                        </div>
+                        <div class="logo-slide">
+                            <a href="https://www.scrytaacademy.com.br/" target="_blank">
+                                <img src="img/parceiros/scrytaacademy.png" alt="Logo Scryta Academy">
+                            </a>
+                        </div>
+                        <div class="logo-slide">
+                            <a href="https://sescap-pr.org.br/" target="_blank">
+                                <img src="img/parceiros/sescap.png" alt="Logo Sescap">
+                            </a>
+                        </div>
+                        <div class="logo-slide">
+                            <a href="https://cwbstartups.com.br/" target="_blank">
+                                <img src="img/parceiros/cwbstartups.png" alt="Logo CWB Startups">
+                            </a>
+                        </div>
+                        <div class="logo-slide logo-slide-narrow">
+                            <a href="#" target="_blank">
+                                <img src="img/parceiros/hotmilk.png" alt="Logo Hotmilk">
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -868,9 +883,7 @@
     <img src="img/logozengadark.png" alt="ZengaTax Logo Footer" class="footer-logo">
     <img src="img/logoscryta.png" alt="Scryta Logo Footer" class="footer-scryta-logo">
     
-    <img src="img/parceiros/serpro.png" alt="Serpro Logo Footer" style="height: 45px; width: auto; margin-left: 15px; margin-right: 35px; vertical-align: middle;">
-    
-    <img src="img/nvidia-logo.png" alt="NVIDIA Logo Footer" class="footer-nvidia-logo">
+<img src="img/parceiros/serpro.png" alt="Serpro Logo Footer" style="height: 50px; width: auto; margin: 0 15px; vertical-align: middle;">    <img src="img/nvidia-logo.png" alt="NVIDIA Logo Footer" class="footer-nvidia-logo">
 </div>
             <p class="footer-copyright">&copy; 2025 ZengaTax. Todos os direitos reservados. Uma solução grupo SCRYTA.</p>
             <div class="footer-socials">

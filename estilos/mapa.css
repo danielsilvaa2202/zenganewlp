@@ -1,0 +1,111 @@
+.map-section-container {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.map-content .section-title, .map-content .section-subtitle {
+    text-align: left;
+    margin: 0 0 20px 0;
+}
+
+.map-content .section-subtitle { margin-bottom: 30px; }
+
+.states-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    column-count: 2;
+    column-gap: 20px;
+}
+
+.states-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    opacity: 0.9;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.states-list i { color: var(--primary-color); }
+
+#map-container {
+    width: 100%;
+    height: 500px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-light-color);
+    box-shadow: 0 10px 40px rgba(4, 44, 78, 0.1);
+    background: #f0f0f0;
+    position: relative;
+}
+
+.leaflet-container { background-color: #f0f0f0 !important; }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(4, 44, 78, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(4, 44, 78, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(4, 44, 78, 0); }
+}
+
+@keyframes pulse-hq {
+    0% { box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.7); }
+    70% { box-shadow: 0 0 0 14px rgba(0, 170, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 170, 255, 0); }
+}
+
+.pulsing-marker {
+    background: var(--primary-color);
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite;
+    cursor: pointer;
+}
+
+.pulsing-marker.hq {
+    background: var(--secondary-color);
+    border-color: white;
+    width: 18px;
+    height: 18px;
+    animation-name: pulse-hq;
+}
+
+.custom-leaflet-tooltip {
+    background-color: var(--primary-color) !important;
+    border: 1px solid var(--card-border-dark) !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.map-line-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 2.5s ease-out forwards;
+    filter: drop-shadow(0 1px 3px rgba(4, 44, 78, 0.4));
+}
+
+@keyframes draw-line {
+    to { stroke-dashoffset: 0; }
+}
+
+#map-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 25px;
+    background-color: #f0f0f0;
+    z-index: 1000;
+}

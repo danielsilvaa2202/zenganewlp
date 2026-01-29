@@ -1,0 +1,133 @@
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    background: var(--card-bg-dark);
+    padding: 50px;
+    border-radius: 15px;
+    border: 1px solid var(--card-border-dark);
+}
+
+.contact-info h3, .contact-socials h3 {
+    font-weight: 700;
+    color: var(--white-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.contact-info p, .contact-info a, .contact-info span, .contact-socials p {
+    color: var(--text-color-light);
+    text-decoration: none;
+}
+
+.contact-info a {
+    opacity: 1;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover { color: var(--secondary-color); }
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-item:first-of-type { margin-top: 30px; }
+.contact-item svg { stroke: #ffffff !important; flex-shrink: 0; margin-top: 5px; }
+
+.contact-socials-grid { margin-top: 30px; display: grid; gap: 20px; }
+
+.social-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border-dark);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--white-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.social-card:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateX(10px);
+}
+
+.social-card i { width: 28px; height: 28px; color: var(--white-color); }
+
+/* Footer */
+.footer {
+    background-color: var(--white-color);
+    color: var(--text-color-dark);
+    padding: 50px 0;
+    border-top: 1px solid var(--border-light-color);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.footer-copyright {
+    opacity: 0.8;
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    white-space: nowrap;
+    margin: 0;
+    text-align: center;
+}
+
+.footer-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.footer-logo { height: 60px; opacity: 0.9; }
+.footer-scryta-logo, .footer-nvidia-logo, .footer-cwb-logo { height: 60px; filter: none; }
+
+.footer-socials h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.social-links { display: flex; gap: 15px; }
+
+.social-links a {
+    color: var(--primary-color);
+    background-color: var(--light-blue-bg);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border-light-color);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.social-links i { width: 22px; height: 22px; }

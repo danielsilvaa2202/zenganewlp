@@ -1,0 +1,135 @@
+#partners {
+    background-color: var(--primary-color);
+}
+
+#partners .section-title { color: var(--white-color); }
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 50px;
+    align-items: center;
+}
+
+.partners-grid a {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partners-grid a:hover { transform: translateY(-10px); }
+
+.partner-card {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    transition: none;
+}
+
+.partner-card img {
+    max-height: 150px;
+    width: auto;
+    max-width: 100%;
+    opacity: 1;
+    transition: none;
+}
+
+.partner-card img#scryta-partner-logo {
+    filter: none;
+    opacity: 1;
+    max-height: 150px;
+}
+
+/* Evolving Companies Slider */
+#evolving-companies {
+    padding: 80px 0;
+    background-color: var(--light-blue-bg);
+    border-top: 1px solid var(--border-light-color);
+    border-bottom: 1px solid var(--border-light-color);
+}
+
+@keyframes scroll-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.logo-slider {
+    margin-top: 50px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.logo-track {
+    display: flex;
+    width: calc(250px * 18);
+    animation: scroll-logos 30s linear infinite;
+}
+
+.logo-slide {
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.logo-slide img {
+    max-width: 100%;
+    max-height: 50px;
+    width: auto;
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+.logo-slide.logo-slide-narrow { padding: 0 5px; }
+
+/* Regras de logos específicas */
+.logo-slide img#scryta-partner-logo,
+.logo-slide img[src="img/parceiros/assespro.png"],
+.logo-slide img[src="img/parceiros/sescap.png"],
+.logo-slide img[src="img/parceiros/cwbstartups.png"],
+.logo-slide img[src="img/parceiros/hotmilk.png"] {
+    max-height: 100px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.logo-slide img[src="img/parceiros/hotmilk.png"] { max-height: 85px; width: auto; }
+.logo-slide img[src="img/parceiros/faturagil.png"] { max-height: 390px; width: 100%; }
+
+.logo-slider:hover .logo-track { animation-play-state: paused; }
+.logo-slide:hover img { transform: scale(1.1); }
+.logo-slide img[id^="scryta-partner-logo-carousel"] { filter: none; opacity: 1; }
+
+.logo-slide img.logo-destaque-serpro {
+    max-height: 110px;
+    max-width: 220px;
+    width: auto;
+    object-fit: contain;
+    transform: scale(1.1);
+}
+
+.logo-slide.logo-serpro-container {
+    padding: 0 60px;
+    width: 300px;
+}
+
+@media (max-width: 768px) {
+    .logo-slide img.logo-destaque-serpro {
+        max-height: 60px;
+        max-width: 150px;
+        padding: 0 10px;
+    }
+}
