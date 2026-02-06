@@ -1,69 +1,170 @@
+/* --- Estilos Gerais da Seção Parceiros --- */
 #partners {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Fundo Azul Escuro */
+    padding: 80px 0;
+    text-align: center;
 }
 
-#partners .section-title { color: var(--white-color); }
+#partners .section-title {
+    color: var(--white-color); /* Título principal branco */
+    margin-bottom: 3rem;
+}
 
-.partners-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+.partners-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem; /* Espaço entre as seções */
+}
+
+.partners-subsection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Títulos "Integrações" e "Parceiros" */
+.subsection-title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
+
+/* Grid Estático Geral */
+.static-partner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 50px;
-    align-items: center;
 }
 
-.partners-grid a {
-    text-decoration: none;
+.partner-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px; /* Largura padrão */
+    height: 140px;
+    padding: 10px;
+    background: transparent;
     transition: transform 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-decoration: none;
+    overflow: visible;
 }
 
-.partners-grid a:hover { transform: translateY(-10px); }
-
-.partner-card {
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    transition: none;
+.partner-item:hover {
+    transform: scale(1.05);
 }
 
-.partner-card img {
-    max-height: 150px;
+/* --- LOGOS REAIS --- */
+.partner-item img {
     width: auto;
-    max-width: 100%;
-    opacity: 1;
-    transition: none;
-}
-
-.partner-card img#scryta-partner-logo {
+    object-fit: contain;
     filter: none;
     opacity: 1;
-    max-height: 150px;
+    /* Tamanho base padrão */
+    max-height: 50px; 
+    max-width: 100%;
+    transition: all 0.3s ease;
 }
 
-/* Evolving Companies Slider */
-#evolving-companies {
-    padding: 80px 0;
-    background-color: var(--light-blue-bg);
-    border-top: 1px solid var(--border-light-color);
-    border-bottom: 1px solid var(--border-light-color);
+/* --- AJUSTES ESPECÍFICOS --- */
+
+/* --- INTEGRAÇÕES --- */
+
+/* Confi */
+.partner-item img[src*="confi"] { 
+    max-height: 55px; 
 }
 
-@keyframes scroll-logos {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+/* Acessórias (Adicionado) */
+.partner-item img[src*="acessorias"] { 
+    max-height: 55px; /* Tamanho alinhado com Confi */
 }
 
-.logo-slider {
-    margin-top: 50px;
+/* Faturágil: Gigante (Destaque Vertical) */
+.partner-item img[src*="faturagil"] { 
+    max-height: 160px; 
+    width: 100%;
+}
+
+/* --- PARCEIROS --- */
+
+/* Assespro: AUMENTADO MAIS UM POUCO */
+.partner-item img[src*="assespro"] { 
+    max-height: 110px; 
+}
+
+/* CWB Startups: Aumentado + Sem espaço lados */
+.partner-item:has(img[src*="cwbstartups"]) {
+    width: 170px; 
+    padding: 0;
+}
+.partner-item img[src*="cwbstartups"] { 
+    max-height: 95px; 
+    width: 100%; 
+}
+
+/* Hotmilk: Aumentado + ESPAÇO LATERAL REDUZIDO AO MÁXIMO */
+.partner-item:has(img[src*="hotmilk"]) {
+    width: 150px; /* Container bem apertado */
+    padding: 0;
+}
+.partner-item img[src*="hotmilk"] { 
+    max-height: 90px; 
+    width: 100%; 
+}
+
+/* Sescap: DIMINUÍDO MAIS UM POUCO */
+.partner-item img[src*="sescap"] { 
+    max-height: 40px; 
+}
+
+/* Rodrigo Lima: Pequeno */
+.partner-item img[src*="rodrigo"] { 
+    max-height: 50px; 
+}
+
+/* Outros ajustes */
+.partner-item img[src*="scrytaacademy"] { max-height: 45px; }
+.partner-item img[src*="scryta.png"] { max-height: 60px; }
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .static-partner-grid {
+        gap: 20px;
+    }
+    
+    .partner-item {
+        width: 140px;
+        height: 90px;
+    }
+    
+    /* Ajuste de container no mobile */
+    .partner-item:has(img[src*="hotmilk"]),
+    .partner-item:has(img[src*="cwbstartups"]) {
+        width: 110px;
+    }
+
+    .subsection-title {
+        font-size: 2rem;
+    }
+
+    /* Redução proporcional no mobile */
+    .partner-item img { max-height: 40px; }
+    .partner-item img[src*="faturagil"] { max-height: 90px; }
+    .partner-item img[src*="assespro"] { max-height: 70px; }
+    .partner-item img[src*="cwbstartups"] { max-height: 65px; }
+    .partner-item img[src*="hotmilk"] { max-height: 60px; }
+    .partner-item img[src*="acessorias"] { max-height: 45px; }
+}
+
+/* --- Carrossel de Clientes (Infinite Scroll - ATUALIZADO) --- */
+.clients-infinite-slider {
+    margin-top: 60px;
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -71,44 +172,41 @@
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.logo-track {
+.clients-track {
     display: flex;
-    width: calc(250px * 18);
-    animation: scroll-logos 30s linear infinite;
+    width: calc(200px * 14);
+    animation: scroll-clients 35s linear infinite;
 }
 
-.logo-slide {
-    width: 250px;
+@keyframes scroll-clients {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.client-logo-item {
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 40px;
+    padding: 0 30px;
 }
 
-.logo-slide img {
-    max-width: 100%;
-    max-height: 50px;
-    width: auto;
+/* --- ESTILO REDONDO PARA CLIENTES (Igual Testemunhais) --- */
+.client-logo-item img {
+    width: 80px; /* Tamanho fixo para ficar redondo */
+    height: 80px;
+    object-fit: cover; /* Garante que preencha o círculo */
+    border-radius: 50%; /* Torna redondo */
+    
+    filter: none; 
     opacity: 1;
-    transition: all 0.4s ease;
+    transition: transform 0.3s ease;
 }
 
-.logo-slide.logo-slide-narrow { padding: 0 5px; }
-
-/* Regras de logos específicas */
-.logo-slide img#scryta-partner-logo,
-.logo-slide img[src="img/parceiros/assespro.png"],
-.logo-slide img[src="img/parceiros/sescap.png"],
-.logo-slide img[src="img/parceiros/cwbstartups.png"],
-.logo-slide img[src="img/parceiros/hotmilk.png"] {
-    max-height: 100px;
-    width: 100%;
-    object-fit: contain;
+.client-logo-item:hover img {
+    transform: scale(1.1);
 }
 
-.logo-slide img[src="img/parceiros/hotmilk.png"] { max-height: 85px; width: auto; }
-.logo-slide img[src="img/parceiros/faturagil.png"] { max-height: 390px; width: 100%; }
-
-.logo-slider:hover .logo-track { animation-play-state: paused; }
-.logo-slide:hover img { transform: scale(1.1); }
-.logo-slide img[id^="scryta-partner-logo-carousel"] { filter: none; opacity: 1; }
+.clients-infinite-slider:hover .clients-track {
+    animation-play-state: paused;
+}
