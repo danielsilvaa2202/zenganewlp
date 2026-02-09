@@ -185,9 +185,9 @@
 
 .clients-track {
     display: flex;
-    /* Ajustado para 20 itens (10 originais + 10 duplicados) */
-    width: calc(200px * 20);
-    animation: scroll-clients 20s linear infinite;
+    /* Ajustado para 22 itens (11 originais + 11 duplicados) */
+    width: calc(200px * 22); 
+    animation: scroll-clients 25s linear infinite; /* Aumentei um pouco o tempo para não acelerar com o item novo */
 }
 
 @keyframes scroll-clients {
