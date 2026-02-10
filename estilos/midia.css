@@ -1,0 +1,129 @@
+/* estilos/midia.css */
+
+/* Seção Geral */
+.section-media {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+    position: relative;
+    padding: 80px 0;
+}
+
+/* Títulos da Seção (herda animações do global, mas reforça alinhamento) */
+.section-media .section-title,
+.section-media .section-subtitle {
+    text-align: center;
+}
+
+/* Container da Grade de Mídia */
+.media-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Espaço entre a linha de Reels e a linha de Posts */
+    margin-top: 50px;
+    align-items: center;
+}
+
+/* Linhas (Rows) */
+.media-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+}
+
+/* --- Estilização dos Cards (Moldura) --- */
+.instagram-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 12px; /* Moldura branca interna */
+    box-shadow: 0 15px 35px rgba(4, 44, 78, 0.08); /* Sombra suave azulada */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Centraliza o embed dentro do card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.instagram-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(4, 44, 78, 0.15);
+}
+
+/* --- Especificidades para Reels (Mais altos) --- */
+.reels-row .instagram-card {
+    max-width: 350px; /* Largura ideal para Reels */
+    width: 100%;
+    min-height: 500px; /* Altura mínima para garantir alinhamento */
+}
+
+/* --- Especificidades para Posts (Mais quadrados) --- */
+.posts-row .instagram-card {
+    max-width: 340px; /* Largura um pouco menor para caber 3 */
+    width: 100%;
+    min-height: 400px;
+}
+
+/* --- Ajustes no Embed do Instagram --- */
+/* Força o iframe/blockquote a respeitar o container */
+.instagram-media {
+    min-width: unset !important; /* Remove min-width forçado do Insta */
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 12px !important; /* Arredonda o conteúdo interno */
+    border: none !important;
+    box-shadow: none !important; /* Remove sombra nativa do Insta para usar a nossa */
+}
+
+/* Botão de Seguir no final */
+.instagram-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(200, 30, 100, 0.3);
+}
+
+.btn-instagram:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+    color: white;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .media-row {
+        gap: 20px;
+    }
+    .posts-row .instagram-card {
+        max-width: 45%; /* Em tablets, coloca 2 por linha */
+    }
+}
+
+@media (max-width: 768px) {
+    .section-media {
+        padding: 50px 0;
+    }
+    
+    .media-container {
+        gap: 30px;
+    }
+
+    .reels-row .instagram-card,
+    .posts-row .instagram-card {
+        max-width: 100%; /* Em mobile, ocupa largura total */
+        min-height: auto;
+    }
+}
