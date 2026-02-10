@@ -185,11 +185,13 @@
 
 .clients-track {
     display: flex;
-    /* Ajustado para 22 itens (11 originais + 11 duplicados) */
-    width: calc(200px * 22); 
-    animation: scroll-clients 25s linear infinite; /* Aumentei um pouco o tempo para não acelerar com o item novo */
+    /* Removemos o calc(200px * X). O max-content ajusta a largura ao conteúdo total */
+    width: max-content; 
+    /* Ajustei levemente o tempo para manter a fluidez com mais itens */
+    animation: scroll-clients 35s linear infinite; 
 }
 
+/* A animação permanece a mesma, movendo 50% (o tamanho do conjunto original) */
 @keyframes scroll-clients {
     from {
         transform: translateX(0);
