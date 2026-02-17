@@ -10,9 +10,36 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                
+                // Dispara o mapa
                 if (entry.target.id === 'map-container') {
                     initBrazilMap();
                 }
+
+                // Dispara animação dos contadores numéricos (0 a 9000, etc)
+                if (entry.target.classList.contains('map-stats-column')) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000; // Duração de 2 segundos
+                        const increment = target / (duration / 16); // ~60 frames por segundo
+                        
+                        let current = 0;
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < target) {
+                                counter.innerText = Math.ceil(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        
+                        // Inicia o contador junto com a subida das barras (0.6s de delay)
+                        setTimeout(updateCounter, 600);
+                    });
+                }
+
                 observer.unobserve(entry.target);
             }
         });
@@ -434,61 +461,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const zengaHQ = [-25.4411, -49.2908];
 
             const ufCoordinates = {
-                'PE': {
-                    lat: -8.0476,
-                    lon: -34.8770,
-                    name: 'Pernambuco'
-                },
-                'SP': {
-                    lat: -23.5505,
-                    lon: -46.6333,
-                    name: 'São Paulo'
-                },
-                'MG': {
-                    lat: -19.9167,
-                    lon: -43.9345,
-                    name: 'Minas Gerais'
-                },
-                'ES': {
-                    lat: -20.3192,
-                    lon: -40.3378,
-                    name: 'Espírito Santo'
-                },
-                'AM': {
-                    lat: -3.1190,
-                    lon: -60.0217,
-                    name: 'Amazonas'
-                },
-                'MT': {
-                    lat: -15.6014,
-                    lon: -56.0977,
-                    name: 'Mato Grosso'
-                },
-                'PR': {
-                    lat: -25.4284,
-                    lon: -49.2733,
-                    name: 'Paraná'
-                },
-                'SC': {
-                    lat: -27.5954,
-                    lon: -48.5480,
-                    name: 'Santa Catarina'
-                },
-                'RS': {
-                    lat: -30.0346,
-                    lon: -51.2177,
-                    name: 'Rio Grande do Sul'
-                },
-                'RO': {
-                    lat: -10.83,
-                    lon: -63.22,
-                    name: 'Rondônia'
-                },
-                'TO': {
-                    lat: -10.1848,
-                    lon: -48.3338,
-                    name: 'Tocantins'
-                }
+                'PE': { lat: -8.0476, lon: -34.8770, name: 'Pernambuco' },
+                'SP': { lat: -23.5505, lon: -46.6333, name: 'São Paulo' },
+                'MG': { lat: -19.9167, lon: -43.9345, name: 'Minas Gerais' },
+                'ES': { lat: -20.3192, lon: -40.3378, name: 'Espírito Santo' },
+                'AM': { lat: -3.1190, lon: -60.0217, name: 'Amazonas' },
+                'MT': { lat: -15.6014, lon: -56.0977, name: 'Mato Grosso' },
+                'PR': { lat: -25.4284, lon: -49.2733, name: 'Paraná' },
+                'SC': { lat: -27.5954, lon: -48.5480, name: 'Santa Catarina' },
+                'RS': { lat: -30.0346, lon: -51.2177, name: 'Rio Grande do Sul' },
+                'RO': { lat: -10.83, lon: -63.22, name: 'Rondônia' },
+                'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' }
             };
 
             const clientUFs = ['PE', 'MG', 'SP', 'AM', 'SP', 'SP', 'SP', 'MT', 'PR', 'PR', 'MG', 'SC', 'RS', 'RO', 'TO', 'ES'];

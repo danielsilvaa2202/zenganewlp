@@ -1,50 +1,77 @@
 .map-section-container {
     display: grid;
-    grid-template-columns: 3fr 5fr;
-    gap: 50px;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: 1.5rem; 
     align-items: center;
 }
 
-.map-content .section-title, .map-content .section-subtitle {
-    text-align: left;
-    margin: 0 0 20px 0;
+.map-huge-title {
+    font-size: 2.2rem; 
+    font-weight: 300;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
 }
 
-.map-content .section-subtitle { margin-bottom: 30px; }
-
-.states-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    column-count: 2;
-    column-gap: 20px;
+.map-huge-title strong {
+    font-weight: 800;
+    display: block;
 }
 
-.states-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.map-subtitle {
+    font-size: 0.95rem; 
     color: var(--text-color-dark);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    opacity: 0.9;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    margin-bottom: 1.8rem;
+    line-height: 1.4;
+    opacity: 0.8;
 }
 
-.states-list i { color: var(--primary-color); }
+.states-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; 
+}
+
+.state-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 170, 255, 0.2);
+    padding: 0.4rem 0.8rem; 
+    border-radius: 50px;
+    font-size: 0.75rem; 
+    font-weight: 700;
+    color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 170, 255, 0.05);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.state-tag:hover {
+    transform: translateY(-2px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 6px 15px rgba(0, 170, 255, 0.15);
+}
+
+.state-tag i {
+    color: var(--secondary-color);
+    width: 12px;
+    height: 12px;
+    stroke-width: 2.5px;
+}
 
 #map-container {
     width: 100%;
-    height: 500px;
+    height: 460px; 
     border-radius: 1.5rem;
     overflow: hidden;
     border: 1px solid var(--border-light-color);
     box-shadow: 0 10px 40px rgba(4, 44, 78, 0.1);
     background: #f0f0f0;
     position: relative;
+    z-index: 1;
 }
 
 .leaflet-container { background-color: #f0f0f0 !important; }
@@ -108,4 +135,181 @@
     bottom: 0; left: 0; width: 100%; height: 25px;
     background-color: #f0f0f0;
     z-index: 1000;
+}
+
+.map-stats-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.stat-card, .chart-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid #e1ecf4;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(4, 44, 78, 0.04);
+    transition: all 0.3s ease;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.8rem 1rem; 
+}
+
+.stat-card:hover, .chart-card:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 10px 25px rgba(0, 170, 255, 0.1);
+    border-color: rgba(0, 170, 255, 0.3);
+}
+
+.stat-icon-box {
+    background: rgba(0, 170, 255, 0.1);
+    color: var(--secondary-color);
+    width: 40px; 
+    height: 40px; 
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-icon-box i {
+    width: 18px;
+    height: 18px;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-text {
+    font-size: 0.7rem; 
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.stat-highlight, .bar-percent {
+    font-weight: 800;
+    color: var(--primary-color);
+    background: linear-gradient(135deg, #042c4e, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-highlight {
+    font-size: 1.4rem; 
+    line-height: 1.1;
+}
+
+.stat-desc {
+    font-size: 0.7rem; 
+    color: #555;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* Gráfico com respiro (padding e height ajustados) */
+.chart-card {
+    padding: 1.2rem 1.2rem; /* Mais respiro em cima e embaixo */
+    margin-top: 5px;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 125px; /* Aumentado para o gráfico não encostar no topo */
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 40px;
+}
+
+.bar-percent {
+    font-size: 0.8rem;
+}
+
+.bar-track {
+    width: 14px;
+    height: 70px; /* Trilha levemente mais alta para ficar proporcional */
+    background: rgba(0, 170, 255, 0.1); 
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.bar-fill {
+    width: 100%;
+    height: 0; 
+    background: linear-gradient(to top, #0055ff, #00aaff); 
+    border-radius: 20px;
+    transition: height 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.map-stats-column.visible .bar-fill {
+    height: var(--target-height);
+}
+
+.bar-item:nth-child(1) .bar-fill { transition-delay: 0.6s; }
+.bar-item:nth-child(2) .bar-fill { transition-delay: 0.8s; }
+.bar-item:nth-child(3) .bar-fill { transition-delay: 1.0s; }
+
+.bar-label {
+    color: #666; 
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+    .map-section-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .map-text-column {
+        text-align: center;
+    }
+    
+    .map-huge-title {
+        font-size: 2.2rem;
+    }
+    
+    .states-tags {
+        justify-content: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .map-stats-column {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .chart-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .map-stats-column {
+        flex-direction: column;
+    }
+    #map-container {
+        height: 350px;
+    }
 }
