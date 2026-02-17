@@ -2,6 +2,12 @@
     position: relative;
     overflow: hidden;
     padding: 5rem 0;
+    background-color: #ffffff; /* Fundo agora é branco */
+}
+
+/* Forçando o título para a cor primária no fundo branco */
+#planos .section-title {
+    color: var(--primary-color);
 }
 
 .planos-header {
@@ -10,7 +16,7 @@
 }
 
 .planos-subtitle {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #555 !important; /* Texto cinza escuro em vez de branco */
     font-size: 1.05rem;
     max-width: 600px;
     margin: 0 auto;
@@ -29,14 +35,14 @@
 .switch-label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
+    color: #888; /* Cinza claro para opção inativa */
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .switch-label.active {
-    color: var(--white-color);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    color: var(--primary-color); /* Azul Zenga para opção ativa */
+    text-shadow: none; /* Removido o brilho branco antigo */
 }
 
 .switch-label.annual {
@@ -69,8 +75,8 @@
     position: absolute;
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #e1ecf4; /* Fundo azulzinho claro pro switch */
+    border: 1px solid #d0e0eb;
     transition: .4s;
     border-radius: 34px;
 }
@@ -80,10 +86,10 @@
     content: "";
     height: 18px; width: 18px;
     left: 3px; bottom: 3px;
-    background-color: var(--white-color);
+    background-color: #ffffff; /* Bolinha branca */
     transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .switch-wrapper input:checked + .slider {
@@ -107,7 +113,7 @@
 .plan-card {
     background: linear-gradient(#ffffff, #ffffff) padding-box, 
                 linear-gradient(135deg, #00aaff, #0055ff) border-box;
-    border: 2px solid transparent;
+    border: 3px solid transparent;
     border-radius: 20px;
     padding: 1.8rem 1.2rem;
     display: flex;
@@ -115,12 +121,12 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     height: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra mais suave pro fundo branco */
 }
 
 .plan-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 170, 255, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 170, 255, 0.15);
     background: linear-gradient(#ffffff, #ffffff) padding-box, 
                 linear-gradient(135deg, #00bfff, #0066ff) border-box;
 }

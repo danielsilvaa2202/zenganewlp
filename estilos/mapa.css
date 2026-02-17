@@ -203,8 +203,9 @@
     -webkit-text-fill-color: transparent;
 }
 
+/* NÚMEROS AUMENTADOS AQUI */
 .stat-highlight {
-    font-size: 1.4rem; 
+    font-size: 1.8rem; /* Aumentado de 1.4rem para 1.8rem */
     line-height: 1.1;
 }
 
@@ -215,9 +216,9 @@
     margin-top: 2px;
 }
 
-/* Gráfico com respiro (padding e height ajustados) */
+/* Gráfico com respiro */
 .chart-card {
-    padding: 1.2rem 1.2rem; /* Mais respiro em cima e embaixo */
+    padding: 1.2rem 1.2rem; 
     margin-top: 5px;
 }
 
@@ -225,7 +226,7 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    height: 125px; /* Aumentado para o gráfico não encostar no topo */
+    height: 125px; 
 }
 
 .bar-item {
@@ -236,13 +237,14 @@
     width: 40px;
 }
 
+/* NÚMEROS DO GRÁFICO AUMENTADOS AQUI */
 .bar-percent {
-    font-size: 0.8rem;
+    font-size: 1.1rem; /* Aumentado de 0.8rem para 1.1rem */
 }
 
 .bar-track {
     width: 14px;
-    height: 70px; /* Trilha levemente mais alta para ficar proporcional */
+    height: 70px; 
     background: rgba(0, 170, 255, 0.1); 
     border-radius: 20px;
     display: flex;
