@@ -251,3 +251,14 @@
 .clients-infinite-slider:hover .clients-track {
     animation-play-state: paused;
 }
+
+/* Ajuste de tamanho para o logo do Grupo Vitrine (Altere o max-height conforme a proporção ideal) */
+.partner-item img[src*="vitrine"] {
+    max-height: 55px; /* Ajuste este valor se necessário */
+}
+
+@media (max-width: 768px) {
+    .partner-item img[src*="vitrine"] {
+        max-height: 45px; /* Ajuste para o mobile */
+    }
+}
