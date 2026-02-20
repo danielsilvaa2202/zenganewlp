@@ -1,68 +1,353 @@
-#how-it-works {
-    padding-top: 30px;
-}
+/* =========================================
+   SEÇÃO COMO FUNCIONA - TIMELINE PREMIUM
+   ========================================= */
 
-#how-it-works .how-it-works-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.timeline-section {
+    padding-top: 80px;
+    padding-bottom: 100px;
     position: relative;
-    margin-bottom: 60px;
+    overflow: hidden;
+    /* Fundo escuro com gradiente para profundidade */
+    background: radial-gradient(circle at top center, #06192e 0%, #020b14 100%);
 }
 
-.how-it-works-step {
+.timeline-header {
     text-align: center;
-    flex: 1;
-    padding: 0 20px;
-    color: var(--white-color);
+    margin-bottom: 80px;
 }
 
-.step-icon {
-    width: 80px;
-    height: 80px;
+.timeline-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 170, 255, 0.1);
+    color: #00c6ff;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(0, 170, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+.timeline-tag i {
+    width: 16px;
+    height: 16px;
+}
+
+.timeline-header .section-title {
+    font-size: 2.8rem;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.timeline-header .section-title strong {
+    color: #00c6ff;
+}
+
+/* --- GRID DA TIMELINE --- */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Indicadores Superiores (Ícone e Linha) */
+.step-indicator {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.step-icon-glow {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: var(--card-bg-dark);
-    border: 2px solid var(--secondary-color);
+    background: linear-gradient(135deg, #042c4e 0%, #0a589c 100%);
+    border: 2px solid #00c6ff;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
+    color: #00c6ff;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.4);
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+    margin: 0 auto;
 }
 
-.step-icon i {
-    color: var(--secondary-color);
-    width: 36px;
-    height: 36px;
+.timeline-step:hover .step-icon-glow {
+    transform: scale(1.15);
+    background: #00c6ff;
+    color: #ffffff;
+    box-shadow: 0 0 40px rgba(0, 198, 255, 0.8);
 }
 
-.how-it-works-step h3 { font-size: 1.5rem; margin-bottom: 10px; }
-.how-it-works-step p { color: var(--text-color-light); }
-
-.step-connector {
-    flex: 0 1 120px;
-    height: 2px;
-    background: repeating-linear-gradient(90deg, var(--secondary-color), var(--secondary-color) 6px, transparent 6px, transparent 12px);
-    margin-top: 40px;
+.step-icon-glow i {
+    width: 26px;
+    height: 26px;
 }
 
-.integrated-solution-box {
+/* Linha Animada Conectando os Ícones */
+.step-line {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 30px); /* Começa após o ícone */
+    width: calc(100% - 60px + 20px); /* Preenche até o próximo ícone */
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-50%);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Efeito de energia correndo na linha */
+.step-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #00c6ff, transparent);
+    animation: flowLine 2.5s infinite linear;
+}
+
+@keyframes flowLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* --- CARDS COM GLASSMORPHISM --- */
+.step-glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.timeline-step:hover .step-glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(0, 198, 255, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Número Gigante Transparente no Fundo */
+.step-number-bg {
+    position: absolute;
+    top: -10px;
+    right: 5px;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    z-index: 0;
+    transition: all 0.4s ease;
+}
+
+.timeline-step:hover .step-number-bg {
+    color: rgba(0, 198, 255, 0.08);
+    transform: scale(1.1) translateX(-5px);
+}
+
+.step-glass-card h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.step-glass-card p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.step-glass-card p strong {
+    color: #00c6ff;
+    font-weight: 700;
+}
+
+/* --- BOX INTEGRADA FINAL (Visual Sofisticado e Sutil) --- */
+.integrated-glass-box {
+    margin-top: 80px;
+    background: rgba(4, 44, 78, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 198, 255, 0.2);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Brilho suave no fundo */
+.glass-glow-effect {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 198, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.integrated-content {
     display: flex;
     align-items: center;
-    gap: 25px;
-    background: var(--card-bg-dark);
-    color: var(--white-color);
-    border: 1px solid var(--card-border-dark);
-    padding: 30px;
-    border-radius: 15px;
-    margin-top: 80px;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
 }
 
-.integrated-solution-box i {
-    color: var(--secondary-color);
+/* Ícone elegante com animação sutil de pulso */
+.integrated-core-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 198, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
+    border: 1px solid rgba(0, 198, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.15);
+    position: relative;
 }
 
-.integrated-solution-box h4 { font-size: 1.3rem; margin-bottom: 5px; }
-.integrated-solution-box p { color: var(--text-color-light); }
+/* Animação sutil de anel ao redor do ícone */
+.integrated-core-icon::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 198, 255, 0.4);
+    animation: subtlePulse 2.5s infinite ease-out;
+}
+
+@keyframes subtlePulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.2); opacity: 0; }
+}
+
+.integrated-core-icon i {
+    width: 32px;
+    height: 32px;
+    color: #00c6ff;
+}
+
+.integrated-text h4 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.integrated-text p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.integrated-text p strong {
+    color: #00c6ff;
+    font-weight: 700;
+}
+
+/* =========================================
+   RESPONSIVIDADE GERAL
+   ========================================= */
+@media (max-width: 1024px) {
+    .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px 30px;
+    }
+    
+    .timeline-step:nth-child(2) .step-line,
+    .timeline-step:nth-child(4) .step-line {
+        display: none;
+    }
+
+    .integrated-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .integrated-core-icon {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-header .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .step-line {
+        display: none;
+    }
+    
+    .step-indicator {
+        margin-bottom: -35px;
+        justify-content: center;
+        z-index: 3;
+    }
+    
+    .step-icon-glow {
+        background: #020b14; 
+        box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
+    }
+    
+    .step-glass-card {
+        padding-top: 55px;
+    }
+    
+    .integrated-glass-box {
+        padding: 35px 25px;
+    }
+
+    .integrated-text h4 {
+        font-size: 1.3rem;
+    }
+}
