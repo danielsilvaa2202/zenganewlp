@@ -627,3 +627,24 @@
         display: flex; 
     }
 }
+
+/* Ajuste sutil apenas para a imagem de processamento */
+.bento-image-wrapper:has(img[src*="processamento2.png"]) {
+    width: 55% !important; /* Aumentado levemente de 45% para 50% */
+}
+
+/* Ajusta o texto do mesmo card para não apertar */
+.bento-card:has(img[src*="processamento2.png"]) .bento-content-top {
+    max-width: 45% !important;
+}
+
+/* Escala interna leve para preencher melhor o card */
+img[src*="processamento2.png"] {
+    transform: scale(1.05); /* Aumenta só 5% */
+    transition: transform 0.5s ease;
+}
+
+/* Efeito de hover opcional: cresce um pouquinho ao passar o mouse */
+.bento-card:hover img[src*="processamento2.png"] {
+    transform: scale(1.08);
+}
