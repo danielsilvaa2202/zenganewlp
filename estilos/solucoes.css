@@ -1,20 +1,12 @@
-/* =========================================
-   SEÇÃO 1: NOSSAS SOLUÇÕES (FLUXO)
-   ========================================= */
-
-/* Container e Cabeçalho da Seção */
 #our-solutions {
     background-color: var(--light-blue-bg);
     position: relative;
     overflow: hidden;
 }
-
 .solutions-header {
     text-align: center;
     margin-bottom: 70px;
 }
-
-/* Badges Premium no topo */
 .premium-badges {
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +14,6 @@
     gap: 12px;
     margin-bottom: 25px;
 }
-
 .premium-badges .badge {
     display: inline-flex;
     align-items: center;
@@ -39,45 +30,36 @@
     box-shadow: 0 4px 10px rgba(4, 44, 78, 0.05);
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
-
 .premium-badges .badge i {
     width: 14px;
     height: 14px;
-    color: var(--secondary-color);
+    color: #042c4e;
 }
-
 .premium-badges .badge:hover {
     transform: translateY(-2px);
-    border-color: rgba(0, 170, 255, 0.4);
+    border-color: rgba(4, 44, 78, 0.4);
 }
-
 .solutions-header .section-title {
     margin-bottom: 20px;
     line-height: 1.2;
     font-size: 2.6rem;
 }
-
 .solutions-header .section-title strong {
-    color: var(--secondary-color);
+    color: #042c4e;
 }
-
 .solutions-header .section-subtitle {
     font-size: 1.15rem;
     max-width: 700px;
     margin: 0 auto;
 }
-
-/* Grid de Fluxo (Layout Horizontal com conectores) */
 .solutions-flow-grid {
     display: flex;
-    align-items: stretch; /* Garante que todos os cards tenham a mesma altura */
+    align-items: stretch;
     justify-content: space-between;
     gap: 15px;
-    max-width: 1200px; /* Aumentado um pouco para acomodar melhor os blocos visuais */
+    max-width: 1200px;
     margin: 0 auto;
 }
-
-/* Design dos Cards de Fluxo */
 .flow-card {
     background-color: var(--white-color);
     border: 1px solid var(--border-light-color);
@@ -93,14 +75,11 @@
     position: relative;
     z-index: 2;
 }
-
 .flow-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 170, 255, 0.08);
-    border-color: rgba(0, 170, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(4, 44, 78, 0.08);
+    border-color: rgba(4, 44, 78, 0.3);
 }
-
-/* Ícones com efeito de anel (Ring) */
 .flow-icon-wrapper {
     position: relative;
     width: 80px;
@@ -109,80 +88,68 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), var(--white-color));
+    background: linear-gradient(135deg, rgba(4, 44, 78, 0.1), var(--white-color));
     border-radius: 50%;
     box-shadow: 0 8px 20px rgba(4, 44, 78, 0.06);
     z-index: 1;
 }
-
 .icon-ring {
     position: absolute;
     top: -5px;
     left: -5px;
     right: -5px;
     bottom: -5px;
-    border: 2px dashed rgba(0, 170, 255, 0.3);
+    border: 2px dashed rgba(4, 44, 78, 0.3);
     border-radius: 50%;
     animation: rotateRing 15s linear infinite;
     z-index: -1;
     transition: border-color 0.3s ease;
 }
-
 .flow-card:hover .icon-ring {
-    border-color: var(--secondary-color);
+    border-color: #042c4e;
     border-style: solid;
     animation: none;
 }
-
 @keyframes rotateRing {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 .flow-icon-wrapper i {
     width: 32px;
     height: 32px;
-    color: var(--primary-color);
+    color: #042c4e;
     transition: color 0.3s ease, transform 0.3s ease;
 }
-
 .flow-card:hover .flow-icon-wrapper i {
-    color: var(--secondary-color);
+    color: #042c4e;
     transform: scale(1.1);
 }
-
-/* Tipografia Interna e Divisor */
 .flow-content {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .flow-content h3 {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--primary-color);
+    color: #042c4e;
     margin-bottom: 15px;
     line-height: 1.3;
 }
-
 .flow-divider {
     width: 40px;
     height: 4px;
-    background-color: var(--secondary-color);
+    background-color: #042c4e;
     border-radius: 2px;
     margin-bottom: 25px;
     opacity: 0.5;
     transition: width 0.3s ease, opacity 0.3s ease;
 }
-
 .flow-card:hover .flow-divider {
     width: 80px;
     opacity: 1;
 }
-
-/* Lista de Tópicos do Fluxo - Visual de Blocos (Cards Internos) */
 .card-topic-list {
     list-style: none;
     padding: 0;
@@ -193,50 +160,42 @@
     gap: 12px;
     width: 100%;
 }
-
 .card-topic-list li {
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 0.9rem;
     line-height: 1.4;
-    background: rgba(0, 170, 255, 0.04);
-    border: 1px solid rgba(0, 170, 255, 0.08);
+    background: rgba(4, 44, 78, 0.04);
+    border: 1px solid rgba(4, 44, 78, 0.08);
     padding: 12px 15px;
     border-radius: 12px;
     transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
-
 .flow-card:hover .card-topic-list li {
     background: var(--white-color);
-    border-color: rgba(0, 170, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 170, 255, 0.05);
+    border-color: rgba(4, 44, 78, 0.2);
+    box-shadow: 0 4px 15px rgba(4, 44, 78, 0.05);
 }
-
 .flow-card:hover .card-topic-list li:hover {
     transform: translateX(5px);
-    border-color: var(--secondary-color);
+    border-color: #042c4e;
 }
-
 .card-topic-list li i {
-    color: var(--secondary-color);
+    color: #042c4e;
     width: 18px;
     height: 18px;
     flex-shrink: 0;
 }
-
 .card-topic-list li span {
-    flex: 1; 
+    flex: 1;
 }
-
 .card-topic-list li strong {
-    color: var(--primary-color);
+    color: #042c4e;
     font-weight: 700;
 }
-
-/* Conectores do Fluxo (Setas entre os cards) */
 .flow-connector {
-    color: var(--secondary-color);
+    color: #042c4e;
     opacity: 0.5;
     flex-shrink: 0;
     display: flex;
@@ -244,34 +203,24 @@
     justify-content: center;
     align-self: center;
 }
-
 .flow-connector i {
     width: 32px;
     height: 32px;
 }
-
-
-/* =========================================
-   SEÇÃO 2: AGILIDADE (BENTO GRID PREMIUM)
-   ========================================= */
-
 .agility-section {
-    background-color: #f8fafc; 
+    background-color: #f8fafc;
     position: relative;
-    padding-top: 15px; 
+    padding-top: 15px;
     padding-bottom: 120px;
     overflow: hidden;
 }
-
 .agility-header {
     text-align: center;
     margin-bottom: 70px;
 }
-
 .agility-badge-wrapper {
     margin-bottom: 25px;
 }
-
 .agility-tag {
     display: inline-flex;
     align-items: center;
@@ -286,27 +235,21 @@
     border: 1px solid rgba(0, 170, 255, 0.3);
     box-shadow: 0 4px 15px rgba(0, 170, 255, 0.1);
 }
-
 .agility-tag i {
     width: 16px;
     height: 16px;
 }
-
 .agility-header .section-title {
     font-size: 3rem;
     line-height: 1.2;
     color: var(--primary-color);
 }
-
-/* Gradiente no texto para ficar moderno */
 .text-gradient {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
 }
-
-/* --- BENTO GRID LAYOUT --- */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -314,7 +257,6 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .bento-card {
     background: #ffffff;
     border: 1px solid rgba(4, 44, 78, 0.06);
@@ -329,15 +271,16 @@
     flex-direction: column;
     justify-content: flex-start;
 }
-
-.bento-large {
+.bento-large,
+.bento-card:nth-child(2),
+.bento-card-dark {
     grid-column: span 2;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 50px 60px;
+    position: relative;
 }
-
 .bento-content-wrapper {
     display: flex;
     align-items: center;
@@ -345,14 +288,11 @@
     max-width: 65%;
     z-index: 2;
 }
-
 .bento-card:hover {
     transform: translateY(-6px);
     border-color: rgba(0, 170, 255, 0.2);
     box-shadow: 0 20px 50px rgba(0, 170, 255, 0.06);
 }
-
-/* Brilho de Fundo dos Cards (Sutil) */
 .bento-glow {
     position: absolute;
     top: -100px;
@@ -362,21 +302,17 @@
     border-radius: 50%;
     filter: blur(80px);
     z-index: 0;
-    opacity: 0.08; 
+    opacity: 0.08;
     transition: all 0.8s ease;
     pointer-events: none;
 }
-
 .gradient-blue { background: #0072ff; }
 .gradient-cyan { background: #00c6ff; }
 .gradient-dark { background: #042c4e; }
-
 .bento-card:hover .bento-glow {
     transform: scale(1.2);
-    opacity: 0.15; 
+    opacity: 0.15;
 }
-
-/* Ícones Modernos Premium */
 .bento-icon-box {
     width: 75px;
     height: 75px;
@@ -391,38 +327,30 @@
     z-index: 2;
     position: relative;
 }
-
 .shadow-blue {
     background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
     box-shadow: 0 10px 20px rgba(0, 114, 255, 0.15);
 }
-
 .shadow-cyan {
     background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
     box-shadow: 0 10px 20px rgba(0, 198, 255, 0.15);
 }
-
 .shadow-dark {
     background: linear-gradient(135deg, #042c4e 0%, #0a589c 100%);
     box-shadow: 0 10px 20px rgba(4, 44, 78, 0.15);
 }
-
 .bento-card:hover .bento-icon-box {
     transform: scale(1.08) rotate(-5deg);
     border-radius: 28px;
 }
-
 .bento-icon-box i {
     width: 34px;
     height: 34px;
 }
-
-/* Tipografia Bento */
 .bento-text {
     z-index: 2;
     position: relative;
 }
-
 .bento-text h3 {
     font-size: 1.6rem;
     font-weight: 800;
@@ -430,7 +358,6 @@
     margin-bottom: 15px;
     letter-spacing: -0.5px;
 }
-
 .bento-text p {
     color: var(--text-color-dark);
     font-size: 1.1rem;
@@ -438,7 +365,6 @@
     margin: 0;
     font-weight: 500;
 }
-
 .bento-text p strong {
     color: var(--primary-color);
     font-weight: 800;
@@ -447,22 +373,41 @@
     border-radius: 6px;
     display: inline-block;
 }
-
-/* --- DECORAÇÕES VISUAIS ABSTRATAS (A Mágica do CSS) --- */
+.bento-content-top {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0;
+    max-width: 50%;
+}
+.bento-image-wrapper {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 45%;
+    z-index: 1;
+    display: block;
+}
+.bento-image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: -10px 15px 35px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s ease;
+}
+.bento-card:hover .bento-image-wrapper img {
+    transform: translateY(-8px) scale(1.02);
+}
 .bento-deco {
     position: absolute;
-    z-index: 0; /* Garante que as decorações fiquem sempre atrás do texto */
+    z-index: 0;
     opacity: 0.8;
     transition: all 0.6s ease;
     pointer-events: none;
 }
-
 .bento-card:hover .bento-deco {
     opacity: 1;
     transform: translateY(-8px);
 }
-
-/* Deco 1: Pipeline Holográfico (Envio de JSON) */
 .deco-pipeline {
     right: 40px;
     top: 50%;
@@ -472,18 +417,14 @@
     gap: 15px;
     width: auto;
 }
-
 .bento-card:hover .deco-pipeline {
     transform: translateY(-50%) translateX(-8px);
 }
-
-/* Pilha de Arquivos JSON (Efeito 3D Glass) */
 .file-stack {
     position: relative;
     width: 45px;
     height: 55px;
 }
-
 .mock-file {
     position: absolute;
     width: 40px;
@@ -494,7 +435,6 @@
     backdrop-filter: blur(4px);
     transition: transform 0.4s ease;
 }
-
 .mock-file.f3 { top: 0; left: 10px; opacity: 0.4; transform: rotate(5deg); }
 .mock-file.f2 { top: 5px; left: 5px; opacity: 0.7; transform: rotate(2deg); }
 .mock-file.f1 {
@@ -507,19 +447,15 @@
     box-shadow: 0 5px 15px rgba(0, 198, 255, 0.15);
     z-index: 3;
 }
-
 .mock-file.f1 span {
     font-size: 0.65rem;
     font-weight: 800;
     color: #00c6ff;
     letter-spacing: 1px;
 }
-
 .bento-card:hover .mock-file.f3 { transform: rotate(12deg) translate(3px, -3px); }
 .bento-card:hover .mock-file.f2 { transform: rotate(6deg) translate(1px, -1px); }
 .bento-card:hover .mock-file.f1 { transform: scale(1.05); border-color: #ffffff; }
-
-/* Trilha de Transmissão (Feixe de Energia) */
 .pipeline-track {
     width: 90px;
     height: 2px;
@@ -528,7 +464,6 @@
     overflow: hidden;
     border-radius: 2px;
 }
-
 .data-chunk {
     position: absolute;
     top: -1.5px;
@@ -540,19 +475,15 @@
     box-shadow: 0 0 10px #00c6ff, 0 0 20px #0072ff;
     animation: sendData 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .c1 { animation-delay: 0s; }
 .c2 { animation-delay: 0.4s; }
 .c3 { animation-delay: 0.8s; }
-
 @keyframes sendData {
     0% { left: -20px; opacity: 0; transform: scaleX(0.5); }
     20% { opacity: 1; transform: scaleX(1); }
     80% { opacity: 1; transform: scaleX(1); }
     100% { left: 100%; opacity: 0; transform: scaleX(0.5); }
 }
-
-/* Núcleo do Sistema (Receptor da Plataforma) */
 .system-core {
     position: relative;
     width: 45px;
@@ -561,7 +492,6 @@
     align-items: center;
     justify-content: center;
 }
-
 .core-ring {
     position: absolute;
     width: 100%;
@@ -570,7 +500,6 @@
     border-radius: 50%;
     animation: rotateRing 6s linear infinite;
 }
-
 .core-dot {
     width: 14px;
     height: 14px;
@@ -579,18 +508,10 @@
     box-shadow: 0 0 15px #00c6ff;
     animation: pulseCoreDot 1.5s infinite alternate;
 }
-
-@keyframes rotateRing {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 @keyframes pulseCoreDot {
     0% { transform: scale(0.8); box-shadow: 0 0 10px rgba(0, 198, 255, 0.4); }
     100% { transform: scale(1.3); box-shadow: 0 0 25px rgba(0, 198, 255, 1); }
 }
-
-/* Deco 2: Sincronização em Nuvem (Movido para o Topo Direito) */
 .deco-cloud {
     width: 130px;
     height: 70px;
@@ -601,12 +522,9 @@
     align-items: center;
     justify-content: space-evenly;
     position: absolute;
-    top: 35px; /* Movido para o topo */
-    right: 35px; /* Alinhado à direita */
-    bottom: auto; /* Remove o alinhamento inferior anterior */
+    top: 35px;
+    right: 35px;
 }
-
-/* Linha conectando os nós */
 .deco-cloud::before {
     content: '';
     position: absolute;
@@ -615,7 +533,6 @@
     background: rgba(0, 170, 255, 0.2);
     z-index: 0;
 }
-
 .cloud-circle {
     width: 14px;
     height: 14px;
@@ -625,70 +542,20 @@
     z-index: 1;
     animation: pulseNode 1.5s infinite alternate;
 }
-
 .c1 { 
     background: #00c6ff; 
     box-shadow: 0 0 12px rgba(0, 198, 255, 0.6);
     animation-delay: 0s; 
 }
-
 .c2 { 
     background: #0072ff; 
     box-shadow: 0 0 12px rgba(0, 114, 255, 0.6);
     animation-delay: 0.75s; 
 }
-
 @keyframes pulseNode {
     0% { transform: scale(0.8); opacity: 0.5; }
     100% { transform: scale(1.3); opacity: 1; }
 }
-
-/* Deco 3: Mini Dashboard Mockup (Movido para o Topo Direito) */
-.deco-dashboard {
-    position: absolute;
-    top: 35px; /* Movido para o topo */
-    right: 35px; /* Alinhado à direita */
-    bottom: auto; /* Remove o alinhamento inferior anterior */
-    width: 150px;
-    height: 110px;
-    background: #ffffff;
-    border: 2px solid rgba(4, 44, 78, 0.08);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(4, 44, 78, 0.05);
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 8px;
-    transform: perspective(500px) rotateY(-15deg) rotateX(5deg);
-}
-
-.bento-card:hover .deco-dashboard {
-    transform: perspective(500px) rotateY(-5deg) rotateX(0deg) scale(1.05);
-}
-
-.dash-nav {
-    width: 100%;
-    height: 12px;
-    background: rgba(0, 170, 255, 0.15);
-    border-radius: 4px;
-}
-
-.dash-body {
-    display: flex;
-    gap: 8px;
-    flex: 1;
-}
-
-.dash-widget {
-    flex: 1;
-    background: rgba(4, 44, 78, 0.04);
-    border-radius: 6px;
-    height: 100%;
-}
-
-/* =========================================
-   RESPONSIVIDADE GERAL
-   ========================================= */
 @media (max-width: 1024px) {
     .solutions-flow-grid {
         flex-direction: column;
@@ -702,7 +569,9 @@
         transform: rotate(90deg);
         margin: -5px 0;
     }
-    .bento-large {
+    .bento-large,
+    .bento-card:nth-child(2),
+    .bento-card-dark {
         flex-direction: column;
         align-items: flex-start;
         padding: 40px 35px;
@@ -722,13 +591,24 @@
         width: 100%;
         justify-content: center;
     }
+    .bento-content-top {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+    .bento-image-wrapper {
+        top: auto;
+        bottom: auto;
+        right: auto;
+        width: 100%;
+    }
 }
-
 @media (max-width: 768px) {
     .bento-grid {
         grid-template-columns: 1fr;
     }
-    .bento-large {
+    .bento-large,
+    .bento-card:nth-child(2),
+    .bento-card-dark {
         grid-column: span 1;
     }
     .flow-card {
@@ -741,9 +621,9 @@
         font-size: 2.2rem;
     }
     .bento-deco {
-        display: none; /* Esconde os gráficos abstratos no mobile para manter limpo */
+        display: none; 
     }
     .deco-pipeline {
-        display: flex; /* Mantém o pipeline visível no celular porque o efeito é essencial! */
+        display: flex; 
     }
 }

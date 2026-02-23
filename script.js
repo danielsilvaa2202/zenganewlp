@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         };
 
-
         if (nextButton) {
            nextButton.addEventListener('click', () => {
                 nextSlide();
@@ -119,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetInterval();
             });
         }
-
 
         const startInterval = () => {
             clearInterval(slideInterval);
@@ -195,7 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetAutoPlay();
             });
         }
-
 
         const startAutoPlay = () => {
             clearInterval(autoPlayInterval);
@@ -471,10 +468,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 'SC': { lat: -27.5954, lon: -48.5480, name: 'Santa Catarina' },
                 'RS': { lat: -30.0346, lon: -51.2177, name: 'Rio Grande do Sul' },
                 'RO': { lat: -10.83, lon: -63.22, name: 'Rondônia' },
-                'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' }
+                'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' },
+                'BA': { lat: -12.9714, lon: -38.5014, name: 'Bahia' } /* <-- Bahia adicionada aqui */
             };
 
-            const clientUFs = ['PE', 'MG', 'SP', 'AM', 'SP', 'SP', 'SP', 'MT', 'PR', 'PR', 'MG', 'SC', 'RS', 'RO', 'TO', 'ES'];
+            const clientUFs = ['PE', 'MG', 'SP', 'AM', 'SP', 'SP', 'SP', 'MT', 'PR', 'PR', 'MG', 'SC', 'RS', 'RO', 'TO', 'ES', 'BA']; /* <-- Bahia adicionada aqui */
 
             L.marker(zengaHQ, {
                 icon: L.divIcon({

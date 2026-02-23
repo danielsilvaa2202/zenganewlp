@@ -7,7 +7,6 @@
     padding-bottom: 100px;
     position: relative;
     overflow: hidden;
-    /* Fundo escuro com gradiente para profundidade */
     background: radial-gradient(circle at top center, #06192e 0%, #020b14 100%);
 }
 
@@ -107,8 +106,8 @@
 .step-line {
     position: absolute;
     top: 50%;
-    left: calc(50% + 30px); /* Começa após o ícone */
-    width: calc(100% - 60px + 20px); /* Preenche até o próximo ícone */
+    left: calc(50% + 30px);
+    width: calc(100% - 60px + 20px);
     height: 3px;
     background: rgba(255, 255, 255, 0.05);
     transform: translateY(-50%);
@@ -116,7 +115,6 @@
     overflow: hidden;
 }
 
-/* Efeito de energia correndo na linha */
 .step-line::after {
     content: '';
     position: absolute;
@@ -156,7 +154,6 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-/* Número Gigante Transparente no Fundo */
 .step-number-bg {
     position: absolute;
     top: -10px;
@@ -214,7 +211,6 @@
     margin-right: auto;
 }
 
-/* Brilho suave no fundo */
 .glass-glow-effect {
     position: absolute;
     top: -50px;
@@ -234,40 +230,40 @@
     z-index: 1;
 }
 
-/* Ícone elegante com animação sutil de pulso */
+/* --- ÍCONE REMODELADO E VIBRANTE --- */
 .integrated-core-icon {
-    width: 70px;
-    height: 70px;
-    background: rgba(0, 198, 255, 0.1);
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    border: 1px solid rgba(0, 198, 255, 0.3);
-    box-shadow: 0 0 20px rgba(0, 198, 255, 0.15);
+    border: none;
+    box-shadow: 0 15px 35px rgba(0, 198, 255, 0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
     position: relative;
 }
 
-/* Animação sutil de anel ao redor do ícone */
 .integrated-core-icon::after {
     content: '';
     position: absolute;
     top: -5px; left: -5px; right: -5px; bottom: -5px;
-    border-radius: 24px;
-    border: 1px solid rgba(0, 198, 255, 0.4);
-    animation: subtlePulse 2.5s infinite ease-out;
+    border-radius: 28px;
+    border: 2px solid rgba(0, 198, 255, 0.6);
+    animation: vibrantPulse 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes subtlePulse {
+@keyframes vibrantPulse {
     0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.2); opacity: 0; }
+    100% { transform: scale(1.25); opacity: 0; }
 }
 
 .integrated-core-icon i {
-    width: 32px;
-    height: 32px;
-    color: #00c6ff;
+    width: 38px;
+    height: 38px;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 .integrated-text h4 {
