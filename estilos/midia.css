@@ -51,7 +51,36 @@
     box-shadow: 0 20px 40px rgba(4, 44, 78, 0.15);
 }
 
-/* --- Especificidades para Reels (Mais altos) --- */
+/* --- Especificidades para o Destaque (Featured Reel) --- */
+.highlight-row {
+    margin-bottom: 10px; /* Ajuste fino de espaçamento para as próximas linhas */
+}
+
+.highlight-row .featured-card {
+    max-width: 450px; /* Maior destaque na largura */
+    width: 100%;
+    min-height: 600px; /* Maior altura para comportar o reel gigante */
+    box-shadow: 0 20px 50px rgba(4, 44, 78, 0.15); /* Sombra inicial mais evidente */
+    position: relative;
+}
+
+/* Adiciona um glow opcional e sutil no fundo para separar dos outros */
+.highlight-row .featured-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(45deg, #042c4e, #074e8a, #042c4e);
+    z-index: -1;
+    border-radius: 22px;
+    opacity: 0.15;
+}
+
+.highlight-row .featured-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Efeito de pular pra frente */
+    box-shadow: 0 25px 60px rgba(4, 44, 78, 0.25);
+}
+
+/* --- Especificidades para Reels Normais (Mais altos) --- */
 .reels-row .instagram-card {
     max-width: 350px; /* Largura ideal para Reels */
     width: 100%;
@@ -121,6 +150,7 @@
         gap: 30px;
     }
 
+    .highlight-row .featured-card,
     .reels-row .instagram-card,
     .posts-row .instagram-card {
         max-width: 100%; /* Em mobile, ocupa largura total */
