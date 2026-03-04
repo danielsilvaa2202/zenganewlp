@@ -433,116 +433,86 @@ document.addEventListener('DOMContentLoaded', function() {
     let mapInstance = null;
 
     function initBrazilMap() {
-        if (mapInstance || typeof L === 'undefined' || !document.getElementById('map-container')) return;
+    if (mapInstance || typeof L === 'undefined' || !document.getElementById('map-container')) return;
 
-        try {
-            mapInstance = L.map('map-container', {
-                center: [-15.5, -50.0],
-                zoom: 4.49,
-                zoomControl: false,
-                dragging: false,
-                touchZoom: false,
-                doubleClickZoom: false,
-                scrollWheelZoom: false,
-                boxZoom: false,
-                keyboard: false,
-                attributionControl: false
-            });
+    try {
+        mapInstance = L.map('map-container', {
+            center: [-15.5, -50.0],
+            zoom: 4.49,
+            zoomControl: false,
+            dragging: false,
+            touchZoom: false,
+            doubleClickZoom: false,
+            scrollWheelZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            attributionControl: false
+        });
 
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-                subdomains: 'abcd',
-                maxZoom: 7,
-                minZoom: 4
-            }).addTo(mapInstance);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            maxZoom: 7,
+            minZoom: 4
+        }).addTo(mapInstance);
 
-            const zengaHQ = [-25.4411, -49.2908];
+        const zengaHQ = [-25.4411, -49.2908]; // Curitiba
 
-            const ufCoordinates = {
-                'PE': { lat: -8.0476, lon: -34.8770, name: 'Pernambuco' },
-                'SP': { lat: -23.5505, lon: -46.6333, name: 'São Paulo' },
-                'MG': { lat: -19.9167, lon: -43.9345, name: 'Minas Gerais' },
-                'ES': { lat: -20.3192, lon: -40.3378, name: 'Espírito Santo' },
-                'AM': { lat: -3.1190, lon: -60.0217, name: 'Amazonas' },
-                'MT': { lat: -15.6014, lon: -56.0977, name: 'Mato Grosso' },
-                'PR': { lat: -25.4284, lon: -49.2733, name: 'Paraná' },
-                'SC': { lat: -27.5954, lon: -48.5480, name: 'Santa Catarina' },
-                'RS': { lat: -30.0346, lon: -51.2177, name: 'Rio Grande do Sul' },
-                'RO': { lat: -10.83, lon: -63.22, name: 'Rondônia' },
-                'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' },
-                'BA': { lat: -12.9714, lon: -38.5014, name: 'Bahia' } /* <-- Bahia adicionada aqui */
-            };
+        const ufCoordinates = {
+            'SP': { lat: -23.5505, lon: -46.6333, name: 'São Paulo' },
+            'MG': { lat: -19.9167, lon: -43.9345, name: 'Minas Gerais' },
+            'PR': { lat: -25.4284, lon: -49.2733, name: 'Paraná' },
+            'SC': { lat: -27.5954, lon: -48.5480, name: 'Santa Catarina' },
+            'RS': { lat: -30.0346, lon: -51.2177, name: 'Rio Grande do Sul' },
+            'MT': { lat: -15.6014, lon: -56.0977, name: 'Mato Grosso' },
+            'MS': { lat: -20.4428, lon: -54.6464, name: 'Mato Grosso do Sul' },
+            'RO': { lat: -10.83, lon: -63.22, name: 'Rondônia' },
+            'AM': { lat: -3.1190, lon: -60.0217, name: 'Amazonas' },
+            'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' },
+            'PE': { lat: -8.0476, lon: -34.8770, name: 'Pernambuco' },
+            'ES': { lat: -20.3192, lon: -40.3378, name: 'Espírito Santo' },
+            'BA': { lat: -12.9714, lon: -38.5014, name: 'Bahia' },
+            'DF': { lat: -15.7801, lon: -47.9292, name: 'Distrito Federal' }
+        };
 
-            const clientUFs = ['PE', 'MG', 'SP', 'AM', 'SP', 'SP', 'SP', 'MT', 'PR', 'PR', 'MG', 'SC', 'RS', 'RO', 'TO', 'ES', 'BA']; /* <-- Bahia adicionada aqui */
+        // Lista exata de estados para renderizar no mapa
+        const clientUFs = ['SP', 'MG', 'PR', 'SC', 'RS', 'MT', 'MS', 'RO', 'AM', 'TO', 'PE', 'ES', 'BA', 'DF'];
 
-            L.marker(zengaHQ, {
-                icon: L.divIcon({
-                    className: 'pulsing-marker hq',
-                    iconSize: [18, 18]
-                })
-            }).addTo(mapInstance).bindTooltip("Sede ZengaTax", {
-                permanent: false,
-                direction: 'top',
-                className: 'custom-leaflet-tooltip'
-            });
+        L.marker(zengaHQ, {
+            icon: L.divIcon({
+                className: 'pulsing-marker hq',
+                iconSize: [18, 18]
+            })
+        }).addTo(mapInstance).bindTooltip("Sede ZengaTax", {
+            permanent: false,
+            direction: 'top',
+            className: 'custom-leaflet-tooltip'
+        });
 
-            function getArc(start, end) {
-                const points = [];
-                const startLat = start[0];
-                const startLng = start[1];
-                const endLat = end[0];
-                const endLng = end[1];
-                const midLat = (startLat + endLat) / 2;
-                const midLng = (startLng + endLng) / 2;
-                const latOffset = (endLng - startLng) * 0.20;
-                const lngOffset = -(endLat - startLat) * 0.20;
-                const controlLat = midLat + latOffset;
-                const controlLng = midLng + lngOffset;
-                for (let i = 0; i <= 100; i++) {
-                    const t = i / 100;
-                    const lat = Math.pow(1 - t, 2) * startLat + 2 * (1 - t) * t * controlLat + Math.pow(t, 2) * endLat;
-                    const lng = Math.pow(1 - t, 2) * startLng + 2 * (1 - t) * t * controlLng + Math.pow(t, 2) * endLng;
-                    points.push([lat, lng]);
-                }
-                return points;
+        function getArc(start, end) {
+            const points = [];
+            const startLat = start[0], startLng = start[1];
+            const endLat = end[0], endLng = end[1];
+            const midLat = (startLat + endLat) / 2;
+            const midLng = (startLng + endLng) / 2;
+            const latOffset = (endLng - startLng) * 0.20;
+            const lngOffset = -(endLat - startLat) * 0.20;
+            const controlLat = midLat + latOffset;
+            const controlLng = midLng + lngOffset;
+            for (let i = 0; i <= 100; i++) {
+                const t = i / 100;
+                const lat = Math.pow(1 - t, 2) * startLat + 2 * (1 - t) * t * controlLat + Math.pow(t, 2) * endLat;
+                const lng = Math.pow(1 - t, 2) * startLng + 2 * (1 - t) * t * controlLng + Math.pow(t, 2) * endLng;
+                points.push([lat, lng]);
             }
+            return points;
+        }
 
-            const drawnLocations = {};
+        clientUFs.forEach((uf, index) => {
+            const loc = ufCoordinates[uf];
+            if (!loc) return;
 
-            clientUFs.forEach((uf, index) => {
-                const loc = ufCoordinates[uf];
-                if (!loc) return;
-
-                const offsetLat = (Math.random() - 0.5) * 0.8;
-                const offsetLon = (Math.random() - 0.5) * 0.8;
-                const destination = [loc.lat + offsetLat, loc.lon + offsetLon];
-
-                const isHqState = loc.name === 'Paraná';
-                if (isHqState && Math.random() < 0.5) {
-                    if (!drawnLocations[loc.name]) {
-                        L.marker(destination, {
-                            icon: L.divIcon({
-                                className: 'pulsing-marker',
-                                iconSize: [14, 14]
-                            })
-                        })
-                           .addTo(mapInstance)
-                           .bindTooltip(loc.name, {
-                                permanent: false,
-                                direction: 'top',
-                                className: 'custom-leaflet-tooltip'
-                            });
-                        drawnLocations[loc.name] = true;
-                    } else {
-                        L.marker(destination, {
-                            icon: L.divIcon({
-                                className: 'pulsing-marker',
-                                iconSize: [14, 14]
-                            })
-                        }).addTo(mapInstance);
-                    }
-                    return;
-                }
-
+            const destination = [loc.lat, loc.lon];
+            if (uf !== 'PR') { // Não desenha arco para o próprio estado da sede
                 const latlngs = getArc(zengaHQ, destination);
                 const line = L.polyline(latlngs, {
                     color: '#00aaff',
@@ -553,40 +523,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 const path = line.getElement();
                 if (path) {
                     path.classList.add('map-line-path');
-                    path.style.animationDelay = `${index * 0.08}s`;
+                    path.style.animationDelay = `${index * 0.1}s`;
                 }
+            }
 
-                const customIcon = L.divIcon({
+            L.marker(destination, {
+                icon: L.divIcon({
                     className: 'pulsing-marker',
                     iconSize: [14, 14]
-                });
-
-                if (!drawnLocations[loc.name]) {
-                    L.marker(destination, {
-                            icon: customIcon
-                        })
-                        .addTo(mapInstance)
-                        .bindTooltip(loc.name, {
-                            permanent: false,
-                            direction: 'top',
-                            className: 'custom-leaflet-tooltip'
-                        });
-                    drawnLocations[loc.name] = true;
-                } else {
-                    L.marker(destination, {
-                        icon: customIcon
-                    }).addTo(mapInstance);
-                }
+                })
+            }).addTo(mapInstance).bindTooltip(loc.name, {
+                permanent: false,
+                direction: 'top',
+                className: 'custom-leaflet-tooltip'
             });
+        });
 
-            setTimeout(() => mapInstance.invalidateSize(), 400);
+        setTimeout(() => mapInstance.invalidateSize(), 400);
 
-        } catch (error) {
-            const mapContainer = document.getElementById('map-container');
-            if (mapContainer) mapContainer.innerHTML = "<p>Erro ao carregar o mapa.</p>";
-        }
+    } catch (error) {
+        console.error("Erro ao carregar o mapa:", error);
     }
-
+}
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
         faqItems.forEach(clickedItem => {
