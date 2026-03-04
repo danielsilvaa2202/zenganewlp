@@ -17,28 +17,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Dispara animação dos contadores numéricos (0 a 9000, etc)
-                if (entry.target.classList.contains('map-stats-column')) {
-                    const counters = entry.target.querySelectorAll('.counter');
-                    counters.forEach(counter => {
-                        const target = +counter.getAttribute('data-target');
-                        const duration = 2000; // Duração de 2 segundos
-                        const increment = target / (duration / 16); // ~60 frames por segundo
-                        
-                        let current = 0;
-                        const updateCounter = () => {
-                            current += increment;
-                            if (current < target) {
-                                counter.innerText = Math.ceil(current);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.innerText = target;
-                            }
-                        };
-                        
-                        // Inicia o contador junto com a subida das barras (0.6s de delay)
-                        setTimeout(updateCounter, 600);
-                    });
-                }
+                // Dispara animação dos contadores numéricos (0 a 10.000, etc)
+if (entry.target.classList.contains('map-stats-column')) {
+    const counters = entry.target.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 2000; // Duração de 2 segundos
+        const increment = target / (duration / 16); 
+        
+        let current = 0;
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                // A mágica acontece aqui: formata o número com ponto durante a subida
+                counter.innerText = Math.ceil(current).toLocaleString('pt-BR');
+                requestAnimationFrame(updateCounter);
+            } else {
+                // Garante que o número final também esteja formatado
+                counter.innerText = target.toLocaleString('pt-BR');
+            }
+        };
+        
+        setTimeout(updateCounter, 600);
+    });
+}
 
                 observer.unobserve(entry.target);
             }
