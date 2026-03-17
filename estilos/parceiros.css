@@ -1,6 +1,6 @@
 #partners {
     background-color: var(--primary-color);
-    padding: 80px 0;
+    padding: 80px 0 60px 0; /* Aumentado o espaçamento inferior para não ficar colado */
     text-align: center;
 }
 
@@ -98,14 +98,36 @@
     width: 100%;
 }
 
+/* Reduzido de 150px para 120px para tirar o excesso de espaço dos lados da Hotmilk */
 .partner-item:has(img[src*="hotmilk"]) {
-    width: 150px;
+    width: 120px; 
     padding: 0;
 }
 
 .partner-item img[src*="hotmilk"] {
     max-height: 90px;
     width: 100%;
+}
+
+/* ======================================================
+  AJUSTES DO SESCON-SC (COM MAIS RESPIRO LATERAL)
+====================================================== */
+
+.partner-item:has(img[src*="sesconsc"]) {
+    width: auto !important; 
+    min-width: 200px !important;
+    height: 90px !important; 
+    padding: 0 25px !important; /* Mais respiro interno */
+    margin: 0 15px !important;  /* Mais espaço empurrando os itens ao redor */
+}
+
+.partner-item img[src*="sesconsc"] {
+    max-height: 90px !important; 
+    max-width: 300px !important; 
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    transform: scale(1.3); 
 }
 
 .partner-item img[src*="sescap"] {
@@ -134,9 +156,21 @@
         height: 90px;
     }
 
-    .partner-item:has(img[src*="hotmilk"]),
     .partner-item:has(img[src*="cwbstartups"]) {
         width: 110px;
+    }
+
+    /* Hotmilk ainda menor no mobile para não sobrar espaço */
+    .partner-item:has(img[src*="hotmilk"]) {
+        width: 90px;
+    }
+
+    /* Caixa do Sescon-SC no mobile com espaço proporcional */
+    .partner-item:has(img[src*="sesconsc"]) {
+        min-width: 150px !important;
+        height: 70px !important;
+        padding: 0 15px !important;
+        margin: 0 10px !important;
     }
 
     .subsection-title {
@@ -170,12 +204,17 @@
     .partner-item img[src*="acessorias"] {
         max-height: 45px;
     }
+    
+    .partner-item img[src*="sesconsc"] {
+        max-height: 70px !important;
+        transform: scale(1.2);
+    }
 }
 
 .clients-infinite-slider {
     margin-top: 20px;
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 500px; /* Aumentado de 10px para 50px para dar um bom espaço em branco no final */
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -185,13 +224,10 @@
 
 .clients-track {
     display: flex;
-    /* Removemos o calc(200px * X). O max-content ajusta a largura ao conteúdo total */
     width: max-content; 
-    /* Ajustei levemente o tempo para manter a fluidez com mais itens */
     animation: scroll-clients 35s linear infinite; 
 }
 
-/* A animação permanece a mesma, movendo 50% (o tamanho do conjunto original) */
 @keyframes scroll-clients {
     from {
         transform: translateX(0);
@@ -252,13 +288,12 @@
     animation-play-state: paused;
 }
 
-/* Ajuste de tamanho para o logo do Grupo Vitrine (Altere o max-height conforme a proporção ideal) */
 .partner-item img[src*="vitrine"] {
-    max-height: 55px; /* Ajuste este valor se necessário */
+    max-height: 55px; 
 }
 
 @media (max-width: 768px) {
     .partner-item img[src*="vitrine"] {
-        max-height: 45px; /* Ajuste para o mobile */
+        max-height: 45px; 
     }
 }
