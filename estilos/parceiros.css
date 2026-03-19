@@ -214,7 +214,7 @@
 .clients-infinite-slider {
     margin-top: 20px;
     padding-top: 30px;
-    padding-bottom: 500px; /* Aumentado de 10px para 50px para dar um bom espaço em branco no final */
+    padding-bottom: 50px; /* Corrigido de 500px para 50px */
     overflow: hidden;
     position: relative;
     width: 100%;
