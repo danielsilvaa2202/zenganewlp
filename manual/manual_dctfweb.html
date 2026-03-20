@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual - DCTFWeb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #042c4e; --text-primary: #222; --text-secondary: #555; --bg-page: #f4f7fa; --border-light: #eaeef2; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-page); color: var(--text-primary); line-height: 1.7; }
+        .manual-header { background: var(--primary-color); color: white; padding: 3rem 1.5rem; text-align: center; position: relative; }
+        .back-link { position: absolute; top: 1.5rem; left: 1.5rem; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; font-weight: 500; background: rgba(0,0,0,0.2); padding: 8px 16px; border-radius: 20px; transition: 0.3s; }
+        .back-link:hover { background: rgba(0,0,0,0.4); }
+        .container { max-width: 900px; margin: -2rem auto 3rem auto; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 3rem; }
+        h2 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; border-bottom: 2px solid var(--border-light); padding-bottom: 0.5rem; margin-top: 2rem;}
+        h2:first-child { margin-top: 0; }
+        h3 { color: var(--text-primary); margin: 1.5rem 0 0.5rem 0; font-size: 1.2rem; }
+        p { margin-bottom: 1rem; color: var(--text-secondary); }
+        
+        .ui-box { background: #f8fafc; border: 1px solid var(--border-light); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+        .dctf-card { display: flex; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; min-width: 200px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .dctf-icon { width: 60px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; }
+        .dctf-content { padding: 10px 15px; }
+        .dctf-content p { margin: 0; font-size: 22px; font-weight: 700; line-height: 1; color: #1e293b; }
+        .dctf-content span { font-size: 12px; font-weight: 600; color: #64748b; }
+        .bg-pendente { background: #042c4e; } .bg-ok { background: #16a34a; }
+        .ui-btn-primary { background: var(--primary-color); color: #fff; padding: 8px 16px; border: none; border-radius: 6px; font-weight: 600; font-family: 'Quicksand'; display: inline-flex; align-items: center; gap: 8px; }
+    </style>
+</head>
+<body>
+    <header class="manual-header">
+        <a href="index.html" class="back-link">← Voltar</a>
+        <h1>DCTFWeb e DCTFCore</h1>
+        <p>Declaração de Débitos e Transmissões em Lote</p>
+    </header>
+
+    <main class="container">
+        <h2>1. Visão Gerencial</h2>
+        <p>O painel superior fornece um resumo rápido de tudo o que está pendente ou já foi processado com sucesso. Clique nos cards para filtrar a tabela de empresas.</p>
+        
+        <div class="ui-box" style="background: transparent; border: none; padding: 0;">
+            <div class="dctf-card">
+                <div class="dctf-icon bg-pendente">⏳</div>
+                <div class="dctf-content"><p>15</p><span>Pendentes</span></div>
+            </div>
+            <div class="dctf-card">
+                <div class="dctf-icon bg-ok">✅</div>
+                <div class="dctf-content"><p>82</p><span>Transmitidas</span></div>
+            </div>
+        </div>
+
+        <h2>2. Transmissão em Lote (DCTFCore)</h2>
+        <p>Utilize o botão <strong>DCTFCore</strong> para solicitar transmissões em massa para todas as empresas selecionadas na tabela que estiverem com o status "Aberto".</p>
+        
+        <div class="ui-box">
+            <div style="background: #e0ffff; border: 1px solid #a0e0e0; padding: 12px; border-radius: 8px; color: #012952; width: 100%; margin-bottom: 10px;">
+                💡 Dica: Verifique se todos os certificados digitais estão válidos antes de iniciar o DCTFCore.
+            </div>
+            <button class="ui-btn-primary">▶ Iniciar DCTFCore</button>
+        </div>
+
+        <h2>3. Baixar Recibos</h2>
+        <p>Após a transmissão, o ícone de recibo ficará disponível na coluna de ações da tabela. Em caso de erro, um ícone vermelho de alerta exibirá o log devolvido pela Receita Federal.</p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Guiado - DARF Completo</title>
+
+    <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_package/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon_package/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="../img/favicon_package/favicon-256x256.png">
+    <link rel="manifest" href="../img/favicon_package/manifest.json">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root { 
+            --primary: #032649; 
+            --primary-light: #0a4078;
+            --primary-fade: rgba(3, 38, 73, 0.05);
+            --bg-page: #f8fafc; 
+            --border: #e2e8f0; 
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            
+            --status-blue: hsl(210,91%,15%);
+            --status-yellow: #f59e0b;
+            --status-red: #dc2626;
+            --status-green: #16a34a;
+
+            --bg-esocial: #0284c7;
+            --bg-reinf: #0d9488;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-main); 
+            padding: 2rem 1rem;
+            padding-bottom: 250px; 
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Quicksand';
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+            padding: 8px 16px;
+            border-radius: 99px;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--border);
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transform: translateX(-2px);
+        }
+
+        .app-window {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .header-manual { text-align: center; margin-bottom: 3rem; }
+        .header-manual h1 { font-family: 'Quicksand'; font-size: 2.2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .header-manual p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
+        
+        .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .app-title { font-family: 'Inter'; font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+        
+        .actions-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .btn-system { background: var(--primary); color: white; font-family: 'Quicksand'; font-weight: 600; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 6px; border: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+        .btn-system.outline { background: #fff; color: var(--text-main); border: 1px solid var(--border); }
+        .search-box { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 1rem; width: 220px; font-family: 'Quicksand'; font-size: 0.95rem; color: var(--text-muted); background: #fff; max-width: 100%; }
+
+        .table-responsive-wrapper { width: 100%; overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); background: #fff; }
+        .table-system { width: 100%; min-width: 800px; border-collapse: collapse; font-family: 'Quicksand'; font-size: 0.9rem; }
+        .table-system th { background: #f8fafc; text-align: left; padding: 1rem; font-weight: 700; border-bottom: 1px solid var(--border); }
+        .table-system td { padding: 1rem; border-bottom: 1px solid var(--border); font-weight: 500;}
+        
+        .badge { padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; display: inline-block;}
+        .badge-green { background: var(--status-green); color: white; }
+        .badge-red { background: var(--status-red); color: white; }
+        .badge-esocial { background: var(--bg-esocial); color: white; }
+        .badge-reinf { background: var(--bg-reinf); color: white; }
+        
+        .action-icon-btn { border: none; background: transparent; padding: 6px; border-radius: 6px; color: var(--text-muted); display: inline-flex; cursor: pointer; transition: 0.2s; }
+        .action-icon-btn:hover { background: #f1f5f9; color: var(--primary); }
+        .action-icon-btn.reprocess:hover { color: var(--status-blue); }
+
+        .tour-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+        .tour-overlay.active { opacity: 1; pointer-events: all; }
+        .tour-highlight { position: relative; z-index: 51 !important; box-shadow: 0 0 0 6px #fff, 0 0 0 10px rgba(3, 38, 73, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3) !important; background: #fff; border-radius: inherit; transition: box-shadow 0.4s ease; }
+
+        .tour-panel { position: absolute; z-index: 52; background: #ffffff; width: 500px; max-width: 90vw; max-height: 85vh; overflow-y: auto; border-radius: 16px; padding: 2rem; box-shadow: 0 30px 60px -15px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.1); border-top: 6px solid var(--primary); opacity: 0; transform: translateY(20px) scale(0.95); transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), top 0.4s ease, left 0.4s ease; will-change: transform, top, left, opacity; }
+        .tour-panel.active { opacity: 1; transform: translateY(0) scale(1); }
+        .tour-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .tour-icon { background: var(--primary-fade); color: var(--primary); padding: 10px; border-radius: 12px; display: flex; flex-shrink: 0; }
+        .tour-title { font-family: 'Quicksand'; font-weight: 800; font-size: 1.35rem; color: var(--text-main); line-height: 1.2; }
+        .tour-text { font-size: 1rem; color: #475569; line-height: 1.6; margin-bottom: 24px; font-weight: 400; }
+        .tour-text strong { color: var(--text-main); font-weight: 700; }
+        .tour-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 20px; margin-top: auto; }
+        .tour-progress { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); font-family: 'Quicksand'; letter-spacing: 0.5px; text-transform: uppercase; }
+        .tour-buttons { display: flex; gap: 10px; }
+        .btn-tour { padding: 10px 20px; border-radius: 10px; font-family: 'Quicksand'; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .btn-tour-prev { background: #f1f5f9; color: var(--text-muted); }
+        .btn-tour-prev:hover { background: #e2e8f0; color: var(--text-main); }
+        .btn-tour-next { background: var(--primary); color: #fff; box-shadow: 0 4px 10px rgba(3, 38, 73, 0.2); }
+        .btn-tour-next:hover { background: var(--primary-light); transform: translateY(-1px); }
+        .btn-start-tour { margin: 0 auto; display: flex; align-items: center; gap: 10px; background: var(--primary); color: white; padding: 14px 32px; border-radius: 99px; font-family: 'Quicksand'; font-weight: 700; font-size: 1.1rem; cursor: pointer; border: none; box-shadow: 0 6px 15px rgba(3, 38, 73, 0.25); transition: all 0.3s; }
+        .btn-start-tour:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(3, 38, 73, 0.35); }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="index.html" class="btn-back">
+            <i data-lucide="arrow-left" style="width:18px;"></i> Voltar para a Central
+        </a>
+    </div>
+
+    <div class="header-manual">
+        <h1>Guia Interativo: DARF (Completo)</h1>
+        <p>Entenda como gerir a emissão de lotes, filtros por origem e reprocessamentos.</p>
+        <br>
+        <button class="btn-start-tour" onclick="startTour()">
+            <i data-lucide="play" style="width:22px;"></i> Iniciar Treinamento
+        </button>
+    </div>
+
+    <!-- MOCK DA TELA DARF COMPLETO -->
+    <div class="app-window" id="app-container">
+        
+        <div class="header-bar">
+            <h1 class="app-title">DARF Previdenciário | Emissão e Consulta</h1>
+            <div id="step-competencia" style="border-radius: 6px;">
+                <button class="btn-system outline"><i data-lucide="calendar" style="width:16px;"></i> Setembro 2025</button>
+            </div>
+        </div>
+
+        <div class="actions-bar" style="border-radius: 12px; padding: 4px;">
+            <div id="step-nova-emissao" style="border-radius: 6px;">
+                <button class="btn-system" style="background: hsl(210,91%,15%);"><i data-lucide="plus-circle" style="width:16px;"></i> Nova Emissão</button>
+            </div>
+
+            <div class="search-box">
+                <i data-lucide="search" style="width:18px; color:var(--text-muted)"></i> Pesquisar...
+            </div>
+
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;" id="step-filtros-tipo">
+                <button class="btn-system outline"><i data-lucide="filter" style="width:16px;"></i> Status <i data-lucide="chevron-down" style="width:14px; opacity:0.5;"></i></button>
+                <button class="btn-system outline"><i data-lucide="filter" style="width:16px;"></i> Todos os Tipos <i data-lucide="chevron-down" style="width:14px; opacity:0.5;"></i></button>
+                
+                <div id="step-exportar" style="border-radius: 6px;">
+                    <button class="btn-system" style="background: hsl(210,91%,15%);"><i data-lucide="download" style="width:16px;"></i> Exportar <i data-lucide="chevron-down" style="width:14px; opacity:0.75;"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-table" style="border-radius: 12px; background: white;">
+            <div class="table-responsive-wrapper">
+                <table class="table-system">
+                    <thead>
+                        <tr>
+                            <th>CNPJ</th>
+                            <th>Razão Social</th>
+                            <th>Competência</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th style="text-align: center;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12.345.678/0001-90</td>
+                            <td>Empresa Exemplo Real SA</td>
+                            <td>09/2025</td>
+                            <td>
+                                <span class="badge badge-esocial">eSocial</span>
+                                <span class="badge badge-reinf">Reinf</span>
+                            </td>
+                            <td>R$ 12.000,00</td>
+                            <td><span class="badge badge-green">Guia emitida</span></td>
+                            <td style="text-align: center;">
+                                <button class="action-icon-btn"><i data-lucide="file-down" style="width:20px; height:20px;"></i></button>
+                            </td>
+                        </tr>
+                        <tr id="step-reprocessar">
+                            <td>98.765.432/0001-10</td>
+                            <td>Comércio XYZ LTDA</td>
+                            <td>09/2025</td>
+                            <td>
+                                <span class="badge badge-esocial">eSocial</span>
+                            </td>
+                            <td>R$ 0,00</td>
+                            <td><span class="badge badge-red">Erro</span></td>
+                            <td style="text-align: center;">
+                                <button class="action-icon-btn reprocess"><i data-lucide="rotate-ccw" style="width:20px; height:20px;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ELEMENTOS DO TOUR -->
+    <div class="tour-overlay" id="tour-overlay"></div>
+    
+    <div class="tour-panel" id="tour-panel">
+        <div class="tour-header">
+            <div class="tour-icon" id="tour-icon"></div>
+            <div class="tour-title" id="tour-title">Título</div>
+        </div>
+        <div class="tour-text" id="tour-text">Texto explicativo.</div>
+        <div class="tour-footer">
+            <div class="tour-progress" id="tour-progress">1 de 4</div>
+            <div class="tour-buttons">
+                <button class="btn-tour btn-tour-prev" id="btn-prev" onclick="prevStep()">Anterior</button>
+                <button class="btn-tour btn-tour-next" id="btn-next" onclick="nextStep()">Próximo <i data-lucide="arrow-right" style="width:16px;"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const steps = [
+            {
+                target: 'step-nova-emissao',
+                title: 'Emissão de DARF em Lote',
+                icon: 'plus-circle',
+                text: `Acione tarefas massivas para dezenas de clientes simultaneamente!<br><br>
+                       Ao clicar aqui, um modal de configuração será aberto:<br><br>
+                       <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                           <div style="background: #f8fafc; padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: 700; font-size: 0.9rem; text-align: center; color: var(--primary);">Nova Emissão de DARF</div>
+                           <div style="padding: 12px;">
+                               <strong style="font-size: 0.85rem; color: #64748b; display: block; margin-bottom: 8px;">1. Selecione as Fontes de Dados</strong>
+                               <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+                                   <span style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; display:flex; align-items:center; gap:6px; border: 1px solid #bae6fd;"><i data-lucide="check-square" style="width:12px;"></i> eSocial</span>
+                                   <span style="background: #ccfbf1; color: #0f766e; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; display:flex; align-items:center; gap:6px; border: 1px solid #99f6e4;"><i data-lucide="check-square" style="width:12px;"></i> Reinf</span>
+                                   <span style="background: #e0e7ff; color: #4338ca; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; display:flex; align-items:center; gap:6px; border: 1px solid #c7d2fe;"><i data-lucide="square" style="width:12px; color: #a5b4fc;"></i> MIT</span>
+                               </div>
+                               <strong style="font-size: 0.85rem; color: #64748b; display: block; margin-bottom: 8px;">2. Seleção de Empresas</strong>
+                               <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 4px; border: 1px dashed #cbd5e1; font-size: 0.8rem; color: #475569; display: flex; align-items: center; gap: 8px;">
+                                   <i data-lucide="list-checks" style="width:16px; color: var(--primary);"></i> Marque na tabela abaixo as empresas que deseja emitir a DARF e pronto!
+                               </div>
+                           </div>
+                       </div>`,
+                position: 'bottom'
+            },
+            {
+                target: 'step-filtros-tipo',
+                title: 'Controle de Tipos e Origens',
+                icon: 'filter',
+                text: `Com emissões vindas de fontes diversas, filtre a tela rapidamente.<br><br>
+                       Use o seletor <strong>"Todos os Tipos"</strong> para isolar guias geradas apenas via <em>eSocial</em>, apenas via <em>Reinf</em> ou apenas pelo <em>MIT</em>, mantendo sua visão da tabela sempre limpa.`,
+                position: 'bottom'
+            },
+            {
+                target: 'step-reprocessar',
+                title: 'Tratamento de Erros e Reprocessamento',
+                icon: 'alert-triangle',
+                text: `Sistemas instáveis na Receita Federal? Fique tranquilo.<br><br>
+                       <div style="display:flex; gap:12px; margin-top:16px;">
+                           <div style="flex:1; background:#fff; padding:12px; border-radius:8px; border:1px solid var(--border); display:flex; align-items:flex-start; gap:12px;">
+                               <div style="background:var(--primary-fade); padding:8px; border-radius:8px;"><i data-lucide="rotate-ccw" style="width:18px; color:var(--primary);"></i></div>
+                               <div>
+                                   <strong style="font-size:0.95rem;">Ícone Reprocessar</strong><br>
+                                   <span style="font-size:0.85rem; color:var(--text-muted);">Quando um status mostrar <em>Erro</em>, <em>Não autorizado</em> ou <em>Erro técnico</em>, este botão permite refazer o envio diretamente, sem preencher tudo novamente.</span>
+                               </div>
+                           </div>
+                       </div>`,
+                position: 'top'
+            },
+            {
+                target: 'step-exportar',
+                title: 'Exportação Ágil',
+                icon: 'download',
+                text: `Após gerenciar tudo, você pode exportar:<br><br>
+                       <ul style="padding-left: 20px; font-size: 0.95rem; line-height: 1.6;">
+                           <li>Um lote ZIP inteligente contendo apenas as guias já <strong>Emitidas</strong> (PDFs).</li>
+                           <li>Planilhas completas com o status de cada envio para auditoria e conferência interna.</li>
+                       </ul>`,
+                position: 'bottom'
+            }
+        ];
+
+        let currentStep = -1;
+        const overlay = document.getElementById('tour-overlay');
+        const panel = document.getElementById('tour-panel');
+
+        function startTour() {
+            currentStep = 0;
+            overlay.classList.add('active');
+            renderStep();
+        }
+
+        function renderStep() {
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            
+            if(currentStep >= steps.length || currentStep < 0) {
+                endTour();
+                return;
+            }
+
+            const stepData = steps[currentStep];
+            const targetEl = document.getElementById(stepData.target);
+            targetEl.classList.add('tour-highlight');
+
+            document.getElementById('tour-title').innerHTML = stepData.title;
+            document.getElementById('tour-text').innerHTML = stepData.text;
+            document.getElementById('tour-icon').innerHTML = `<i data-lucide="${stepData.icon}" style="width:24px; height:24px;"></i>`;
+            document.getElementById('tour-progress').innerText = `PASSO ${currentStep + 1} DE ${steps.length}`;
+            
+            document.getElementById('btn-prev').style.display = currentStep === 0 ? 'none' : 'block';
+            if(currentStep === steps.length - 1) {
+                document.getElementById('btn-next').innerHTML = `Concluir <i data-lucide="check" style="width:16px;"></i>`;
+            } else {
+                document.getElementById('btn-next').innerHTML = `Próximo <i data-lucide="arrow-right" style="width:16px;"></i>`;
+            }
+
+            // Garante que os ícones inseridos na string de texto do mockup visual funcionem
+            lucide.createIcons();
+
+            panel.classList.remove('active');
+
+            setTimeout(() => {
+                const rect = targetEl.getBoundingClientRect();
+                const panelWidth = panel.offsetWidth;
+                const panelHeight = panel.offsetHeight;
+                const margin = 16;
+                const gap = 20;
+                
+                let leftPos = window.scrollX + rect.left + (rect.width / 2) - (panelWidth / 2); 
+                if (leftPos < window.scrollX + margin) {
+                    leftPos = window.scrollX + margin;
+                }
+                if (leftPos + panelWidth > window.scrollX + window.innerWidth - margin) {
+                    leftPos = window.scrollX + window.innerWidth - panelWidth - margin;
+                }
+
+                let position = stepData.position || 'bottom';
+                let absoluteTargetTop = window.scrollY + rect.top;
+                let absoluteTargetBottom = absoluteTargetTop + rect.height;
+
+                let topPos = position === 'bottom' ? (absoluteTargetBottom + gap) : (absoluteTargetTop - panelHeight - gap);
+
+                const clusterTop = Math.min(absoluteTargetTop, topPos);
+                const clusterBottom = Math.max(absoluteTargetBottom, topPos + panelHeight);
+                
+                let scrollToY = (clusterTop + clusterBottom) / 2 - (window.innerHeight / 2);
+                
+                if ((clusterBottom - clusterTop) > window.innerHeight * 0.8) {
+                    scrollToY = clusterTop - 40;
+                }
+
+                window.scrollTo({
+                    top: scrollToY,
+                    behavior: 'smooth'
+                });
+
+                panel.style.left = `${leftPos}px`;
+                panel.style.top = `${topPos}px`;
+                panel.classList.add('active');
+
+            }, 50);
+        }
+
+        function nextStep() {
+            panel.classList.remove('active');
+            setTimeout(() => { currentStep++; renderStep(); }, 200);
+        }
+
+        function prevStep() {
+            panel.classList.remove('active');
+            setTimeout(() => { currentStep--; renderStep(); }, 200);
+        }
+
+        function endTour() {
+            overlay.classList.remove('active');
+            panel.classList.remove('active');
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            currentStep = -1;
+        }
+
+        window.addEventListener('resize', () => {
+            if(currentStep >= 0) { renderStep(); }
+        });
+
+    </script>
+</body>
+</html>
