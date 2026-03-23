@@ -16,31 +16,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     initBrazilMap();
                 }
 
-                // Dispara animação dos contadores numéricos (0 a 9000, etc)
-                // Dispara animação dos contadores numéricos (0 a 10.000, etc)
-if (entry.target.classList.contains('map-stats-column')) {
-    const counters = entry.target.querySelectorAll('.counter');
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        const duration = 2000; // Duração de 2 segundos
-        const increment = target / (duration / 16); 
-        
-        let current = 0;
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                // A mágica acontece aqui: formata o número com ponto durante a subida
-                counter.innerText = Math.ceil(current).toLocaleString('pt-BR');
-                requestAnimationFrame(updateCounter);
-            } else {
-                // Garante que o número final também esteja formatado
-                counter.innerText = target.toLocaleString('pt-BR');
-            }
-        };
-        
-        setTimeout(updateCounter, 600);
-    });
-}
+                // Dispara animação dos contadores numéricos
+                if (entry.target.classList.contains('map-stats-column')) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000; // Duração de 2 segundos
+                        const increment = target / (duration / 16); 
+                        
+                        let current = 0;
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < target) {
+                                counter.innerText = Math.ceil(current).toLocaleString('pt-BR');
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = target.toLocaleString('pt-BR');
+                            }
+                        };
+                        
+                        setTimeout(updateCounter, 600);
+                    });
+                }
 
                 observer.unobserve(entry.target);
             }
@@ -55,6 +52,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         }
     });
 
+    // CARROSSEL: SOLUÇÕES
     const solutionsCarousel = document.querySelector('.solutions-carousel');
     if (solutionsCarousel) {
         const track = solutionsCarousel;
@@ -141,6 +139,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         startInterval();
     }
 
+    // CARROSSEL: DEPOIMENTOS
     const testimonialWrapper = document.querySelector('.testimonial-wrapper');
     if (testimonialWrapper) {
         const track = testimonialWrapper.querySelector('.testimonial-track');
@@ -216,6 +215,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         startAutoPlay();
     }
 
+    // --- CARROSSEL: BLOG (CÓDIGO ATUALIZADO) ---
     const blogWrapper = document.querySelector('.blog-carousel-wrapper');
     if (blogWrapper) {
         const track = blogWrapper.querySelector('.blog-track');
@@ -224,11 +224,15 @@ if (entry.target.classList.contains('map-stats-column')) {
         const prevButton = blogWrapper.querySelector('#blog-prev');
         const dotsNav = blogWrapper.querySelector('.blog-carousel-dots');
         
-        let currentIndex = 0;
+        // Garante que inicie no primeiro slide
+        let currentIndex = 0; 
         let slidesToShow = 3;
         let slidesToScroll = 1; 
         let maxIndex = slides.length - slidesToShow;
         let autoPlayInterval;
+        
+        // Tempo ajustado para 8 segundos para dar tempo de leitura
+        const blogSlideTime = 8000; 
 
         function updateBlogMetrics() {
             if (window.innerWidth <= 768) {
@@ -239,7 +243,7 @@ if (entry.target.classList.contains('map-stats-column')) {
                 slidesToShow = 3;
             }
             slidesToScroll = 1; 
-            maxIndex = slides.length - slidesToShow;
+            maxIndex = Math.max(0, slides.length - slidesToShow);
             
             if (dotsNav) {
                 dotsNav.innerHTML = '';
@@ -258,6 +262,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         }
 
         function updateBlogDots() {
+            if (!dotsNav) return;
             const dots = Array.from(dotsNav.children);
             dots.forEach(dot => dot.classList.remove('active'));
             if (dots[currentIndex]) {
@@ -268,7 +273,8 @@ if (entry.target.classList.contains('map-stats-column')) {
         function goToBlogSlide(index) {
             currentIndex = Math.max(0, Math.min(index, maxIndex));
             
-            const slideWidth = slides[0].offsetWidth;
+            // Tratativa de segurança caso a largura ainda seja 0 no carregamento inicial
+            const slideWidth = slides[0] ? slides[0].offsetWidth : 0;
             track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             
             updateBlogDots();
@@ -305,7 +311,7 @@ if (entry.target.classList.contains('map-stats-column')) {
 
         const startAutoPlayBlog = () => {
             clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(nextBlogSlide, 7000);
+            autoPlayInterval = setInterval(nextBlogSlide, blogSlideTime);
         };
 
         const resetAutoPlayBlog = () => {
@@ -317,14 +323,18 @@ if (entry.target.classList.contains('map-stats-column')) {
             updateBlogMetrics();
             goToBlogSlide(currentIndex); 
         });
+        
         blogWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
         blogWrapper.addEventListener('mouseleave', () => startAutoPlayBlog());
         
+        // Inicialização garantida
         updateBlogMetrics();
-        goToBlogSlide(0);
+        goToBlogSlide(0); // Força a ida para a primeira posição
         startAutoPlayBlog();
     }
+    // --- FIM DO CARROSSEL BLOG ---
 
+    // MODAIS
     const openModal = (modal) => {
         if (modal) {
             modal.classList.add('visible');
@@ -410,6 +420,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         }
     });
 
+    // BOTÕES DE CÓPIA
     const copyButtons = document.querySelectorAll('.copy-button');
     copyButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -432,6 +443,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         });
     });
 
+    // MAPA
     let mapInstance = null;
 
     function initBrazilMap() {
@@ -476,7 +488,6 @@ if (entry.target.classList.contains('map-stats-column')) {
             'DF': { lat: -15.7801, lon: -47.9292, name: 'Distrito Federal' }
         };
 
-        // Lista exata de estados para renderizar no mapa
         const clientUFs = ['SP', 'MG', 'PR', 'SC', 'RS', 'MT', 'MS', 'RO', 'AM', 'TO', 'PE', 'ES', 'BA', 'DF'];
 
         L.marker(zengaHQ, {
@@ -514,7 +525,7 @@ if (entry.target.classList.contains('map-stats-column')) {
             if (!loc) return;
 
             const destination = [loc.lat, loc.lon];
-            if (uf !== 'PR') { // Não desenha arco para o próprio estado da sede
+            if (uf !== 'PR') { 
                 const latlngs = getArc(zengaHQ, destination);
                 const line = L.polyline(latlngs, {
                     color: '#00aaff',
@@ -547,6 +558,7 @@ if (entry.target.classList.contains('map-stats-column')) {
         console.error("Erro ao carregar o mapa:", error);
     }
 }
+    // FAQ
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
         faqItems.forEach(clickedItem => {
