@@ -6,17 +6,11 @@
     <title>Central de Ajuda - Plataforma Fiscal</title>
 
     <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_package/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon_package/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="../img/favicon_package/favicon-256x256.png">
-    <link rel="manifest" href="../img/favicon_package/manifest.json">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Ícones oficiais do Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -44,12 +38,10 @@
             overflow-x: hidden;
         }
 
-        /* =========================================
-           HERO SECTION (TOPO PREMIUM)
-           ========================================= */
+        /* HERO SECTION REDUZIDA */
         .hero {
             background: var(--primary-gradient);
-            padding: 6rem 1.5rem 8rem 1.5rem;
+            padding: 3.5rem 1.5rem 5rem 1.5rem; /* Diminuído para ficar mais estreito */
             text-align: center;
             position: relative;
             z-index: 10;
@@ -72,9 +64,9 @@
         }
 
         .hero-logo {
-            max-width: 150px;
+            max-width: 120px; /* Reduzido */
             display: block;
-            margin: 0 auto 2.5rem auto;
+            margin: 0 auto 1.5rem auto; /* Reduzido */
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
             transition: transform 0.3s;
         }
@@ -82,9 +74,9 @@
 
         .hero h1 { 
             font-family: 'Quicksand', sans-serif;
-            font-size: 3.5rem; 
+            font-size: 2.8rem; /* Reduzido de 3.5rem */
             font-weight: 800; 
-            margin-bottom: 1.2rem; 
+            margin-bottom: 0.8rem; /* Reduzido */
             letter-spacing: -1.5px;
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -97,7 +89,7 @@
         }
 
         .hero p { 
-            font-size: 1.25rem; 
+            font-size: 1.1rem; /* Reduzido de 1.25rem */
             color: #e2e8f0; 
             max-width: 650px; 
             margin: 0 auto; 
@@ -105,9 +97,7 @@
             line-height: 1.6;
         }
 
-        /* =========================================
-           BARRA DE PESQUISA FLUTUANTE
-           ========================================= */
+        /* BARRA DE PESQUISA FLUTUANTE */
         .search-wrapper {
             position: absolute;
             bottom: 0; 
@@ -148,8 +138,8 @@
 
         .search-box input {
             flex-grow: 1;
-            padding: 1rem 0; 
-            font-size: 1.2rem;
+            padding: 0.8rem 0; /* Reduzido levemente */
+            font-size: 1.15rem; /* Reduzido levemente */
             font-family: 'Quicksand', sans-serif;
             font-weight: 600;
             color: var(--text-main);
@@ -165,10 +155,10 @@
             color: white;
             border: none;
             border-radius: 16px;
-            padding: 14px 28px;
+            padding: 12px 24px; /* Ajustado */
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1rem; /* Ajustado */
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(3, 38, 73, 0.2);
@@ -179,21 +169,63 @@
             filter: brightness(1.1);
         }
 
-        /* =========================================
-           ÁREA DOS CARDS
-           ========================================= */
+        /* PÍLULAS DE FILTRO */
+        .filters-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 0 1.5rem; /* Ajustado o espaço para a nova hero */
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            z-index: 5;
+            position: relative;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn:hover {
+            color: var(--primary-light);
+            border-color: var(--primary-light);
+            background: #f0f9ff;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+        }
+
+        /* ÁREA DOS CARDS */
         .container { 
             max-width: 1280px; 
             margin: 0 auto 5rem auto; 
-            padding: 6rem 1.5rem 0 1.5rem;
+            padding: 2rem 1.5rem 0 1.5rem;
             width: 100%; 
             z-index: 1; 
         }
 
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            gap: 2.5rem; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 2rem; 
         }
 
         @keyframes cardEntrance {
@@ -203,8 +235,8 @@
 
         .card {
             background: var(--card-bg); 
-            border-radius: 24px; 
-            padding: 2.5rem;
+            border-radius: 20px; 
+            padding: 1.8rem; 
             box-shadow: 0 10px 20px -5px rgba(0,0,0,0.03), 0 0 1px rgba(0,0,0,0.05);
             border: 1px solid var(--border); 
             display: flex; 
@@ -218,14 +250,16 @@
         }
 
         .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        .card:nth-child(6) { animation-delay: 0.35s; }
+        .card:nth-child(7) { animation-delay: 0.4s; }
 
         .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 30px 60px -15px rgba(3, 38, 73, 0.12); 
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px -12px rgba(3, 38, 73, 0.12); 
             border-color: #bae6fd;
         }
 
@@ -233,7 +267,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 6px;
+            height: 5px;
             background: linear-gradient(90deg, #38bdf8, #0ea5e9);
             opacity: 0;
             transition: opacity 0.4s ease;
@@ -244,13 +278,13 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem; 
         }
 
         .card-icon-wrapper { 
             background: #f0f9ff; 
-            width: 64px; height: 64px; 
-            border-radius: 20px; 
+            width: 52px; height: 52px; 
+            border-radius: 16px; 
             display: flex; align-items: center; justify-content: center;
             color: var(--primary-light);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -266,9 +300,9 @@
 
         .card h3 { 
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.6rem; 
+            font-size: 1.35rem;  
             font-weight: 800; 
-            margin-bottom: 1rem; 
+            margin-bottom: 0.8rem; 
             color: var(--text-main); 
             line-height: 1.2;
             transition: color 0.3s;
@@ -277,32 +311,33 @@
         .card:hover h3 { color: var(--primary-light); }
 
         .card p { 
-            font-size: 1.05rem; 
+            font-size: 0.95rem; 
             color: var(--text-muted); 
-            line-height: 1.7; 
+            line-height: 1.6; 
             flex-grow: 1; 
         }
 
         .card-footer { 
-            margin-top: 2rem; 
+            margin-top: 1.5rem; 
             display: flex; 
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
+            padding-top: 1.2rem;
         }
 
         .card-tags { 
             display: flex; 
             gap: 0.5rem; 
+            flex-wrap: wrap;
         }
 
         .tag { 
             background: #f1f5f9; 
             color: #64748b; 
-            padding: 4px 12px; 
-            border-radius: 8px; 
-            font-size: 0.8rem; 
+            padding: 4px 10px; 
+            border-radius: 6px; 
+            font-size: 0.75rem; 
             font-weight: 600; 
             border: 1px solid #e2e8f0;
             transition: all 0.3s;
@@ -317,13 +352,14 @@
         .read-more {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             font-weight: 700;
             color: var(--primary-light);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0;
             transform: translateX(-10px);
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .card:hover .read-more {
@@ -356,13 +392,13 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
             .search-box { flex-direction: column; border-radius: 16px; padding: 12px; }
             .search-box input { padding: 0.5rem; text-align: center; }
             .search-icon { display: none; }
             .search-btn { width: 100%; margin-top: 10px; }
-            .container { padding-top: 10rem; }
+            .filters-container { padding-top: 6rem; }
             .read-more { opacity: 1; transform: translateX(0); }
         }
 
@@ -384,52 +420,55 @@
         </div>
     </header>
 
+    <div class="filters-container">
+        <button class="filter-btn active" data-filter="all">Todos os Manuais</button>
+        <button class="filter-btn" data-filter="declaracoes"><i data-lucide="file-text" style="width:16px;"></i> Declarações</button>
+        <button class="filter-btn" data-filter="guias"><i data-lucide="barcode" style="width:16px;"></i> Guias</button>
+        <button class="filter-btn" data-filter="cadastros"><i data-lucide="settings" style="width:16px;"></i> Cadastros</button>
+    </div>
+
     <main class="container">
         <div class="grid" id="manualGrid">
             
-            <!-- MIT CORRIGIDO: Transmissão e Controle -->
-            <a href="manual_mit.html" class="card" data-search="mit imposto modulo extrato dados malha fina cruzamento interativo guia transmissão controle">
+            <a href="manual_mit.html" class="card" data-category="declaracoes" data-search="mit imposto modulo extrato dados malha fina cruzamento interativo guia transmissão controle">
                 <div class="card-header">
-                    <div class="card-icon-wrapper"><i data-lucide="database" style="width:32px; height:32px;"></i></div>
+                    <div class="card-icon-wrapper"><i data-lucide="database" style="width:28px; height:28px;"></i></div>
                 </div>
                 <h3>Tour Guiado: MIT</h3>
-                <p>Treinamento visual e interativo focado na transmissão e controle do MIT. Entenda o fluxo de arquivos, identificação de erros e gestão de encerramentos de forma ágil.</p>
+                <p>Treinamento visual e interativo focado na transmissão e controle do MIT. Entenda o fluxo de arquivos, identificação de erros e encerramentos.</p>
                 <div class="card-footer">
                     <div class="card-tags"><span class="tag">Transmissão</span><span class="tag">Controle</span></div>
                     <div class="read-more">Acessar <i data-lucide="arrow-right" style="width:16px;"></i></div>
                 </div>
             </a>
 
-            <!-- GUIAS DARF MIT -->
-            <a href="manual_darf_mit.html" class="card" data-search="darf mit guias comum lucros 810902 exportacao planilha interativo tour">
+            <a href="manual_darf_mit.html" class="card" data-category="guias" data-search="darf mit guias comum lucros 810902 exportacao planilha interativo tour">
                 <div class="card-header">
-                    <div class="card-icon-wrapper"><i data-lucide="file-text" style="width:32px; height:32px;"></i></div>
+                    <div class="card-icon-wrapper"><i data-lucide="file-text" style="width:28px; height:28px;"></i></div>
                 </div>
                 <h3>Tour Guiado: DARF MIT</h3>
-                <p>Aprenda a consultar, filtrar e exportar as guias DARF geradas através da integração com o MIT. Gestão centralizada dos impostos processados.</p>
+                <p>Aprenda a consultar, filtrar e exportar as guias DARF geradas através da integração com o MIT. Gestão centralizada dos impostos.</p>
                 <div class="card-footer">
                     <div class="card-tags"><span class="tag">Guias</span><span class="tag">Exportação</span></div>
                     <div class="read-more">Acessar <i data-lucide="arrow-right" style="width:16px;"></i></div>
                 </div>
             </a>
 
-            <!-- GUIAS DARF COMPLETO (PREVIDENCIÁRIO) -->
-            <a href="manual_darf_completo.html" class="card" data-search="darf completo previdenciario esocial reinf mit emissao lote reprocessar interativo tour">
+            <a href="manual_darf_completo.html" class="card" data-category="guias" data-search="darf completo previdenciario esocial reinf mit emissao lote reprocessar interativo tour">
                 <div class="card-header">
-                    <div class="card-icon-wrapper"><i data-lucide="landmark" style="width:32px; height:32px;"></i></div>
+                    <div class="card-icon-wrapper"><i data-lucide="landmark" style="width:28px; height:28px;"></i></div>
                 </div>
-                <h3>Tour Guiado: DARF (Completo)</h3>
+                <h3>Tour Guiado: DARF</h3>
                 <p>Domine o painel completo do DARF Previdenciário. Realize emissões em lote cruzando eSocial, Reinf e MIT, acompanhe status e reprocessamentos.</p>
                 <div class="card-footer">
-                    <div class="card-tags"><span class="tag">Emissão em Lote</span><span class="tag">Previdenciário</span></div>
+                    <div class="card-tags"><span class="tag">Emissão</span><span class="tag">Previdenciário</span></div>
                     <div class="read-more">Acessar <i data-lucide="arrow-right" style="width:16px;"></i></div>
                 </div>
             </a>
 
-            <!-- CADASTROS BÁSICOS -->
-            <a href="manual_certificado.html" class="card" data-search="certificado digital a1 a3 importar pfx senha cpf">
+            <a href="manual_certificado.html" class="card" data-category="cadastros" data-search="certificado digital a1 a3 importar pfx senha cpf">
                 <div class="card-header">
-                    <div class="card-icon-wrapper"><i data-lucide="shield-check" style="width:32px; height:32px;"></i></div>
+                    <div class="card-icon-wrapper"><i data-lucide="shield-check" style="width:28px; height:28px;"></i></div>
                 </div>
                 <h3>Importar Certificado</h3>
                 <p>O passo a passo completo para cadastrar, atualizar certificados A1 e vinculá-los com segurança às empresas ativas.</p>
@@ -439,9 +478,9 @@
                 </div>
             </a>
 
-            <a href="manual_empresa.html" class="card" data-search="cadastrar empresa nova cliente cnpj regime tributario">
+            <a href="manual_empresa.html" class="card" data-category="cadastros" data-search="cadastrar empresa nova cliente cnpj regime tributario">
                 <div class="card-header">
-                    <div class="card-icon-wrapper"><i data-lucide="building-2" style="width:32px; height:32px;"></i></div>
+                    <div class="card-icon-wrapper"><i data-lucide="building-2" style="width:28px; height:28px;"></i></div>
                 </div>
                 <h3>Cadastrar Empresa</h3>
                 <p>Aprenda a incluir de forma ágil novos clientes na sua base, configurando corretamente o regime tributário e os acessos.</p>
@@ -451,10 +490,9 @@
                 </div>
             </a>
 
-            <!-- DCTFWEB -->
-            <a href="manual_dctfweb.html" class="card" data-search="dctfweb dctfcore transmissao recibo declaracao debitos lotes">
+            <a href="manual_dctfweb.html" class="card" data-category="declaracoes" data-search="dctfweb dctfcore transmissao recibo declaracao debitos lotes">
                 <div class="card-header">
-                    <div class="card-icon-wrapper"><i data-lucide="globe" style="width:32px; height:32px;"></i></div>
+                    <div class="card-icon-wrapper"><i data-lucide="globe" style="width:28px; height:28px;"></i></div>
                 </div>
                 <h3>DCTFWeb e DCTFCore</h3>
                 <p>Instruções detalhadas para gestão de débitos, declarações e o uso do DCTFCore para transmissões automatizadas em lote.</p>
@@ -464,10 +502,22 @@
                 </div>
             </a>
 
+            <a href="manual_carteiras.html" class="card" data-category="cadastros" data-search="usuarios carteiras configuracao acessos administrador permissoes ">
+                <div class="card-header">
+                    <div class="card-icon-wrapper" style="background: #eef2ff; color: #4338ca;"><i data-lucide="user-cog" style="width:28px; height:28px;"></i></div>
+                </div>
+                <h3>Tour: Equipe e Carteiras</h3>
+                <p>Aprenda a cadastrar usuários e distribuir empresas rapidamente, garantindo que cada um acesse apenas o necessário.</p>
+                <div class="card-footer">
+                    <div class="card-tags"><span class="tag">Usuários</span><span class="tag">Carteiras</span></div>
+                    <div class="read-more" style="color: #4338ca;">Acessar <i data-lucide="arrow-right" style="width:16px;"></i></div>
+                </div>
+            </a>
+
             <div class="no-results" id="noResultsMessage">
                 <i data-lucide="search-x" style="width:64px; height:64px;"></i>
-                Poxa, não encontramos nenhum manual com esse termo.<br>
-                <span style="font-size:1.1rem; color:#94a3b8; font-weight:500; display:block; margin-top:8px;">Tente pesquisar por palavras-chave diferentes.</span>
+                Poxa, não encontramos nenhum manual.<br>
+                <span style="font-size:1.1rem; color:#94a3b8; font-weight:500; display:block; margin-top:8px;">Tente pesquisar por palavras-chave diferentes ou limpar o filtro.</span>
             </div>
             
         </div>
@@ -477,21 +527,62 @@
         lucide.createIcons();
 
         const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.card');
         const noResultsMessage = document.getElementById('noResultsMessage');
         
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // Lógica de clique nas pílulas de filtro
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Atualiza classe ativa
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Pega a categoria clicada
+                currentFilter = btn.getAttribute('data-filter');
+                
+                // Executa o filtro unificado
+                filterCards();
+            });
+        });
+
+        // Lógica de digitação no campo de busca com Múltiplas Palavras (AND)
         searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
+            currentSearch = e.target.value.toLowerCase().trim();
+            filterCards();
+        });
+
+        // Impede o form de recarregar a página ao dar enter
+        document.querySelector('.search-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+        });
+
+        // Função unificada que verifica texto + categoria
+        function filterCards() {
             let hasVisibleCards = false;
+            
+            // Divide o texto buscado em um array de palavras, ignorando espaços em branco
+            const searchTerms = currentSearch.split(/\s+/).filter(term => term.length > 0);
             
             cards.forEach(card => {
                 const textContent = card.innerText || card.textContent;
                 const searchData = card.getAttribute('data-search') || '';
                 const combinedText = `${textContent} ${searchData}`.toLowerCase();
+                const cardCategory = card.getAttribute('data-category');
                 
-                if (combinedText.includes(term)) {
+                // Busca Avançada: Verifica se TODAS as palavras digitadas estão no "combinedText"
+                // Retorna true se não tivermos digitado nada, ou se a regra AND for atendida.
+                const matchesSearch = searchTerms.length === 0 || searchTerms.every(term => combinedText.includes(term));
+                
+                const matchesFilter = currentFilter === 'all' || currentFilter === cardCategory;
+                
+                if (matchesSearch && matchesFilter) {
                     card.style.display = 'flex';
                     hasVisibleCards = true;
+                    // Reseta a animação para dar o efeito de entrada novamente
                     card.style.animation = 'none';
                     card.offsetHeight; 
                     card.style.animation = 'cardEntrance 0.5s ease backwards';
@@ -501,11 +592,7 @@
             });
             
             noResultsMessage.style.display = hasVisibleCards ? 'none' : 'block';
-        });
-
-        document.querySelector('.search-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-        });
+        }
     </script>
 </body>
 </html>
