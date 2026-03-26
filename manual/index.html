@@ -256,6 +256,7 @@
         .card:nth-child(5) { animation-delay: 0.3s; }
         .card:nth-child(6) { animation-delay: 0.35s; }
         .card:nth-child(7) { animation-delay: 0.4s; }
+        .card:nth-child(8) { animation-delay: 0.45s; } /* Para o novo card */
 
         .card:hover { 
             transform: translateY(-8px); 
@@ -422,6 +423,7 @@
 
     <div class="filters-container">
         <button class="filter-btn active" data-filter="all">Todos os Manuais</button>
+        <button class="filter-btn" data-filter="acessos"><i data-lucide="key" style="width:16px;"></i> Acesso</button>
         <button class="filter-btn" data-filter="declaracoes"><i data-lucide="file-text" style="width:16px;"></i> Declarações</button>
         <button class="filter-btn" data-filter="guias"><i data-lucide="barcode" style="width:16px;"></i> Guias</button>
         <button class="filter-btn" data-filter="cadastros"><i data-lucide="settings" style="width:16px;"></i> Cadastros</button>
@@ -511,6 +513,18 @@
                 <div class="card-footer">
                     <div class="card-tags"><span class="tag">Usuários</span><span class="tag">Carteiras</span></div>
                     <div class="read-more" style="color: #4338ca;">Acessar <i data-lucide="arrow-right" style="width:16px;"></i></div>
+                </div>
+            </a>
+
+            <a href="manual_login.html" class="card" data-category="acessos" data-search="login senha redefinir esqueceu acesso email convite zenga">
+                <div class="card-header">
+                    <div class="card-icon-wrapper" style="background: #fdf2f8; color: #db2777;"><i data-lucide="log-in" style="width:28px; height:28px;"></i></div>
+                </div>
+                <h3>Tour: Login e Acesso</h3>
+                <p>Entenda como funciona o acesso inicial via convite, o login diário e os procedimentos para recuperar e redefinir senhas expiradas.</p>
+                <div class="card-footer">
+                    <div class="card-tags"><span class="tag">Segurança</span><span class="tag">Acesso</span></div>
+                    <div class="read-more" style="color: #db2777;">Acessar <i data-lucide="arrow-right" style="width:16px;"></i></div>
                 </div>
             </a>
 

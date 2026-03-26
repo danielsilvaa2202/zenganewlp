@@ -3,291 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Visual - Cadastro de Empresas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Tour Guiado - Cadastro de Empresas</title>
+
+    <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        /* --- REUTILIZANDO O MESMO CSS --- */
-        :root {
-            --primary-color: #042c4e;
-            --primary-light: #0a3a6b;
-            --accent-color: #007BFF;
-            --white-color: #FFFFFF;
-            --text-primary: #222;
-            --text-secondary: #555;
-            --bg-page: #f4f7fa;
-            --border-light: #eaeef2;
+        :root { 
+            --primary: #032649; 
+            --primary-light: #0a4078;
+            --primary-fade: rgba(3, 38, 73, 0.05);
+            --bg-page: #f8fafc; 
+            --border: #e2e8f0; 
+            --text-main: #0f172a;
+            --text-muted: #64748b;
         }
+        
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            background-attachment: fixed;
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 16px;
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-main); 
+            padding: 2rem 1rem;
+            padding-bottom: 150px; 
+            min-height: 100vh;
         }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .main-header {
-            color: var(--white-color);
-            padding: 3rem 1.5rem 6rem 1.5rem;
-            text-align: center;
-            animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-        }
-        .header-logo {
-            max-width: 120px;
-            height: auto;
-            display: block;
+
+        .top-nav {
+            max-width: 1200px;
             margin: 0 auto 1.5rem auto;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-        }
-        .main-header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
-        .main-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-top: 0.5rem;
-            font-weight: 400;
-        }
-        .back-link {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-weight: 500;
             display: flex;
+        }
+
+        .btn-back {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Quicksand';
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
             padding: 8px 16px;
-            border-radius: 30px;
-            background: rgba(0,0,0,0.15);
-            backdrop-filter: blur(5px);
+            border-radius: 99px;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--border);
         }
-        .back-link:hover { opacity: 1; color: #fff; background: rgba(0,0,0,0.3); transform: translateY(-2px); }
-        .container {
-            max-width: 900px;
-            margin: -4rem auto 3rem auto;
-            background: var(--bg-page);
-            border-radius: 16px;
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+
+        .btn-back:hover {
+            color: var(--primary);
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transform: translateX(-2px);
+        }
+
+        .header-manual { text-align: center; margin-bottom: 3rem; }
+        .header-manual h1 { font-family: 'Quicksand'; font-size: 2.2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .header-manual p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
+        
+        .btn-start-tour { margin: 0 auto; display: flex; align-items: center; gap: 10px; background: var(--primary); color: white; padding: 14px 32px; border-radius: 99px; font-family: 'Quicksand'; font-weight: 700; font-size: 1.1rem; cursor: pointer; border: none; box-shadow: 0 6px 15px rgba(3, 38, 73, 0.25); transition: all 0.3s; }
+        .btn-start-tour:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(3, 38, 73, 0.35); }
+
+        /* ================== MOCK UI ================== */
+        .app-window {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+            min-height: 600px;
             position: relative;
-            z-index: 10;
-            animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
-            animation-fill-mode: backwards;
-            counter-reset: step-counter;
-        }
-        .fixed-nav {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
+            overflow: hidden; 
         }
-        .nav-item {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            text-decoration: none;
-            color: var(--primary-color);
-            background: var(--white-color);
-            padding: 10px 14px;
-            border-radius: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-light);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            max-width: 48px;
-            overflow: hidden;
-            white-space: nowrap;
+
+        .mock-header {
+            padding: 1.5rem 1.5rem 0 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: #ffffff;
         }
-        .nav-item:hover {
-            max-width: 240px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            transform: translateX(-5px);
+
+        .mock-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem; color: #0f172a; text-align: center;}
+
+        .mock-tabs { 
+            display: flex; 
+            gap: 0.5rem; 
+            align-items: flex-end; 
+            justify-content: center; 
         }
-        .nav-item.active {
-            max-width: 240px;
-            background: var(--primary-color);
-            color: var(--white-color);
-            box-shadow: 0 8px 20px rgba(4, 44, 78, 0.25);
-            border-color: transparent;
+
+        .mock-tab {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            border-radius: 0.375rem 0.375rem 0 0;
+            margin-bottom: -1px; 
+            background: #f1f5f9;
+            transition: all 0.2s;
         }
-        .nav-text {
-            opacity: 0;
-            margin-right: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: opacity 0.3s ease 0.1s;
-        }
-        .nav-item:hover .nav-text, .nav-item.active .nav-text { opacity: 1; }
-        .nav-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-        }
-        .nav-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-            transition: fill 0.3s ease;
-        }
-        .step {
-            padding: 3rem 3.5rem;
-            border-bottom: 1px solid var(--border-light);
-            scroll-margin-top: 2rem;
-        }
-        .step:last-child { border-bottom: none; padding-bottom: 4rem; }
-        .step h2 {
-            font-size: 1.9rem;
+        .mock-tab.active {
+            background: white;
+            color: #0f172a;
             font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            border-color: var(--border);
+            border-bottom-color: white; 
+        }
+
+        .mock-content { padding: 1.5rem; flex: 1; position: relative; }
+
+        .mock-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .mock-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 0.5rem 0.75rem; border-radius: 0.375rem; width: 300px; color: #94a3b8; font-size: 0.875rem; }
+        
+        .btn-react {
+            display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+            padding: 0.5rem 1rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500;
+            cursor: pointer; border: none; transition: 0.2s;
+        }
+        .btn-react-primary { background: #0f172a; color: white; }
+        .btn-react-primary:hover { background: #1e293b; }
+
+        .mock-table-wrapper { border: 1px solid var(--border); border-radius: 0.375rem; overflow: hidden; }
+        .mock-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; }
+        .mock-table th { background: #f1f5f9; padding: 0.75rem 1rem; font-weight: 600; color: #0f172a; border-bottom: 1px solid var(--border); }
+        .mock-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: #334155; }
+        .mock-table tr:last-child td { border-bottom: none; }
+        
+        .badge-green { background: #dcfce7; color: #166534; padding: 2px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 500; }
+        .btn-ghost-action { background: transparent; border: none; cursor: pointer; color: #64748b; padding: 4px; border-radius: 4px; transition: 0.2s; }
+
+        /* ================== DRAWERS MOCKS ================== */
+        
+        .mock-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(2px);
+            z-index: 20; display: none;
+        }
+
+        .mock-sheet {
+            position: absolute; top: 0; right: -420px; width: 400px; height: 100%;
+            background: white; box-shadow: -4px 0 20px rgba(0,0,0,0.1); border-left: 1px solid var(--border);
+            z-index: 25; transition: right 0.3s ease-in-out; 
+            display: flex; flex-direction: column;
+        }
+        .mock-sheet.open { right: 0; }
+        
+        .mock-sheet-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+        .mock-sheet-body { padding: 1.5rem; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .mock-sheet-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+
+        .mock-form-group { margin-bottom: 4px; }
+        .mock-form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px; color: #0f172a;}
+        .mock-input { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.875rem; color: #0f172a; outline: none;}
+        .mock-input:focus { border-color: var(--primary-light); }
+        .mock-select { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.875rem; color: #0f172a; background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>') no-repeat right 10px center; appearance: none; outline: none; }
+        .mock-select:focus { border-color: var(--primary-light); }
+
+        /* =========================================
+           SISTEMA DE TOUR E CUSTOMIZAÇÃO VISUAL
+           ========================================= */
+        
+        .tour-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .tour-overlay.active { opacity: 1; pointer-events: all; }
+
+        .tour-highlight {
             position: relative;
-            padding-left: 60px;
-            line-height: 1.3;
-            display: flex;
-            align-items: center;
-            min-height: 40px;
+            z-index: 52 !important; 
+            box-shadow: 0 0 0 6px #fff, 0 0 0 10px rgba(3, 38, 73, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+            background: #fff;
+            border-radius: inherit;
+            transition: box-shadow 0.4s ease;
         }
-        .step h2::before {
-            counter-increment: step-counter;
-            content: counter(step-counter);
+
+        .tour-panel {
             position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: var(--white-color);
-            border-radius: 50%;
+            z-index: 55;
+            background: #ffffff;
+            width: 540px; 
+            max-width: 90vw; 
+            max-height: 85vh; 
+            overflow-y: auto; 
+            border-radius: 16px;
+            padding: 2rem; 
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--primary); 
+            opacity: 0; 
+            transform: translateY(20px) scale(0.95); 
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), top 0.4s ease, left 0.4s ease;
+            will-change: transform, top, left, opacity;
+        }
+        
+        .tour-panel.active { opacity: 1; transform: translateY(0) scale(1); }
+        .tour-panel::-webkit-scrollbar { width: 6px; }
+        .tour-panel::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+
+        .tour-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .tour-icon { background: var(--primary-fade); color: var(--primary); padding: 10px; border-radius: 12px; display: flex; flex-shrink: 0; }
+        .tour-title { font-family: 'Quicksand'; font-weight: 800; font-size: 1.35rem; color: var(--text-main); line-height: 1.2; }
+        .tour-text { font-size: 1rem; color: #475569; line-height: 1.6; margin-bottom: 24px; font-weight: 400; }
+        .tour-text strong { color: var(--text-main); font-weight: 700; }
+        .tour-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 20px; margin-top: auto; }
+        .tour-progress { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); font-family: 'Quicksand'; letter-spacing: 0.5px; text-transform: uppercase; }
+        
+        .tour-buttons { display: flex; gap: 10px; }
+        .btn-tour { padding: 10px 20px; border-radius: 10px; font-family: 'Quicksand'; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+        .btn-tour-prev { background: #f1f5f9; color: var(--text-muted); }
+        .btn-tour-prev:hover { background: #e2e8f0; color: var(--text-main); }
+        .btn-tour-next { background: var(--primary); color: #fff; box-shadow: 0 4px 10px rgba(3, 38, 73, 0.2); }
+        .btn-tour-next:hover { background: var(--primary-light); transform: translateY(-1px); }
+
+        /* Estilos dos Mini-Cards de Informação (Passo 2) */
+        .tour-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .tour-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 14px;
+            border-radius: 12px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .tour-feature-item:hover {
+            transform: translateX(4px);
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .tour-feature-icon {
+            background: #ffffff;
+            color: var(--primary);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .tour-feature-text {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+        .tour-feature-text strong {
+            color: var(--text-main);
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(4, 44, 78, 0.3);
+            display: block;
+            margin-bottom: 2px;
+            font-size: 1rem;
         }
-        .step h3 { font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1rem; }
-        .step p { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.05rem; }
-        .step strong { color: var(--text-primary); font-weight: 600; }
-        .step img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            margin: 0.5rem 0 1.5rem 0;
-            border: 1px solid var(--border-light);
-            transition: transform 0.35s ease;
-        }
-        .step img:hover { transform: scale(1.015); }
-        .step .small-img { width: auto; max-width: 200px; display: block; margin: 1.5rem auto; background: #fff; padding: 10px; }
-        .step .medium-img { width: auto; max-width: 500px; display: block; margin: 1.5rem auto; }
-        .step ul { list-style: none; margin: 1.5rem 0; }
-        .step li { position: relative; padding-left: 35px; margin-bottom: 1rem; color: var(--text-secondary); }
-        .step li::before { content: ''; position: absolute; left: 0; top: 6px; width: 8px; height: 15px; border: solid var(--accent-color); border-width: 0 3px 3px 0; transform: rotate(45deg); }
-        .key-point {
-            background: var(--white-color);
-            border: 1px solid var(--border-light);
-            border-left: 5px solid var(--primary-color);
-            padding: 1.25rem 1.5rem 1.25rem 1.75rem;
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-        }
-        .key-point::before { content: '💡'; font-size: 2rem; margin-right: 1.25rem; line-height: 1; transform: translateY(-2px); }
-        .key-point p { margin: 0; color: var(--text-secondary); font-size: 1rem; }
-        @media (max-width: 1250px) { .fixed-nav { display: none; } }
+
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <a href="index.html" class="back-link">← Central de Ajuda</a>
-        <img src="assets/img/logo.png" alt="Logo" class="header-logo">
-        <h1>Guia Visual</h1>
-        <p>Cadastro de Novas Empresas</p>
-    </header>
-    <nav class="fixed-nav">
-        <a href="#acessando" class="nav-item active">
-            <span class="nav-text">Acessando</span>
-            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></span>
+
+    <div class="top-nav">
+        <a href="index.html" class="btn-back">
+            <i data-lucide="arrow-left" style="width:18px;"></i> Voltar para a Central
         </a>
-        <a href="#dados" class="nav-item">
-            <span class="nav-text">Dados Básicos</span>
-            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></span>
-        </a>
-        <a href="#certificado" class="nav-item">
-            <span class="nav-text">Certificado</span>
-            <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></span>
-        </a>
-    </nav>
-    <main class="container">
+    </div>
+
+    <div class="header-manual">
+        <h1>Guia Interativo: Cadastro de Empresas</h1>
+        <p>Aprenda passo a passo como cadastrar e configurar novas empresas na plataforma.</p>
+        <br>
+        <button class="btn-start-tour" onclick="startTour()">
+            <i data-lucide="play" style="width:22px;"></i> Iniciar Treinamento
+        </button>
+    </div>
+
+    <div class="app-window" id="app-container">
         
-        <section id="acessando" class="step">
-            <h2>Acessando o Módulo de Cadastro</h2>
-            <p>Para cadastrar uma nova empresa cliente na sua base, acesse o menu <strong>"Cadastros"</strong> na plataforma. A aba padrão que se abre já é a de <strong>"Empresas"</strong>.</p>
-            <p>No canto direito superior da tela, localize e clique no botão azul escuro <strong>"+ Nova Empresa"</strong>.</p>
-            <img src="assets/img/cadastro5.png" alt="Botão Nova Empresa">
-        </section>
+        <div class="mock-overlay" id="mock-internal-overlay"></div>
 
-        <section id="dados" class="step">
-            <h2>Preenchendo os Dados Obrigatórios</h2>
-            <p>Um painel lateral será aberto para que você preencha as informações essenciais da nova empresa. Certifique-se de ter os dados em mãos:</p>
-            <img src="assets/img/cadastro4.png" alt="Formulário de cadastro de empresa" class="medium-img">
-            <ul>
-                <li><strong>Código Interno:</strong> Código da empresa do seu sistema contábil.</li>
-                <li><strong>CNPJ:</strong> O número do CNPJ da empresa cliente.</li>
-                <li><strong>Razão Social:</strong> O nome oficial da empresa.</li>
-                <li><strong>Regime Tributário:</strong> Selecione o regime correto na lista (Presumido, Imune/Isenta, Real ou Simples Nacional). Esta informação é crucial para o correto funcionamento das apurações fiscais.</li>
-            </ul>
-        </section>
-
-        <section id="certificado" class="step">
-            <h2>Atrelando o Certificado Digital</h2>
-            <p>Ainda no mesmo formulário, o último campo é destinado ao vínculo do Certificado Digital.</p>
-            <p>Se você já importou o certificado anteriormente (conforme o manual de Certificados), basta selecioná-lo na lista suspensa <strong>"Certificado"</strong>. Isso permitirá que a plataforma realize as entregas automáticas para esta empresa.</p>
-            <div class="key-point">
-                <p><strong>Finalizando:</strong> Após preencher todos os campos e selecionar o certificado, clique no botão azul <strong>"Salvar"</strong> no final do formulário para concluir o cadastro.</p>
+        <div class="mock-sheet" id="drawer-new-company">
+            <div class="mock-sheet-header">
+                <h2 style="font-size: 1.125rem; font-weight: 600;">Nova Empresa</h2>
+                <p style="font-size: 0.875rem; color: #64748b;">Preencha os dados da nova empresa.</p>
             </div>
-        </section>
+            
+            <div class="mock-sheet-body">
+                <div id="group-dados-basicos" style="border-radius: 8px; padding: 4px;">
+                    <div class="mock-form-group">
+                        <label>CNPJ</label>
+                        <input type="text" class="mock-input" placeholder="00.000.000/0000-00">
+                    </div>
+                    <div class="mock-form-group">
+                        <label>Código Interno</label>
+                        <input type="text" class="mock-input" placeholder="Ex: 1052">
+                    </div>
+                    <div class="mock-form-group">
+                        <label>Razão Social</label>
+                        <input type="text" class="mock-input" placeholder="Nome da empresa">
+                    </div>
+                    <div class="mock-form-group">
+                        <label>Regime Tributário</label>
+                        <select class="mock-select">
+                            <option disabled selected>Selecione o regime...</option>
+                            <option>Simples Nacional</option>
+                            <option>Lucro Presumido</option>
+                            <option>Lucro Real</option>
+                            <option>Imune / Isenta</option>
+                        </select>
+                    </div>
+                </div>
 
-    </main>
+                <hr style="border: 0; border-top: 1px dashed var(--border); margin: 8px 0;">
+
+                <div class="mock-form-group" id="field-cert-new" style="border-radius: 8px; padding: 4px;">
+                    <label>Certificado (Opcional)</label>
+                    <select class="mock-select" style="border: 2px solid var(--primary-light);">
+                        <option selected>Sem certificado vinculado</option>
+                        <option>12.345.678/0001-90 - EMPRESA EXEMPLO</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mock-sheet-footer">
+                <button class="btn-react" style="border: 1px solid var(--border);">Cancelar</button>
+                <div id="wrapper-btn-save" style="border-radius: 6px;">
+                    <button class="btn-react btn-react-primary" id="btn-save-new">Salvar Cadastro</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mock-header">
+            <div class="mock-title">Cadastros</div>
+            
+            <div class="mock-tabs">
+                <div class="mock-tab active">Empresas</div>
+                <div class="mock-tab">Certificados</div>
+            </div>
+        </div>
+
+        <div class="mock-content">
+
+            <div id="view-empresas">
+                <div class="mock-toolbar">
+                    <div class="mock-search"><i data-lucide="search" style="width: 16px;"></i> Pesquisar...</div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-react" style="border: 1px solid var(--border);"><i data-lucide="file-down" style="width: 16px;"></i> Exportar</button>
+                        <div id="wrapper-btn-new" style="border-radius: 6px;">
+                            <button class="btn-react btn-react-primary"><i data-lucide="plus" style="width: 16px;"></i> Nova Empresa</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mock-table-wrapper">
+                    <table class="mock-table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>CNPJ</th>
+                                <th>Razão Social</th>
+                                <th>Regime Tributário</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1052</td>
+                                <td>12.345.678/0001-90</td>
+                                <td>EMPRESA EXEMPLO LTDA</td>
+                                <td>Lucro Presumido</td>
+                                <td><span class="badge-green">Ativa</span></td>
+                                <td style="text-align: right;">
+                                    <button class="btn-ghost-action"><i data-lucide="more-horizontal" style="width: 18px;"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2088</td>
+                                <td>98.765.432/0001-10</td>
+                                <td>COMERCIO E SERVICOS S/A</td>
+                                <td>Simples Nacional</td>
+                                <td><span class="badge-green">Ativa</span></td>
+                                <td style="text-align: right;">
+                                    <button class="btn-ghost-action"><i data-lucide="more-horizontal" style="width: 18px;"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tour-overlay" id="tour-overlay"></div>
+    
+    <div class="tour-panel" id="tour-panel">
+        <div class="tour-header">
+            <div class="tour-icon" id="tour-icon"></div>
+            <div class="tour-title" id="tour-title">Título</div>
+        </div>
+        <div class="tour-text" id="tour-text">Texto explicativo.</div>
+        <div class="tour-footer">
+            <div class="tour-progress" id="tour-progress">1 de X</div>
+            <div class="tour-buttons" id="tour-buttons-container"></div>
+        </div>
+    </div>
+
     <script>
-        const sections = document.querySelectorAll('.step');
-        const navItems = document.querySelectorAll('.nav-item');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 250)) {
-                    current = section.getAttribute('id');
+        lucide.createIcons();
+
+        // Referências UI
+        const appContainer = document.getElementById('app-container');
+        const internalOverlay = document.getElementById('mock-internal-overlay');
+        const drawerNew = document.getElementById('drawer-new-company');
+
+        function resetOverlays() {
+            internalOverlay.style.display = 'none';
+            drawerNew.classList.remove('open');
+            drawerNew.style.zIndex = '25'; // Retorna o z-index padrão
+            appContainer.style.overflow = 'hidden'; 
+        }
+
+        function openDrawerNew() {
+            internalOverlay.style.display = 'block';
+            drawerNew.style.zIndex = '51'; // ELEVA O DRAWER PARA FRENTE DA MÁSCARA ESCURA
+            appContainer.style.overflow = 'hidden'; 
+            
+            setTimeout(() => { 
+                drawerNew.classList.add('open'); 
+                setTimeout(() => {
+                    appContainer.style.overflow = 'visible'; 
+                }, 300);
+            }, 10);
+        }
+
+        // Definição dos Passos com o Novo Visual de Cards (Passo 2)
+        const steps = [
+            {
+                target: 'wrapper-btn-new',
+                title: 'Nova Empresa',
+                icon: 'building',
+                text: 'Para cadastrar uma nova empresa cliente na sua base, localize e clique no botão azul <strong>"Nova Empresa"</strong> no canto superior direito da tabela.',
+                position: 'bottom',
+                onEnter: () => { resetOverlays(); }
+            },
+            {
+                target: 'group-dados-basicos',
+                title: 'Dados Obrigatórios',
+                icon: 'file-text',
+                text: `No painel lateral, preencha as informações essenciais da empresa:
+                       <div class="tour-features">
+                           <div class="tour-feature-item">
+                               <div class="tour-feature-icon"><i data-lucide="building-2" style="width:18px;"></i></div>
+                               <div class="tour-feature-text"><strong>CNPJ e Razão Social</strong>A identificação oficial do seu cliente.</div>
+                           </div>
+                           <div class="tour-feature-item">
+                               <div class="tour-feature-icon"><i data-lucide="hash" style="width:18px;"></i></div>
+                               <div class="tour-feature-text"><strong>Código interno</strong>O mesmo código utilizado no seu sistema contábil.</div>
+                           </div>
+                           <div class="tour-feature-item">
+                               <div class="tour-feature-icon"><i data-lucide="landmark" style="width:18px;"></i></div>
+                               <div class="tour-feature-text"><strong>Regime Tributário</strong>Fundamental para o correto funcionamento das apurações fiscais.</div>
+                           </div>
+                       </div>`,
+                position: 'left',
+                onEnter: () => { openDrawerNew(); }
+            },
+            {
+                target: 'field-cert-new',
+                title: 'Vínculo do Certificado',
+                icon: 'key',
+                text: 'Se você já importou o certificado digital dessa empresa (conforme vimos no módulo de Certificados), você pode vinculá-lo agora selecionando-o nesta lista.<br><br><span style="color:var(--text-muted); font-size:0.9rem;">Isso ativará as automações e entregas imediatamente.</span>',
+                position: 'left',
+                onEnter: () => { openDrawerNew(); }
+            },
+            {
+                target: 'wrapper-btn-save',
+                title: 'Finalizando',
+                icon: 'check-circle',
+                text: 'Após conferir se todos os dados estão corretos, basta clicar no botão azul <strong>"Salvar Cadastro"</strong> e a nova empresa já estará disponível na sua plataforma!',
+                position: 'left',
+                onEnter: () => { openDrawerNew(); }
+            }
+        ];
+
+        let currentStep = -1;
+        const overlay = document.getElementById('tour-overlay');
+        const panel = document.getElementById('tour-panel');
+
+        function startTour() {
+            currentStep = 0;
+            overlay.classList.add('active');
+            renderStep();
+        }
+
+        function renderStep() {
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            
+            if(currentStep >= steps.length || currentStep < 0) {
+                endTour();
+                return;
+            }
+
+            const stepData = steps[currentStep];
+            
+            if (stepData.onEnter) { stepData.onEnter(); }
+
+            setTimeout(() => {
+                const targetEl = document.getElementById(stepData.target);
+                targetEl.classList.add('tour-highlight');
+
+                // Insere os textos e os novos mini-cards no DOM
+                document.getElementById('tour-title').innerHTML = stepData.title;
+                document.getElementById('tour-text').innerHTML = stepData.text;
+                document.getElementById('tour-icon').innerHTML = `<i data-lucide="${stepData.icon}" style="width:24px; height:24px;"></i>`;
+                document.getElementById('tour-progress').innerText = `PASSO ${currentStep + 1} DE ${steps.length}`;
+                
+                const btnContainer = document.getElementById('tour-buttons-container');
+                
+                if (currentStep === 0) {
+                    btnContainer.innerHTML = `<button class="btn-tour btn-tour-next" onclick="nextStep()">Próximo <i data-lucide="arrow-right" style="width:16px;"></i></button>`;
+                } else if (currentStep === steps.length - 1) {
+                    btnContainer.innerHTML = `
+                        <button class="btn-tour btn-tour-prev" onclick="prevStep()">Anterior</button>
+                        <button class="btn-tour btn-tour-next" onclick="endTour()">Concluir <i data-lucide="check" style="width:16px;"></i></button>
+                    `;
+                } else {
+                    btnContainer.innerHTML = `
+                        <button class="btn-tour btn-tour-prev" onclick="prevStep()">Anterior</button>
+                        <button class="btn-tour btn-tour-next" onclick="nextStep()">Próximo <i data-lucide="arrow-right" style="width:16px;"></i></button>
+                    `;
                 }
-            });
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href').substring(1) === current) {
-                    item.classList.add('active');
-                }
-            });
+
+                // IMPORTANTE: Recria os ícones do Lucide após inserir o HTML novo dos mini-cards!
+                lucide.createIcons();
+                
+                panel.classList.remove('active');
+
+                // Lógica de Posicionamento e Rastreio Inteligente de Câmera
+                setTimeout(() => {
+                    const rect = targetEl.getBoundingClientRect();
+                    const panelWidth = panel.offsetWidth;
+                    const panelHeight = panel.offsetHeight;
+                    const margin = 16;
+                    const gap = 20;
+                    
+                    let position = stepData.position || 'bottom';
+                    let leftPos, topPos;
+
+                    if (position === 'left') {
+                        leftPos = window.scrollX + rect.left - panelWidth - gap;
+                        topPos = window.scrollY + rect.top + (rect.height / 2) - (panelHeight / 2);
+                        if (leftPos < margin) position = 'bottom';
+                    }
+
+                    if (position === 'bottom') {
+                        leftPos = window.scrollX + rect.left + (rect.width / 2) - (panelWidth / 2); 
+                        topPos = window.scrollY + rect.top + rect.height + gap;
+
+                        if (leftPos < window.scrollX + margin) leftPos = window.scrollX + margin;
+                        if (leftPos + panelWidth > window.scrollX + window.innerWidth - margin) {
+                            leftPos = window.scrollX + window.innerWidth - panelWidth - margin;
+                        }
+                    }
+
+                    const absoluteTargetTop = window.scrollY + rect.top;
+                    const absoluteTargetBottom = absoluteTargetTop + rect.height;
+                    const clusterTop = Math.min(absoluteTargetTop, topPos);
+                    const clusterBottom = Math.max(absoluteTargetBottom, topPos + panelHeight);
+                    
+                    let scrollToY = (clusterTop + clusterBottom) / 2 - (window.innerHeight / 2);
+                    scrollToY = Math.max(0, scrollToY);
+
+                    window.scrollTo({ top: scrollToY, behavior: 'smooth' });
+
+                    panel.style.left = `${leftPos}px`;
+                    panel.style.top = `${topPos}px`;
+                    panel.classList.add('active');
+
+                }, 50);
+
+            }, 300); 
+        }
+
+        function nextStep() {
+            panel.classList.remove('active');
+            setTimeout(() => { currentStep++; renderStep(); }, 200);
+        }
+
+        function prevStep() {
+            panel.classList.remove('active');
+            setTimeout(() => { currentStep--; renderStep(); }, 200);
+        }
+
+        function endTour() {
+            overlay.classList.remove('active');
+            panel.classList.remove('active');
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            resetOverlays();
+            currentStep = -1;
+        }
+
+        window.addEventListener('resize', () => {
+            if(currentStep >= 0) { renderStep(); }
         });
+
     </script>
 </body>
 </html>
