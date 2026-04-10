@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoPlay();
     }
 
-    // --- CARROSSEL: BLOG (CÓDIGO ATUALIZADO) ---
+    // --- CARROSSEL: BLOG ---
     const blogWrapper = document.querySelector('.blog-carousel-wrapper');
     if (blogWrapper) {
         const track = blogWrapper.querySelector('.blog-track');
@@ -224,14 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevButton = blogWrapper.querySelector('#blog-prev');
         const dotsNav = blogWrapper.querySelector('.blog-carousel-dots');
         
-        // Garante que inicie no primeiro slide
         let currentIndex = 0; 
         let slidesToShow = 3;
         let slidesToScroll = 1; 
         let maxIndex = slides.length - slidesToShow;
         let autoPlayInterval;
         
-        // Tempo ajustado para 8 segundos para dar tempo de leitura
         const blogSlideTime = 8000; 
 
         function updateBlogMetrics() {
@@ -273,7 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
         function goToBlogSlide(index) {
             currentIndex = Math.max(0, Math.min(index, maxIndex));
             
-            // Tratativa de segurança caso a largura ainda seja 0 no carregamento inicial
             const slideWidth = slides[0] ? slides[0].offsetWidth : 0;
             track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             
@@ -327,9 +324,8 @@ document.addEventListener('DOMContentLoaded', function() {
         blogWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
         blogWrapper.addEventListener('mouseleave', () => startAutoPlayBlog());
         
-        // Inicialização garantida
         updateBlogMetrics();
-        goToBlogSlide(0); // Força a ida para a primeira posição
+        goToBlogSlide(0);
         startAutoPlayBlog();
     }
     // --- FIM DO CARROSSEL BLOG ---
