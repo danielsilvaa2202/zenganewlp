@@ -1,5 +1,6 @@
 #clients {
-    padding-top: 30px;
+    padding-top: 100px; /* Aumentado de 30px para 100px para dar mais respiro */
+    padding-bottom: 60px; /* Adicionado um respiro em baixo também, caso precise */
 }
 
 .testimonial-wrapper {
