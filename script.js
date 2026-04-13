@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- CARROSSEL: BLOG ---
+    // --- CARROSSEL: BLOG ---
     const blogWrapper = document.querySelector('.blog-carousel-wrapper');
     if (blogWrapper) {
         const track = blogWrapper.querySelector('.blog-track');
@@ -230,7 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let maxIndex = slides.length - slidesToShow;
         let autoPlayInterval;
         
-        const blogSlideTime = 8000; 
+        // 1. Aumentamos o tempo para 10 segundos (10000ms) para dar mais tempo de leitura
+        const blogSlideTime = 10000; 
 
         function updateBlogMetrics() {
             if (window.innerWidth <= 768) {
@@ -326,7 +328,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateBlogMetrics();
         goToBlogSlide(0);
-        startAutoPlayBlog();
+        
+        // 2. Só inicia o autoplay se a pessoa rolar até a seção do blog
+        const blogObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startAutoPlayBlog(); // Começa a rolar
+                } else {
+                    clearInterval(autoPlayInterval); // Pausa quando a seção não estiver na tela
+                }
+            });
+        }, { threshold: 0.2 });
+
+        blogObserver.observe(blogWrapper);
     }
     // --- FIM DO CARROSSEL BLOG ---
 
