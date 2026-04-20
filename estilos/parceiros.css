@@ -288,12 +288,39 @@
     animation-play-state: paused;
 }
 
-.partner-item img[src*="vitrine"] {
-    max-height: 55px; 
+/* ======================================================
+   AJUSTES ARTE FISCAL 
+====================================================== */
+.partner-item:has(img[src*="artefiscal"]) {
+    width: 150px !important; /* Mantemos a caixa estreita para não sobrar espaço lateral */
+    min-width: auto !important;
+    padding: 0 !important;
+}
+
+.partner-item img[src*="artefiscal"] {
+    max-height: 110px !important; /* Reduzimos um pouquinho a altura (era 120px) */
+    max-width: 100% !important;
+    width: auto !important;
+    object-fit: contain !important;
+    transform: scale(1.1); /* Reduzimos o zoom levemente para não estourar a caixa */
+    transition: all 0.3s ease;
+}
+
+.partner-item:hover img[src*="artefiscal"] {
+    transform: scale(1.18); /* Hover acompanhando a nova proporção */
 }
 
 @media (max-width: 768px) {
-    .partner-item img[src*="vitrine"] {
-        max-height: 45px; 
+    .partner-item:has(img[src*="artefiscal"]) {
+        width: 110px !important; 
+    }
+
+    .partner-item img[src*="artefiscal"] {
+        max-height: 80px !important; /* Reduzida a altura no mobile também */
+        transform: scale(1.05);
+    }
+    
+    .partner-item:hover img[src*="artefiscal"] {
+        transform: scale(1.15); 
     }
 }
