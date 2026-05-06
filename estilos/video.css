@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Seção de Vídeo (Apresentação Zenga)
+   ========================================================================== */
+
+.video-section {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.video-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.video-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 170, 255, 0.1);
+    color: var(--secondary-color);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid rgba(0, 170, 255, 0.2);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 170, 255, 0.1);
+}
+
+.video-tag i {
+    width: 16px;
+    height: 16px;
+}
+
+.video-showcase {
+    position: relative;
+    max-width: 900px; /* Tamanho ideal para o vídeo não ficar gigante em telas ultrawide */
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Brilhos (Glows) atrás do vídeo para dar profundidade */
+.video-glow-1,
+.video-glow-2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.video-glow-1 {
+    top: -10%;
+    left: -5%;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 170, 255, 0.4);
+}
+
+.video-glow-2 {
+    bottom: -10%;
+    right: -5%;
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 210, 255, 0.2);
+}
+
+/* Moldura tipo vidro (Glassmorphism) */
+.video-glass-frame {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                inset 0 0 20px rgba(255, 255, 255, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-glass-frame:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 170, 255, 0.15), 
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Hack para manter o Aspect Ratio 16:9 responsivo */
+.video-responsive-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #000; /* Fundo preto enquanto carrega */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+.video-responsive-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    border: none;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+@media (max-width: 768px) {
+    .video-showcase {
+        padding: 0.5rem;
+    }
+    
+    .video-glass-frame {
+        padding: 8px;
+        border-radius: 16px;
+    }
+
+    .video-responsive-container {
+        border-radius: 10px;
+    }
+
+    .video-responsive-container iframe {
+        border-radius: 10px;
+    }
+    
+    .video-glow-1,
+    .video-glow-2 {
+        filter: blur(50px);
+        opacity: 0.4;
+    }
+}

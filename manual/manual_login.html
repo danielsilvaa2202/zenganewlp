@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Guiado - Login e Acesso Zenga</title>
+
+    <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root { 
+            --primary: #032649; 
+            --primary-light: #0a4078;
+            --primary-fade: rgba(3, 38, 73, 0.05);
+            --bg-page: #f8fafc; 
+            --border: #e2e8f0; 
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-main); 
+            padding: 2rem 1rem;
+            padding-bottom: 250px; 
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Quicksand';
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+            padding: 8px 16px;
+            border-radius: 99px;
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--border);
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transform: translateX(-2px);
+        }
+
+        .app-window {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+            display: flex;
+            overflow: hidden;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .header-manual { text-align: center; margin-bottom: 3rem; }
+        .header-manual h1 { font-family: 'Quicksand'; font-size: 2.2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .header-manual p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
+        
+        .btn-start-tour { margin: 0 auto; display: flex; align-items: center; gap: 10px; background: var(--primary); color: white; padding: 14px 32px; border-radius: 99px; font-family: 'Quicksand'; font-weight: 700; font-size: 1.1rem; cursor: pointer; border: none; box-shadow: 0 6px 15px rgba(3, 38, 73, 0.25); transition: all 0.3s; }
+        .btn-start-tour:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(3, 38, 73, 0.35); }
+
+        /* MOCK DA TELA DE LOGIN ZENGA (ESTILO FIEL AO REACT) */
+        .login-left {
+            flex: 1;
+            background: linear-gradient(270deg, #042c4e, #052f4d, #042c4e);
+            background-size: 400% 400%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .login-left-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        .login-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: #ffffff;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 350px;
+            background: white;
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 2rem; /* p-8 */
+            border: 1px solid #e2e8f0; /* border-slate-200 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            position: relative;
+        }
+
+        .login-title { font-size: 1.5rem; font-weight: 600; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.025em; } /* text-2xl font-semibold tracking-tight */
+        .login-subtitle { font-size: 0.875rem; color: #64748b; margin-bottom: 1.5rem; } /* text-sm text-muted-foreground */
+
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-size: 0.875rem; font-weight: 500; color: #0f172a; margin-bottom: 0.5rem; }
+        
+        /* Estilo fiel ao Input do shadcn */
+        .form-input { 
+            width: 100%; 
+            height: 2.5rem; /* h-10 */
+            padding: 0.5rem 0.75rem; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 0.375rem; /* rounded-md */
+            font-family: 'Inter'; 
+            font-size: 0.875rem; 
+            outline: none; 
+            transition: border-color 0.2s, box-shadow 0.2s; 
+            background: transparent;
+        }
+        .form-input:focus { border-color: #0f172a; box-shadow: 0 0 0 1px #0f172a; }
+        
+        .forgot-pwd { display: block; text-align: right; font-size: 0.875rem; color: #0f172a; text-decoration: none; font-weight: 500; margin-top: 0.5rem; transition: 0.2s; opacity: 0.8; }
+        .forgot-pwd:hover { text-decoration: underline; opacity: 1; }
+
+        /* Estilo fiel ao Button primário do shadcn */
+        .btn-submit { 
+            width: 100%; 
+            background: #0f172a; 
+            color: #f8fafc; 
+            border: none; 
+            height: 2.5rem; /* h-10 */
+            border-radius: 0.375rem; /* rounded-md */
+            font-weight: 500; 
+            font-size: 0.875rem; 
+            margin-top: 1rem; 
+            cursor: pointer; 
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .btn-submit:hover { background: #1e293b; }
+
+        .btn-ghost {
+            background: transparent;
+            color: #0f172a;
+            border: none;
+            height: 2rem;
+            padding: 0 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .btn-ghost:hover {
+            background: #f1f5f9;
+        }
+
+        @media (max-width: 768px) {
+            .login-left { display: none; }
+            .login-right { padding: 1rem; }
+        }
+
+        /* =========================================
+           SISTEMA DE TOUR
+           ========================================= */
+        
+        .tour-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .tour-overlay.active { opacity: 1; pointer-events: all; }
+
+        .tour-highlight {
+            position: relative;
+            z-index: 51 !important;
+            box-shadow: 0 0 0 6px #f8fafc, 0 0 0 10px rgba(3, 38, 73, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+            background: #fff;
+            border-radius: inherit;
+            transition: box-shadow 0.4s ease;
+        }
+
+        .tour-panel {
+            position: absolute;
+            z-index: 52;
+            background: #ffffff;
+            width: 540px; 
+            max-width: 90vw; 
+            max-height: 85vh; 
+            overflow-y: auto; 
+            border-radius: 16px;
+            padding: 2rem; 
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--primary); 
+            opacity: 0; 
+            transform: translateY(20px) scale(0.95); 
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), top 0.4s ease, left 0.4s ease;
+            will-change: transform, top, left, opacity;
+        }
+        
+        .tour-panel.active { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+        }
+
+        .tour-panel::-webkit-scrollbar { width: 6px; }
+        .tour-panel::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+
+        .tour-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .tour-icon { background: var(--primary-fade); color: var(--primary); padding: 10px; border-radius: 12px; display: flex; flex-shrink: 0; }
+        .tour-title { font-family: 'Quicksand'; font-weight: 800; font-size: 1.35rem; color: var(--text-main); line-height: 1.2; }
+        
+        .tour-text { font-size: 1rem; color: #475569; line-height: 1.6; margin-bottom: 24px; font-weight: 400; }
+        .tour-text strong { color: var(--text-main); font-weight: 700; }
+        
+        .tour-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 20px; margin-top: auto; }
+        .tour-progress { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); font-family: 'Quicksand'; letter-spacing: 0.5px; text-transform: uppercase; }
+        
+        .tour-buttons { display: flex; gap: 10px; }
+        .btn-tour { padding: 10px 20px; border-radius: 10px; font-family: 'Quicksand'; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .btn-tour-prev { background: #f1f5f9; color: var(--text-muted); }
+        .btn-tour-prev:hover { background: #e2e8f0; color: var(--text-main); }
+        .btn-tour-next { background: var(--primary); color: #fff; box-shadow: 0 4px 10px rgba(3, 38, 73, 0.2); }
+        .btn-tour-next:hover { background: var(--primary-light); transform: translateY(-1px); }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="index.html" class="btn-back">
+            <i data-lucide="arrow-left" style="width:18px;"></i> Voltar para a Central
+        </a>
+    </div>
+
+    <div class="header-manual">
+        <h1>Guia Interativo: Login e Acesso</h1>
+        <p>Entenda como funciona o primeiro acesso, o login diário e a redefinição de senha no Zenga.</p>
+        <br>
+        <button class="btn-start-tour" onclick="startTour()">
+            <i data-lucide="play" style="width:22px;"></i> Iniciar Treinamento
+        </button>
+    </div>
+
+    <div class="app-window" id="app-container">
+        <div class="login-left">
+            <div class="login-left-content">
+                <div style="background: rgba(255,255,255,0.1); width: 80px; height: 80px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; backdrop-filter: blur(10px);">
+                    <i data-lucide="shield" style="width: 40px; height: 40px; color: white;"></i>
+                </div>
+                <h2 style="font-family: 'Quicksand'; font-size: 2rem; font-weight: 800;">Zenga</h2>
+                <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 4px;">Plataforma Fiscal Inteligente</p>
+            </div>
+        </div>
+        
+        <div class="login-right">
+            
+            <div class="login-card" id="step-login-card">
+                <div id="step-login-header">
+                    <h1 class="login-title">Login</h1>
+                    <p class="login-subtitle">Digite seu usuário e senha para entrar</p>
+                </div>
+
+                <div id="step-login-inputs">
+                    <div class="form-group">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" class="form-input" placeholder="nome@exemplo.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Senha</label>
+                        <input type="password" class="form-input" placeholder="••••••••">
+                        <div id="step-forgot-pwd">
+                            <a href="#" class="forgot-pwd">Esqueceu sua senha?</a>
+                        </div>
+                    </div>
+
+                    <button class="btn-submit">Entrar na plataforma</button>
+                </div>
+            </div>
+
+            <div class="login-card" id="step-forgot-pwd-card" style="display: none; padding: 1.75rem;">
+                
+                <div style="position: absolute; right: 1rem; top: 1rem; background: var(--primary); width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+                    <i data-lucide="shield" style="width: 20px;"></i>
+                </div>
+
+                <button class="btn-ghost" style="position: absolute; left: 1rem; top: 1rem;">
+                    <i data-lucide="arrow-left" style="width: 16px; margin-right: 8px;"></i> Voltar
+                </button>
+                
+                <div style="padding-top: 2rem; margin-bottom: 0.5rem; text-align: left; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <h1 class="login-title" style="font-size: 1rem; margin: 0;">Esqueceu a Senha</h1>
+                    <p class="login-subtitle" style="font-size: 0.875rem; margin: 0;">Insira seu e-mail registrado e enviaremos um link para redefinir sua senha.</p>
+                </div>
+                
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-input" placeholder="nome@exemplo.com">
+                </div>
+                
+                <button class="btn-submit" style="margin-top: 0.5rem;">Enviar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="tour-overlay" id="tour-overlay"></div>
+    
+    <div class="tour-panel" id="tour-panel">
+        <div class="tour-header">
+            <div class="tour-icon" id="tour-icon"></div>
+            <div class="tour-title" id="tour-title">Título</div>
+        </div>
+        <div class="tour-text" id="tour-text">Texto explicativo.</div>
+        <div class="tour-footer">
+            <div class="tour-progress" id="tour-progress">1 de 3</div>
+            <div class="tour-buttons">
+                <button class="btn-tour btn-tour-prev" id="btn-prev" onclick="prevStep()">Anterior</button>
+                <button class="btn-tour btn-tour-next" id="btn-next" onclick="nextStep()">Próximo <i data-lucide="arrow-right" style="width:16px;"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Funções para alternar as telas dinamicamente durante o tour
+        function showLoginScreen() {
+            document.getElementById('step-login-card').style.display = 'block';
+            document.getElementById('step-forgot-pwd-card').style.display = 'none';
+        }
+
+        function showForgotPwdScreen() {
+            document.getElementById('step-login-card').style.display = 'none';
+            document.getElementById('step-forgot-pwd-card').style.display = 'block';
+        }
+
+        const steps = [
+            {
+                target: 'step-login-card', // Focando no card em vez da tela toda
+                title: 'Acesso Exclusivo por Convite',
+                icon: 'mail',
+                text: `<p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted);">
+                           No Zenga, não existe uma página de "criar conta" pública. O acesso inicial é sempre feito mediante um <strong>convite enviado por e-mail</strong> pelo administrador do sistema.
+                       </p>
+                       <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+                           <div style="display: flex; align-items: center; gap: 12px;">
+                               <div style="background: #eef2ff; color: #4338ca; padding: 10px; border-radius: 50%;"><i data-lucide="inbox" style="width:20px; height:20px;"></i></div>
+                               <div>
+                                   <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Verifique sua Caixa de Entrada</div>
+                                   <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Você receberá um link seguro válido temporariamente para definir sua primeira senha de acesso. Fique de olho e não esqueça de verificar também a pasta de <strong>SPAM</strong>, pois às vezes o e-mail de cadastro pode parar lá.</div>
+                               </div>
+                           </div>
+                       </div>`,
+                position: 'left',
+                onEnter: showLoginScreen
+            },
+            {
+                target: 'step-login-inputs',
+                title: 'O Login Diário',
+                icon: 'log-in',
+                text: `Após definir sua senha pelo link do e-mail, esta será a sua tela de acesso diário.<br><br>
+                       Para entrar, basta informar o seu <strong>E-mail</strong> (o mesmo que recebeu o convite) e a <strong>Senha</strong> que você acabou de criar. Toda a segurança e criptografia são gerenciadas automaticamente nos bastidores.`,
+                position: 'left',
+                onEnter: showLoginScreen
+            },
+            {
+                target: 'step-forgot-pwd-card', // Focando no novo card de recuperação
+                title: 'Redefinição de Senha',
+                icon: 'key',
+                text: `Esqueceu sua senha? Não se preocupe!<br><br>
+                       Ao clicar em "Esqueceu sua senha?", você é direcionado para esta tela. Basta inserir seu e-mail cadastrado e clicar em Enviar.<br><br>
+                       O Zenga enviará imediatamente um <strong>novo link seguro de redefinição para a sua caixa de entrada</strong>. Você clica, cadastra a senha nova e volta a acessar a plataforma normalmente!`,
+                position: 'left',
+                onEnter: showForgotPwdScreen
+            }
+        ];
+
+        let currentStep = -1;
+        const overlay = document.getElementById('tour-overlay');
+        const panel = document.getElementById('tour-panel');
+
+        function startTour() {
+            currentStep = 0;
+            overlay.classList.add('active');
+            renderStep();
+        }
+
+        function renderStep() {
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            
+            if(currentStep >= steps.length || currentStep < 0) {
+                endTour();
+                return;
+            }
+
+            const stepData = steps[currentStep];
+            
+            // Executa a função de tela (se houver) ANTES de capturar o elemento
+            if (stepData.onEnter) {
+                stepData.onEnter();
+            }
+
+            const targetEl = document.getElementById(stepData.target);
+            targetEl.classList.add('tour-highlight');
+
+            document.getElementById('tour-title').innerHTML = stepData.title;
+            document.getElementById('tour-text').innerHTML = stepData.text;
+            document.getElementById('tour-icon').innerHTML = `<i data-lucide="${stepData.icon}" style="width:24px; height:24px;"></i>`;
+            document.getElementById('tour-progress').innerText = `PASSO ${currentStep + 1} DE ${steps.length}`;
+            
+            document.getElementById('btn-prev').style.display = currentStep === 0 ? 'none' : 'block';
+            if(currentStep === steps.length - 1) {
+                document.getElementById('btn-next').innerHTML = `Concluir <i data-lucide="check" style="width:16px;"></i>`;
+            } else {
+                document.getElementById('btn-next').innerHTML = `Próximo <i data-lucide="arrow-right" style="width:16px;"></i>`;
+            }
+
+            lucide.createIcons();
+            panel.classList.remove('active');
+
+            setTimeout(() => {
+                const rect = targetEl.getBoundingClientRect();
+                const panelWidth = panel.offsetWidth;
+                const panelHeight = panel.offsetHeight;
+                const margin = 16;
+                const gap = 20;
+                
+                let position = stepData.position || 'bottom';
+
+                // Lógica de posicionamento (Esquerda ou Baixo)
+                let leftPos, topPos;
+
+                if (position === 'left') {
+                    leftPos = window.scrollX + rect.left - panelWidth - gap;
+                    topPos = window.scrollY + rect.top + (rect.height / 2) - (panelHeight / 2);
+                    
+                    // Fallback se não couber na esquerda (telas menores)
+                    if (leftPos < margin) {
+                        position = 'bottom';
+                    }
+                }
+
+                if (position === 'bottom') {
+                    leftPos = window.scrollX + rect.left + (rect.width / 2) - (panelWidth / 2); 
+                    topPos = window.scrollY + rect.top + rect.height + gap;
+
+                    if (leftPos < window.scrollX + margin) leftPos = window.scrollX + margin;
+                    if (leftPos + panelWidth > window.scrollX + window.innerWidth - margin) {
+                        leftPos = window.scrollX + window.innerWidth - panelWidth - margin;
+                    }
+                }
+
+                // Câmera melhorada para centralizar o bloco e evitar cortes
+                const absoluteTargetTop = window.scrollY + rect.top;
+                const absoluteTargetBottom = absoluteTargetTop + rect.height;
+                const clusterTop = Math.min(absoluteTargetTop, topPos);
+                const clusterBottom = Math.max(absoluteTargetBottom, topPos + panelHeight);
+                
+                let scrollToY = (clusterTop + clusterBottom) / 2 - (window.innerHeight / 2);
+                
+                if ((clusterBottom - clusterTop) > window.innerHeight * 0.8) {
+                    scrollToY = clusterTop - 40;
+                }
+
+                // Evita que o scroll vá para um valor negativo (cortando o topo)
+                scrollToY = Math.max(0, scrollToY);
+
+                window.scrollTo({
+                    top: scrollToY,
+                    behavior: 'smooth'
+                });
+
+                panel.style.left = `${leftPos}px`;
+                panel.style.top = `${topPos}px`;
+                panel.classList.add('active');
+
+            }, 50);
+        }
+
+        function nextStep() {
+            panel.classList.remove('active');
+            setTimeout(() => { currentStep++; renderStep(); }, 200);
+        }
+
+        function prevStep() {
+            panel.classList.remove('active');
+            setTimeout(() => { currentStep--; renderStep(); }, 200);
+        }
+
+        function endTour() {
+            overlay.classList.remove('active');
+            panel.classList.remove('active');
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            showLoginScreen(); // Retorna à tela original ao fechar
+            currentStep = -1;
+        }
+
+        window.addEventListener('resize', () => {
+            if(currentStep >= 0) { renderStep(); }
+        });
+
+    </script>
+</body>
+</html>

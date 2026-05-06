@@ -1,0 +1,255 @@
+.produto-section {
+    padding: 15px 0;
+    position: relative;
+    z-index: 10;
+}
+.produto-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 28px;
+    padding: 2.0rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(4, 44, 78, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.produto-container:hover {
+    transform: none;
+    box-shadow: 0 15px 35px rgba(4, 44, 78, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 1);
+}
+.produto-glow-1, .produto-glow-2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+.produto-glow-1 {
+    top: -20%;
+    left: -10%;
+    width: 50%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.15) 0%, rgba(255,255,255,0) 70%);
+}
+.produto-glow-2 {
+    bottom: -20%;
+    right: -10%;
+    width: 50%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(4, 44, 78, 0.1) 0%, rgba(255,255,255,0) 70%);
+}
+.produto-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.produto-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.0rem;
+    margin-bottom: 2.0rem;
+}
+.produto-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.icon-ring-outer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130%;
+    height: 150%;
+    background: radial-gradient(ellipse at center, rgba(0, 170, 255, 0.2) 0%, rgba(255,255,255,0) 70%);
+    filter: blur(10px);
+    z-index: 1;
+}
+.produto-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7));
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 40px;
+    padding: 10px 30px;
+    box-shadow: 0 10px 25px rgba(4, 44, 78, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 2;
+}
+.produto-logo-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(4, 44, 78, 0.08);
+}
+.produto-logo-img {
+    max-width: 140px;
+    height: auto;
+    object-fit: contain;
+}
+.produto-text {
+    font-size: 1.8rem;
+    color: var(--text-color-dark, #2d3748);
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+.text-brand {
+    font-weight: 800;
+    background: linear-gradient(135deg, #042c4e, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.produto-visual-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.produto-feature-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+.produto-feature-card:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    box-shadow: 0 15px 30px rgba(4, 44, 78, 0.06);
+}
+.feature-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+.produto-feature-card:hover .feature-icon-box {
+    transform: scale(1.08);
+}
+.feature-icon-box svg {
+    width: 24px;
+    height: 24px;
+}
+.glow-blue {
+    background: linear-gradient(135deg, #00aaff, #0077ff);
+    box-shadow: 0 8px 16px rgba(0, 170, 255, 0.25);
+}
+.glow-cyan {
+    background: linear-gradient(135deg, #00e5ff, #0099ff);
+    box-shadow: 0 8px 16px rgba(0, 229, 255, 0.25);
+}
+.glow-dark {
+    background: linear-gradient(135deg, #042c4e, #074e8a);
+    box-shadow: 0 8px 16px rgba(4, 44, 78, 0.25);
+}
+.feature-card-text {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    color: #4a5568;
+    margin: 0;
+}
+.feature-card-text strong {
+    color: #042c4e;
+    font-weight: 700;
+}
+.produto-footer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(4, 44, 78, 0.05);
+    border: 1px solid rgba(4, 44, 78, 0.1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    color: #042c4e;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.produto-footer-badge i {
+    color: #00aaff;
+    width: 20px;
+    height: 20px;
+}
+.produto-footer-badge strong {
+    font-weight: 800;
+}
+.produto-container:hover .produto-footer-badge {
+    background: #042c4e;
+    color: #ffffff;
+    border-color: #042c4e;
+    transform: translateY(2px);
+}
+@media (max-width: 992px) {
+    .produto-visual-grid {
+        gap: 1rem;
+    }
+    .produto-text {
+        font-size: 1.6rem;
+    }
+}
+@media (max-width: 768px) {
+    .produto-section {
+        padding: 10px 0;
+    }
+    .produto-container {
+        padding: 2.0rem 1.0rem;
+        border-radius: 20px;
+    }
+    .produto-visual-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .produto-feature-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    .feature-icon-box {
+        margin-bottom: 0;
+        min-width: 45px;
+        height: 45px;
+    }
+    .produto-logo-container {
+        padding: 8px 20px;
+    }
+    .produto-logo-img {
+        max-width: 110px;
+    }
+    .produto-text {
+        font-size: 1.4rem;
+    }
+    .produto-footer-badge {
+        font-size: 0.95rem;
+        padding: 0.7rem 1.2rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
+    }
+}

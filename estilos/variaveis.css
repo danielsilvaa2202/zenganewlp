@@ -1,0 +1,12 @@
+:root {
+    --primary-color: #042c4e;
+    --primary-color-darker: #03223b;
+    --secondary-color: #00aaff;
+    --white-color: #ffffff;
+    --light-blue-bg: #f7fcff;
+    --text-color-light: rgba(255, 255, 255, 0.85);
+    --text-color-dark: #333;
+    --card-bg-dark: rgba(255, 255, 255, 0.05);
+    --card-border-dark: rgba(255, 255, 255, 0.15);
+    --border-light-color: #eaf1f8;
+}
