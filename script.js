@@ -496,17 +496,18 @@ document.addEventListener('DOMContentLoaded', function() {
             'BA': { lat: -12.9714, lon: -38.5014, name: 'Bahia' },
             'DF': { lat: -15.7801, lon: -47.9292, name: 'Distrito Federal' },
             'RJ': { lat: -22.9068, lon: -43.1729, name: 'Rio de Janeiro' },
-            'AL': { lat: -9.5713, lon: -36.7820, name: 'Alagoas' }
+            'AL': { lat: -9.5713, lon: -36.7820, name: 'Alagoas' },
+            'CE': { lat: -5.4984, lon: -39.3206, name: 'Ceará' }
         };
 
-        const clientUFs = ['SP', 'MG', 'PR', 'SC', 'RS', 'MT', 'MS', 'RO', 'AM', 'TO', 'PE', 'ES', 'BA', 'DF', 'RJ', 'AL'];
+        const clientUFs = ['SP', 'MG', 'PR', 'SC', 'RS', 'MT', 'MS', 'RO', 'AM', 'TO', 'PE', 'ES', 'BA', 'DF', 'RJ', 'AL', 'CE'];
 
         L.marker(zengaHQ, {
             icon: L.divIcon({
                 className: 'pulsing-marker hq',
                 iconSize: [18, 18]
             })
-        }).addTo(mapInstance).bindTooltip("Sede ZengaTax", {
+        }).addTo(mapInstance).bindTooltip("Sede Zenga", {
             permanent: false,
             direction: 'top',
             className: 'custom-leaflet-tooltip'
