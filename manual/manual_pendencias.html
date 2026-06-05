@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Guiado - Usuários e Carteiras</title>
+    <title>Tour Guiado - Situação Fiscal</title>
 
     <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
     
@@ -44,11 +44,11 @@
         .header-manual h1 { font-family: 'Quicksand'; font-size: 2.2rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
         .header-manual p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
         
-        .header-bar { margin-bottom: 1.5rem; }
+        .header-bar { margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
         .app-title { font-family: 'Inter'; font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;}
         
-        .btn-system { background: var(--text-main); color: white; font-family: 'Quicksand'; font-weight: 600; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 6px; border: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
-        .btn-system:hover { background: #1e293b; }
+        .btn-system { background: var(--primary); color: white; font-family: 'Quicksand'; font-weight: 600; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 6px; border: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
+        .btn-system:hover { background: var(--primary-light); }
 
         .btn-outline { background: #fff; color: var(--text-main); font-family: 'Quicksand'; font-weight: 600; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
         .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
@@ -56,12 +56,18 @@
         .search-box { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 1rem; width: 320px; font-family: 'Quicksand'; font-size: 0.95rem; color: var(--text-muted); background: #fff; max-width: 100%; }
 
         .table-responsive-wrapper { width: 100%; overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); background: #fff; }
-        .table-system { width: 100%; min-width: 600px; border-collapse: collapse; font-family: 'Inter'; font-size: 0.9rem; }
+        .table-system { width: 100%; min-width: 800px; border-collapse: collapse; font-family: 'Inter'; font-size: 0.85rem; }
         .table-system th { background: #f8fafc; text-align: left; padding: 12px 16px; font-weight: 600; border-bottom: 1px solid var(--border); color: var(--text-main);}
         .table-system td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 500;}
         
-        .action-icon-btn { border: none; background: transparent; padding: 6px; border-radius: 6px; color: var(--text-muted); display: inline-flex; cursor: pointer; transition: 0.2s; }
+        .action-icon-btn { border: 1px solid var(--border); background: transparent; padding: 6px; border-radius: 6px; color: var(--text-muted); display: inline-flex; cursor: pointer; transition: 0.2s; }
         .action-icon-btn:hover { background: #f1f5f9; color: var(--primary); }
+
+        .badge { padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; border: 1px solid transparent; }
+        .badge-regular { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+        .badge-irregular { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+        .badge-finalizado { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+        .badge-pendente { background: #fef9c3; color: #854d0e; border-color: #fef08a; }
 
         /* TOUR CLASSES */
         .tour-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
@@ -103,8 +109,8 @@
     </div>
 
     <div class="header-manual">
-        <h1>Guia Interativo: Usuários e Carteiras</h1>
-        <p>Aprenda a cadastrar sua equipe, importar planilhas e definir acessos.</p>
+        <h1>Guia Interativo: Situação Fiscal</h1>
+        <p>Aprenda a agendar atualizações em lote e extrair relatórios da sua carteira.</p>
         <br>
         <button class="btn-start-tour" onclick="startTour()">
             <i data-lucide="play" style="width:22px;"></i> Iniciar Treinamento
@@ -114,90 +120,128 @@
     <div class="app-window" id="app-container">
         
         <div class="header-bar">
-            <h1 class="app-title">Gerenciamento de Usuários</h1>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Adicione colaboradores e distribua carteiras de clientes.</p>
+            <div>
+                <h1 class="app-title">Situação Fiscal | Consulta</h1>
+            </div>
+            <div id="step-btn-agendar" style="border-radius: 6px;">
+                <button class="btn-system"><i data-lucide="calendar-plus" style="width:18px;"></i> Agendar Atualização</button>
+            </div>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
             <div style="display: flex; gap: 10px; flex-wrap: wrap; flex: 1;">
                 <div class="search-box">
-                    <i data-lucide="search" style="width:18px; color:var(--text-muted)"></i> Pesquisar por nome ou email...
-                </div>
-                <div class="search-box" style="width: auto; cursor: pointer; background: #fff; border-color: var(--border);">
-                    <i data-lucide="list-filter" style="width:18px; color:var(--text-muted)"></i> Todos os perfis
+                    <i data-lucide="search" style="width:18px; color:var(--text-muted)"></i> Pesquisar CNPJ ou Razão...
                 </div>
             </div>
             
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <div id="step-btn-importar-main" style="border-radius: 6px;">
-                    <button class="btn-outline"><i data-lucide="upload" style="width:16px;"></i> Importar Planilha</button>
-                </div>
-                <div id="step-novo-usuario" style="border-radius: 6px;">
-                    <button class="btn-system"><i data-lucide="user-plus" style="width:16px;"></i> Novo usuário</button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;" id="step-filters">
+                <button class="btn-outline"><i data-lucide="filter" style="width:16px;"></i> Todos os Status <i data-lucide="chevron-down" style="width:14px; margin-left: 10px; opacity: 0.5;"></i></button>
+                <button class="btn-outline"><i data-lucide="filter" style="width:16px;"></i> Todas as Situações <i data-lucide="chevron-down" style="width:14px; margin-left: 10px; opacity: 0.5;"></i></button>
+                
+                <div id="step-export" style="border-radius: 6px;">
+                    <button class="btn-system"><i data-lucide="download" style="width:16px;"></i> Exportar <i data-lucide="chevron-down" style="width:14px; margin-left: 10px; opacity: 0.5;"></i></button>
                 </div>
             </div>
         </div>
 
-        <div id="step-table" class="table-responsive-wrapper">
+        <div id="step-table-pendencias" class="table-responsive-wrapper">
             <table class="table-system">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Perfil</th>
-                        <th>Carteira</th>
-                        <th style="text-align: right;">Ações</th>
+                        <th>CNPJ <i data-lucide="chevrons-up-down" style="width:12px; opacity: 0.3; display: inline-block;"></i></th>
+                        <th>Razão Social <i data-lucide="chevrons-up-down" style="width:12px; opacity: 0.3; display: inline-block;"></i></th>
+                        <th style="text-align: center;">Última Atualização <i data-lucide="arrow-down" style="width:12px; display: inline-block;"></i></th>
+                        <th>Status <i data-lucide="chevrons-up-down" style="width:12px; opacity: 0.3; display: inline-block;"></i></th>
+                        <th>Situação <i data-lucide="chevrons-up-down" style="width:12px; opacity: 0.3; display: inline-block;"></i></th>
+                        <th style="text-align: center;">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>DIOGO USUÁRIO <span style="font-weight: 400; opacity: 0.7;">(Você)</span></td>
-                        <td>diogo@exemplo.com</td>
-                        <td>Administrador</td>
-                        <td>Acesso Total</td>
-                        <td style="text-align: right;"><button class="action-icon-btn disabled" style="opacity: 0.3; cursor: not-allowed;"><i data-lucide="copy" style="width:16px;"></i></button></td>
+                        <td>12.345.678/0001-90</td>
+                        <td>EMPRESA EXEMPLO LTDA</td>
+                        <td style="text-align: center;">15/06/2026</td>
+                        <td><span class="badge badge-finalizado">Finalizado</span></td>
+                        <td><span class="badge badge-regular">Regular</span></td>
+                        <td style="text-align: center;"><button class="action-icon-btn"><i data-lucide="download" style="width:14px;"></i></button></td>
                     </tr>
-                    <tr style="background: #f8fafc;" id="step-standard-user">
-                        <td>MARIA OLIVEIRA</td>
-                        <td>maria@exemplo.com</td>
-                        <td id="step-admin-switch">
-                            <div style="width: 36px; height: 20px; background: #e2e8f0; border-radius: 10px; position: relative; cursor: pointer;">
-                                <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px;"></div>
-                            </div>
-                        </td>
-                        <td id="step-carteira-badge"><span style="background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; padding: 4px 10px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">0 Empresas</span></td>
-                        <td style="text-align: right;" id="step-copy-action">
-                            <button class="action-icon-btn"><i data-lucide="copy" style="width:16px; color:var(--text-main);"></i></button>
-                            <button class="action-icon-btn"><i data-lucide="pencil" style="width:16px; color:var(--text-main);"></i></button>
-                        </td>
+                    <tr style="background: #f8fafc;">
+                        <td>98.765.432/0001-10</td>
+                        <td>COMERCIO DE FERRAGENS ME</td>
+                        <td style="text-align: center;">15/06/2026</td>
+                        <td><span class="badge badge-finalizado">Finalizado</span></td>
+                        <td><span class="badge badge-irregular">Irregular</span></td>
+                        <td style="text-align: center;"><button class="action-icon-btn"><i data-lucide="download" style="width:14px;"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>45.123.890/0001-55</td>
+                        <td>SERVICOS DE CONSULTORIA SA</td>
+                        <td style="text-align: center;">-</td>
+                        <td><span class="badge badge-pendente">Aguardando</span></td>
+                        <td>-</td>
+                        <td style="text-align: center;"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div id="mock-import-modal" style="display: none; position: absolute; top: 120px; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 480px; z-index: 55;">
-            <div style="background: white; border-radius: 12px; width: 100%; padding: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid var(--border);">
-                <h2 style="font-family: 'Inter'; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--text-main);">Importar Carteiras em Massa</h2>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">Faça upload da planilha com CNPJs e usuários para incluir na carteira.<br>Essa ação não remove as empresas já existentes.</p>
+        <div id="mock-agendar-modal" style="display: none; position: absolute; top: 80px; left: 50%; transform: translateX(-50%); width: calc(100% - 2rem); max-width: 768px; z-index: 55;">
+            <div style="background: white; border-radius: 12px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column;">
                 
-                <div style="display: flex; flex-direction: column; gap: 16px;">
-                    <div id="step-btn-baixar-planilha" style="border-radius: 6px; background: white;">
-                        <button style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: transparent; color: #4338ca; border: 1px solid #c7d2fe; border-radius: 6px; font-family: 'Inter'; font-weight: 500; font-size: 0.9rem; cursor: pointer;">
-                            <i data-lucide="download" style="width:16px;"></i> Baixar Planilha Padrão
-                        </button>
-                    </div>
+                <div style="padding: 20px 24px; border-bottom: 1px solid var(--border);">
+                    <h2 style="font-family: 'Inter'; font-size: 1.25rem; font-weight: 600; color: var(--text-main);">Agendar Atualização</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Selecione o dia para o qual deseja agendar a atualização das situações fiscais.</p>
+                </div>
 
-                    <div id="step-dropzone" style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 32px; display: flex; flex-direction: column; align-items: center; text-align: center; background: #fff; cursor: pointer;">
-                        <i data-lucide="file-spreadsheet" style="width:40px; height:40px; color: #94a3b8; margin-bottom: 8px;"></i>
-                        <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Clique para selecionar o ficheiro</p>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">Formato .xlsx ou .xls</p>
+                <div style="padding: 16px 24px; background: #f8fafc; border-bottom: 1px solid var(--border); display: flex; align-items: flex-end; gap: 16px;">
+                    <div id="step-modal-date" style="background: white; padding: 8px; border-radius: 8px; border: 1px solid var(--border); width: fit-content; display: flex; flex-direction: column;">
+                        <span style="font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Data da Atualização</span>
+                        <div style="border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; width: 220px; color: var(--text-muted);">
+                            <i data-lucide="calendar" style="width:16px;"></i> 16/06/2026
+                        </div>
+                    </div>
+                    
+                    <button class="btn-system"><i data-lucide="calendar-plus" style="width:16px;"></i> Agendar</button>
+
+                    <div style="margin-left: auto; text-align: right;">
+                        <span style="font-size: 0.65rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">Último agendamento executado em:</span>
+                        <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary); background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border);">15/06/2026</span>
                     </div>
                 </div>
 
-                <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px;">
-                    <button style="padding: 8px 16px; border: 1px solid var(--border); background: white; border-radius: 6px; font-weight: 500; font-size: 0.9rem; color: var(--text-main);">Cancelar</button>
-                    <button style="padding: 8px 16px; background: var(--text-main); color: white; border: none; border-radius: 6px; font-weight: 500; font-size: 0.9rem; opacity: 0.5;">Cadastrar Carteiras</button>
+                <div id="step-modal-history" style="padding: 20px 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--primary);">Acompanhamento de Solicitações</h3>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <span style="background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 99px; font-size: 0.7rem; font-weight: 700; border: 1px solid #bfdbfe;">TOTAL PENDENTES: 1</span>
+                        </div>
+                    </div>
+
+                    <div style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                            <thead style="background: #f1f5f9; text-align: left;">
+                                <tr>
+                                    <th style="padding: 10px 16px; font-weight: 600; color: var(--text-main);">Data Solicitação</th>
+                                    <th style="padding: 10px 16px; font-weight: 600; color: var(--text-main);">Agendado para</th>
+                                    <th style="padding: 10px 16px; font-weight: 600; color: var(--text-main);">Status</th>
+                                    <th style="padding: 10px 16px; font-weight: 600; color: var(--text-main);">Usuário</th>
+                                    <th style="padding: 10px 16px; font-weight: 600; color: var(--text-main); text-align: right;">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-top: 1px solid var(--border);">
+                                    <td style="padding: 10px 16px; color: var(--text-muted);">15/06/2026 14:30</td>
+                                    <td style="padding: 10px 16px; color: var(--text-main); font-weight: 500;">16/06/2026</td>
+                                    <td style="padding: 10px 16px;"><span class="badge badge-pendente">Pendente</span></td>
+                                    <td style="padding: 10px 16px; color: var(--text-muted);">diogo@exemplo.com</td>
+                                    <td style="padding: 10px 16px; text-align: right;"><button style="background: transparent; border: none; color: #ef4444; cursor: pointer;"><i data-lucide="trash-2" style="width: 16px;"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -225,109 +269,56 @@
 
         const steps = [
             {
-                target: 'step-table',
-                title: 'Gerenciamento Centralizado',
-                icon: 'users',
-                text: `Bem-vindo ao painel de equipe. Aqui você visualiza todos os colaboradores, seus níveis de acesso e a quantidade de clientes que cada um atende.`,
+                target: 'step-table-pendencias',
+                title: 'Visão Geral das Pendências',
+                icon: 'clipboard-check',
+                text: `Bem-vindo à tela de Situação Fiscal. Aqui você visualiza o painel centralizado de todas as empresas da sua carteira, verificando de forma rápida se elas possuem pendências na Receita Federal.`,
                 position: 'bottom'
             },
             {
-                target: 'step-standard-user',
-                title: 'Usuário Padrão vs Admin',
-                icon: 'user-cog',
-                text: `<p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted);">
-                           A grande diferença entre Admin e Usuário Padrão reside no acesso aos dados:
-                       </p>
-                       <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-wrap: wrap; gap: 16px;">
-                           <div style="flex: 1; min-width: 180px; background: white; border: 1px solid #fecaca; padding: 12px; border-radius: 8px;">
-                               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                                   <div style="background: #fee2e2; color: #dc2626; padding: 6px; border-radius: 6px;"><i data-lucide="shield-check" style="width:16px; height:16px;"></i></div>
-                                   <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Administrador</div>
-                               </div>
-                               <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Acesso irrestrito às empresas e gerenciamento de todos os usuários.</div>
-                           </div>
-                           <div style="flex: 1; min-width: 180px; background: white; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px;">
-                               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                                   <div style="background: #dcfce7; color: #16a34a; padding: 6px; border-radius: 6px;"><i data-lucide="user" style="width:16px; height:16px;"></i></div>
-                                   <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">Usuário Padrão</div>
-                               </div>
-                               <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">Acesso focado. Manipula apenas os CNPJs de sua própria carteira nas transmissões.</div>
-                           </div>
-                       </div>`,
+                target: 'step-filters',
+                title: 'Filtros Inteligentes',
+                icon: 'filter',
+                text: `Utilize os filtros de <strong>Situação</strong> para isolar as empresas marcadas como <span style="background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight:bold;">Irregular</span>.<br><br>Você também pode filtrar por <strong>Status</strong> para ver quais empresas ainda estão sendo processadas pela nossa automação.`,
                 position: 'bottom'
             },
             {
-                target: 'step-carteira-badge',
-                title: 'Atribuição Inteligente',
-                icon: 'briefcase',
-                text: `<p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted);">
-                           Clicando no badge de empresas, um Popover interativo se abre. Ele foi desenhado para atribuições rápidas em massa:
-                       </p>
-                       <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-                           <div style="display:flex; flex-direction:column; gap: 8px; margin-bottom: 12px;">
-                               <div style="background: white; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
-                                   Buscar empresa...
-                               </div>
-                               <div style="display:flex; gap: 6px;">
-                                   <span style="background: #e2e8f0; color: #1e293b; font-size: 0.7rem; font-weight:bold; padding: 4px 8px; border-radius: 4px;">TODAS</span>
-                                   <span style="color: #64748b; font-size: 0.7rem; font-weight:bold; padding: 4px 8px;">MARCADAS</span>
-                                   <span style="color: #64748b; font-size: 0.7rem; font-weight:bold; padding: 4px 8px;">DESMARCADAS</span>
-                               </div>
-                               <div style="background: white; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 0.8rem; color: var(--text-main); font-weight: 500; display: flex; align-items: center; justify-content: space-between;">
-                                   Todos os Regimes <i data-lucide="chevron-down" style="width:14px; height:14px; color: var(--text-muted);"></i>
-                               </div>
-                           </div>
-                           <p style="font-size: 0.85rem; color: #334155; line-height: 1.5; margin: 0;">
-                               <strong>Como usar:</strong> Utilize o select de <strong>Regime Tributário</strong> ou a barra de pesquisa para filtrar a lista. Em seguida, basta clicar no item <strong>"Selecionar Visíveis"</strong> para marcar todas as empresas listadas de uma vez só!
-                           </p>
-                       </div>`,
+                target: 'step-btn-agendar',
+                title: 'Atualização em Lote',
+                icon: 'calendar-plus',
+                text: `Diferente de outras consultas, a verificação na Receita exige processamento contínuo. Para atualizar os dados da sua tela, você deve <strong>Agendar uma Atualização</strong>.`,
                 position: 'bottom'
             },
             {
-                target: 'step-btn-importar-main',
-                title: 'Importação Via Excel',
-                icon: 'file-spreadsheet',
-                text: `Quer cadastrar as carteiras de 30 usuários de uma só vez? Sem problemas.<br><br>O botão <strong>Importar Planilha</strong> permite que você suba um Excel cruzando os CNPJs com os e-mails dos responsáveis.`,
-                position: 'bottom'
-            },
-            {
-                target: 'step-btn-baixar-planilha',
-                title: 'A Planilha Padrão',
-                icon: 'download',
-                showModal: true,
-                text: `Dentro do modal, o primeiro passo é sempre <strong>Baixar a Planilha Padrão</strong>.<br><br>Nós geramos um modelo exato que o sistema espera receber, evitando qualquer dor de cabeça com formatação de colunas.`,
-                position: 'bottom'
-            },
-            {
-                target: 'step-dropzone',
-                title: 'Arraste e Solte',
-                icon: 'upload',
+                target: 'step-modal-date',
+                title: 'Regra de Agendamento (24h)',
+                icon: 'clock',
                 showModal: true,
                 text: `<p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted);">
-                           Com a planilha preenchida, basta clicar ou arrastar o arquivo para esta área.
+                           Escolha a data no calendário e confirme.
                        </p>
                        <div style="background: #fffbf1; border: 1px solid #fef08a; border-radius: 8px; padding: 12px; display: flex; gap: 10px; align-items: flex-start;">
                            <i data-lucide="info" style="width:16px; height:16px; color: #ca8a04; flex-shrink:0; margin-top: 2px;"></i>
                            <p style="font-size: 0.8rem; color: #854d0e; line-height: 1.4;">
-                               <strong>Importante:</strong> Fazer upload da planilha <strong>não apaga</strong> as empresas que já estão na carteira do usuário. Apenas adiciona os novos vínculos de forma incremental.
+                               <strong>Atenção:</strong> Ao agendar uma data, o sistema irá consultar a situação fiscal de <strong>todas as empresas da sua carteira</strong> em até 24 horas.<br><br>Quando concluído, esta tela e o seu Dashboard principal serão atualizados automaticamente.
                            </p>
                        </div>`,
                 position: 'bottom'
             },
             {
-                target: 'step-novo-usuario',
-                title: 'Convite Simples',
-                icon: 'user-plus',
-                showModal: false,
-                text: `Criar o acesso de alguém da equipe requer apenas Nome e E-mail. Um convite será disparado automaticamente para a caixa de entrada do colaborador para que ele mesmo defina a própria senha.`,
-                position: 'bottom'
+                target: 'step-modal-history',
+                title: 'Acompanhamento',
+                icon: 'list',
+                showModal: true,
+                text: `Logo abaixo, você encontra o histórico de solicitações.<br><br>Se você agendou uma consulta por engano ou a data ainda estiver como <strong>Pendente</strong>, você pode usar o botão de lixeira (<i data-lucide="trash-2" style="width:14px; display:inline-block; vertical-align:middle; color: #ef4444;"></i>) para cancelar a fila de processamento.`,
+                position: 'top'
             },
             {
-                target: 'step-copy-action',
-                title: 'Clonagem de Permissões',
-                icon: 'copy',
+                target: 'step-export',
+                title: 'Exportação de Resultados',
+                icon: 'download',
                 showModal: false,
-                text: `Um analista novo entrou na equipe e vai assumir os mesmos clientes do colega?<br><br>Use a ação de <strong>Copiar (<i data-lucide="copy" style="width:14px; display:inline-block; vertical-align:middle;"></i>)</strong>. Você escolhe o usuário de origem e clica para repassar toda a lista de CNPJs para os e-mails de destino. Simples assim.`,
+                text: `Após a verificação ser finalizada, você pode gerar valor para o seu cliente.<br><br>Clique em <strong>Exportar</strong> para baixar uma planilha consolidada com o status de todos os CNPJs, ou opte por baixar um arquivo ZIP contendo o comprovante PDF individual de cada empresa consultada.`,
                 position: 'bottom' 
             }
         ];
@@ -335,7 +326,7 @@
         let currentStep = -1;
         const overlay = document.getElementById('tour-overlay');
         const panel = document.getElementById('tour-panel');
-        const mockModal = document.getElementById('mock-import-modal');
+        const mockModal = document.getElementById('mock-agendar-modal');
 
         function startTour() {
             currentStep = 0;
@@ -353,14 +344,12 @@
 
             const stepData = steps[currentStep];
 
-            // Gerencia a exibição do Mock Modal
             if (stepData.showModal) {
                 mockModal.style.display = 'block';
             } else {
                 mockModal.style.display = 'none';
             }
 
-            // Precisamos dar um pequeno delay se o modal acabou de abrir para o DOM renderizar o tamanho antes de calcular o scroll
             setTimeout(() => {
                 const targetEl = document.getElementById(stepData.target);
                 if (targetEl) targetEl.classList.add('tour-highlight');
@@ -381,7 +370,6 @@
 
                 panel.classList.remove('active');
 
-                // Segundo delay para permitir a transição visual do modal antes de rolar a página
                 setTimeout(() => {
                     if (!targetEl) return;
                     
@@ -391,7 +379,6 @@
                     const margin = 16;
                     const gap = 20;
                     
-                    // Cálculo da posição Horizontal (X)
                     let leftPos = window.scrollX + rect.left + (rect.width / 2) - (panelWidth / 2); 
                     if (leftPos < window.scrollX + margin) {
                         leftPos = window.scrollX + margin;
@@ -400,26 +387,21 @@
                         leftPos = window.scrollX + window.innerWidth - panelWidth - margin;
                     }
 
-                    // Cálculo da posição Vertical (Y)
                     let position = stepData.position || 'bottom';
                     let absoluteTargetTop = window.scrollY + rect.top;
                     let absoluteTargetBottom = absoluteTargetTop + rect.height;
 
                     let topPos = position === 'bottom' ? (absoluteTargetBottom + gap) : (absoluteTargetTop - panelHeight - gap);
 
-                    // Agrupamos a altura total ocupada na tela (Elemento + Painel)
                     const clusterTop = Math.min(absoluteTargetTop, topPos);
                     const clusterBottom = Math.max(absoluteTargetBottom, topPos + panelHeight);
                     
-                    // Centralizamos a janela focando no cluster
                     let scrollToY = (clusterTop + clusterBottom) / 2 - (window.innerHeight / 2);
                     
-                    // Ajuste de respiro caso o bloco seja muito grande
                     if ((clusterBottom - clusterTop) > window.innerHeight * 0.8) {
                         scrollToY = clusterTop - 40;
                     }
 
-                    // A ROLAGEM AGORA SEMPRE ACONTECE, garantindo que nada fique cortado
                     window.scrollTo({ top: scrollToY, behavior: 'smooth' });
 
                     panel.style.left = `${leftPos}px`;
