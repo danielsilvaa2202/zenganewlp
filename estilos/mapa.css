@@ -410,6 +410,60 @@
     stroke-width: 2.8px;
 }
 
+/* DESTAQUE VISUAL FORTE PARA O BULLET "TOP 65 PARANÁ" */
+.recognition-proof-list span:nth-child(2) {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 0.72rem 1.08rem;
+    color: #ffffff;
+    background:
+        radial-gradient(circle at 18% 45%, rgba(255,255,255,0.35), transparent 24%),
+        linear-gradient(135deg, #00aaff 0%, #0077ff 45%, #00ff88 100%);
+    border: 1px solid rgba(255,255,255,0.55);
+    box-shadow:
+        0 16px 34px rgba(0, 170, 255, 0.36),
+        0 0 0 4px rgba(0, 170, 255, 0.12),
+        0 0 28px rgba(0, 255, 136, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.42);
+}
+
+.recognition-proof-list span:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    inset: -65% -90%;
+    z-index: -1;
+    background: linear-gradient(
+        120deg,
+        transparent 36%,
+        rgba(255,255,255,0.48) 49%,
+        transparent 62%
+    );
+    transform: translateX(-55%);
+    animation: parana-badge-shine 3.2s ease-in-out infinite;
+}
+
+.recognition-proof-list span:nth-child(2) i {
+    color: #ffffff;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.28));
+}
+
+@keyframes parana-badge-shine {
+    0%, 52% {
+        transform: translateX(-60%);
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(62%);
+        opacity: 0;
+    }
+}
+
 .recognition-card {
     position: relative;
     z-index: 2;
@@ -546,21 +600,25 @@
     }
 
     .recognition-image-crop {
-    border-radius: 13px;
-}
+        border-radius: 13px;
+    }
 
-.recognition-image {
-    width: 100%;
-    height: auto;
-    margin-top: -15%;
-    margin-bottom: -9%;
-    object-fit: contain;
-    object-position: center;
-    transform: none;
-}
+    .recognition-image {
+        width: 100%;
+        height: auto;
+        margin-top: -15%;
+        margin-bottom: -9%;
+        object-fit: contain;
+        object-position: center;
+        transform: none;
+    }
 
     .recognition-proof-list span {
         font-size: 0.75rem;
         padding: 0.55rem 0.75rem;
+    }
+
+    .recognition-proof-list span:nth-child(2) {
+        padding: 0.62rem 0.86rem;
     }
 }
