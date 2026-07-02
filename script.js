@@ -6,6 +6,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // MENU MOBILE
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNavMenu = document.getElementById('mobileNavMenu');
+
+    const setMobileMenuState = (isOpen) => {
+        if (!mobileMenuToggle || !mobileNavMenu) return;
+
+        mobileMenuToggle.classList.toggle('active', isOpen);
+        mobileNavMenu.classList.toggle('active', isOpen);
+        document.body.classList.toggle('mobile-menu-open', isOpen);
+        mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+        mobileNavMenu.setAttribute('aria-hidden', String(!isOpen));
+    };
+
+    if (mobileMenuToggle && mobileNavMenu) {
+        mobileMenuToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            setMobileMenuState(!mobileNavMenu.classList.contains('active'));
+        });
+
+        mobileNavMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => setMobileMenuState(false));
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!mobileNavMenu.classList.contains('active')) return;
+            const clickedInsideMenu = mobileNavMenu.contains(event.target);
+            const clickedToggle = mobileMenuToggle.contains(event.target);
+
+            if (!clickedInsideMenu && !clickedToggle) {
+                setMobileMenuState(false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                setMobileMenuState(false);
+            }
+        });
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -347,13 +389,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const openModal = (modal) => {
         if (modal) {
             modal.classList.add('visible');
-            feather.replace();
+            document.body.classList.add('modal-open');
+            try {
+                feather.replace();
+            } catch (e) {}
         }
     };
 
     const closeModal = (modal) => {
         if (modal) {
             modal.classList.remove('visible');
+
+            const hasVisibleModal = document.querySelector('.modal-overlay.visible');
+            if (!hasVisibleModal) {
+                document.body.classList.remove('modal-open');
+            }
         }
     };
 
@@ -409,6 +459,14 @@ document.addEventListener('DOMContentLoaded', function() {
             openModal(contactModal);
         });
     }
+
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setMobileMenuState(false);
+            document.querySelectorAll('.modal-overlay.visible').forEach(modal => closeModal(modal));
+        }
+    });
 
     let reinforcementModalShown = false;
     let scrollTimeout;
@@ -595,10 +653,43 @@ document.addEventListener('DOMContentLoaded', function() {
                         clickedItem.classList.add('active');
                         setTimeout(() => {
                             answer.style.maxHeight = answer.scrollHeight + 'px';
+
+                            if (clickedItem.classList.contains('faq-canva-item')) {
+                                clickedItem.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
                         }, 10);
                     }
                 });
             }
+        });
+
+        window.addEventListener('resize', () => {
+            faqItems.forEach(item => {
+                if (item.classList.contains('active')) {
+                    const answer = item.querySelector('.faq-answer');
+                    if (answer) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.faq-canva-frame iframe').forEach(iframe => {
+            iframe.addEventListener('load', () => {
+                setTimeout(() => {
+                    faqItems.forEach(item => {
+                        if (item.classList.contains('active')) {
+                            const answer = item.querySelector('.faq-answer');
+                            if (answer) {
+                                answer.style.maxHeight = answer.scrollHeight + 'px';
+                            }
+                        }
+                    });
+                }, 120);
+            });
         });
     }
 
