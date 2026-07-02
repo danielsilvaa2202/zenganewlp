@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenga x ERP - Central de Ajuda</title>
+
+    <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #032649;
+            --primary-light: #0ea5e9;
+            --primary-gradient: linear-gradient(135deg, #032649 0%, #0c4a6e 100%);
+            --accent: #38bdf8;
+            --bg-body: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 34rem),
+                radial-gradient(circle at bottom right, rgba(3, 38, 73, 0.12), transparent 34rem),
+                var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .topbar-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .brand img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(3, 38, 73, 0.12));
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 10px 28px rgba(3, 38, 73, 0.08);
+            padding: 0.85rem 1.1rem;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(16px);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            color: var(--primary-light);
+            border-color: rgba(14, 165, 233, 0.35);
+            box-shadow: 0 16px 34px rgba(14, 165, 233, 0.18);
+        }
+
+        .hero {
+            max-width: 1180px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 1.25rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.9rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2.1rem, 5vw, 4.5rem);
+            line-height: 0.95;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.055em;
+            margin-bottom: 0.9rem;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            max-width: 780px;
+            margin: 0 auto;
+            font-size: clamp(1rem, 2vw, 1.18rem);
+            line-height: 1.65;
+        }
+
+        .presentation-section {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem 2rem;
+        }
+
+        .presentation-card {
+            width: min(1180px, 100%);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.9)),
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 24rem);
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            border-radius: 32px;
+            padding: clamp(0.75rem, 2vw, 1.35rem);
+            box-shadow:
+                0 30px 80px rgba(3, 38, 73, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(14, 165, 233, 0.14), transparent 18rem),
+                radial-gradient(circle at 92% 84%, rgba(3, 38, 73, 0.10), transparent 20rem);
+        }
+
+        .presentation-toolbar {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0 0.35rem 0.9rem;
+        }
+
+        .toolbar-title {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            min-width: 0;
+        }
+
+        .toolbar-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(3, 38, 73, 0.22);
+            flex-shrink: 0;
+        }
+
+        .toolbar-title strong {
+            display: block;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.05rem;
+            color: var(--primary);
+            line-height: 1.1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .toolbar-title small {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            margin-top: 0.15rem;
+        }
+
+        .open-canva {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            background: #f0f9ff;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 800;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .open-canva:hover {
+            transform: translateY(-2px);
+            background: #e0f2fe;
+            box-shadow: 0 14px 28px rgba(14, 165, 233, 0.18);
+        }
+
+        .canva-frame-wrap {
+            position: relative;
+            z-index: 2;
+            width: min(100%, calc((100vh - 265px) * 1));
+            max-width: 1020px;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow:
+                0 24px 60px rgba(15, 23, 42, 0.18),
+                0 0 0 1px rgba(226, 232, 240, 0.9);
+        }
+
+        .canva-frame-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            background: #ffffff;
+        }
+
+        .notes-row {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .note-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.85rem 1rem;
+            border-radius: 16px;
+            background: rgba(248, 250, 252, 0.9);
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
+
+        .note-pill i {
+            color: var(--primary-light);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .topbar-inner {
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding-top: 0.4rem;
+            }
+
+            .presentation-section {
+                align-items: flex-start;
+                padding-top: 0.35rem;
+            }
+
+            .presentation-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .open-canva {
+                width: 100%;
+            }
+
+            .canva-frame-wrap {
+                width: min(100%, calc((100vh - 345px) * 1));
+                min-width: 0;
+            }
+
+            .notes-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .topbar {
+                padding: 1rem;
+            }
+
+            .topbar-inner {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .brand {
+                font-size: 1rem;
+            }
+
+            .back-link {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem 1rem;
+            }
+
+            .hero {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .presentation-section {
+                padding: 0.25rem 0.8rem 1.4rem;
+            }
+
+            .presentation-card {
+                border-radius: 22px;
+                padding: 0.65rem;
+            }
+
+            .presentation-toolbar {
+                padding-bottom: 0.65rem;
+            }
+
+            .toolbar-icon {
+                width: 38px;
+                height: 38px;
+                border-radius: 12px;
+            }
+
+            .toolbar-title strong {
+                font-size: 0.98rem;
+                white-space: normal;
+            }
+
+            .toolbar-title small {
+                font-size: 0.8rem;
+            }
+
+            .canva-frame-wrap {
+                width: 100%;
+                border-radius: 18px;
+            }
+
+            .notes-row {
+                margin-top: 0.75rem;
+            }
+
+            .note-pill {
+                padding: 0.75rem;
+                font-size: 0.84rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="topbar-inner">
+
+                <a href="index.html" class="back-link">
+                    <i data-lucide="arrow-left" style="width:18px; height:18px;"></i>
+                    Voltar aos manuais
+                </a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="eyebrow">
+                <i data-lucide="presentation" style="width:16px; height:16px;"></i>
+                Apresentação visual
+            </div>
+            <h1>Zenga <span>x ERP</span></h1>
+            <p class="subtitle">Se meu sistema contábil já transmite MIT e DCTFWeb, ainda preciso da Zenga?</p>
+        </section>
+
+        <main class="presentation-section">
+            <article class="presentation-card">
+                <div class="presentation-toolbar">
+                    <div class="toolbar-title">
+                        <div class="toolbar-icon">
+                            <i data-lucide="monitor-play" style="width:22px; height:22px;"></i>
+                        </div>
+                        <div>
+                            <strong>Apresentação: Zenga x ERP</strong>
+                            <small>Conteúdo em slides, direto na página.</small>
+                        </div>
+                    </div>
+
+                    <a class="open-canva" href="https://www.canva.com/design/DAHOPPRZsDU/rvG_3wAhj5z4ngNZL_kmRA/view?utm_content=DAHOPPRZsDU&utm_campaign=designshare&utm_medium=link&utm_source=editor" target="_blank" rel="noopener">
+                        Abrir no Canva
+                        <i data-lucide="external-link" style="width:16px; height:16px;"></i>
+                    </a>
+                </div>
+
+                <div class="canva-frame-wrap">
+                    <iframe
+                        loading="lazy"
+                        src="https://www.canva.com/design/DAHOPPRZsDU/rvG_3wAhj5z4ngNZL_kmRA/view?embed"
+                        allowfullscreen="allowfullscreen"
+                        allow="fullscreen"
+                        title="Apresentação Zenga x ERP">
+                    </iframe>
+                </div>
+
+                <div class="notes-row">
+                    <div class="note-pill"><i data-lucide="sparkles" style="width:18px; height:18px;"></i> Comparativo visual para explicar o papel da Zenga.</div>
+                    <div class="note-pill"><i data-lucide="maximize" style="width:18px; height:18px;"></i> Use tela cheia no player para apresentar em reunião.</div>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
