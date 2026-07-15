@@ -17,7 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileNavMenu.classList.toggle('active', isOpen);
         document.body.classList.toggle('mobile-menu-open', isOpen);
         mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
-        mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+        mobileMenuToggle.setAttribute(
+            'aria-label',
+            isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+        );
         mobileNavMenu.setAttribute('aria-hidden', String(!isOpen));
     };
 
@@ -33,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.addEventListener('click', (event) => {
             if (!mobileNavMenu.classList.contains('active')) return;
+
             const clickedInsideMenu = mobileNavMenu.contains(event.target);
             const clickedToggle = mobileMenuToggle.contains(event.target);
 
@@ -52,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
+
                 // Dispara o mapa
                 if (entry.target.id === 'map-container') {
                     initBrazilMap();
@@ -61,14 +65,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Dispara animação dos contadores numéricos
                 if (entry.target.classList.contains('map-stats-column')) {
                     const counters = entry.target.querySelectorAll('.counter');
+
                     counters.forEach(counter => {
                         const target = +counter.getAttribute('data-target');
-                        const duration = 2000; // Duração de 2 segundos
-                        const increment = target / (duration / 16); 
-                        
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+
                         let current = 0;
+
                         const updateCounter = () => {
                             current += increment;
+
                             if (current < target) {
                                 counter.innerText = Math.ceil(current).toLocaleString('pt-BR');
                                 requestAnimationFrame(updateCounter);
@@ -76,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 counter.innerText = target.toLocaleString('pt-BR');
                             }
                         };
-                        
+
                         setTimeout(updateCounter, 600);
                     });
                 }
@@ -96,32 +103,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // CARROSSEL: SOLUÇÕES
     const solutionsCarousel = document.querySelector('.solutions-carousel');
+
     if (solutionsCarousel) {
         const track = solutionsCarousel;
         const cards = Array.from(track.children);
         const nextButton = document.querySelector('#solutions .carousel-arrow.next');
         const prevButton = document.querySelector('#solutions .carousel-arrow.prev');
         const dotsNav = document.querySelector('#solutions .carousel-dots');
+
         let currentIndex = 0;
         let slideInterval;
         let cardWidth = cards.length > 0 ? cards[0].offsetWidth : 0;
 
         cards.forEach((_, i) => {
             const dot = document.createElement('button');
+
             dot.classList.add('dot');
             dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+
             dot.addEventListener('click', () => {
                 goToSlide(i);
                 resetInterval();
             });
+
             dotsNav.appendChild(dot);
         });
+
         const dots = Array.from(dotsNav.children);
 
         const updateCarousel = () => {
             if (cards.length === 0) return;
+
             cardWidth = cards[0].offsetWidth;
-            const offset = -currentIndex * cardWidth + (track.parentElement.offsetWidth - cardWidth) / 2;
+
+            const offset =
+                -currentIndex * cardWidth +
+                (track.parentElement.offsetWidth - cardWidth) / 2;
+
             track.style.transform = `translateX(${offset}px)`;
 
             cards.forEach((card, index) => {
@@ -149,12 +167,13 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (nextButton) {
-           nextButton.addEventListener('click', () => {
+            nextButton.addEventListener('click', () => {
                 nextSlide();
                 resetInterval();
             });
         }
-         if (prevButton) {
+
+        if (prevButton) {
             prevButton.addEventListener('click', () => {
                 prevSlide();
                 resetInterval();
@@ -173,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const handleResize = () => {
             updateCarousel();
-        }
+        };
 
         window.addEventListener('resize', handleResize);
 
@@ -183,25 +202,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // CARROSSEL: DEPOIMENTOS
     const testimonialWrapper = document.querySelector('.testimonial-wrapper');
+
     if (testimonialWrapper) {
         const track = testimonialWrapper.querySelector('.testimonial-track');
         const slides = Array.from(track.children);
         const nextButton = testimonialWrapper.querySelector('.slider-arrow.next');
         const prevButton = testimonialWrapper.querySelector('.slider-arrow.prev');
         const dotsNav = testimonialWrapper.querySelector('.testimonial-dots');
+
         let currentIndex = 0;
         let autoPlayInterval;
 
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
+
             dot.classList.add('dot');
             dot.setAttribute('aria-label', `Ir para depoimento ${i + 1}`);
+
             dot.addEventListener('click', () => {
                 goToTestimonialSlide(i);
                 resetAutoPlay();
             });
+
             dotsNav.appendChild(dot);
         });
+
         const dots = Array.from(dotsNav.children);
 
         const setSlidePosition = () => {
@@ -210,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const updateDots = () => {
             dots.forEach(dot => dot.classList.remove('active'));
+
             if (dots[currentIndex]) {
                 dots[currentIndex].classList.add('active');
             }
@@ -224,6 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (nextButton) {
             nextButton.addEventListener('click', () => {
                 const nextIndex = (currentIndex + 1) % slides.length;
+
                 goToTestimonialSlide(nextIndex);
                 resetAutoPlay();
             });
@@ -231,7 +258,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (prevButton) {
             prevButton.addEventListener('click', () => {
-                const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                const prevIndex =
+                    (currentIndex - 1 + slides.length) % slides.length;
+
                 goToTestimonialSlide(prevIndex);
                 resetAutoPlay();
             });
@@ -239,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const startAutoPlay = () => {
             clearInterval(autoPlayInterval);
+
             autoPlayInterval = setInterval(() => {
                 const nextIndex = (currentIndex + 1) % slides.length;
                 goToTestimonialSlide(nextIndex);
@@ -250,30 +280,36 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoPlay();
         };
 
-        testimonialWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        testimonialWrapper.addEventListener('mouseleave', () => startAutoPlay());
+        testimonialWrapper.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+
+        testimonialWrapper.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
 
         updateDots();
         startAutoPlay();
     }
 
-    // --- CARROSSEL: BLOG ---
+    // CARROSSEL: BLOG
     const blogWrapper = document.querySelector('.blog-carousel-wrapper');
+
     if (blogWrapper) {
         const track = blogWrapper.querySelector('.blog-track');
         const slides = Array.from(track.children);
         const nextButton = blogWrapper.querySelector('#blog-next');
         const prevButton = blogWrapper.querySelector('#blog-prev');
         const dotsNav = blogWrapper.querySelector('.blog-carousel-dots');
-        
-        let currentIndex = 0; 
+
+        let currentIndex = 0;
         let slidesToShow = 3;
-        let slidesToScroll = 1; 
+        let slidesToScroll = 1;
         let maxIndex = slides.length - slidesToShow;
         let autoPlayInterval;
-        
-        // 1. Aumentamos o tempo para 10 segundos (10000ms) para dar mais tempo de leitura
-        const blogSlideTime = 10000; 
+
+        // Tempo de 10 segundos para leitura
+        const blogSlideTime = 10000;
 
         function updateBlogMetrics() {
             if (window.innerWidth <= 768) {
@@ -283,29 +319,38 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 slidesToShow = 3;
             }
-            slidesToScroll = 1; 
+
+            slidesToScroll = 1;
             maxIndex = Math.max(0, slides.length - slidesToShow);
-            
+
             if (dotsNav) {
                 dotsNav.innerHTML = '';
+
                 for (let i = 0; i <= maxIndex; i++) {
                     const dot = document.createElement('button');
+
                     dot.classList.add('dot');
                     dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+
                     dot.addEventListener('click', () => {
                         goToBlogSlide(i);
                         resetAutoPlayBlog();
                     });
+
                     dotsNav.appendChild(dot);
                 }
             }
+
             updateBlogDots();
         }
 
         function updateBlogDots() {
             if (!dotsNav) return;
+
             const dots = Array.from(dotsNav.children);
+
             dots.forEach(dot => dot.classList.remove('active'));
+
             if (dots[currentIndex]) {
                 dots[currentIndex].classList.add('active');
             }
@@ -313,26 +358,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function goToBlogSlide(index) {
             currentIndex = Math.max(0, Math.min(index, maxIndex));
-            
+
             const slideWidth = slides[0] ? slides[0].offsetWidth : 0;
-            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            
+
+            track.style.transform =
+                `translateX(-${currentIndex * slideWidth}px)`;
+
             updateBlogDots();
         }
 
         const nextBlogSlide = () => {
             let nextIndex = currentIndex + slidesToScroll;
+
             if (nextIndex > maxIndex) {
-                nextIndex = 0; 
+                nextIndex = 0;
             }
+
             goToBlogSlide(nextIndex);
         };
 
         const prevBlogSlide = () => {
             let prevIndex = currentIndex - slidesToScroll;
+
             if (prevIndex < 0) {
-                prevIndex = maxIndex; 
+                prevIndex = maxIndex;
             }
+
             goToBlogSlide(prevIndex);
         };
 
@@ -342,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetAutoPlayBlog();
             });
         }
+
         if (prevButton) {
             prevButton.addEventListener('click', () => {
                 prevBlogSlide();
@@ -351,45 +403,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const startAutoPlayBlog = () => {
             clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(nextBlogSlide, blogSlideTime);
+
+            autoPlayInterval = setInterval(
+                nextBlogSlide,
+                blogSlideTime
+            );
         };
 
         const resetAutoPlayBlog = () => {
             clearInterval(autoPlayInterval);
             startAutoPlayBlog();
         };
-        
+
         window.addEventListener('resize', () => {
             updateBlogMetrics();
-            goToBlogSlide(currentIndex); 
+            goToBlogSlide(currentIndex);
         });
-        
-        blogWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        blogWrapper.addEventListener('mouseleave', () => startAutoPlayBlog());
-        
+
+        blogWrapper.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+
+        blogWrapper.addEventListener('mouseleave', () => {
+            startAutoPlayBlog();
+        });
+
         updateBlogMetrics();
         goToBlogSlide(0);
-        
-        // 2. Só inicia o autoplay se a pessoa rolar até a seção do blog
+
+        // Inicia o autoplay somente quando a seção estiver visível
         const blogObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    startAutoPlayBlog(); // Começa a rolar
+                    startAutoPlayBlog();
                 } else {
-                    clearInterval(autoPlayInterval); // Pausa quando a seção não estiver na tela
+                    clearInterval(autoPlayInterval);
                 }
             });
-        }, { threshold: 0.2 });
+        }, {
+            threshold: 0.2
+        });
 
         blogObserver.observe(blogWrapper);
     }
-    // --- FIM DO CARROSSEL BLOG ---
 
     // MODAIS
     const openModal = (modal) => {
         if (modal) {
             modal.classList.add('visible');
             document.body.classList.add('modal-open');
+
             try {
                 feather.replace();
             } catch (e) {}
@@ -400,17 +463,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) {
             modal.classList.remove('visible');
 
-            const hasVisibleModal = document.querySelector('.modal-overlay.visible');
+            const hasVisibleModal =
+                document.querySelector('.modal-overlay.visible');
+
             if (!hasVisibleModal) {
                 document.body.classList.remove('modal-open');
             }
         }
     };
 
-    const promoModal = document.getElementById('promoModalOverlay');
-    const planModal = document.getElementById('planModalOverlay');
-    const reinforcementModal = document.getElementById('reinforcementModalOverlay');
-    const contactModal = document.getElementById('contactModalOverlay');
+    const promoModal =
+        document.getElementById('promoModalOverlay');
+
+    const planModal =
+        document.getElementById('planModalOverlay');
+
+    const reinforcementModal =
+        document.getElementById('reinforcementModalOverlay');
+
+    const contactModal =
+        document.getElementById('contactModalOverlay');
 
     if (promoModal) {
         setTimeout(() => {
@@ -418,12 +490,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    [promoModal, planModal, reinforcementModal, contactModal].forEach(modal => {
+    [
+        promoModal,
+        planModal,
+        reinforcementModal,
+        contactModal
+    ].forEach(modal => {
         if (modal) {
             const closeBtn = modal.querySelector('.modal-close');
+
             if (closeBtn) {
-                closeBtn.addEventListener('click', () => closeModal(modal));
+                closeBtn.addEventListener('click', () => {
+                    closeModal(modal);
+                });
             }
+
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     closeModal(modal);
@@ -433,18 +514,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const planButtons = document.querySelectorAll('.plan-button');
+
     planButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             event.preventDefault();
-            const parentCard = event.target.closest('.pricing-card');
-            if (parentCard && (parentCard.querySelector('h3').innerText.toLowerCase() === 'plus' || parentCard.querySelector('.price-value').innerText.toLowerCase() === 'consultar')) {
-                const contactSection = document.getElementById('contact');
+
+            const parentCard =
+                event.target.closest('.pricing-card');
+
+            const planTitle =
+                parentCard?.querySelector('h3')?.innerText
+                    .toLowerCase();
+
+            const planPrice =
+                parentCard?.querySelector('.price-value')?.innerText
+                    .toLowerCase();
+
+            if (
+                parentCard &&
+                (
+                    planTitle === 'plus' ||
+                    planPrice === 'consultar'
+                )
+            ) {
+                const contactSection =
+                    document.getElementById('contact');
+
                 if (contactSection) {
                     contactSection.scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
-            } else if (parentCard && parentCard.classList.contains('free-plan')) {
+            } else if (
+                parentCard &&
+                parentCard.classList.contains('free-plan')
+            ) {
                 openModal(contactModal);
             } else {
                 openModal(planModal);
@@ -452,7 +556,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const headerCtaButton = document.getElementById('header-cta-button');
+    const headerCtaButton =
+        document.getElementById('header-cta-button');
+
     if (headerCtaButton) {
         headerCtaButton.addEventListener('click', (event) => {
             event.preventDefault();
@@ -460,11 +566,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
             setMobileMenuState(false);
-            document.querySelectorAll('.modal-overlay.visible').forEach(modal => closeModal(modal));
+
+            document
+                .querySelectorAll('.modal-overlay.visible')
+                .forEach(modal => closeModal(modal));
         }
     });
 
@@ -472,13 +580,23 @@ document.addEventListener('DOMContentLoaded', function() {
     let scrollTimeout;
 
     window.addEventListener('scroll', () => {
-        if (!reinforcementModalShown && reinforcementModal) {
+        if (
+            !reinforcementModalShown &&
+            reinforcementModal
+        ) {
             clearTimeout(scrollTimeout);
-            const isNearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200;
+
+            const isNearBottom =
+                window.innerHeight + window.scrollY >=
+                document.body.offsetHeight - 200;
 
             if (isNearBottom) {
                 scrollTimeout = setTimeout(() => {
-                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
+                    const stillNearBottom =
+                        window.innerHeight + window.scrollY >=
+                        document.body.offsetHeight - 200;
+
+                    if (stillNearBottom) {
                         openModal(reinforcementModal);
                         reinforcementModalShown = true;
                     }
@@ -488,24 +606,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // BOTÕES DE CÓPIA
-    const copyButtons = document.querySelectorAll('.copy-button');
+    const copyButtons =
+        document.querySelectorAll('.copy-button');
+
     copyButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetId = button.dataset.copyTarget;
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                navigator.clipboard.writeText(targetElement.innerText.trim()).then(() => {
-                    const originalIcon = button.innerHTML;
-                    button.innerHTML = '<i data-feather="check"></i>';
-                    button.classList.add('copied');
-                    feather.replace();
+            const targetElement =
+                document.getElementById(targetId);
 
-                    setTimeout(() => {
-                        button.innerHTML = originalIcon;
-                        button.classList.remove('copied');
-                        feather.replace();
-                    }, 2000);
-                }).catch(err => {});
+            if (targetElement) {
+                navigator.clipboard
+                    .writeText(targetElement.innerText.trim())
+                    .then(() => {
+                        const originalIcon = button.innerHTML;
+
+                        button.innerHTML =
+                            '<i data-feather="check"></i>';
+
+                        button.classList.add('copied');
+
+                        try {
+                            feather.replace();
+                        } catch (e) {}
+
+                        setTimeout(() => {
+                            button.innerHTML = originalIcon;
+                            button.classList.remove('copied');
+
+                            try {
+                                feather.replace();
+                            } catch (e) {}
+                        }, 2000);
+                    })
+                    .catch(() => {});
             }
         });
     });
@@ -514,135 +648,283 @@ document.addEventListener('DOMContentLoaded', function() {
     let mapInstance = null;
 
     function initBrazilMap() {
-    if (mapInstance || typeof L === 'undefined' || !document.getElementById('map-container')) return;
-
-    try {
-        mapInstance = L.map('map-container', {
-            center: [-15.5, -50.0],
-            zoom: 4.49,
-            zoomControl: false,
-            dragging: false,
-            touchZoom: false,
-            doubleClickZoom: false,
-            scrollWheelZoom: false,
-            boxZoom: false,
-            keyboard: false,
-            attributionControl: false
-        });
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-            subdomains: 'abcd',
-            maxZoom: 7,
-            minZoom: 4
-        }).addTo(mapInstance);
-
-        const zengaHQ = [-25.4411, -49.2908]; // Curitiba
-
-        const ufCoordinates = {
-            'SP': { lat: -23.5505, lon: -46.6333, name: 'São Paulo' },
-            'MG': { lat: -19.9167, lon: -43.9345, name: 'Minas Gerais' },
-            'PR': { lat: -25.4284, lon: -49.2733, name: 'Paraná' },
-            'SC': { lat: -27.5954, lon: -48.5480, name: 'Santa Catarina' },
-            'RS': { lat: -30.0346, lon: -51.2177, name: 'Rio Grande do Sul' },
-            'MT': { lat: -15.6014, lon: -56.0977, name: 'Mato Grosso' },
-            'MS': { lat: -20.4428, lon: -54.6464, name: 'Mato Grosso do Sul' },
-            'RO': { lat: -10.83, lon: -63.22, name: 'Rondônia' },
-            'AM': { lat: -3.1190, lon: -60.0217, name: 'Amazonas' },
-            'TO': { lat: -10.1848, lon: -48.3338, name: 'Tocantins' },
-            'PE': { lat: -8.0476, lon: -34.8770, name: 'Pernambuco' },
-            'ES': { lat: -20.3192, lon: -40.3378, name: 'Espírito Santo' },
-            'BA': { lat: -12.9714, lon: -38.5014, name: 'Bahia' },
-            'DF': { lat: -15.7801, lon: -47.9292, name: 'Distrito Federal' },
-            'RJ': { lat: -22.9068, lon: -43.1729, name: 'Rio de Janeiro' },
-            'AL': { lat: -9.5713, lon: -36.7820, name: 'Alagoas' },
-            'CE': { lat: -5.4984, lon: -39.3206, name: 'Ceará' }
-        };
-
-        const clientUFs = ['SP', 'MG', 'PR', 'SC', 'RS', 'MT', 'MS', 'RO', 'AM', 'TO', 'PE', 'ES', 'BA', 'DF', 'RJ', 'AL', 'CE'];
-
-        L.marker(zengaHQ, {
-            icon: L.divIcon({
-                className: 'pulsing-marker hq',
-                iconSize: [18, 18]
-            })
-        }).addTo(mapInstance).bindTooltip("Sede Zenga", {
-            permanent: false,
-            direction: 'top',
-            className: 'custom-leaflet-tooltip'
-        });
-
-        function getArc(start, end) {
-            const points = [];
-            const startLat = start[0], startLng = start[1];
-            const endLat = end[0], endLng = end[1];
-            const midLat = (startLat + endLat) / 2;
-            const midLng = (startLng + endLng) / 2;
-            const latOffset = (endLng - startLng) * 0.20;
-            const lngOffset = -(endLat - startLat) * 0.20;
-            const controlLat = midLat + latOffset;
-            const controlLng = midLng + lngOffset;
-            for (let i = 0; i <= 100; i++) {
-                const t = i / 100;
-                const lat = Math.pow(1 - t, 2) * startLat + 2 * (1 - t) * t * controlLat + Math.pow(t, 2) * endLat;
-                const lng = Math.pow(1 - t, 2) * startLng + 2 * (1 - t) * t * controlLng + Math.pow(t, 2) * endLng;
-                points.push([lat, lng]);
-            }
-            return points;
+        if (
+            mapInstance ||
+            typeof L === 'undefined' ||
+            !document.getElementById('map-container')
+        ) {
+            return;
         }
 
-        clientUFs.forEach((uf, index) => {
-            const loc = ufCoordinates[uf];
-            if (!loc) return;
+        try {
+            mapInstance = L.map('map-container', {
+                center: [-15.5, -50.0],
+                zoom: 4.49,
+                zoomControl: false,
+                dragging: false,
+                touchZoom: false,
+                doubleClickZoom: false,
+                scrollWheelZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            });
 
-            const destination = [loc.lat, loc.lon];
-            if (uf !== 'PR') { 
-                const latlngs = getArc(zengaHQ, destination);
-                const line = L.polyline(latlngs, {
-                    color: '#00aaff',
-                    weight: 2,
-                    opacity: 0.7
-                }).addTo(mapInstance);
-
-                const path = line.getElement();
-                if (path) {
-                    path.classList.add('map-line-path');
-                    path.style.animationDelay = `${index * 0.1}s`;
+            L.tileLayer(
+                'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+                {
+                    subdomains: 'abcd',
+                    maxZoom: 7,
+                    minZoom: 4
                 }
+            ).addTo(mapInstance);
+
+            const zengaHQ = [-25.4411, -49.2908];
+
+            const ufCoordinates = {
+                SP: {
+                    lat: -23.5505,
+                    lon: -46.6333,
+                    name: 'São Paulo'
+                },
+                MG: {
+                    lat: -19.9167,
+                    lon: -43.9345,
+                    name: 'Minas Gerais'
+                },
+                PR: {
+                    lat: -25.4284,
+                    lon: -49.2733,
+                    name: 'Paraná'
+                },
+                SC: {
+                    lat: -27.5954,
+                    lon: -48.5480,
+                    name: 'Santa Catarina'
+                },
+                RS: {
+                    lat: -30.0346,
+                    lon: -51.2177,
+                    name: 'Rio Grande do Sul'
+                },
+                MT: {
+                    lat: -15.6014,
+                    lon: -56.0977,
+                    name: 'Mato Grosso'
+                },
+                MS: {
+                    lat: -20.4428,
+                    lon: -54.6464,
+                    name: 'Mato Grosso do Sul'
+                },
+                RO: {
+                    lat: -10.83,
+                    lon: -63.22,
+                    name: 'Rondônia'
+                },
+                AM: {
+                    lat: -3.1190,
+                    lon: -60.0217,
+                    name: 'Amazonas'
+                },
+                TO: {
+                    lat: -10.1848,
+                    lon: -48.3338,
+                    name: 'Tocantins'
+                },
+                PE: {
+                    lat: -8.0476,
+                    lon: -34.8770,
+                    name: 'Pernambuco'
+                },
+                ES: {
+                    lat: -20.3192,
+                    lon: -40.3378,
+                    name: 'Espírito Santo'
+                },
+                BA: {
+                    lat: -12.9714,
+                    lon: -38.5014,
+                    name: 'Bahia'
+                },
+                DF: {
+                    lat: -15.7801,
+                    lon: -47.9292,
+                    name: 'Distrito Federal'
+                },
+                RJ: {
+                    lat: -22.9068,
+                    lon: -43.1729,
+                    name: 'Rio de Janeiro'
+                },
+                AL: {
+                    lat: -9.5713,
+                    lon: -36.7820,
+                    name: 'Alagoas'
+                },
+                CE: {
+                    lat: -5.4984,
+                    lon: -39.3206,
+                    name: 'Ceará'
+                }
+            };
+
+            const clientUFs = [
+                'SP',
+                'MG',
+                'PR',
+                'SC',
+                'RS',
+                'MT',
+                'MS',
+                'RO',
+                'AM',
+                'TO',
+                'PE',
+                'ES',
+                'BA',
+                'DF',
+                'RJ',
+                'AL',
+                'CE'
+            ];
+
+            L.marker(zengaHQ, {
+                icon: L.divIcon({
+                    className: 'pulsing-marker hq',
+                    iconSize: [18, 18]
+                })
+            })
+                .addTo(mapInstance)
+                .bindTooltip('Sede Zenga', {
+                    permanent: false,
+                    direction: 'top',
+                    className: 'custom-leaflet-tooltip'
+                });
+
+            function getArc(start, end) {
+                const points = [];
+
+                const startLat = start[0];
+                const startLng = start[1];
+                const endLat = end[0];
+                const endLng = end[1];
+
+                const midLat = (startLat + endLat) / 2;
+                const midLng = (startLng + endLng) / 2;
+
+                const latOffset =
+                    (endLng - startLng) * 0.20;
+
+                const lngOffset =
+                    -(endLat - startLat) * 0.20;
+
+                const controlLat =
+                    midLat + latOffset;
+
+                const controlLng =
+                    midLng + lngOffset;
+
+                for (let i = 0; i <= 100; i++) {
+                    const t = i / 100;
+
+                    const lat =
+                        Math.pow(1 - t, 2) * startLat +
+                        2 * (1 - t) * t * controlLat +
+                        Math.pow(t, 2) * endLat;
+
+                    const lng =
+                        Math.pow(1 - t, 2) * startLng +
+                        2 * (1 - t) * t * controlLng +
+                        Math.pow(t, 2) * endLng;
+
+                    points.push([lat, lng]);
+                }
+
+                return points;
             }
 
-            L.marker(destination, {
-                icon: L.divIcon({
-                    className: 'pulsing-marker',
-                    iconSize: [14, 14]
+            clientUFs.forEach((uf, index) => {
+                const loc = ufCoordinates[uf];
+
+                if (!loc) return;
+
+                const destination = [
+                    loc.lat,
+                    loc.lon
+                ];
+
+                if (uf !== 'PR') {
+                    const latlngs =
+                        getArc(zengaHQ, destination);
+
+                    const line = L.polyline(latlngs, {
+                        color: '#00aaff',
+                        weight: 2,
+                        opacity: 0.7
+                    }).addTo(mapInstance);
+
+                    const path = line.getElement();
+
+                    if (path) {
+                        path.classList.add('map-line-path');
+                        path.style.animationDelay =
+                            `${index * 0.1}s`;
+                    }
+                }
+
+                L.marker(destination, {
+                    icon: L.divIcon({
+                        className: 'pulsing-marker',
+                        iconSize: [14, 14]
+                    })
                 })
-            }).addTo(mapInstance).bindTooltip(loc.name, {
-                permanent: false,
-                direction: 'top',
-                className: 'custom-leaflet-tooltip'
+                    .addTo(mapInstance)
+                    .bindTooltip(loc.name, {
+                        permanent: false,
+                        direction: 'top',
+                        className: 'custom-leaflet-tooltip'
+                    });
             });
-        });
 
-        setTimeout(() => mapInstance.invalidateSize(), 400);
-
-    } catch (error) {
-        console.error("Erro ao carregar o mapa:", error);
+            setTimeout(() => {
+                mapInstance.invalidateSize();
+            }, 400);
+        } catch (error) {
+            console.error(
+                'Erro ao carregar o mapa:',
+                error
+            );
+        }
     }
-}
+
     // FAQ
-    const faqItems = document.querySelectorAll('.faq-item');
+    const faqItems =
+        document.querySelectorAll('.faq-item');
+
     if (faqItems.length > 0) {
         faqItems.forEach(clickedItem => {
-            const question = clickedItem.querySelector('.faq-question');
-            const answer = clickedItem.querySelector('.faq-answer');
+            const question =
+                clickedItem.querySelector('.faq-question');
+
+            const answer =
+                clickedItem.querySelector('.faq-answer');
 
             if (question && answer) {
                 question.addEventListener('click', () => {
-                    const isCurrentlyActive = clickedItem.classList.contains('active');
+                    const isCurrentlyActive =
+                        clickedItem.classList.contains('active');
 
                     faqItems.forEach(item => {
                         if (item !== clickedItem) {
                             item.classList.remove('active');
-                            item.querySelector('.faq-answer').style.maxHeight = null;
+
+                            const itemAnswer =
+                                item.querySelector('.faq-answer');
+
+                            if (itemAnswer) {
+                                itemAnswer.style.maxHeight = null;
+                            }
                         }
                     });
 
@@ -651,10 +933,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         answer.style.maxHeight = null;
                     } else {
                         clickedItem.classList.add('active');
-                        setTimeout(() => {
-                            answer.style.maxHeight = answer.scrollHeight + 'px';
 
-                            if (clickedItem.classList.contains('faq-canva-item')) {
+                        setTimeout(() => {
+                            answer.style.maxHeight =
+                                `${answer.scrollHeight}px`;
+
+                            if (
+                                clickedItem.classList.contains(
+                                    'faq-canva-item'
+                                )
+                            ) {
                                 clickedItem.scrollIntoView({
                                     behavior: 'smooth',
                                     block: 'start'
@@ -669,32 +957,43 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('resize', () => {
             faqItems.forEach(item => {
                 if (item.classList.contains('active')) {
-                    const answer = item.querySelector('.faq-answer');
+                    const answer =
+                        item.querySelector('.faq-answer');
+
                     if (answer) {
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.style.maxHeight =
+                            `${answer.scrollHeight}px`;
                     }
                 }
             });
         });
 
-        document.querySelectorAll('.faq-canva-frame iframe').forEach(iframe => {
-            iframe.addEventListener('load', () => {
-                setTimeout(() => {
-                    faqItems.forEach(item => {
-                        if (item.classList.contains('active')) {
-                            const answer = item.querySelector('.faq-answer');
-                            if (answer) {
-                                answer.style.maxHeight = answer.scrollHeight + 'px';
+        document
+            .querySelectorAll('.faq-canva-frame iframe')
+            .forEach(iframe => {
+                iframe.addEventListener('load', () => {
+                    setTimeout(() => {
+                        faqItems.forEach(item => {
+                            if (
+                                item.classList.contains('active')
+                            ) {
+                                const answer =
+                                    item.querySelector(
+                                        '.faq-answer'
+                                    );
+
+                                if (answer) {
+                                    answer.style.maxHeight =
+                                        `${answer.scrollHeight}px`;
+                                }
                             }
-                        }
-                    });
-                }, 120);
+                        });
+                    }, 120);
+                });
             });
-        });
     }
 
     try {
         feather.replace();
     } catch (e) {}
-
 });
