@@ -132,6 +132,172 @@
             background-color: #f0f0f0;
         }
 
+
+
+        /* Link moderno: Trabalhe Conosco */
+        .contact-info .contact-item:last-of-type {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Alinha o botão com a última linha dos cards sociais (YouTube) */
+        @media (min-width: 769px) {
+            .contact-wrapper {
+                align-items: stretch;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .contact-info .career-link {
+                margin-top: auto;
+            }
+        }
+
+        .career-link {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            min-width: 285px;
+            min-height: 62px;
+            margin-top: 0.35rem;
+            margin-left: -1rem;
+            padding: 0.75rem 1rem 0.75rem 1.2rem;
+            border: 1px solid rgba(85, 220, 247, 0.42);
+            border-radius: 18px;
+            background:
+                linear-gradient(135deg, rgba(32, 199, 232, 0.18), rgba(22, 135, 217, 0.08)),
+                rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            text-decoration: none;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .career-link::before {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: -70%;
+            left: -25%;
+            width: 70%;
+            height: 240%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+            transform: rotate(18deg) translateX(-130%);
+            transition: transform 0.55s ease;
+            pointer-events: none;
+        }
+
+        /* Círculos decorativos discretos no fundo do card */
+        .career-link::after {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            inset: 0;
+            background:
+                radial-gradient(circle 34px at 76% -8%, rgba(124, 236, 255, 0.12) 0 98%, transparent 100%),
+                radial-gradient(circle 18px at 88% 78%, rgba(255, 255, 255, 0.07) 0 98%, transparent 100%),
+                radial-gradient(circle 11px at 66% 68%, rgba(49, 213, 239, 0.09) 0 98%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .career-link > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .career-link-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+            border-radius: 0;
+            background: transparent;
+            color: #ffffff;
+            box-shadow: none;
+        }
+
+        .career-link-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+
+        .career-link-copy {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 0.2rem;
+            line-height: 1.05;
+        }
+
+        .career-link-eyebrow {
+            color: #7cecff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+
+        .career-link-copy strong {
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .career-link-arrow {
+            width: 19px;
+            height: 19px;
+            margin-left: auto;
+            opacity: 0.82;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .career-link:hover,
+        .career-link:focus-visible {
+            transform: translateY(-3px);
+            border-color: rgba(85, 220, 247, 0.82);
+            background:
+                linear-gradient(135deg, rgba(32, 199, 232, 0.28), rgba(22, 135, 217, 0.14)),
+                rgba(255, 255, 255, 0.08);
+            box-shadow: 0 17px 36px rgba(0, 0, 0, 0.27), 0 0 24px rgba(32, 199, 232, 0.1);
+            color: #ffffff;
+        }
+
+        .career-link:hover::before,
+        .career-link:focus-visible::before {
+            transform: rotate(18deg) translateX(270%);
+        }
+
+        .career-link:hover .career-link-arrow,
+        .career-link:focus-visible .career-link-arrow {
+            transform: translate(3px, -3px);
+            opacity: 1;
+        }
+
+        .career-link:focus-visible {
+            outline: 3px solid rgba(32, 199, 232, 0.35);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 480px) {
+            .career-link {
+                width: min(100%, 330px);
+                min-width: 0;
+                margin-left: 0;
+                padding-left: 1rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .help-center-banner {
                 flex-direction: column;
@@ -1305,6 +1471,22 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
                             <i data-feather="map-pin" width="24"></i>
                             <span>Av. Presidente Arthur da Silva Bernardes, 274<br>Curitiba, Paraná - CEP 80320-300</span>
                         </div>
+                        <a
+                            href="https://parceiro.zengatax.com.br/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="career-link"
+                            aria-label="Trabalhe Conosco — abre em uma nova guia"
+                        >
+                            <span class="career-link-icon" aria-hidden="true">
+                                <i data-feather="briefcase"></i>
+                            </span>
+                            <span class="career-link-copy">
+                                <span class="career-link-eyebrow">Faça parte da Zenga</span>
+                                <strong>Trabalhe Conosco</strong>
+                            </span>
+                            <i data-feather="arrow-up-right" class="career-link-arrow" aria-hidden="true"></i>
+                        </a>
                     </div>
                     <div class="contact-socials">
                         <h3>Siga Nossas Redes</h3>
