@@ -1,767 +1,2048 @@
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
+
     window.addEventListener('scroll', () => {
         if (header) {
-            header.classList.toggle('header-scrolled', window.scrollY > 50);
+            header.classList.toggle(
+                'header-scrolled',
+                window.scrollY > 50
+            );
         }
     });
 
+
+    // =========================================================
     // MENU MOBILE
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileNavMenu = document.getElementById('mobileNavMenu');
+    // =========================================================
+
+    const mobileMenuToggle =
+        document.getElementById('mobileMenuToggle');
+
+    const mobileNavMenu =
+        document.getElementById('mobileNavMenu');
+
 
     const setMobileMenuState = (isOpen) => {
-        if (!mobileMenuToggle || !mobileNavMenu) return;
 
-        mobileMenuToggle.classList.toggle('active', isOpen);
-        mobileNavMenu.classList.toggle('active', isOpen);
-        document.body.classList.toggle('mobile-menu-open', isOpen);
-        mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        if (!mobileMenuToggle || !mobileNavMenu) {
+            return;
+        }
+
+        mobileMenuToggle.classList.toggle(
+            'active',
+            isOpen
+        );
+
+        mobileNavMenu.classList.toggle(
+            'active',
+            isOpen
+        );
+
+        document.body.classList.toggle(
+            'mobile-menu-open',
+            isOpen
+        );
+
+        mobileMenuToggle.setAttribute(
+            'aria-expanded',
+            String(isOpen)
+        );
+
         mobileMenuToggle.setAttribute(
             'aria-label',
-            isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+            isOpen
+                ? 'Fechar menu de navegação'
+                : 'Abrir menu de navegação'
         );
-        mobileNavMenu.setAttribute('aria-hidden', String(!isOpen));
+
+        mobileNavMenu.setAttribute(
+            'aria-hidden',
+            String(!isOpen)
+        );
     };
 
+
     if (mobileMenuToggle && mobileNavMenu) {
-        mobileMenuToggle.addEventListener('click', (event) => {
-            event.stopPropagation();
-            setMobileMenuState(!mobileNavMenu.classList.contains('active'));
-        });
 
-        mobileNavMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => setMobileMenuState(false));
-        });
+        mobileMenuToggle.addEventListener(
+            'click',
+            (event) => {
 
-        document.addEventListener('click', (event) => {
-            if (!mobileNavMenu.classList.contains('active')) return;
+                event.stopPropagation();
 
-            const clickedInsideMenu = mobileNavMenu.contains(event.target);
-            const clickedToggle = mobileMenuToggle.contains(event.target);
-
-            if (!clickedInsideMenu && !clickedToggle) {
-                setMobileMenuState(false);
+                setMobileMenuState(
+                    !mobileNavMenu.classList.contains(
+                        'active'
+                    )
+                );
             }
-        });
+        );
 
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                setMobileMenuState(false);
+
+        mobileNavMenu
+            .querySelectorAll('a')
+            .forEach(link => {
+
+                link.addEventListener(
+                    'click',
+                    () => setMobileMenuState(false)
+                );
+
+            });
+
+
+        document.addEventListener(
+            'click',
+            (event) => {
+
+                if (
+                    !mobileNavMenu.classList.contains(
+                        'active'
+                    )
+                ) {
+                    return;
+                }
+
+                const clickedInsideMenu =
+                    mobileNavMenu.contains(
+                        event.target
+                    );
+
+                const clickedToggle =
+                    mobileMenuToggle.contains(
+                        event.target
+                    );
+
+
+                if (
+                    !clickedInsideMenu &&
+                    !clickedToggle
+                ) {
+                    setMobileMenuState(false);
+                }
             }
-        });
+        );
+
+
+        window.addEventListener(
+            'resize',
+            () => {
+
+                if (window.innerWidth > 768) {
+                    setMobileMenuState(false);
+                }
+
+            }
+        );
     }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
 
-                // Dispara o mapa
-                if (entry.target.id === 'map-container') {
-                    initBrazilMap();
-                }
+    // =========================================================
+    // ANIMAÇÕES AO ROLAR
+    // =========================================================
 
-                // Dispara animação dos contadores numéricos
-                if (entry.target.classList.contains('map-stats-column')) {
-                    const counters = entry.target.querySelectorAll('.counter');
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
 
-                    counters.forEach(counter => {
-                        const target = +counter.getAttribute('data-target');
-                        const duration = 2000;
-                        const increment = target / (duration / 16);
+                entries.forEach(entry => {
 
-                        let current = 0;
+                    if (entry.isIntersecting) {
 
-                        const updateCounter = () => {
-                            current += increment;
+                        entry.target.classList.add(
+                            'visible'
+                        );
 
-                            if (current < target) {
-                                counter.innerText = Math.ceil(current).toLocaleString('pt-BR');
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.innerText = target.toLocaleString('pt-BR');
-                            }
-                        };
 
-                        setTimeout(updateCounter, 600);
-                    });
-                }
+                        // MAPA
+                        if (
+                            entry.target.id ===
+                            'map-container'
+                        ) {
+                            initBrazilMap();
+                        }
 
-                observer.unobserve(entry.target);
+
+                        // CONTADORES
+                        if (
+                            entry.target
+                                .classList
+                                .contains(
+                                    'map-stats-column'
+                                )
+                        ) {
+
+                            const counters =
+                                entry.target
+                                    .querySelectorAll(
+                                        '.counter'
+                                    );
+
+
+                            counters.forEach(
+                                counter => {
+
+                                    const target =
+                                        +counter
+                                            .getAttribute(
+                                                'data-target'
+                                            );
+
+                                    const duration =
+                                        2000;
+
+                                    const increment =
+                                        target /
+                                        (duration / 16);
+
+                                    let current = 0;
+
+
+                                    const updateCounter =
+                                        () => {
+
+                                            current +=
+                                                increment;
+
+                                            if (
+                                                current <
+                                                target
+                                            ) {
+
+                                                counter
+                                                    .innerText =
+                                                    Math
+                                                        .ceil(
+                                                            current
+                                                        )
+                                                        .toLocaleString(
+                                                            'pt-BR'
+                                                        );
+
+                                                requestAnimationFrame(
+                                                    updateCounter
+                                                );
+
+                                            } else {
+
+                                                counter
+                                                    .innerText =
+                                                    target
+                                                        .toLocaleString(
+                                                            'pt-BR'
+                                                        );
+                                            }
+                                        };
+
+
+                                    setTimeout(
+                                        updateCounter,
+                                        600
+                                    );
+
+                                }
+                            );
+                        }
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.1
             }
+        );
+
+
+    document
+        .querySelectorAll(
+            '.animate-on-scroll'
+        )
+        .forEach(el => {
+
+            if (el) {
+                observer.observe(el);
+            }
+
         });
-    }, {
-        threshold: 0.1
-    });
 
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        if (el) {
-            observer.observe(el);
-        }
-    });
 
+    // =========================================================
     // CARROSSEL: SOLUÇÕES
-    const solutionsCarousel = document.querySelector('.solutions-carousel');
+    // =========================================================
+
+    const solutionsCarousel =
+        document.querySelector(
+            '.solutions-carousel'
+        );
+
 
     if (solutionsCarousel) {
-        const track = solutionsCarousel;
-        const cards = Array.from(track.children);
-        const nextButton = document.querySelector('#solutions .carousel-arrow.next');
-        const prevButton = document.querySelector('#solutions .carousel-arrow.prev');
-        const dotsNav = document.querySelector('#solutions .carousel-dots');
+
+        const track =
+            solutionsCarousel;
+
+        const cards =
+            Array.from(
+                track.children
+            );
+
+        const nextButton =
+            document.querySelector(
+                '#solutions .carousel-arrow.next'
+            );
+
+        const prevButton =
+            document.querySelector(
+                '#solutions .carousel-arrow.prev'
+            );
+
+        const dotsNav =
+            document.querySelector(
+                '#solutions .carousel-dots'
+            );
+
 
         let currentIndex = 0;
+
         let slideInterval;
-        let cardWidth = cards.length > 0 ? cards[0].offsetWidth : 0;
 
-        cards.forEach((_, i) => {
-            const dot = document.createElement('button');
+        let cardWidth =
+            cards.length > 0
+                ? cards[0].offsetWidth
+                : 0;
 
-            dot.classList.add('dot');
-            dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
 
-            dot.addEventListener('click', () => {
-                goToSlide(i);
-                resetInterval();
-            });
+        cards.forEach(
+            (_, i) => {
 
-            dotsNav.appendChild(dot);
-        });
+                const dot =
+                    document.createElement(
+                        'button'
+                    );
 
-        const dots = Array.from(dotsNav.children);
+                dot.classList.add(
+                    'dot'
+                );
 
-        const updateCarousel = () => {
-            if (cards.length === 0) return;
+                dot.setAttribute(
+                    'aria-label',
+                    `Ir para slide ${i + 1}`
+                );
 
-            cardWidth = cards[0].offsetWidth;
 
-            const offset =
-                -currentIndex * cardWidth +
-                (track.parentElement.offsetWidth - cardWidth) / 2;
+                dot.addEventListener(
+                    'click',
+                    () => {
 
-            track.style.transform = `translateX(${offset}px)`;
+                        goToSlide(i);
 
-            cards.forEach((card, index) => {
-                card.classList.toggle('is-active', index === currentIndex);
-            });
+                        resetInterval();
 
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        };
+                    }
+                );
 
-        const goToSlide = (index) => {
-            currentIndex = index;
-            updateCarousel();
-        };
 
-        const nextSlide = () => {
-            currentIndex = (currentIndex + 1) % cards.length;
-            updateCarousel();
-        };
+                if (dotsNav) {
+                    dotsNav.appendChild(
+                        dot
+                    );
+                }
 
-        const prevSlide = () => {
-            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-            updateCarousel();
-        };
+            }
+        );
+
+
+        const dots =
+            dotsNav
+                ? Array.from(
+                    dotsNav.children
+                )
+                : [];
+
+
+        const updateCarousel =
+            () => {
+
+                if (
+                    cards.length === 0
+                ) {
+                    return;
+                }
+
+
+                cardWidth =
+                    cards[0]
+                        .offsetWidth;
+
+
+                const offset =
+                    -currentIndex *
+                        cardWidth +
+                    (
+                        track.parentElement
+                            .offsetWidth -
+                        cardWidth
+                    ) /
+                        2;
+
+
+                track.style.transform =
+                    `translateX(${offset}px)`;
+
+
+                cards.forEach(
+                    (card, index) => {
+
+                        card.classList.toggle(
+                            'is-active',
+                            index ===
+                                currentIndex
+                        );
+
+                    }
+                );
+
+
+                dots.forEach(
+                    (dot, index) => {
+
+                        dot.classList.toggle(
+                            'active',
+                            index ===
+                                currentIndex
+                        );
+
+                    }
+                );
+            };
+
+
+        const goToSlide =
+            (index) => {
+
+                currentIndex =
+                    index;
+
+                updateCarousel();
+            };
+
+
+        const nextSlide =
+            () => {
+
+                currentIndex =
+                    (
+                        currentIndex +
+                        1
+                    ) %
+                    cards.length;
+
+                updateCarousel();
+            };
+
+
+        const prevSlide =
+            () => {
+
+                currentIndex =
+                    (
+                        currentIndex -
+                        1 +
+                        cards.length
+                    ) %
+                    cards.length;
+
+                updateCarousel();
+            };
+
 
         if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                nextSlide();
-                resetInterval();
-            });
+
+            nextButton
+                .addEventListener(
+                    'click',
+                    () => {
+
+                        nextSlide();
+
+                        resetInterval();
+
+                    }
+                );
         }
+
 
         if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                prevSlide();
-                resetInterval();
-            });
+
+            prevButton
+                .addEventListener(
+                    'click',
+                    () => {
+
+                        prevSlide();
+
+                        resetInterval();
+
+                    }
+                );
         }
 
-        const startInterval = () => {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 5000);
-        };
 
-        const resetInterval = () => {
-            clearInterval(slideInterval);
-            startInterval();
-        };
+        const startInterval =
+            () => {
 
-        const handleResize = () => {
-            updateCarousel();
-        };
+                clearInterval(
+                    slideInterval
+                );
 
-        window.addEventListener('resize', handleResize);
+                slideInterval =
+                    setInterval(
+                        nextSlide,
+                        5000
+                    );
+            };
+
+
+        const resetInterval =
+            () => {
+
+                clearInterval(
+                    slideInterval
+                );
+
+                startInterval();
+            };
+
+
+        const handleResize =
+            () => {
+
+                updateCarousel();
+
+            };
+
+
+        window.addEventListener(
+            'resize',
+            handleResize
+        );
+
 
         updateCarousel();
+
         startInterval();
     }
 
+
+    // =========================================================
     // CARROSSEL: DEPOIMENTOS
-    const testimonialWrapper = document.querySelector('.testimonial-wrapper');
+    // =========================================================
+
+    const testimonialWrapper =
+        document.querySelector(
+            '.testimonial-wrapper'
+        );
+
 
     if (testimonialWrapper) {
-        const track = testimonialWrapper.querySelector('.testimonial-track');
-        const slides = Array.from(track.children);
-        const nextButton = testimonialWrapper.querySelector('.slider-arrow.next');
-        const prevButton = testimonialWrapper.querySelector('.slider-arrow.prev');
-        const dotsNav = testimonialWrapper.querySelector('.testimonial-dots');
+
+        const track =
+            testimonialWrapper
+                .querySelector(
+                    '.testimonial-track'
+                );
+
+        const slides =
+            track
+                ? Array.from(
+                    track.children
+                )
+                : [];
+
+        const nextButton =
+            testimonialWrapper
+                .querySelector(
+                    '.slider-arrow.next'
+                );
+
+        const prevButton =
+            testimonialWrapper
+                .querySelector(
+                    '.slider-arrow.prev'
+                );
+
+        const dotsNav =
+            testimonialWrapper
+                .querySelector(
+                    '.testimonial-dots'
+                );
+
 
         let currentIndex = 0;
+
         let autoPlayInterval;
 
-        slides.forEach((_, i) => {
-            const dot = document.createElement('button');
 
-            dot.classList.add('dot');
-            dot.setAttribute('aria-label', `Ir para depoimento ${i + 1}`);
+        slides.forEach(
+            (_, i) => {
 
-            dot.addEventListener('click', () => {
-                goToTestimonialSlide(i);
-                resetAutoPlay();
-            });
+                const dot =
+                    document.createElement(
+                        'button'
+                    );
 
-            dotsNav.appendChild(dot);
-        });
+                dot.classList.add(
+                    'dot'
+                );
 
-        const dots = Array.from(dotsNav.children);
+                dot.setAttribute(
+                    'aria-label',
+                    `Ir para depoimento ${i + 1}`
+                );
 
-        const setSlidePosition = () => {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
 
-        const updateDots = () => {
-            dots.forEach(dot => dot.classList.remove('active'));
+                dot.addEventListener(
+                    'click',
+                    () => {
 
-            if (dots[currentIndex]) {
-                dots[currentIndex].classList.add('active');
+                        goToTestimonialSlide(
+                            i
+                        );
+
+                        resetAutoPlay();
+
+                    }
+                );
+
+
+                if (dotsNav) {
+                    dotsNav.appendChild(
+                        dot
+                    );
+                }
+
             }
-        };
+        );
 
-        const goToTestimonialSlide = (index) => {
-            currentIndex = index;
-            setSlidePosition();
-            updateDots();
-        };
 
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                const nextIndex = (currentIndex + 1) % slides.length;
+        const dots =
+            dotsNav
+                ? Array.from(
+                    dotsNav.children
+                )
+                : [];
 
-                goToTestimonialSlide(nextIndex);
-                resetAutoPlay();
-            });
+
+        const setSlidePosition =
+            () => {
+
+                if (!track) {
+                    return;
+                }
+
+                track.style.transform =
+                    `translateX(-${currentIndex * 100}%)`;
+            };
+
+
+        const updateDots =
+            () => {
+
+                dots.forEach(
+                    dot =>
+                        dot.classList.remove(
+                            'active'
+                        )
+                );
+
+
+                if (dots[currentIndex]) {
+
+                    dots[currentIndex]
+                        .classList.add(
+                            'active'
+                        );
+                }
+            };
+
+
+        const goToTestimonialSlide =
+            (index) => {
+
+                currentIndex =
+                    index;
+
+                setSlidePosition();
+
+                updateDots();
+            };
+
+
+        if (
+            nextButton &&
+            slides.length
+        ) {
+
+            nextButton
+                .addEventListener(
+                    'click',
+                    () => {
+
+                        const nextIndex =
+                            (
+                                currentIndex +
+                                1
+                            ) %
+                            slides.length;
+
+
+                        goToTestimonialSlide(
+                            nextIndex
+                        );
+
+                        resetAutoPlay();
+
+                    }
+                );
         }
 
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                const prevIndex =
-                    (currentIndex - 1 + slides.length) % slides.length;
 
-                goToTestimonialSlide(prevIndex);
-                resetAutoPlay();
-            });
+        if (
+            prevButton &&
+            slides.length
+        ) {
+
+            prevButton
+                .addEventListener(
+                    'click',
+                    () => {
+
+                        const prevIndex =
+                            (
+                                currentIndex -
+                                1 +
+                                slides.length
+                            ) %
+                            slides.length;
+
+
+                        goToTestimonialSlide(
+                            prevIndex
+                        );
+
+                        resetAutoPlay();
+
+                    }
+                );
         }
 
-        const startAutoPlay = () => {
-            clearInterval(autoPlayInterval);
 
-            autoPlayInterval = setInterval(() => {
-                const nextIndex = (currentIndex + 1) % slides.length;
-                goToTestimonialSlide(nextIndex);
-            }, 7000);
-        };
+        const startAutoPlay =
+            () => {
 
-        const resetAutoPlay = () => {
-            clearInterval(autoPlayInterval);
-            startAutoPlay();
-        };
+                clearInterval(
+                    autoPlayInterval
+                );
 
-        testimonialWrapper.addEventListener('mouseenter', () => {
-            clearInterval(autoPlayInterval);
-        });
 
-        testimonialWrapper.addEventListener('mouseleave', () => {
-            startAutoPlay();
-        });
+                if (
+                    !slides.length
+                ) {
+                    return;
+                }
+
+
+                autoPlayInterval =
+                    setInterval(
+                        () => {
+
+                            const nextIndex =
+                                (
+                                    currentIndex +
+                                    1
+                                ) %
+                                slides.length;
+
+
+                            goToTestimonialSlide(
+                                nextIndex
+                            );
+
+                        },
+                        7000
+                    );
+            };
+
+
+        const resetAutoPlay =
+            () => {
+
+                clearInterval(
+                    autoPlayInterval
+                );
+
+                startAutoPlay();
+            };
+
+
+        testimonialWrapper
+            .addEventListener(
+                'mouseenter',
+                () => {
+
+                    clearInterval(
+                        autoPlayInterval
+                    );
+
+                }
+            );
+
+
+        testimonialWrapper
+            .addEventListener(
+                'mouseleave',
+                () => {
+
+                    startAutoPlay();
+
+                }
+            );
+
 
         updateDots();
+
         startAutoPlay();
     }
 
+
+    // =========================================================
     // CARROSSEL: BLOG
-    const blogWrapper = document.querySelector('.blog-carousel-wrapper');
+    // =========================================================
+
+    const blogWrapper =
+        document.querySelector(
+            '.blog-carousel-wrapper'
+        );
+
 
     if (blogWrapper) {
-        const track = blogWrapper.querySelector('.blog-track');
-        const slides = Array.from(track.children);
-        const nextButton = blogWrapper.querySelector('#blog-next');
-        const prevButton = blogWrapper.querySelector('#blog-prev');
-        const dotsNav = blogWrapper.querySelector('.blog-carousel-dots');
+
+        const track =
+            blogWrapper
+                .querySelector(
+                    '.blog-track'
+                );
+
+        const slides =
+            track
+                ? Array.from(
+                    track.children
+                )
+                : [];
+
+        const nextButton =
+            blogWrapper
+                .querySelector(
+                    '#blog-next'
+                );
+
+        const prevButton =
+            blogWrapper
+                .querySelector(
+                    '#blog-prev'
+                );
+
+        const dotsNav =
+            blogWrapper
+                .querySelector(
+                    '.blog-carousel-dots'
+                );
+
 
         let currentIndex = 0;
+
         let slidesToShow = 3;
+
         let slidesToScroll = 1;
-        let maxIndex = slides.length - slidesToShow;
+
+        let maxIndex =
+            slides.length -
+            slidesToShow;
+
         let autoPlayInterval;
 
-        // Tempo de 10 segundos para leitura
-        const blogSlideTime = 10000;
+
+        const blogSlideTime =
+            10000;
+
 
         function updateBlogMetrics() {
-            if (window.innerWidth <= 768) {
+
+            if (
+                window.innerWidth <=
+                768
+            ) {
+
                 slidesToShow = 1;
-            } else if (window.innerWidth <= 992) {
+
+            } else if (
+                window.innerWidth <=
+                992
+            ) {
+
                 slidesToShow = 2;
+
             } else {
+
                 slidesToShow = 3;
             }
 
+
             slidesToScroll = 1;
-            maxIndex = Math.max(0, slides.length - slidesToShow);
+
+
+            maxIndex =
+                Math.max(
+                    0,
+                    slides.length -
+                        slidesToShow
+                );
+
 
             if (dotsNav) {
-                dotsNav.innerHTML = '';
 
-                for (let i = 0; i <= maxIndex; i++) {
-                    const dot = document.createElement('button');
+                dotsNav.innerHTML =
+                    '';
 
-                    dot.classList.add('dot');
-                    dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
 
-                    dot.addEventListener('click', () => {
-                        goToBlogSlide(i);
-                        resetAutoPlayBlog();
-                    });
+                for (
+                    let i = 0;
+                    i <= maxIndex;
+                    i++
+                ) {
 
-                    dotsNav.appendChild(dot);
+                    const dot =
+                        document.createElement(
+                            'button'
+                        );
+
+
+                    dot.classList.add(
+                        'dot'
+                    );
+
+
+                    dot.setAttribute(
+                        'aria-label',
+                        `Ir para slide ${i + 1}`
+                    );
+
+
+                    dot.addEventListener(
+                        'click',
+                        () => {
+
+                            goToBlogSlide(
+                                i
+                            );
+
+                            resetAutoPlayBlog();
+
+                        }
+                    );
+
+
+                    dotsNav.appendChild(
+                        dot
+                    );
                 }
             }
 
+
             updateBlogDots();
         }
+
 
         function updateBlogDots() {
-            if (!dotsNav) return;
 
-            const dots = Array.from(dotsNav.children);
+            if (!dotsNav) {
+                return;
+            }
 
-            dots.forEach(dot => dot.classList.remove('active'));
 
-            if (dots[currentIndex]) {
-                dots[currentIndex].classList.add('active');
+            const dots =
+                Array.from(
+                    dotsNav.children
+                );
+
+
+            dots.forEach(
+                dot =>
+                    dot.classList.remove(
+                        'active'
+                    )
+            );
+
+
+            if (
+                dots[currentIndex]
+            ) {
+
+                dots[currentIndex]
+                    .classList.add(
+                        'active'
+                    );
             }
         }
 
-        function goToBlogSlide(index) {
-            currentIndex = Math.max(0, Math.min(index, maxIndex));
 
-            const slideWidth = slides[0] ? slides[0].offsetWidth : 0;
+        function goToBlogSlide(
+            index
+        ) {
 
-            track.style.transform =
-                `translateX(-${currentIndex * slideWidth}px)`;
+            currentIndex =
+                Math.max(
+                    0,
+                    Math.min(
+                        index,
+                        maxIndex
+                    )
+                );
+
+
+            const slideWidth =
+                slides[0]
+                    ? slides[0]
+                        .offsetWidth
+                    : 0;
+
+
+            if (track) {
+
+                track.style.transform =
+                    `translateX(-${currentIndex * slideWidth}px)`;
+
+            }
+
 
             updateBlogDots();
         }
 
-        const nextBlogSlide = () => {
-            let nextIndex = currentIndex + slidesToScroll;
 
-            if (nextIndex > maxIndex) {
-                nextIndex = 0;
-            }
+        const nextBlogSlide =
+            () => {
 
-            goToBlogSlide(nextIndex);
-        };
+                let nextIndex =
+                    currentIndex +
+                    slidesToScroll;
 
-        const prevBlogSlide = () => {
-            let prevIndex = currentIndex - slidesToScroll;
 
-            if (prevIndex < 0) {
-                prevIndex = maxIndex;
-            }
+                if (
+                    nextIndex >
+                    maxIndex
+                ) {
 
-            goToBlogSlide(prevIndex);
-        };
+                    nextIndex = 0;
+
+                }
+
+
+                goToBlogSlide(
+                    nextIndex
+                );
+            };
+
+
+        const prevBlogSlide =
+            () => {
+
+                let prevIndex =
+                    currentIndex -
+                    slidesToScroll;
+
+
+                if (
+                    prevIndex < 0
+                ) {
+
+                    prevIndex =
+                        maxIndex;
+
+                }
+
+
+                goToBlogSlide(
+                    prevIndex
+                );
+            };
+
 
         if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                nextBlogSlide();
-                resetAutoPlayBlog();
-            });
+
+            nextButton
+                .addEventListener(
+                    'click',
+                    () => {
+
+                        nextBlogSlide();
+
+                        resetAutoPlayBlog();
+
+                    }
+                );
         }
+
 
         if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                prevBlogSlide();
-                resetAutoPlayBlog();
-            });
+
+            prevButton
+                .addEventListener(
+                    'click',
+                    () => {
+
+                        prevBlogSlide();
+
+                        resetAutoPlayBlog();
+
+                    }
+                );
         }
 
-        const startAutoPlayBlog = () => {
-            clearInterval(autoPlayInterval);
 
-            autoPlayInterval = setInterval(
-                nextBlogSlide,
-                blogSlideTime
+        const startAutoPlayBlog =
+            () => {
+
+                clearInterval(
+                    autoPlayInterval
+                );
+
+
+                autoPlayInterval =
+                    setInterval(
+                        nextBlogSlide,
+                        blogSlideTime
+                    );
+            };
+
+
+        const resetAutoPlayBlog =
+            () => {
+
+                clearInterval(
+                    autoPlayInterval
+                );
+
+                startAutoPlayBlog();
+            };
+
+
+        window.addEventListener(
+            'resize',
+            () => {
+
+                updateBlogMetrics();
+
+                goToBlogSlide(
+                    currentIndex
+                );
+
+            }
+        );
+
+
+        blogWrapper
+            .addEventListener(
+                'mouseenter',
+                () => {
+
+                    clearInterval(
+                        autoPlayInterval
+                    );
+
+                }
             );
-        };
 
-        const resetAutoPlayBlog = () => {
-            clearInterval(autoPlayInterval);
-            startAutoPlayBlog();
-        };
 
-        window.addEventListener('resize', () => {
-            updateBlogMetrics();
-            goToBlogSlide(currentIndex);
-        });
+        blogWrapper
+            .addEventListener(
+                'mouseleave',
+                () => {
 
-        blogWrapper.addEventListener('mouseenter', () => {
-            clearInterval(autoPlayInterval);
-        });
+                    startAutoPlayBlog();
 
-        blogWrapper.addEventListener('mouseleave', () => {
-            startAutoPlayBlog();
-        });
+                }
+            );
+
 
         updateBlogMetrics();
+
         goToBlogSlide(0);
 
-        // Inicia o autoplay somente quando a seção estiver visível
-        const blogObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startAutoPlayBlog();
-                } else {
-                    clearInterval(autoPlayInterval);
-                }
-            });
-        }, {
-            threshold: 0.2
-        });
 
-        blogObserver.observe(blogWrapper);
+        const blogObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry
+                                    .isIntersecting
+                            ) {
+
+                                startAutoPlayBlog();
+
+                            } else {
+
+                                clearInterval(
+                                    autoPlayInterval
+                                );
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.2
+                }
+            );
+
+
+        blogObserver.observe(
+            blogWrapper
+        );
     }
 
+
+    // =========================================================
     // MODAIS
-    const openModal = (modal) => {
-        if (modal) {
-            modal.classList.add('visible');
-            document.body.classList.add('modal-open');
+    // =========================================================
 
-            try {
-                feather.replace();
-            } catch (e) {}
-        }
-    };
+    const openModal =
+        (modal) => {
 
-    const closeModal = (modal) => {
-        if (modal) {
-            modal.classList.remove('visible');
+            if (modal) {
 
-            const hasVisibleModal =
-                document.querySelector('.modal-overlay.visible');
+                modal.classList.add(
+                    'visible'
+                );
 
-            if (!hasVisibleModal) {
-                document.body.classList.remove('modal-open');
+                document.body
+                    .classList.add(
+                        'modal-open'
+                    );
+
+
+                try {
+                    feather.replace();
+                } catch (e) {}
+
             }
-        }
-    };
+        };
+
+
+    const closeModal =
+        (modal) => {
+
+            if (modal) {
+
+                modal.classList.remove(
+                    'visible'
+                );
+
+
+                const hasVisibleModal =
+                    document.querySelector(
+                        '.modal-overlay.visible'
+                    );
+
+
+                if (
+                    !hasVisibleModal
+                ) {
+
+                    document.body
+                        .classList.remove(
+                            'modal-open'
+                        );
+                }
+            }
+        };
+
 
     const promoModal =
-        document.getElementById('promoModalOverlay');
+        document.getElementById(
+            'promoModalOverlay'
+        );
+
 
     const planModal =
-        document.getElementById('planModalOverlay');
+        document.getElementById(
+            'planModalOverlay'
+        );
+
 
     const reinforcementModal =
-        document.getElementById('reinforcementModalOverlay');
+        document.getElementById(
+            'reinforcementModalOverlay'
+        );
+
 
     const contactModal =
-        document.getElementById('contactModalOverlay');
+        document.getElementById(
+            'contactModalOverlay'
+        );
+
 
     if (promoModal) {
-        setTimeout(() => {
-            openModal(promoModal);
-        }, 5000);
+
+        setTimeout(
+            () => {
+
+                openModal(
+                    promoModal
+                );
+
+            },
+            5000
+        );
     }
+
 
     [
         promoModal,
         planModal,
         reinforcementModal,
         contactModal
-    ].forEach(modal => {
-        if (modal) {
-            const closeBtn = modal.querySelector('.modal-close');
 
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    closeModal(modal);
-                });
+    ].forEach(
+        modal => {
+
+            if (modal) {
+
+                const closeBtn =
+                    modal.querySelector(
+                        '.modal-close'
+                    );
+
+
+                if (closeBtn) {
+
+                    closeBtn
+                        .addEventListener(
+                            'click',
+                            () => {
+
+                                closeModal(
+                                    modal
+                                );
+
+                            }
+                        );
+                }
+
+
+                modal.addEventListener(
+                    'click',
+                    (event) => {
+
+                        if (
+                            event.target ===
+                            modal
+                        ) {
+
+                            closeModal(
+                                modal
+                            );
+                        }
+
+                    }
+                );
             }
 
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    closeModal(modal);
-                }
-            });
         }
-    });
+    );
 
-    const planButtons = document.querySelectorAll('.plan-button');
 
-    planButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.preventDefault();
+    const planButtons =
+        document.querySelectorAll(
+            '.plan-button'
+        );
 
-            const parentCard =
-                event.target.closest('.pricing-card');
 
-            const planTitle =
-                parentCard?.querySelector('h3')?.innerText
-                    .toLowerCase();
+    planButtons.forEach(
+        button => {
 
-            const planPrice =
-                parentCard?.querySelector('.price-value')?.innerText
-                    .toLowerCase();
+            button.addEventListener(
+                'click',
+                (event) => {
 
-            if (
-                parentCard &&
-                (
-                    planTitle === 'plus' ||
-                    planPrice === 'consultar'
-                )
-            ) {
-                const contactSection =
-                    document.getElementById('contact');
+                    event.preventDefault();
 
-                if (contactSection) {
-                    contactSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+
+                    const parentCard =
+                        event.target
+                            .closest(
+                                '.pricing-card'
+                            );
+
+
+                    const planTitle =
+                        parentCard
+                            ?.querySelector(
+                                'h3'
+                            )
+                            ?.innerText
+                            .toLowerCase();
+
+
+                    const planPrice =
+                        parentCard
+                            ?.querySelector(
+                                '.price-value'
+                            )
+                            ?.innerText
+                            .toLowerCase();
+
+
+                    if (
+                        parentCard &&
+                        (
+                            planTitle ===
+                                'plus' ||
+                            planPrice ===
+                                'consultar'
+                        )
+                    ) {
+
+                        const contactSection =
+                            document
+                                .getElementById(
+                                    'contact'
+                                );
+
+
+                        if (
+                            contactSection
+                        ) {
+
+                            contactSection
+                                .scrollIntoView(
+                                    {
+                                        behavior:
+                                            'smooth'
+                                    }
+                                );
+                        }
+
+                    } else if (
+                        parentCard &&
+                        parentCard
+                            .classList
+                            .contains(
+                                'free-plan'
+                            )
+                    ) {
+
+                        openModal(
+                            contactModal
+                        );
+
+                    } else {
+
+                        openModal(
+                            planModal
+                        );
+                    }
+
                 }
-            } else if (
-                parentCard &&
-                parentCard.classList.contains('free-plan')
-            ) {
-                openModal(contactModal);
-            } else {
-                openModal(planModal);
-            }
-        });
-    });
+            );
+
+        }
+    );
+
 
     const headerCtaButton =
-        document.getElementById('header-cta-button');
+        document.getElementById(
+            'header-cta-button'
+        );
+
 
     if (headerCtaButton) {
-        headerCtaButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            openModal(contactModal);
-        });
+
+        headerCtaButton
+            .addEventListener(
+                'click',
+                (event) => {
+
+                    event.preventDefault();
+
+                    openModal(
+                        contactModal
+                    );
+
+                }
+            );
     }
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            setMobileMenuState(false);
 
-            document
-                .querySelectorAll('.modal-overlay.visible')
-                .forEach(modal => closeModal(modal));
+    document.addEventListener(
+        'keydown',
+        (event) => {
+
+            if (
+                event.key ===
+                'Escape'
+            ) {
+
+                setMobileMenuState(
+                    false
+                );
+
+
+                document
+                    .querySelectorAll(
+                        '.modal-overlay.visible'
+                    )
+                    .forEach(
+                        modal =>
+                            closeModal(
+                                modal
+                            )
+                    );
+            }
+
         }
-    });
+    );
 
-    let reinforcementModalShown = false;
+
+    let reinforcementModalShown =
+        false;
+
     let scrollTimeout;
 
-    window.addEventListener('scroll', () => {
-        if (
-            !reinforcementModalShown &&
-            reinforcementModal
-        ) {
-            clearTimeout(scrollTimeout);
 
-            const isNearBottom =
-                window.innerHeight + window.scrollY >=
-                document.body.offsetHeight - 200;
+    window.addEventListener(
+        'scroll',
+        () => {
 
-            if (isNearBottom) {
-                scrollTimeout = setTimeout(() => {
-                    const stillNearBottom =
-                        window.innerHeight + window.scrollY >=
-                        document.body.offsetHeight - 200;
+            if (
+                !reinforcementModalShown &&
+                reinforcementModal
+            ) {
 
-                    if (stillNearBottom) {
-                        openModal(reinforcementModal);
-                        reinforcementModalShown = true;
-                    }
-                }, 5000);
+                clearTimeout(
+                    scrollTimeout
+                );
+
+
+                const isNearBottom =
+                    window.innerHeight +
+                        window.scrollY >=
+                    document.body
+                        .offsetHeight -
+                        200;
+
+
+                if (isNearBottom) {
+
+                    scrollTimeout =
+                        setTimeout(
+                            () => {
+
+                                const stillNearBottom =
+                                    window
+                                        .innerHeight +
+                                        window
+                                            .scrollY >=
+                                    document
+                                        .body
+                                        .offsetHeight -
+                                        200;
+
+
+                                if (
+                                    stillNearBottom
+                                ) {
+
+                                    openModal(
+                                        reinforcementModal
+                                    );
+
+                                    reinforcementModalShown =
+                                        true;
+                                }
+
+                            },
+                            5000
+                        );
+                }
             }
+
         }
-    });
+    );
 
+
+    // =========================================================
     // BOTÕES DE CÓPIA
+    // =========================================================
+
     const copyButtons =
-        document.querySelectorAll('.copy-button');
+        document.querySelectorAll(
+            '.copy-button'
+        );
 
-    copyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.dataset.copyTarget;
-            const targetElement =
-                document.getElementById(targetId);
 
-            if (targetElement) {
-                navigator.clipboard
-                    .writeText(targetElement.innerText.trim())
-                    .then(() => {
-                        const originalIcon = button.innerHTML;
+    copyButtons.forEach(
+        button => {
 
-                        button.innerHTML =
-                            '<i data-feather="check"></i>';
+            button.addEventListener(
+                'click',
+                () => {
 
-                        button.classList.add('copied');
+                    const targetId =
+                        button.dataset
+                            .copyTarget;
 
-                        try {
-                            feather.replace();
-                        } catch (e) {}
 
-                        setTimeout(() => {
-                            button.innerHTML = originalIcon;
-                            button.classList.remove('copied');
+                    const targetElement =
+                        document
+                            .getElementById(
+                                targetId
+                            );
 
-                            try {
-                                feather.replace();
-                            } catch (e) {}
-                        }, 2000);
-                    })
-                    .catch(() => {});
-            }
-        });
-    });
 
-    // MAPA
+                    if (
+                        targetElement
+                    ) {
+
+                        navigator
+                            .clipboard
+                            .writeText(
+                                targetElement
+                                    .innerText
+                                    .trim()
+                            )
+                            .then(
+                                () => {
+
+                                    const originalIcon =
+                                        button
+                                            .innerHTML;
+
+
+                                    button.innerHTML =
+                                        '<i data-feather="check"></i>';
+
+
+                                    button
+                                        .classList
+                                        .add(
+                                            'copied'
+                                        );
+
+
+                                    try {
+                                        feather.replace();
+                                    } catch (e) {}
+
+
+                                    setTimeout(
+                                        () => {
+
+                                            button.innerHTML =
+                                                originalIcon;
+
+
+                                            button
+                                                .classList
+                                                .remove(
+                                                    'copied'
+                                                );
+
+
+                                            try {
+                                                feather.replace();
+                                            } catch (e) {}
+
+                                        },
+                                        2000
+                                    );
+
+                                }
+                            )
+                            .catch(
+                                () => {}
+                            );
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    // =========================================================
+    // MAPA ESTÁTICO
+    //
+    // Visual semelhante ao antigo CARTO Light.
+    //
+    // NÃO USA:
+    // - API key
+    // - tiles CARTO
+    // - zoom pelo usuário
+    // - arrastar mapa
+    //
+    // AJUSTE:
+    // zoom = 4
+    // para recuperar o enquadramento visual do mapa antigo.
+    // =========================================================
+
     let mapInstance = null;
 
+
     function initBrazilMap() {
+
         if (
             mapInstance ||
-            typeof L === 'undefined' ||
-            !document.getElementById('map-container')
+            typeof L ===
+                'undefined' ||
+            !document.getElementById(
+                'map-container'
+            )
         ) {
             return;
         }
 
+
+        const mapContainer =
+            document.getElementById(
+                'map-container'
+            );
+
+
         try {
-            mapInstance = L.map('map-container', {
-                center: [-15.5, -50.0],
-                zoom: 4.49,
-                zoomControl: false,
-                dragging: false,
-                touchZoom: false,
-                doubleClickZoom: false,
-                scrollWheelZoom: false,
-                boxZoom: false,
-                keyboard: false,
-                attributionControl: false
-            });
 
-            L.tileLayer(
-                'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
-                {
-                    subdomains: 'abcd',
-                    maxZoom: 7,
-                    minZoom: 4
+            // Oceano
+            mapContainer.style.background =
+                '#d7dde0';
+
+
+            mapContainer
+                .classList
+                .add(
+                    'static-brazil-map'
+                );
+
+
+            // CSS específico do mapa
+            const staticMapStyle =
+                document.createElement(
+                    'style'
+                );
+
+
+            staticMapStyle.textContent = `
+
+                #map-container.static-brazil-map {
+                    background: #d7dde0 !important;
+                    cursor: default !important;
                 }
-            ).addTo(mapInstance);
 
-            const zengaHQ = [-25.4411, -49.2908];
+                #map-container.static-brazil-map
+                .leaflet-container,
+
+                #map-container.static-brazil-map
+                .leaflet-pane,
+
+                #map-container.static-brazil-map
+                .leaflet-map-pane,
+
+                #map-container.static-brazil-map
+                .leaflet-overlay-pane,
+
+                #map-container.static-brazil-map
+                .leaflet-marker-pane,
+
+                #map-container.static-brazil-map
+                .leaflet-shadow-pane {
+                    pointer-events: none !important;
+                }
+
+                #map-container.static-brazil-map
+                .leaflet-control-container {
+                    display: none !important;
+                }
+
+                #map-container.static-brazil-map
+                .leaflet-zoom-animated {
+                    will-change: auto !important;
+                }
+
+            `;
+
+
+            document.head.appendChild(
+                staticMapStyle
+            );
+
+
+            // =================================================
+            // MAPA
+            //
+            // IMPORTANTE:
+            //
+            // O mapa anterior tinha zoom 4.49,
+            // mas sem zoomSnap decimal.
+            //
+            // Portanto o enquadramento visual
+            // era equivalente ao nível 4.
+            //
+            // Agora usamos explicitamente 4.
+            // =================================================
+
+            mapInstance =
+                L.map(
+                    'map-container',
+                    {
+
+                        center: [
+                            -15.5,
+                            -50.0
+                        ],
+
+                        zoom: 4,
+
+                        zoomControl:
+                            false,
+
+                        dragging:
+                            false,
+
+                        touchZoom:
+                            false,
+
+                        doubleClickZoom:
+                            false,
+
+                        scrollWheelZoom:
+                            false,
+
+                        boxZoom:
+                            false,
+
+                        keyboard:
+                            false,
+
+                        tap:
+                            false,
+
+                        attributionControl:
+                            false,
+
+                        preferCanvas:
+                            false
+                    }
+                );
+
+
+            // =================================================
+            // CAMADAS
+            // =================================================
+
+            mapInstance.createPane(
+                'countriesPane'
+            );
+
+
+            mapInstance
+                .getPane(
+                    'countriesPane'
+                )
+                .style
+                .zIndex =
+                200;
+
+
+            mapInstance.createPane(
+                'statesPane'
+            );
+
+
+            mapInstance
+                .getPane(
+                    'statesPane'
+                )
+                .style
+                .zIndex =
+                260;
+
+
+            mapInstance.createPane(
+                'routesPane'
+            );
+
+
+            mapInstance
+                .getPane(
+                    'routesPane'
+                )
+                .style
+                .zIndex =
+                420;
+
+
+            mapInstance.createPane(
+                'pointsPane'
+            );
+
+
+            mapInstance
+                .getPane(
+                    'pointsPane'
+                )
+                .style
+                .zIndex =
+                520;
+
+
+            // =================================================
+            // SEDE ZENGA
+            // =================================================
+
+            const zengaHQ = [
+                -25.4411,
+                -49.2908
+            ];
+
+
+            // =================================================
+            // COORDENADAS
+            // =================================================
 
             const ufCoordinates = {
+
                 SP: {
                     lat: -23.5505,
                     lon: -46.6333,
                     name: 'São Paulo'
                 },
+
+
                 MG: {
                     lat: -19.9167,
                     lon: -43.9345,
                     name: 'Minas Gerais'
                 },
+
+
                 PR: {
                     lat: -25.4284,
                     lon: -49.2733,
                     name: 'Paraná'
                 },
+
+
                 SC: {
                     lat: -27.5954,
                     lon: -48.5480,
                     name: 'Santa Catarina'
                 },
+
+
                 RS: {
                     lat: -30.0346,
                     lon: -51.2177,
                     name: 'Rio Grande do Sul'
                 },
+
+
                 MT: {
                     lat: -15.6014,
                     lon: -56.0977,
                     name: 'Mato Grosso'
                 },
+
+
                 MS: {
                     lat: -20.4428,
                     lon: -54.6464,
                     name: 'Mato Grosso do Sul'
                 },
+
+
                 RO: {
                     lat: -10.83,
                     lon: -63.22,
                     name: 'Rondônia'
                 },
+
+
                 AM: {
                     lat: -3.1190,
                     lon: -60.0217,
                     name: 'Amazonas'
                 },
+
+
                 TO: {
                     lat: -10.1848,
                     lon: -48.3338,
                     name: 'Tocantins'
                 },
+
+
                 PE: {
                     lat: -8.0476,
                     lon: -34.8770,
                     name: 'Pernambuco'
                 },
+
+
                 ES: {
                     lat: -20.3192,
                     lon: -40.3378,
                     name: 'Espírito Santo'
                 },
+
+
                 BA: {
                     lat: -12.9714,
                     lon: -38.5014,
                     name: 'Bahia'
                 },
+
+
                 DF: {
                     lat: -15.7801,
                     lon: -47.9292,
                     name: 'Distrito Federal'
                 },
+
+
                 RJ: {
                     lat: -22.9068,
                     lon: -43.1729,
                     name: 'Rio de Janeiro'
                 },
+
+
                 AL: {
                     lat: -9.5713,
                     lon: -36.7820,
                     name: 'Alagoas'
                 },
+
+
                 CE: {
                     lat: -5.4984,
                     lon: -39.3206,
@@ -769,7 +2050,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
 
+
             const clientUFs = [
+
                 'SP',
                 'MG',
                 'PR',
@@ -787,213 +2070,869 @@ document.addEventListener('DOMContentLoaded', function() {
                 'RJ',
                 'AL',
                 'CE'
+
             ];
 
-            L.marker(zengaHQ, {
-                icon: L.divIcon({
-                    className: 'pulsing-marker hq',
-                    iconSize: [18, 18]
-                })
-            })
-                .addTo(mapInstance)
-                .bindTooltip('Sede Zenga', {
-                    permanent: false,
-                    direction: 'top',
-                    className: 'custom-leaflet-tooltip'
-                });
 
-            function getArc(start, end) {
+            // =================================================
+            // CURVAS DAS LINHAS
+            // =================================================
+
+            function getArc(
+                start,
+                end
+            ) {
+
                 const points = [];
 
-                const startLat = start[0];
-                const startLng = start[1];
-                const endLat = end[0];
-                const endLng = end[1];
 
-                const midLat = (startLat + endLat) / 2;
-                const midLng = (startLng + endLng) / 2;
+                const startLat =
+                    start[0];
+
+                const startLng =
+                    start[1];
+
+
+                const endLat =
+                    end[0];
+
+                const endLng =
+                    end[1];
+
+
+                const midLat =
+                    (
+                        startLat +
+                        endLat
+                    ) /
+                    2;
+
+
+                const midLng =
+                    (
+                        startLng +
+                        endLng
+                    ) /
+                    2;
+
 
                 const latOffset =
-                    (endLng - startLng) * 0.20;
+                    (
+                        endLng -
+                        startLng
+                    ) *
+                    0.20;
+
 
                 const lngOffset =
-                    -(endLat - startLat) * 0.20;
+                    -(
+                        endLat -
+                        startLat
+                    ) *
+                    0.20;
+
 
                 const controlLat =
-                    midLat + latOffset;
+                    midLat +
+                    latOffset;
+
 
                 const controlLng =
-                    midLng + lngOffset;
+                    midLng +
+                    lngOffset;
 
-                for (let i = 0; i <= 100; i++) {
-                    const t = i / 100;
+
+                for (
+                    let i = 0;
+                    i <= 100;
+                    i++
+                ) {
+
+                    const t =
+                        i / 100;
+
 
                     const lat =
-                        Math.pow(1 - t, 2) * startLat +
-                        2 * (1 - t) * t * controlLat +
-                        Math.pow(t, 2) * endLat;
+
+                        Math.pow(
+                            1 - t,
+                            2
+                        ) *
+                            startLat +
+
+                        2 *
+                            (1 - t) *
+                            t *
+                            controlLat +
+
+                        Math.pow(
+                            t,
+                            2
+                        ) *
+                            endLat;
+
 
                     const lng =
-                        Math.pow(1 - t, 2) * startLng +
-                        2 * (1 - t) * t * controlLng +
-                        Math.pow(t, 2) * endLng;
 
-                    points.push([lat, lng]);
+                        Math.pow(
+                            1 - t,
+                            2
+                        ) *
+                            startLng +
+
+                        2 *
+                            (1 - t) *
+                            t *
+                            controlLng +
+
+                        Math.pow(
+                            t,
+                            2
+                        ) *
+                            endLng;
+
+
+                    points.push(
+                        [
+                            lat,
+                            lng
+                        ]
+                    );
                 }
+
 
                 return points;
             }
 
-            clientUFs.forEach((uf, index) => {
-                const loc = ufCoordinates[uf];
 
-                if (!loc) return;
+            // =================================================
+            // LINHAS E MARCADORES
+            // =================================================
 
-                const destination = [
-                    loc.lat,
-                    loc.lon
-                ];
+            function drawRoutesAndMarkers() {
 
-                if (uf !== 'PR') {
-                    const latlngs =
-                        getArc(zengaHQ, destination);
+                // SEDE
+                L.marker(
+                    zengaHQ,
+                    {
 
-                    const line = L.polyline(latlngs, {
-                        color: '#00aaff',
-                        weight: 2,
-                        opacity: 0.7
-                    }).addTo(mapInstance);
+                        pane:
+                            'pointsPane',
 
-                    const path = line.getElement();
+                        interactive:
+                            false,
 
-                    if (path) {
-                        path.classList.add('map-line-path');
-                        path.style.animationDelay =
-                            `${index * 0.1}s`;
+                        icon:
+                            L.divIcon(
+                                {
+
+                                    className:
+                                        'pulsing-marker hq',
+
+                                    iconSize:
+                                        [
+                                            18,
+                                            18
+                                        ]
+                                }
+                            )
                     }
+                ).addTo(
+                    mapInstance
+                );
+
+
+                clientUFs.forEach(
+                    (
+                        uf,
+                        index
+                    ) => {
+
+                        const loc =
+                            ufCoordinates[
+                                uf
+                            ];
+
+
+                        if (!loc) {
+                            return;
+                        }
+
+
+                        const destination =
+                            [
+                                loc.lat,
+                                loc.lon
+                            ];
+
+
+                        // Paraná é a sede.
+                        // Não desenha linha
+                        // ligando PR a ele mesmo.
+                        if (
+                            uf !==
+                            'PR'
+                        ) {
+
+                            const latlngs =
+                                getArc(
+                                    zengaHQ,
+                                    destination
+                                );
+
+
+                            const line =
+                                L.polyline(
+                                    latlngs,
+                                    {
+
+                                        pane:
+                                            'routesPane',
+
+                                        color:
+                                            '#15aaf5',
+
+                                        weight:
+                                            2.2,
+
+                                        opacity:
+                                            0.82,
+
+                                        interactive:
+                                            false,
+
+                                        lineCap:
+                                            'round',
+
+                                        lineJoin:
+                                            'round'
+
+                                    }
+                                )
+                                    .addTo(
+                                        mapInstance
+                                    );
+
+
+                            const path =
+                                line.getElement();
+
+
+                            if (path) {
+
+                                path
+                                    .classList
+                                    .add(
+                                        'map-line-path'
+                                    );
+
+
+                                path.style
+                                    .animationDelay =
+                                    `${index * 0.1}s`;
+                            }
+                        }
+
+
+                        L.marker(
+                            destination,
+                            {
+
+                                pane:
+                                    'pointsPane',
+
+                                interactive:
+                                    false,
+
+                                icon:
+                                    L.divIcon(
+                                        {
+
+                                            className:
+                                                'pulsing-marker',
+
+                                            iconSize:
+                                                [
+                                                    14,
+                                                    14
+                                                ]
+
+                                        }
+                                    )
+                            }
+                        ).addTo(
+                            mapInstance
+                        );
+
+                    }
+                );
+            }
+
+
+            // =================================================
+            // GEOJSON
+            //
+            // Sem tiles.
+            // Sem CARTO.
+            // Sem API key.
+            // =================================================
+
+            const countriesURL =
+                'https://cdn.jsdelivr.net/gh/johan/world.geo.json@master/countries.geo.json';
+
+
+            const brazilStatesURL =
+                'https://cdn.jsdelivr.net/gh/henriquemalvar/br-geojson@main/dist/estados.geojson';
+
+
+            // =================================================
+            // PAÍSES
+            // =================================================
+
+            const loadCountries =
+                fetch(
+                    countriesURL
+                )
+                    .then(
+                        response => {
+
+                            if (
+                                !response.ok
+                            ) {
+
+                                throw new Error(
+                                    'Falha ao carregar países'
+                                );
+                            }
+
+
+                            return response
+                                .json();
+                        }
+                    )
+                    .then(
+                        data => {
+
+                            const nearbyCountries =
+                                {
+
+                                    type:
+                                        'FeatureCollection',
+
+                                    features:
+                                        data.features
+                                            .filter(
+                                                feature => {
+
+                                                    const name =
+
+                                                        feature
+                                                            .properties
+                                                            ?.name ||
+
+                                                        feature
+                                                            .id ||
+
+                                                        '';
+
+
+                                                    return [
+                                                        'Argentina',
+                                                        'Bolivia',
+                                                        'Brazil',
+                                                        'Chile',
+                                                        'Colombia',
+                                                        'Ecuador',
+                                                        'Guyana',
+                                                        'Paraguay',
+                                                        'Peru',
+                                                        'Suriname',
+                                                        'Uruguay',
+                                                        'Venezuela'
+
+                                                    ].includes(
+                                                        name
+                                                    );
+                                                }
+                                            )
+                                };
+
+
+                            L.geoJSON(
+                                nearbyCountries,
+                                {
+
+                                    pane:
+                                        'countriesPane',
+
+                                    interactive:
+                                        false,
+
+                                    style: {
+
+                                        fillColor:
+                                            '#fffdfb',
+
+                                        fillOpacity:
+                                            1,
+
+                                        color:
+                                            '#eadadb',
+
+                                        opacity:
+                                            0.85,
+
+                                        weight:
+                                            0.8
+
+                                    }
+
+                                }
+                            ).addTo(
+                                mapInstance
+                            );
+
+                        }
+                    )
+                    .catch(
+                        error => {
+
+                            console.warn(
+                                'Não foi possível carregar os países do mapa:',
+                                error
+                            );
+
+                        }
+                    );
+
+
+            // =================================================
+            // ESTADOS BRASILEIROS
+            // =================================================
+
+            const loadStates =
+                fetch(
+                    brazilStatesURL
+                )
+                    .then(
+                        response => {
+
+                            if (
+                                !response.ok
+                            ) {
+
+                                throw new Error(
+                                    'Falha ao carregar estados'
+                                );
+                            }
+
+
+                            return response
+                                .json();
+                        }
+                    )
+                    .then(
+                        data => {
+
+                            L.geoJSON(
+                                data,
+                                {
+
+                                    pane:
+                                        'statesPane',
+
+                                    interactive:
+                                        false,
+
+                                    style: {
+
+                                        fillColor:
+                                            '#fffdfb',
+
+                                        fillOpacity:
+                                            1,
+
+                                        color:
+                                            '#efdcdc',
+
+                                        opacity:
+                                            0.95,
+
+                                        weight:
+                                            0.85
+
+                                    }
+
+                                }
+                            ).addTo(
+                                mapInstance
+                            );
+
+                        }
+                    )
+                    .catch(
+                        error => {
+
+                            console.warn(
+                                'Não foi possível carregar os estados do Brasil:',
+                                error
+                            );
+
+                        }
+                    );
+
+
+            // =================================================
+            // FINALIZAÇÃO DO MAPA
+            // =================================================
+
+            Promise.allSettled(
+                [
+                    loadCountries,
+                    loadStates
+                ]
+            ).then(
+                () => {
+
+                    // Desenha rotas depois
+                    // para ficarem acima do mapa.
+                    drawRoutesAndMarkers();
+
+
+                    // ==========================================
+                    // ENQUADRAMENTO
+                    //
+                    // ESTE É O AJUSTE PRINCIPAL:
+                    //
+                    // zoom 4
+                    //
+                    // Não existe mais:
+                    //
+                    // zoomSnap: 0.01
+                    // zoomDelta: 0.01
+                    //
+                    // Isso deixa o Brasil menor
+                    // e recupera o enquadramento
+                    // do mapa antigo.
+                    // ==========================================
+
+                    mapInstance.setView(
+                        [
+                            -15.5,
+                            -50.0
+                        ],
+                        4,
+                        {
+                            animate:
+                                false
+                        }
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            mapInstance
+                                .invalidateSize(
+                                    false
+                                );
+
+                        },
+                        100
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            mapInstance
+                                .invalidateSize(
+                                    false
+                                );
+
+                        },
+                        500
+                    );
+
                 }
+            );
 
-                L.marker(destination, {
-                    icon: L.divIcon({
-                        className: 'pulsing-marker',
-                        iconSize: [14, 14]
-                    })
-                })
-                    .addTo(mapInstance)
-                    .bindTooltip(loc.name, {
-                        permanent: false,
-                        direction: 'top',
-                        className: 'custom-leaflet-tooltip'
-                    });
-            });
 
-            setTimeout(() => {
-                mapInstance.invalidateSize();
-            }, 400);
         } catch (error) {
+
             console.error(
-                'Erro ao carregar o mapa:',
+                'Erro ao carregar o mapa estático:',
                 error
             );
         }
     }
 
+
+    // =========================================================
     // FAQ
+    // =========================================================
+
     const faqItems =
-        document.querySelectorAll('.faq-item');
+        document.querySelectorAll(
+            '.faq-item'
+        );
 
-    if (faqItems.length > 0) {
-        faqItems.forEach(clickedItem => {
-            const question =
-                clickedItem.querySelector('.faq-question');
 
-            const answer =
-                clickedItem.querySelector('.faq-answer');
+    if (
+        faqItems.length >
+        0
+    ) {
 
-            if (question && answer) {
-                question.addEventListener('click', () => {
-                    const isCurrentlyActive =
-                        clickedItem.classList.contains('active');
+        faqItems.forEach(
+            clickedItem => {
 
-                    faqItems.forEach(item => {
-                        if (item !== clickedItem) {
-                            item.classList.remove('active');
+                const question =
+                    clickedItem
+                        .querySelector(
+                            '.faq-question'
+                        );
 
-                            const itemAnswer =
-                                item.querySelector('.faq-answer');
 
-                            if (itemAnswer) {
-                                itemAnswer.style.maxHeight = null;
-                            }
-                        }
-                    });
+                const answer =
+                    clickedItem
+                        .querySelector(
+                            '.faq-answer'
+                        );
 
-                    if (isCurrentlyActive) {
-                        clickedItem.classList.remove('active');
-                        answer.style.maxHeight = null;
-                    } else {
-                        clickedItem.classList.add('active');
 
-                        setTimeout(() => {
-                            answer.style.maxHeight =
-                                `${answer.scrollHeight}px`;
+                if (
+                    question &&
+                    answer
+                ) {
 
-                            if (
-                                clickedItem.classList.contains(
-                                    'faq-canva-item'
-                                )
-                            ) {
-                                clickedItem.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'start'
-                                });
-                            }
-                        }, 10);
-                    }
-                });
-            }
-        });
+                    question
+                        .addEventListener(
+                            'click',
+                            () => {
 
-        window.addEventListener('resize', () => {
-            faqItems.forEach(item => {
-                if (item.classList.contains('active')) {
-                    const answer =
-                        item.querySelector('.faq-answer');
+                                const isCurrentlyActive =
+                                    clickedItem
+                                        .classList
+                                        .contains(
+                                            'active'
+                                        );
 
-                    if (answer) {
-                        answer.style.maxHeight =
-                            `${answer.scrollHeight}px`;
-                    }
-                }
-            });
-        });
 
-        document
-            .querySelectorAll('.faq-canva-frame iframe')
-            .forEach(iframe => {
-                iframe.addEventListener('load', () => {
-                    setTimeout(() => {
-                        faqItems.forEach(item => {
-                            if (
-                                item.classList.contains('active')
-                            ) {
-                                const answer =
-                                    item.querySelector(
-                                        '.faq-answer'
+                                faqItems
+                                    .forEach(
+                                        item => {
+
+                                            if (
+                                                item !==
+                                                clickedItem
+                                            ) {
+
+                                                item
+                                                    .classList
+                                                    .remove(
+                                                        'active'
+                                                    );
+
+
+                                                const itemAnswer =
+                                                    item
+                                                        .querySelector(
+                                                            '.faq-answer'
+                                                        );
+
+
+                                                if (
+                                                    itemAnswer
+                                                ) {
+
+                                                    itemAnswer
+                                                        .style
+                                                        .maxHeight =
+                                                        null;
+                                                }
+                                            }
+
+                                        }
                                     );
 
-                                if (answer) {
-                                    answer.style.maxHeight =
+
+                                if (
+                                    isCurrentlyActive
+                                ) {
+
+                                    clickedItem
+                                        .classList
+                                        .remove(
+                                            'active'
+                                        );
+
+
+                                    answer
+                                        .style
+                                        .maxHeight =
+                                        null;
+
+                                } else {
+
+                                    clickedItem
+                                        .classList
+                                        .add(
+                                            'active'
+                                        );
+
+
+                                    setTimeout(
+                                        () => {
+
+                                            answer
+                                                .style
+                                                .maxHeight =
+                                                `${answer.scrollHeight}px`;
+
+
+                                            if (
+                                                clickedItem
+                                                    .classList
+                                                    .contains(
+                                                        'faq-canva-item'
+                                                    )
+                                            ) {
+
+                                                clickedItem
+                                                    .scrollIntoView(
+                                                        {
+
+                                                            behavior:
+                                                                'smooth',
+
+                                                            block:
+                                                                'start'
+                                                        }
+                                                    );
+                                            }
+
+                                        },
+                                        10
+                                    );
+                                }
+
+                            }
+                        );
+                }
+
+            }
+        );
+
+
+        window.addEventListener(
+            'resize',
+            () => {
+
+                faqItems
+                    .forEach(
+                        item => {
+
+                            if (
+                                item
+                                    .classList
+                                    .contains(
+                                        'active'
+                                    )
+                            ) {
+
+                                const answer =
+                                    item
+                                        .querySelector(
+                                            '.faq-answer'
+                                        );
+
+
+                                if (
+                                    answer
+                                ) {
+
+                                    answer
+                                        .style
+                                        .maxHeight =
                                         `${answer.scrollHeight}px`;
                                 }
                             }
-                        });
-                    }, 120);
-                });
-            });
+
+                        }
+                    );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                '.faq-canva-frame iframe'
+            )
+            .forEach(
+                iframe => {
+
+                    iframe
+                        .addEventListener(
+                            'load',
+                            () => {
+
+                                setTimeout(
+                                    () => {
+
+                                        faqItems
+                                            .forEach(
+                                                item => {
+
+                                                    if (
+                                                        item
+                                                            .classList
+                                                            .contains(
+                                                                'active'
+                                                            )
+                                                    ) {
+
+                                                        const answer =
+                                                            item
+                                                                .querySelector(
+                                                                    '.faq-answer'
+                                                                );
+
+
+                                                        if (
+                                                            answer
+                                                        ) {
+
+                                                            answer
+                                                                .style
+                                                                .maxHeight =
+                                                                `${answer.scrollHeight}px`;
+                                                        }
+                                                    }
+
+                                                }
+                                            );
+
+                                    },
+                                    120
+                                );
+
+                            }
+                        );
+
+                }
+            );
     }
 
+
+    // =========================================================
+    // FEATHER ICONS
+    // =========================================================
+
     try {
+
         feather.replace();
+
     } catch (e) {}
+
 });
