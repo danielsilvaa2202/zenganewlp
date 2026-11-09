@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenga + Conta Azul | Contabilidade e financeiro no mesmo fluxo</title>
+  <meta name="description" content="Conecte a rotina contábil ao financeiro do cliente no Conta Azul. Guias de impostos e encargos, do Departamento Pessoal ao Fiscal, com menos redigitação e retrabalho.">
+  <link rel="canonical" href="https://zengatax.com.br/contaazul/">
+
+  <link rel="icon" href="../img/favicon_package/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_package/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="../img/favicon_package/favicon-256x256.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zenga + Conta Azul">
+  <meta property="og:description" content="A rotina da contabilidade conectada ao financeiro do cliente.">
+  <meta property="og:url" content="https://zengatax.com.br/contaazul/">
+
+  <style>
+    :root{
+      --zenga:#042c4e;
+      --zenga-2:#073b65;
+      --zenga-3:#0a4f7d;
+      --cyan:#0cc0df;
+      --cyan-2:#56dcf3;
+      --ca:#0867ff;
+      --ca-2:#13a9f4;
+      --ink:#12283c;
+      --muted:#657b8e;
+      --line:#dce7ef;
+      --soft:#f4f8fb;
+      --white:#fff;
+      --green:#11866a;
+      --green-soft:#e9f8f3;
+      --amber:#a86a13;
+      --amber-soft:#fff6e8;
+      --shadow:0 22px 70px rgba(4,44,78,.13);
+      --shadow-sm:0 12px 36px rgba(4,44,78,.09);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Quicksand",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    body::selection{background:rgba(12,192,223,.22)}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    button,input{font:inherit}
+
+    .ca-shell{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .ca-section{padding:94px 0;position:relative}
+    .ca-section-soft{
+      background:
+        radial-gradient(circle at 88% 14%,rgba(8,103,255,.06),transparent 22%),
+        radial-gradient(circle at 10% 75%,rgba(12,192,223,.06),transparent 22%),
+        #f7fafc;
+      border-top:1px solid #edf2f5;
+      border-bottom:1px solid #edf2f5;
+    }
+
+    /* Header */
+    .ca-header{
+      position:fixed;top:0;left:0;right:0;z-index:60;
+      padding:14px 0 0;
+      pointer-events:none;
+    }
+    .ca-nav{
+      min-height:70px;
+      display:flex;align-items:center;justify-content:space-between;gap:22px;
+      padding:0 16px 0 18px;
+      border:1px solid rgba(214,228,237,.94);
+      border-radius:20px;
+      background:rgba(255,255,255,.91);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 13px 40px rgba(4,44,78,.09);
+      pointer-events:auto;
+      transition:box-shadow .25s ease,transform .25s ease,background .25s ease;
+    }
+    .ca-header.scrolled .ca-nav{
+      background:rgba(255,255,255,.97);
+      box-shadow:0 16px 44px rgba(4,44,78,.13);
+      transform:translateY(-3px);
+    }
+    .ca-partner-lockup{
+      display:flex;align-items:center;gap:11px;
+      text-decoration:none;min-width:310px;
+    }
+    .ca-header-brand{display:flex;align-items:center;justify-content:center}
+    .ca-header-brand-zenga img{height:34px;width:auto;max-width:126px;object-fit:contain}
+    .ca-header-brand-contaazul img{height:29px;width:auto;max-width:152px;object-fit:contain}
+    .ca-header-divider{width:1px;height:32px;background:#d8e4ec;margin:0 2px}
+    .ca-header-integration{
+      color:#8a9ba8;font-size:9px;font-weight:700;line-height:1.05;
+      text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;
+    }
+    .ca-menu{display:flex;align-items:center;gap:28px}
+    .ca-menu a{
+      text-decoration:none;font-size:13px;font-weight:700;color:#51697b;
+      position:relative;padding:8px 0;
+    }
+    .ca-menu a::after{
+      content:"";position:absolute;left:0;right:100%;bottom:2px;height:2px;border-radius:99px;
+      background:linear-gradient(90deg,var(--cyan),var(--ca));
+      transition:right .25s ease;
+    }
+    .ca-menu a:hover::after{right:0}
+    .ca-nav-actions{display:flex;align-items:center;gap:10px}
+    .ca-btn{
+      min-height:46px;padding:0 18px;border-radius:13px;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      text-decoration:none;border:1px solid transparent;font-size:14px;font-weight:700;
+      transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease;
+      cursor:pointer;
+    }
+    .ca-btn:hover{transform:translateY(-2px)}
+    .ca-btn-primary{
+      color:#fff;background:linear-gradient(135deg,var(--zenga),var(--zenga-2));
+      box-shadow:0 12px 28px rgba(4,44,78,.20);
+    }
+    .ca-btn-primary:hover{box-shadow:0 16px 36px rgba(4,44,78,.26)}
+    .ca-btn-light{color:var(--zenga);background:#fff;border-color:#cddce7}
+    .ca-btn-client{
+      color:#116c52;background:#eefaf5;border-color:#cfeee2;
+    }
+    .ca-btn-client:hover{background:#e7f8f1;border-color:#bce6d7}
+    .ca-btn-ghost{color:var(--zenga);background:rgba(255,255,255,.74);border-color:rgba(255,255,255,.9)}
+    .ca-menu-toggle{
+      display:none;width:42px;height:42px;border:1px solid #dbe6ee;border-radius:12px;background:#fff;
+      align-items:center;justify-content:center;color:var(--zenga);cursor:pointer;
+    }
+
+    /* Hero */
+    .ca-hero{
+      min-height:100vh;
+      padding:142px 0 84px;
+      position:relative;overflow:hidden;
+      display:flex;align-items:center;
+      background:
+        radial-gradient(circle at 80% 24%,rgba(8,103,255,.12),transparent 28%),
+        radial-gradient(circle at 62% 52%,rgba(12,192,223,.13),transparent 26%),
+        linear-gradient(180deg,#f8fcff 0%,#fff 72%);
+    }
+    .ca-hero::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;
+      background-image:
+        linear-gradient(rgba(4,44,78,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(4,44,78,.035) 1px,transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom,#000 0%,transparent 82%);
+    }
+    .ca-orb{
+      position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none;
+      animation:caFloat 9s ease-in-out infinite;
+    }
+    .ca-orb.one{width:280px;height:280px;right:-90px;top:110px;background:rgba(8,103,255,.08)}
+    .ca-orb.two{width:180px;height:180px;left:-60px;bottom:120px;background:rgba(12,192,223,.10);animation-delay:-3s}
+    @keyframes caFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-18px,0)}}
+
+    .ca-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;gap:66px;align-items:center}
+    .ca-eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      min-height:34px;padding:0 12px;border-radius:999px;
+      background:rgba(255,255,255,.78);border:1px solid #dcebf2;
+      box-shadow:0 8px 24px rgba(4,44,78,.06);
+      color:#18768a;font-size:12px;font-weight:700;margin-bottom:22px;
+    }
+    .ca-eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(12,192,223,.10)}
+    .ca-hero h1{
+      margin:0 0 24px;
+      font-size:clamp(46px,6.3vw,76px);
+      line-height:.99;
+      letter-spacing:-.06em;
+      color:var(--zenga);
+      max-width:760px;
+    }
+    .ca-gradient-text{
+      background:linear-gradient(95deg,var(--zenga) 2%,var(--ca) 58%,var(--cyan) 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .ca-hero-lead{font-size:clamp(17px,1.9vw,21px);color:#526a7d;max-width:740px;margin:0}
+    .ca-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .ca-hero-note{display:flex;align-items:center;gap:8px;color:#73899a;font-size:12px;margin-top:15px}
+    .ca-hero-note svg{width:15px;height:15px;color:var(--green)}
+
+    /* hero showcase */
+    .ca-showcase{
+      position:relative;
+      perspective:1200px;
+    }
+    .ca-showcase-glow{
+      position:absolute;inset:8% -10% -8% 10%;
+      background:radial-gradient(circle,rgba(12,192,223,.20),transparent 62%);
+      filter:blur(30px);z-index:-1;
+    }
+    .ca-showcase-card{
+      border:1px solid rgba(214,228,237,.95);
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border-radius:30px;padding:20px;box-shadow:var(--shadow);
+      transform:rotateY(-4deg) rotateX(2deg);
+      transition:transform .35s ease;
+      will-change:transform;
+    }
+    .ca-showcase-card:hover{transform:rotateY(0) rotateX(0) translateY(-3px)}
+    .ca-brand-lockup{
+      min-height:118px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;
+      padding:18px;border-radius:21px;background:#f7fafc;border:1px solid #e3ecf2;
+    }
+    .ca-brand-box{height:68px;display:flex;align-items:center;justify-content:center}
+    .ca-brand-box img{max-height:48px;width:auto;max-width:190px}
+    .ca-plus{
+      width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+      background:#fff;border:1px solid #dce7ef;color:#7890a2;font-size:21px;font-weight:700;
+      box-shadow:0 7px 18px rgba(4,44,78,.06);
+    }
+    .ca-demo{
+      margin-top:14px;border-radius:20px;background:linear-gradient(145deg,#052c4d,#083f6a);
+      padding:16px;color:#fff;overflow:hidden;position:relative;
+    }
+    .ca-demo::after{
+      content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+      right:-70px;top:-80px;background:rgba(12,192,223,.13);
+    }
+    .ca-demo-top{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:2}
+    .ca-demo-title{font-size:13px;font-weight:700}
+    .ca-live{
+      display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;color:#c6f8e7;
+      background:rgba(24,169,119,.18);border:1px solid rgba(93,220,176,.22);border-radius:999px;padding:6px 9px;
+    }
+    .ca-live i{width:7px;height:7px;border-radius:50%;background:#45d49d;animation:caPulse 1.7s infinite}
+    @keyframes caPulse{0%,100%{box-shadow:0 0 0 0 rgba(69,212,157,.4)}50%{box-shadow:0 0 0 7px rgba(69,212,157,0)}}
+    .ca-demo-row{
+      margin-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
+      background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;padding:13px;position:relative;z-index:2;
+    }
+    .ca-demo-row strong{display:block;font-size:12px}
+    .ca-demo-row small{display:block;color:#b9d0df;font-size:10px;margin-top:3px}
+    .ca-demo-value{font-size:13px;font-weight:700}
+    .ca-demo-status{color:#95efcd}
+    .ca-path{
+      display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:8px;
+      margin-top:14px;
+    }
+    .ca-path-node{
+      border:1px solid #e2ebf1;background:#fff;border-radius:13px;padding:11px;
+      text-align:center;min-height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .ca-path-node b{font-size:10px;color:var(--zenga)}
+    .ca-path-node span{font-size:9px;color:#8193a1;margin-top:3px}
+    .ca-path-arrow{color:var(--cyan);font-size:18px;font-weight:700}
+    .ca-float-chip{
+      position:absolute;padding:10px 12px;border-radius:13px;background:#fff;border:1px solid #dce7ef;
+      box-shadow:0 12px 30px rgba(4,44,78,.11);font-size:11px;font-weight:700;color:var(--zenga);
+      animation:caChip 5s ease-in-out infinite;
+    }
+    .ca-float-chip.one{right:-24px;top:30px}
+    .ca-float-chip.two{left:-28px;bottom:54px;animation-delay:-2.4s}
+    @keyframes caChip{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+    /* general headings */
+    .ca-kicker{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#158096;
+      margin-bottom:14px;
+    }
+    .ca-kicker::before{content:"";width:22px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--ca));border-radius:99px}
+    .ca-section-title{
+      font-size:clamp(32px,4.4vw,50px);line-height:1.06;letter-spacing:-.045em;color:var(--zenga);
+      margin:0 0 16px;max-width:880px;
+    }
+    .ca-section-lead{font-size:17px;color:var(--muted);max-width:780px;margin:0}
+    .ca-head{margin-bottom:40px}
+
+    /* trust strip */
+    .ca-trust{padding:24px 0;border-top:1px solid #edf2f5;border-bottom:1px solid #edf2f5;background:#fff}
+    .ca-trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e7eef3;border:1px solid #e7eef3;border-radius:18px;overflow:hidden}
+    .ca-trust-item{background:#fff;padding:19px 21px;display:flex;gap:12px;align-items:center}
+    .ca-trust-icon{width:38px;height:38px;border-radius:12px;background:#eef9fc;color:#10859c;display:grid;place-items:center;flex:0 0 auto}
+    .ca-trust-icon svg{width:18px;height:18px}
+    .ca-trust-item b{display:block;color:var(--zenga);font-size:13px}
+    .ca-trust-item span{display:block;color:#7b8e9d;font-size:10px;margin-top:2px}
+
+    /* value cards */
+    .ca-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+    .ca-value-card{
+      position:relative;border:1px solid var(--line);border-radius:22px;background:#fff;padding:24px;
+      box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+    }
+    .ca-value-card:hover{transform:translateY(-7px);box-shadow:0 20px 52px rgba(4,44,78,.13);border-color:#c7dce8}
+    .ca-value-card::after{
+      content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-62px;top:-62px;
+      background:rgba(12,192,223,.07);transition:transform .3s ease;
+    }
+    .ca-value-card:hover::after{transform:scale(1.28)}
+    .ca-card-icon{
+      width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#eefbfe,#eff5ff);
+      color:#0b7f9d;display:grid;place-items:center;margin-bottom:18px;
+    }
+    .ca-card-icon svg{width:20px;height:20px}
+    .ca-value-card h3{margin:0 0 8px;font-size:18px;color:var(--zenga);letter-spacing:-.02em}
+    .ca-value-card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Before/after */
+    .ca-compare{display:grid;grid-template-columns:1fr 80px 1fr;gap:22px;align-items:stretch}
+    .ca-compare-card{border-radius:26px;padding:28px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-sm)}
+    .ca-compare-card.before{background:linear-gradient(180deg,#fff,#fffaf8)}
+    .ca-compare-card.after{background:linear-gradient(180deg,#fff,#f7fdff);border-color:#cfe5ee}
+    .ca-compare-label{
+      display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;
+      font-size:10px;font-weight:700;margin-bottom:20px;
+    }
+    .before .ca-compare-label{background:#fff0ec;color:#a64d3d}
+    .after .ca-compare-label{background:#eaf9fc;color:#0b7e92}
+    .ca-compare-card h3{font-size:25px;line-height:1.15;margin:0 0 18px;color:var(--zenga);letter-spacing:-.03em}
+    .ca-list{display:grid;gap:12px}
+    .ca-list-item{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+    .ca-list-icon{width:28px;height:28px;border-radius:9px;display:grid;place-items:center}
+    .before .ca-list-icon{background:#fff1ed;color:#b25543}
+    .after .ca-list-icon{background:#eaf9fc;color:#0a859d}
+    .ca-list-icon svg{width:14px;height:14px}
+    .ca-list-item b{display:block;font-size:13px;color:#244056}
+    .ca-list-item span{display:block;font-size:12px;color:#7a8d9c;margin-top:2px}
+    .ca-compare-arrow{display:flex;align-items:center;justify-content:center}
+    .ca-arrow-ring{
+      width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--zenga),var(--ca));color:#fff;box-shadow:0 13px 32px rgba(8,103,255,.18)
+    }
+
+    /* flow */
+    .ca-flow-wrap{position:relative}
+    .ca-flow-line{
+      position:absolute;left:8%;right:8%;top:65px;height:2px;
+      background:linear-gradient(90deg,rgba(12,192,223,.15),var(--cyan),var(--ca),rgba(8,103,255,.15));
+      overflow:hidden;
+    }
+    .ca-flow-line::after{
+      content:"";position:absolute;top:-2px;width:80px;height:6px;border-radius:99px;
+      background:linear-gradient(90deg,transparent,#fff,transparent);
+      animation:caFlow 3.4s linear infinite;
+    }
+    @keyframes caFlow{from{left:-90px}to{left:100%}}
+    .ca-flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;z-index:2}
+    .ca-flow-card{text-align:center;padding:0 16px}
+    .ca-flow-icon{
+      width:68px;height:68px;border-radius:20px;margin:0 auto 18px;
+      background:#fff;border:1px solid #dce7ef;box-shadow:0 12px 34px rgba(4,44,78,.10);
+      color:var(--zenga);display:grid;place-items:center;position:relative;
+    }
+    .ca-flow-icon::after{
+      content:"";position:absolute;inset:-6px;border-radius:25px;border:1px solid rgba(12,192,223,.12);
+    }
+    .ca-flow-icon svg{width:25px;height:25px}
+    .ca-flow-card b{display:block;font-size:15px;color:var(--zenga)}
+    .ca-flow-card span{display:block;font-size:12px;color:var(--muted);margin-top:5px}
+
+    /* product stage */
+    .ca-product-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+    .ca-points{display:grid;gap:13px;margin-top:26px}
+    .ca-point{display:grid;grid-template-columns:39px 1fr;gap:12px;align-items:start}
+    .ca-point-icon{width:38px;height:38px;border-radius:12px;background:#eaf9fc;color:#0c8198;display:grid;place-items:center}
+    .ca-point-icon svg{width:18px;height:18px}
+    .ca-point b{display:block;color:var(--zenga);font-size:13px}
+    .ca-point span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+    .ca-browser{
+      border:1px solid #d9e5ed;border-radius:28px;background:#fff;box-shadow:var(--shadow);
+      overflow:hidden;transform:perspective(1200px) rotateY(-4deg);
+      transition:transform .35s ease;
+    }
+    .ca-browser:hover{transform:perspective(1200px) rotateY(0)}
+    .ca-browser-bar{height:48px;display:flex;align-items:center;gap:7px;padding:0 16px;background:#f7fafc;border-bottom:1px solid #e5edf2}
+    .ca-browser-bar i{width:9px;height:9px;border-radius:50%;background:#cbd7df}
+    .ca-browser-url{margin-left:10px;height:26px;flex:1;border-radius:8px;background:#edf3f6;display:flex;align-items:center;padding:0 10px;font-size:9px;color:#8193a0}
+    .ca-browser-body{padding:18px;background:#f8fafc}
+    .ca-browser-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .ca-browser-title{font-size:14px;font-weight:700;color:var(--zenga)}
+    .ca-browser-badge{font-size:9px;font-weight:700;padding:6px 8px;border-radius:999px;background:var(--green-soft);color:var(--green)}
+    .ca-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:12px}
+    .ca-kpi{background:#fff;border:1px solid #e1eaf0;border-radius:12px;padding:11px}
+    .ca-kpi strong{display:block;font-size:18px;color:var(--zenga)}
+    .ca-kpi span{font-size:9px;color:#7c8e9d}
+    .ca-table{background:#fff;border:1px solid #e1eaf0;border-radius:13px;overflow:hidden}
+    .ca-table-row{display:grid;grid-template-columns:1.2fr .75fr .6fr .65fr;gap:8px;padding:11px 12px;border-bottom:1px solid #edf2f5;align-items:center}
+    .ca-table-row:last-child{border-bottom:0}
+    .ca-table-head{font-size:8px;font-weight:700;color:#8192a0;background:#fafcfd}
+    .ca-table-cell{font-size:9px;color:#536a7b}
+    .ca-table-cell strong{color:#243e53}
+    .ca-status-ok{display:inline-flex;padding:4px 6px;border-radius:999px;background:var(--green-soft);color:var(--green);font-weight:700;font-size:8px}
+    .ca-status-wait{display:inline-flex;padding:4px 6px;border-radius:999px;background:#eef5ff;color:#2769b3;font-weight:700;font-size:8px}
+
+    /* audiences */
+    .ca-audience{
+      border-radius:30px;padding:44px;background:
+        radial-gradient(circle at 86% 12%,rgba(12,192,223,.15),transparent 27%),
+        linear-gradient(135deg,#032843,#063b63 60%,#07527e);
+      color:#fff;box-shadow:var(--shadow);
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:42px;align-items:center;overflow:hidden;position:relative;
+    }
+    .ca-audience h2{margin:0 0 16px;font-size:clamp(30px,4vw,45px);line-height:1.07;letter-spacing:-.045em}
+    .ca-audience p{color:#d5e4ee;margin:0}
+    .ca-audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .ca-audience-card{
+      min-height:145px;padding:18px;border-radius:17px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);
+      transition:transform .2s ease,background .2s ease;
+    }
+    .ca-audience-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.11)}
+    .ca-audience-card svg{width:20px;height:20px;color:#6be9ff;margin-bottom:12px}
+    .ca-audience-card strong{display:block;font-size:13px}
+    .ca-audience-card span{display:block;font-size:11px;color:#d8e7f0;margin-top:5px}
+
+    /* numbers */
+    .ca-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .ca-number-card{
+      border:1px solid var(--line);background:#fff;border-radius:20px;padding:24px;box-shadow:var(--shadow-sm)
+    }
+    .ca-number{font-size:34px;font-weight:700;color:var(--zenga);letter-spacing:-.05em}
+    .ca-number-label{font-size:12px;color:var(--muted);margin-top:3px}
+
+    /* faq */
+    .ca-faq{border-top:1px solid var(--line)}
+    .ca-faq details{border-bottom:1px solid var(--line);padding:19px 0}
+    .ca-faq summary{
+      list-style:none;cursor:pointer;font-weight:700;color:var(--zenga);padding-right:34px;position:relative;
+    }
+    .ca-faq summary::-webkit-details-marker{display:none}
+    .ca-faq summary::after{
+      content:"+";position:absolute;right:2px;top:-5px;font-size:25px;font-weight:500;color:#7890a2;
+      transition:transform .2s ease;
+    }
+    .ca-faq details[open] summary::after{content:"–";transform:rotate(180deg)}
+    .ca-faq p{margin:10px 0 0;color:var(--muted);font-size:14px;max-width:900px}
+
+    /* CTA */
+    .ca-cta{
+      border-radius:30px;padding:44px;background:
+        radial-gradient(circle at 88% 16%,rgba(12,192,223,.18),transparent 26%),
+        linear-gradient(135deg,var(--zenga),#063d67);
+      color:#fff;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;
+    }
+    .ca-cta h2{margin:0 0 10px;font-size:clamp(30px,4vw,43px);line-height:1.08;letter-spacing:-.04em}
+    .ca-cta p{margin:0;color:#d9e7f1;max-width:760px}
+    .ca-cta .ca-btn{background:#fff;color:var(--zenga);box-shadow:none}
+
+    /* footer */
+    .ca-footer{padding:38px 0;background:#021f36;color:#fff}
+    .ca-footer-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .ca-footer-brand{display:flex;align-items:center;gap:18px}
+    .ca-footer-brand img{height:32px;width:auto;background:#fff;border-radius:8px;padding:4px 7px}
+    .ca-footer-note{font-size:11px;color:#99b4c6}
+    .ca-socials{display:flex;gap:9px}
+    .ca-socials a{
+      width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;
+      transition:background .2s ease,transform .2s ease;
+    }
+    .ca-socials a:hover{background:rgba(12,192,223,.15);transform:translateY(-2px)}
+    .ca-socials svg{width:17px;height:17px}
+
+    /* reveal */
+    .ca-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.25,1)}
+    .ca-reveal.is-visible{opacity:1;transform:translateY(0)}
+    .ca-delay-1{transition-delay:.08s}
+    .ca-delay-2{transition-delay:.16s}
+    .ca-delay-3{transition-delay:.24s}
+
+    /* floating back to top */
+    .ca-top{
+      position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:14px;
+      border:1px solid #dbe6ee;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+      color:var(--zenga);display:grid;place-items:center;box-shadow:0 10px 28px rgba(4,44,78,.12);
+      cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.25s ease;z-index:50;
+    }
+    .ca-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+    .ca-top svg{width:18px;height:18px}
+
+    @media(max-width:1020px){
+      .ca-menu{display:none}
+      .ca-menu-toggle{display:flex}
+      .ca-partner-lockup{min-width:0}
+      .ca-nav-actions .ca-btn-client{display:none}
+      .ca-hero-grid,.ca-product-grid,.ca-audience{grid-template-columns:1fr}
+      .ca-showcase{max-width:720px;margin:10px auto 0}
+      .ca-grid-4{grid-template-columns:repeat(2,1fr)}
+      .ca-flow-grid{grid-template-columns:repeat(2,1fr);gap:30px}
+      .ca-flow-line{display:none}
+      .ca-numbers{grid-template-columns:repeat(2,1fr)}
+      .ca-mobile-menu{
+        position:absolute;left:20px;right:20px;top:68px;background:#fff;border:1px solid #dce7ef;border-radius:18px;
+        box-shadow:var(--shadow);padding:10px;display:none;
+      }
+      .ca-mobile-menu.open{display:grid}
+      .ca-mobile-menu a{padding:12px 13px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700;color:#52697b}
+      .ca-mobile-menu a:hover{background:#f4f8fb}
+    }
+
+    @media(max-width:760px){
+      .ca-shell{width:min(100% - 24px,1180px)}
+      .ca-section{padding:70px 0}
+      .ca-header{padding-top:8px}
+      .ca-nav{min-height:62px;padding:0 10px 0 13px;border-radius:16px}
+      .ca-header-brand-zenga img{height:28px;max-width:100px}
+      .ca-header-brand-contaazul img{height:24px;max-width:117px}
+      .ca-header-divider{height:26px}
+      .ca-header-integration{display:none}
+      .ca-nav-actions .ca-btn-primary{display:none}
+      .ca-hero{padding:108px 0 65px;min-height:auto}
+      .ca-hero h1{font-size:44px}
+      .ca-hero-grid{gap:42px}
+      .ca-showcase-card{transform:none;padding:14px;border-radius:24px}
+      .ca-float-chip{display:none}
+      .ca-brand-lockup{grid-template-columns:1fr;gap:8px}
+      .ca-plus{margin:auto}
+      .ca-path{grid-template-columns:1fr}
+      .ca-path-arrow{transform:rotate(90deg);text-align:center}
+      .ca-trust-grid,.ca-grid-4,.ca-flow-grid,.ca-numbers{grid-template-columns:1fr}
+      .ca-compare{grid-template-columns:1fr}
+      .ca-compare-arrow{transform:rotate(90deg)}
+      .ca-audience{padding:28px}
+      .ca-audience-grid{grid-template-columns:1fr}
+      .ca-kpis{grid-template-columns:1fr}
+      .ca-table-row{grid-template-columns:1fr 1fr}
+      .ca-table-row > :nth-child(3), .ca-table-row > :nth-child(4){display:none}
+      .ca-cta{grid-template-columns:1fr;padding:28px}
+      .ca-footer-row{align-items:flex-start;flex-direction:column}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+      .ca-reveal{opacity:1;transform:none}
+    }
+  
+    /* v3 - header layout fix */
+    .ca-header .ca-shell{
+      width:min(1380px,calc(100% - 32px));
+    }
+
+    .ca-nav{
+      display:grid;
+      grid-template-columns:minmax(250px,auto) 1fr auto;
+      align-items:center;
+      gap:22px;
+      white-space:nowrap;
+    }
+
+    .ca-partner-lockup{
+      min-width:0;
+      max-width:330px;
+      gap:10px;
+      overflow:hidden;
+    }
+
+    .ca-header-brand-zenga img{
+      height:31px;
+      width:auto;
+      max-width:120px;
+      object-fit:contain;
+    }
+
+    .ca-header-brand-contaazul img{
+      height:27px;
+      width:auto;
+      max-width:142px;
+      object-fit:contain;
+    }
+
+    .ca-header-integration{
+      flex:0 0 auto;
+    }
+
+    .ca-menu{
+      justify-self:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:24px;
+      min-width:0;
+      white-space:nowrap;
+    }
+
+    .ca-menu a{
+      flex:0 0 auto;
+    }
+
+    .ca-nav-actions{
+      justify-self:end;
+      flex-wrap:nowrap;
+      white-space:nowrap;
+    }
+
+    /* Important: never render the mobile menu on desktop */
+    .ca-mobile-menu{
+      display:none;
+    }
+
+    @media (max-width:1180px){
+      .ca-header .ca-shell{
+        width:min(1120px,calc(100% - 24px));
+      }
+      .ca-nav{
+        grid-template-columns:auto 1fr auto;
+        gap:14px;
+      }
+      .ca-menu{
+        gap:15px;
+      }
+      .ca-menu a{
+        font-size:12px;
+      }
+      .ca-header-integration{
+        display:none;
+      }
+      .ca-partner-lockup{
+        max-width:260px;
+      }
+      .ca-header-brand-zenga img{
+        max-width:105px;
+        height:28px;
+      }
+      .ca-header-brand-contaazul img{
+        max-width:125px;
+        height:24px;
+      }
+    }
+
+    @media (max-width:1020px){
+      .ca-nav{
+        display:flex;
+      }
+      .ca-menu{
+        display:none;
+      }
+      .ca-mobile-menu{
+        position:absolute;
+        left:12px;
+        right:12px;
+        top:72px;
+        z-index:80;
+        border:1px solid #dce7ef;
+        border-radius:18px;
+        background:rgba(255,255,255,.98);
+        box-shadow:0 20px 55px rgba(4,44,78,.16);
+        padding:10px;
+        backdrop-filter:blur(16px);
+        -webkit-backdrop-filter:blur(16px);
+      }
+      .ca-mobile-menu.open{
+        display:grid;
+      }
+    }
+
+    @media (max-width:760px){
+      .ca-header .ca-shell{
+        width:calc(100% - 16px);
+      }
+      .ca-partner-lockup{
+        max-width:220px;
+        gap:7px;
+      }
+      .ca-header-brand-zenga img{
+        height:26px;
+        max-width:92px;
+      }
+      .ca-header-brand-contaazul img{
+        height:21px;
+        max-width:105px;
+      }
+      .ca-header-divider{
+        height:24px;
+      }
+    }
+
+
+    /* v3 - floating status chips stay above the showcase card */
+    .ca-showcase{
+      z-index:3;
+      isolation:isolate;
+      overflow:visible;
+      padding:18px 14px 20px;
+    }
+
+    .ca-showcase-glow{
+      z-index:-1;
+    }
+
+    .ca-showcase-card{
+      position:relative;
+      z-index:3;
+    }
+
+    .ca-float-chip{
+      z-index:8;
+      pointer-events:none;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      background:rgba(255,255,255,.96);
+      box-shadow:0 14px 34px rgba(4,44,78,.16);
+    }
+
+    .ca-float-chip.one{
+      right:0;
+      top:4px;
+    }
+
+    .ca-float-chip.two{
+      left:0;
+      bottom:6px;
+    }
+
+    @media (max-width:1180px){
+      .ca-float-chip.one{right:4px}
+      .ca-float-chip.two{left:4px}
+    }
+
+    @media (max-width:1020px){
+      .ca-showcase{
+        overflow:hidden;
+        padding:0;
+      }
+      .ca-float-chip{
+        display:none;
+      }
+    }
+
+  
+    /* v4 — logos locais e dimensões travadas */
+    .ca-partner-lockup{
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      min-width:0 !important;
+      max-width:330px !important;
+      text-decoration:none !important;
+      overflow:visible !important;
+    }
+
+    .ca-header-brand{
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      flex:0 0 auto !important;
+      line-height:0 !important;
+    }
+
+    .ca-header-brand-zenga img{
+      display:block !important;
+      width:auto !important;
+      height:30px !important;
+      max-width:86px !important;
+      max-height:30px !important;
+      object-fit:contain !important;
+    }
+
+    .ca-header-brand-contaazul img{
+      display:block !important;
+      width:auto !important;
+      height:22px !important;
+      max-width:156px !important;
+      max-height:22px !important;
+      object-fit:contain !important;
+    }
+
+    .ca-header-divider{
+      flex:0 0 1px !important;
+      width:1px !important;
+      height:30px !important;
+    }
+
+    .ca-header-integration{
+      flex:0 0 auto !important;
+      font-size:8px !important;
+      line-height:1.08 !important;
+      letter-spacing:.09em !important;
+    }
+
+    /* Logos dentro do mockup do hero */
+    .ca-brand-lockup .ca-brand-box:first-child img{
+      width:auto !important;
+      height:44px !important;
+      max-width:145px !important;
+      max-height:44px !important;
+      object-fit:contain !important;
+    }
+
+    .ca-brand-lockup .ca-brand-box:last-child img{
+      width:auto !important;
+      height:27px !important;
+      max-width:205px !important;
+      max-height:27px !important;
+      object-fit:contain !important;
+    }
+
+    /* Logo do footer */
+    .ca-footer-brand img{
+      width:auto !important;
+      height:30px !important;
+      max-width:92px !important;
+      max-height:30px !important;
+      object-fit:contain !important;
+    }
+
+    @media(max-width:1180px){
+      .ca-partner-lockup{
+        max-width:260px !important;
+        gap:8px !important;
+      }
+      .ca-header-brand-zenga img{
+        height:27px !important;
+        max-width:78px !important;
+        max-height:27px !important;
+      }
+      .ca-header-brand-contaazul img{
+        height:20px !important;
+        max-width:142px !important;
+        max-height:20px !important;
+      }
+      .ca-header-integration{
+        display:none !important;
+      }
+    }
+
+    @media(max-width:760px){
+      .ca-partner-lockup{
+        max-width:220px !important;
+        gap:7px !important;
+      }
+      .ca-header-brand-zenga img{
+        height:25px !important;
+        max-width:72px !important;
+        max-height:25px !important;
+      }
+      .ca-header-brand-contaazul img{
+        height:18px !important;
+        max-width:126px !important;
+        max-height:18px !important;
+      }
+      .ca-header-divider{
+        height:23px !important;
+      }
+    }
+
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Zenga",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "url":"https://zengatax.com.br/contaazul/",
+    "description":"Integração entre a rotina contábil da Zenga e o financeiro do Conta Azul."
+  }
+  </script>
+</head>
+
+<body>
+<header class="ca-header" id="caHeader">
+  <div class="ca-shell ca-nav">
+
+    <a class="ca-partner-lockup" href="#inicio" aria-label="Zenga e Conta Azul">
+      <span class="ca-header-brand ca-header-brand-zenga">
+        <img src="./assets/zenga-logo.png" alt="Zenga">
+      </span>
+
+      <span class="ca-header-divider"></span>
+
+      <span class="ca-header-integration">integração<br>com</span>
+
+      <span class="ca-header-brand ca-header-brand-contaazul">
+        <img src="./assets/conta-azul-logo.png" alt="Conta Azul">
+      </span>
+    </a>
+
+    <nav class="ca-menu" aria-label="Navegação da página">
+      <a href="#beneficios">Benefícios</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#na-pratica">Na prática</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="ca-nav-actions">
+      <a class="ca-btn ca-btn-client"
+         href="https://wa.me/5541987132156?text=Ol%C3%A1%2C%20j%C3%A1%20sou%20cliente%20Zenga%20e%20quero%20conhecer%20a%20integra%C3%A7%C3%A3o%20Conta%20Azul."
+         target="_blank" rel="noopener">
+        <i data-feather="message-circle"></i>
+        Já sou cliente
+      </a>
+
+      <a class="ca-btn ca-btn-primary"
+         href="https://wa.me/5541987132156?text=Ol%C3%A1%2C%20quero%20conhecer%20mais%20sobre%20a%20Zenga%20e%20a%20integra%C3%A7%C3%A3o%20Conta%20Azul."
+         target="_blank" rel="noopener">
+        <i data-feather="message-circle"></i>
+        Quero conhecer
+      </a>
+
+      <button class="ca-menu-toggle" id="caMenuToggle" type="button"
+              aria-label="Abrir menu" aria-expanded="false">
+        <i data-feather="menu"></i>
+      </button>
+    </div>
+
+    <div class="ca-mobile-menu" id="caMobileMenu">
+      <a href="#beneficios">Benefícios</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#na-pratica">Na prática</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://wa.me/5541987132156?text=Ol%C3%A1%2C%20quero%20conhecer%20mais%20sobre%20a%20Zenga%20e%20a%20integra%C3%A7%C3%A3o%20Conta%20Azul."
+         target="_blank" rel="noopener">
+        Falar com a Zenga
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<main>
+  <section class="ca-hero" id="inicio">
+    <div class="ca-orb one"></div>
+    <div class="ca-orb two"></div>
+
+    <div class="ca-shell ca-hero-grid">
+      <div class="ca-reveal is-visible">
+        <div class="ca-eyebrow">
+          <span class="ca-eyebrow-dot"></span>
+          Zenga + Conta Azul
+        </div>
+
+        <h1>
+          Contabilidade e financeiro
+          <span class="ca-gradient-text">no mesmo fluxo.</span>
+        </h1>
+
+        <p class="ca-hero-lead">
+          A contabilidade organiza as guias de impostos e encargos na Zenga, incluindo rotinas do <strong>Departamento Pessoal e do Fiscal</strong>.
+          O cliente recebe o lançamento no <strong>Contas a Pagar do Conta Azul</strong>.
+          Menos redigitação, menos retrabalho e mais organização para os dois lados.
+        </p>
+
+        <div class="ca-hero-actions">
+          <a class="ca-btn ca-btn-primary" href="https://wa.me/5541987132156?text=Ol%C3%A1%2C%20quero%20conhecer%20mais%20sobre%20a%20Zenga%20e%20a%20integra%C3%A7%C3%A3o%20Conta%20Azul." target="_blank" rel="noopener">
+            <i data-feather="message-circle"></i>
+            Conhecer Zenga + Conta Azul
+          </a>
+          <a class="ca-btn ca-btn-ghost" href="https://wa.me/5541987132156?text=Ol%C3%A1%2C%20j%C3%A1%20sou%20cliente%20Zenga%20e%20quero%20conhecer%20a%20integra%C3%A7%C3%A3o%20Conta%20Azul." target="_blank" rel="noopener">
+            <i data-feather="message-circle"></i>
+            Já sou cliente Zenga
+          </a>
+        </div>
+
+        <div class="ca-hero-note">
+          <i data-feather="shield"></i>
+          Integração via API oficial do Conta Azul.
+        </div>
+      </div>
+
+      <div class="ca-showcase ca-reveal ca-delay-1" id="caShowcase">
+        <div class="ca-showcase-glow"></div>
+
+        <div class="ca-float-chip one">Conta Azul conectado ✓</div>
+        <div class="ca-float-chip two">Lançamento integrado ✓</div>
+
+        <div class="ca-showcase-card">
+          <div class="ca-brand-lockup">
+            <div class="ca-brand-box">
+              <img src="./assets/zenga-logo.png" alt="Zenga">
+            </div>
+            <div class="ca-plus">+</div>
+            <div class="ca-brand-box">
+              <img src="./assets/conta-azul-logo.png" alt="Conta Azul">
+            </div>
+          </div>
+
+          <div class="ca-demo">
+            <div class="ca-demo-top">
+              <div class="ca-demo-title">Contabilidade → financeiro</div>
+              <div class="ca-live"><i></i> Conectado</div>
+            </div>
+
+            <div class="ca-demo-row">
+              <div>
+                <strong>Guia de imposto • 10/2026</strong>
+                <small>Pronta para o financeiro</small>
+              </div>
+              <div class="ca-demo-value">R$ 4.280,90</div>
+            </div>
+
+            <div class="ca-demo-row">
+              <div>
+                <strong>Conta financeira + categoria</strong>
+                <small>Configuração da empresa</small>
+              </div>
+              <div class="ca-demo-value ca-demo-status">Configurada</div>
+            </div>
+
+            <div class="ca-demo-row">
+              <div>
+                <strong>Conta Azul</strong>
+                <small>Contas a pagar</small>
+              </div>
+              <div class="ca-demo-value ca-demo-status">Integrada ✓</div>
+            </div>
+          </div>
+
+          <div class="ca-path">
+            <div class="ca-path-node">
+              <b>CONTABILIDADE</b>
+              <span>rotina contábil</span>
+            </div>
+            <div class="ca-path-arrow">→</div>
+            <div class="ca-path-node">
+              <b>ZENGA</b>
+              <span>guia organizada</span>
+            </div>
+            <div class="ca-path-arrow">→</div>
+            <div class="ca-path-node">
+              <b>CONTA AZUL</b>
+              <span>contas a pagar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-trust">
+    <div class="ca-shell ca-trust-grid ca-reveal">
+      <div class="ca-trust-item">
+        <div class="ca-trust-icon"><i data-feather="cloud"></i></div>
+        <div><b>100% em nuvem</b><span>sem instalação local</span></div>
+      </div>
+      <div class="ca-trust-item">
+        <div class="ca-trust-icon"><i data-feather="link-2"></i></div>
+        <div><b>API oficial</b><span>conexão com o Conta Azul</span></div>
+      </div>
+      <div class="ca-trust-item">
+        <div class="ca-trust-icon"><i data-feather="users"></i></div>
+        <div><b>+1.000 usuários</b><span>ativos na Zenga</span></div>
+      </div>
+      <div class="ca-trust-item">
+        <div class="ca-trust-icon"><i data-feather="layers"></i></div>
+        <div><b>+30 mil empresas/mês</b><span>processadas na plataforma</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section" id="beneficios">
+    <div class="ca-shell">
+      <div class="ca-head ca-reveal">
+        <div class="ca-kicker">Menos operacional</div>
+        <h2 class="ca-section-title">A guia já existe. O financeiro não deveria começar do zero.</h2>
+        <p class="ca-section-lead">
+          Quando a contabilidade conclui uma guia de imposto ou encargo, seja em uma rotina do Departamento Pessoal ou do Fiscal, recriar manualmente a mesma informação no ERP significa mais cliques, mais conferência e mais chance de retrabalho.
+        </p>
+      </div>
+
+      <div class="ca-grid-4">
+        <article class="ca-value-card ca-reveal">
+          <div class="ca-card-icon"><i data-feather="edit-3"></i></div>
+          <h3>Menos redigitação</h3>
+          <p>Os dados da guia seguem para o lançamento financeiro sem depender de uma nova digitação campo por campo.</p>
+        </article>
+
+        <article class="ca-value-card ca-reveal ca-delay-1">
+          <div class="ca-card-icon"><i data-feather="credit-card"></i></div>
+          <h3>Financeiro organizado</h3>
+          <p>Conta financeira e categoria podem ficar configuradas por empresa para manter um padrão no Contas a Pagar.</p>
+        </article>
+
+        <article class="ca-value-card ca-reveal ca-delay-2">
+          <div class="ca-card-icon"><i data-feather="zap"></i></div>
+          <h3>Mais agilidade</h3>
+          <p>A contabilidade reduz a troca entre sistemas e transforma uma etapa repetitiva em um fluxo simples.</p>
+        </article>
+
+        <article class="ca-value-card ca-reveal ca-delay-3">
+          <div class="ca-card-icon"><i data-feather="check-circle"></i></div>
+          <h3>Mais controle</h3>
+          <p>A Zenga acompanha o envio e mostra o que está pronto, em processamento, integrado ou com pendência.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section ca-section-soft" id="abrangencia">
+    <div class="ca-shell">
+      <div class="ca-head ca-reveal">
+        <div class="ca-kicker">Da contabilidade para o financeiro</div>
+        <h2 class="ca-section-title">Uma integração para as guias que fazem parte da rotina contábil.</h2>
+        <p class="ca-section-lead">
+          A necessidade de levar uma guia ao financeiro não pertence a um único departamento.
+          A integração foi pensada para aproximar o trabalho da contabilidade do dia a dia financeiro do cliente.
+        </p>
+      </div>
+
+      <div class="ca-grid-4">
+        <article class="ca-value-card ca-reveal">
+          <div class="ca-card-icon"><i data-feather="users"></i></div>
+          <h3>Departamento Pessoal</h3>
+          <p>Guias e encargos que nascem nas rotinas trabalhistas e previdenciárias também fazem parte desse fluxo entre contabilidade e financeiro.</p>
+        </article>
+
+        <article class="ca-value-card ca-reveal ca-delay-1">
+          <div class="ca-card-icon"><i data-feather="file-text"></i></div>
+          <h3>Departamento Fiscal</h3>
+          <p>Guias de impostos apuradas nas rotinas tributárias podem seguir o mesmo caminho organizado até o Contas a Pagar.</p>
+        </article>
+
+        <article class="ca-value-card ca-reveal ca-delay-2">
+          <div class="ca-card-icon"><i data-feather="briefcase"></i></div>
+          <h3>Escritório contábil</h3>
+          <p>A equipe centraliza a operação na Zenga e reduz tarefas repetitivas ao atender várias empresas da carteira.</p>
+        </article>
+
+        <article class="ca-value-card ca-reveal ca-delay-3">
+          <div class="ca-card-icon"><i data-feather="dollar-sign"></i></div>
+          <h3>Financeiro do cliente</h3>
+          <p>O cliente recebe a obrigação no Conta Azul, dentro do ambiente financeiro que já utiliza no dia a dia.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section" id="na-pratica">
+    <div class="ca-shell">
+      <div class="ca-head ca-reveal">
+        <div class="ca-kicker">Na prática</div>
+        <h2 class="ca-section-title">Do retrabalho para um fluxo conectado.</h2>
+      </div>
+
+      <div class="ca-compare">
+        <article class="ca-compare-card before ca-reveal">
+          <div class="ca-compare-label"><i data-feather="x-circle"></i> Sem integração</div>
+          <h3>A contabilidade termina. O financeiro recomeça.</h3>
+
+          <div class="ca-list">
+            <div class="ca-list-item">
+              <div class="ca-list-icon"><i data-feather="copy"></i></div>
+              <div><b>Copiar informações da guia</b><span>valor, vencimento, competência e identificação.</span></div>
+            </div>
+            <div class="ca-list-item">
+              <div class="ca-list-icon"><i data-feather="repeat"></i></div>
+              <div><b>Repetir cadastro no ERP</b><span>mais uma etapa manual para cada empresa.</span></div>
+            </div>
+            <div class="ca-list-item">
+              <div class="ca-list-icon"><i data-feather="alert-triangle"></i></div>
+              <div><b>Conferir novamente</b><span>mais pontos sujeitos a erro e retrabalho.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="ca-compare-arrow ca-reveal ca-delay-1">
+          <div class="ca-arrow-ring"><i data-feather="arrow-right"></i></div>
+        </div>
+
+        <article class="ca-compare-card after ca-reveal ca-delay-2">
+          <div class="ca-compare-label"><i data-feather="check-circle"></i> Zenga + Conta Azul</div>
+          <h3>A informação segue para o financeiro.</h3>
+
+          <div class="ca-list">
+            <div class="ca-list-item">
+              <div class="ca-list-icon"><i data-feather="file-text"></i></div>
+              <div><b>Guia controlada na Zenga</b><span>a equipe trabalha a rotina contábil em um só lugar.</span></div>
+            </div>
+            <div class="ca-list-item">
+              <div class="ca-list-icon"><i data-feather="send"></i></div>
+              <div><b>Envio com poucos cliques</b><span>o usuário mantém o controle sobre o que será integrado.</span></div>
+            </div>
+            <div class="ca-list-item">
+              <div class="ca-list-icon"><i data-feather="check-square"></i></div>
+              <div><b>Lançamento no Conta Azul</b><span>o cliente encontra a obrigação no financeiro que já utiliza.</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section" id="como-funciona">
+    <div class="ca-shell">
+      <div class="ca-head ca-reveal">
+        <div class="ca-kicker">Como funciona</div>
+        <h2 class="ca-section-title">Conecte uma vez. Simplifique os próximos fechamentos.</h2>
+        <p class="ca-section-lead">
+          Cada empresa autoriza a conexão e pode ter sua própria configuração financeira.
+        </p>
+      </div>
+
+      <div class="ca-flow-wrap">
+        <div class="ca-flow-line"></div>
+        <div class="ca-flow-grid">
+          <div class="ca-flow-card ca-reveal">
+            <div class="ca-flow-icon"><i data-feather="link"></i></div>
+            <b>1. Conecte a empresa</b>
+            <span>A autorização acontece no ambiente oficial do Conta Azul.</span>
+          </div>
+
+          <div class="ca-flow-card ca-reveal ca-delay-1">
+            <div class="ca-flow-icon"><i data-feather="sliders"></i></div>
+            <b>2. Configure o financeiro</b>
+            <span>Defina conta financeira e categoria para aquela empresa.</span>
+          </div>
+
+          <div class="ca-flow-card ca-reveal ca-delay-2">
+            <div class="ca-flow-icon"><i data-feather="file-text"></i></div>
+            <b>3. Trabalhe as guias</b>
+            <span>A contabilidade mantém as guias e rotinas centralizadas na Zenga.</span>
+          </div>
+
+          <div class="ca-flow-card ca-reveal ca-delay-3">
+            <div class="ca-flow-icon"><i data-feather="arrow-up-right"></i></div>
+            <b>4. Envie ao Conta Azul</b>
+            <span>O lançamento é criado no Contas a Pagar e o retorno fica visível.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section ca-section-soft">
+    <div class="ca-shell ca-product-grid">
+      <div class="ca-reveal">
+        <div class="ca-kicker">Experiência simples</div>
+        <h2 class="ca-section-title">A contabilidade continua no controle.</h2>
+        <p class="ca-section-lead">
+          A integração não muda a forma como o escritório trabalha suas rotinas. Ela elimina uma etapa repetitiva entre a guia e o financeiro do cliente.
+        </p>
+
+        <div class="ca-points">
+          <div class="ca-point">
+            <div class="ca-point-icon"><i data-feather="calendar"></i></div>
+            <div><b>Filtre por competência</b><span>encontre rapidamente as guias do período.</span></div>
+          </div>
+          <div class="ca-point">
+            <div class="ca-point-icon"><i data-feather="search"></i></div>
+            <div><b>Busque por empresa</b><span>nome, CNPJ ou código interno.</span></div>
+          </div>
+          <div class="ca-point">
+            <div class="ca-point-icon"><i data-feather="layers"></i></div>
+            <div><b>Selecione uma ou várias guias</b><span>operações individuais ou em lote.</span></div>
+          </div>
+          <div class="ca-point">
+            <div class="ca-point-icon"><i data-feather="activity"></i></div>
+            <div><b>Acompanhe o status</b><span>do envio até a confirmação da integração.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ca-browser ca-reveal ca-delay-1">
+        <div class="ca-browser-bar">
+          <i></i><i></i><i></i>
+          <div class="ca-browser-url">app.zengatax.com.br / conta azul</div>
+        </div>
+
+        <div class="ca-browser-body">
+          <div class="ca-browser-head">
+            <div class="ca-browser-title">Guias de impostos</div>
+            <div class="ca-browser-badge">Conta Azul conectado</div>
+          </div>
+
+          <div class="ca-kpis">
+            <div class="ca-kpi"><strong>18</strong><span>Guias no período</span></div>
+            <div class="ca-kpi"><strong>11</strong><span>A integrar</span></div>
+            <div class="ca-kpi"><strong>7</strong><span>Integradas</span></div>
+          </div>
+
+          <div class="ca-table">
+            <div class="ca-table-row ca-table-head">
+              <div>EMPRESA</div><div>COMPETÊNCIA</div><div>VALOR</div><div>CONTA AZUL</div>
+            </div>
+            <div class="ca-table-row">
+              <div class="ca-table-cell"><strong>Empresa Alfa</strong></div>
+              <div class="ca-table-cell">10/2026</div>
+              <div class="ca-table-cell">R$ 4.280,90</div>
+              <div class="ca-table-cell"><span class="ca-status-ok">Integrada</span></div>
+            </div>
+            <div class="ca-table-row">
+              <div class="ca-table-cell"><strong>Empresa Beta</strong></div>
+              <div class="ca-table-cell">10/2026</div>
+              <div class="ca-table-cell">R$ 2.135,40</div>
+              <div class="ca-table-cell"><span class="ca-status-wait">A integrar</span></div>
+            </div>
+            <div class="ca-table-row">
+              <div class="ca-table-cell"><strong>Empresa Gama</strong></div>
+              <div class="ca-table-cell">10/2026</div>
+              <div class="ca-table-cell">R$ 7.941,02</div>
+              <div class="ca-table-cell"><span class="ca-status-ok">Integrada</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section">
+    <div class="ca-shell">
+      <div class="ca-audience ca-reveal">
+        <div>
+          <div class="ca-kicker" style="color:#72eaff">Feito para contabilidades</div>
+          <h2>Uma experiência melhor para o escritório e para o cliente.</h2>
+          <p>
+            Cada lado continua usando a ferramenta certa para sua rotina:
+            a contabilidade trabalha suas rotinas e guias na Zenga e o cliente acompanha o financeiro no Conta Azul.
+          </p>
+        </div>
+
+        <div class="ca-audience-grid">
+          <div class="ca-audience-card">
+            <i data-feather="briefcase"></i>
+            <strong>Para a contabilidade</strong>
+            <span>menos digitação, menos troca de tela e mais escala na carteira.</span>
+          </div>
+          <div class="ca-audience-card">
+            <i data-feather="user"></i>
+            <strong>Para o cliente</strong>
+            <span>obrigações financeiras organizadas no ERP que ele já acompanha.</span>
+          </div>
+          <div class="ca-audience-card">
+            <i data-feather="settings"></i>
+            <strong>Por empresa</strong>
+            <span>configuração individual de conta financeira e categoria.</span>
+          </div>
+          <div class="ca-audience-card">
+            <i data-feather="eye"></i>
+            <strong>Com rastreabilidade</strong>
+            <span>status claro do envio e da integração no fluxo da Zenga.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section ca-section-soft" id="seguranca">
+    <div class="ca-shell">
+      <div class="ca-head ca-reveal">
+        <div class="ca-kicker">Conexão segura</div>
+        <h2 class="ca-section-title">A autorização acontece onde deve acontecer: no Conta Azul.</h2>
+        <p class="ca-section-lead">
+          A empresa autoriza a conexão no ambiente oficial do Conta Azul e a Zenga utiliza a integração para executar o fluxo permitido.
+        </p>
+      </div>
+
+      <div class="ca-numbers">
+        <div class="ca-number-card ca-reveal">
+          <div class="ca-number">OAuth</div>
+          <div class="ca-number-label">autorização da empresa no Conta Azul</div>
+        </div>
+        <div class="ca-number-card ca-reveal ca-delay-1">
+          <div class="ca-number">API</div>
+          <div class="ca-number-label">comunicação oficial entre os sistemas</div>
+        </div>
+        <div class="ca-number-card ca-reveal ca-delay-2">
+          <div class="ca-number">1×</div>
+          <div class="ca-number-label">configuração financeira por empresa</div>
+        </div>
+        <div class="ca-number-card ca-reveal ca-delay-3">
+          <div class="ca-number">✓</div>
+          <div class="ca-number-label">controle de status dentro da Zenga</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section" id="faq">
+    <div class="ca-shell">
+      <div class="ca-head ca-reveal">
+        <div class="ca-kicker">Perguntas frequentes</div>
+        <h2 class="ca-section-title">O que você precisa saber.</h2>
+      </div>
+
+      <div class="ca-faq ca-reveal">
+        <details>
+          <summary>O que a integração Zenga + Conta Azul faz?</summary>
+          <p>
+            Ela conecta as guias de impostos e encargos tratadas pela contabilidade na Zenga ao financeiro da empresa no Conta Azul. Isso abrange rotinas que podem nascer tanto no Departamento Pessoal quanto no Fiscal, reduzindo a necessidade de recriar manualmente o lançamento no Contas a Pagar.
+          </p>
+        </details>
+
+        <details>
+          <summary>Preciso trocar meu sistema contábil ou o ERP do cliente?</summary>
+          <p>
+            Não. A Zenga complementa a operação da contabilidade e o Conta Azul continua sendo o ambiente financeiro da empresa.
+          </p>
+        </details>
+
+        <details>
+          <summary>Como a empresa autoriza a conexão?</summary>
+          <p>
+            A contabilidade gera o link na Zenga. O responsável acessa a conta correta no Conta Azul e conclui a autorização no próprio ambiente da plataforma.
+          </p>
+        </details>
+
+        <details>
+          <summary>Posso configurar conta financeira e categoria por empresa?</summary>
+          <p>
+            Sim. Cada empresa conectada pode ter sua própria conta financeira e categoria definidas para os lançamentos enviados pela integração.
+          </p>
+        </details>
+
+        <details>
+          <summary>O lançamento é criado sem nenhuma ação do usuário?</summary>
+          <p>
+            O usuário mantém o controle do processo: seleciona as guias desejadas na Zenga e confirma o envio para o financeiro.
+          </p>
+        </details>
+
+        <details>
+          <summary>Como sei se a integração foi concluída?</summary>
+          <p>
+            A Zenga acompanha o processamento e mostra o status da operação, permitindo identificar o que já foi integrado e o que precisa de atenção.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="ca-section" style="padding-top:30px">
+    <div class="ca-shell">
+      <div class="ca-cta ca-reveal">
+        <div>
+          <h2>Menos cliques entre a contabilidade e o financeiro.</h2>
+          <p>
+            Conecte a rotina da sua contabilidade ao Conta Azul dos seus clientes e transforme uma tarefa repetitiva em um fluxo mais simples, organizado e escalável.
+          </p>
+        </div>
+        <a class="ca-btn" href="https://wa.me/5541987132156?text=Ol%C3%A1%2C%20quero%20conhecer%20mais%20sobre%20a%20Zenga%20e%20a%20integra%C3%A7%C3%A3o%20Conta%20Azul." target="_blank" rel="noopener">
+          <i data-feather="message-circle"></i>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ca-footer">
+  <div class="ca-shell ca-footer-row">
+    <div class="ca-footer-brand">
+      <img src="./assets/zenga-logo.png" alt="Zenga">
+      <div class="ca-footer-note">
+        Zenga · Automação para escritórios contábeis
+      </div>
+    </div>
+
+    <div class="ca-socials">
+      <a href="https://www.linkedin.com/company/zenga-tax" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+      <a href="https://www.instagram.com/zengatax" target="_blank" rel="noopener" aria-label="Instagram"><i data-feather="instagram"></i></a>
+      <a href="https://www.youtube.com/@zengatax" target="_blank" rel="noopener" aria-label="YouTube"><i data-feather="youtube"></i></a>
+    </div>
+  </div>
+</footer>
+
+<button class="ca-top" id="caTop" type="button" aria-label="Voltar ao topo">
+  <i data-feather="arrow-up"></i>
+</button>
+
+<script>
+  feather.replace();
+
+  const header = document.getElementById('caHeader');
+  const topButton = document.getElementById('caTop');
+  const menuToggle = document.getElementById('caMenuToggle');
+  const mobileMenu = document.getElementById('caMobileMenu');
+  const showcase = document.getElementById('caShowcase');
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 18);
+    topButton.classList.toggle('show', y > 600);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  topButton.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+  menuToggle.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.14, rootMargin:'0px 0px -40px 0px' });
+
+  document.querySelectorAll('.ca-reveal:not(.is-visible)').forEach(el => revealObserver.observe(el));
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(showcase && !reducedMotion && window.innerWidth > 1020){
+    showcase.addEventListener('mousemove', (event) => {
+      const rect = showcase.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      const card = showcase.querySelector('.ca-showcase-card');
+      card.style.transform = `rotateY(${x * 7 - 4}deg) rotateX(${-y * 5 + 2}deg) translateY(-2px)`;
+    });
+
+    showcase.addEventListener('mouseleave', () => {
+      const card = showcase.querySelector('.ca-showcase-card');
+      card.style.transform = '';
+    });
+  }
+
+  document.querySelectorAll('.ca-faq details').forEach(item => {
+    item.addEventListener('toggle', () => {
+      if(!item.open) return;
+      document.querySelectorAll('.ca-faq details').forEach(other => {
+        if(other !== item) other.removeAttribute('open');
+      });
+    });
+  });
+</script>
+</body>
+</html>
