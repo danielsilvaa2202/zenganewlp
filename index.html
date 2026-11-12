@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="estilos/responsivo.css">
     <link rel="stylesheet" href="chatbot.css">
     <link rel="stylesheet" href="estilos/video.css">
+    <link rel="stylesheet" href="estilos/novidades-2026.css">
 
     <style>
         .help-center-banner {
@@ -445,6 +446,11 @@
                             <i data-feather="check-circle"></i>
                             <span>através de plataforma <strong>única e gerenciada.</strong></span>
                         </div>
+                        <button type="button" class="produto-video-cta" id="openPlatformVideo" aria-haspopup="dialog" aria-controls="platformVideoModal">
+                            <span class="produto-video-play"><i data-feather="play"></i></span>
+                            <span class="produto-video-label"><strong>Ver vídeo da plataforma</strong><small>Conheça a Zenga em ação</small></span>
+                            <i data-feather="arrow-up-right" class="produto-video-arrow"></i>
+                        </button>
 
                     </div>
                 </div>
@@ -1036,6 +1042,19 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
             </div>
 
         </div>
+        <!-- Reconhecimento SERPRO 2026: apenas o troféu da arte enviada -->
+        <div class="serpro-award animate-on-scroll">
+            <div class="serpro-award-art">
+                <div class="serpro-award-halo" aria-hidden="true"></div>
+                <img class="serpro-award-trophy" src="img/trofeu-serpro-2026.png" alt="Troféu do Prêmio Conexão de Valor Serpro 2026" loading="lazy">
+            </div>
+            <div class="serpro-award-copy">
+                <span class="serpro-award-kicker"><i data-feather="award"></i> Reconhecimento nacional · 2026</span>
+                <h3>Finalistas do <span>Prêmio Conexão de Valor</span> Serpro 2026</h3>
+                <p>A Zenga está entre os finalistas do Prêmio Conexão de Valor Serpro 2026, reforçando nosso compromisso com a inovação e a automação contábil.</p>
+                <span class="serpro-award-status"><i data-feather="star"></i> Zenga · Finalista 2026</span>
+            </div>
+        </div>
     </div>
 </section>
         
@@ -1450,6 +1469,11 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
                             <a href="https://artefiscal.com.br/" target="_blank" class="partner-item">
                                 <img src="img/parceiros/artefiscal.png" alt="Arte Fiscal">
                             </a>
+                            <a href="https://www.contabilstore.com.br/zenga" target="_blank" rel="noopener noreferrer" class="partner-item partner-item--contabilstore" aria-label="Contábil Store - Conheça a parceria Zenga">
+                                <!-- Salve sua logo em img/parceiros/contabilstore.png -->
+                                <img src="img/parceiros/contabilstore.png" alt="Contábil Store" loading="lazy" onload="this.nextElementSibling.hidden=true" onerror="this.style.display='none'">
+                                <span class="contabilstore-fallback">CONTÁBIL <strong>STORE</strong></span>
+                            </a>
                             <a href="https://www.instagram.com/rodrigo_salima/" target="_blank" class="partner-item">
                                 <img src="img/parceiros/rodrigo.png" alt="Rodrigo Salima">
                             </a>
@@ -1674,6 +1698,13 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
         </div>
     </footer>
     
+    <!-- ===============================================================
+         MODAL ORIGINAL DA ZENGA — PRESERVADO SEM MUDANÇAS
+         ESTÁ COMENTADO ENQUANTO A BLACK FRIDAY ESTIVER ATIVA.
+         Para voltar: comente o modal Black Friday abaixo e retire os
+         marcadores de abertura e fechamento de comentário deste bloco.
+         =============================================================== -->
+    <!--
     <div class="modal-overlay" id="promoModalOverlay">
         <div class="modal-container">
             <button class="modal-close" aria-label="Fechar Modal"><i data-feather="x"></i></button>
@@ -1697,6 +1728,93 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
                         <span>Agendar agora!</span>
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- ================================================================
+         BLACK FRIDAY ZENGA 2026 — MODAL ATIVO
+         O modal ORIGINAL está comentado logo acima, totalmente preservado.
+         Para voltar: comente este <div id="promoModalOverlay"> inteiro e
+         descomente o HTML do modal original acima. Não precisa trocar CSS/JS.
+         A campanha informada é válida para novos clientes até 18/11/2026.
+         ================================================================ -->
+    <div class="modal-overlay promo-blackfriday" id="promoModalOverlay" role="dialog" aria-modal="true" aria-label="Black Friday Zenga - demonstração gratuita">
+        <div class="modal-container bf-modal">
+            <button type="button" class="modal-close" aria-label="Fechar modal"><i data-feather="x"></i></button>
+
+            <!-- Black Friday com imagem original e condição de contratação em destaque. -->
+            <div class="bf-visual">
+                <img class="bf-visual-photo" src="img/modal.png" alt="" aria-hidden="true">
+                <div class="bf-visual-overlay" aria-hidden="true"></div>
+                <div class="bf-visual-content">
+                    <span class="bf-label"><span class="bf-label-dot"></span> BLACK FRIDAY ZENGA</span>
+                    <!-- Os dois beneficios da Black Friday ficam lado a lado. -->
+                    <div class="bf-benefits-grid" aria-label="Condições especiais para novos clientes">
+                        <div class="bf-benefit bf-benefit-discount">
+                            <div class="bf-discount-value" aria-label="20 por cento de desconto">
+                                <strong>20<small>%</small></strong>
+                                <span>OFF</span>
+                            </div>
+                            <small>nas mensalidades<br>até janeiro</small>
+                        </div>
+                        <div class="bf-benefit bf-benefit-onboarding">
+                            <span class="bf-onboarding-label"><i data-feather="gift"></i> ONBOARDING</span>
+                            <strong>GRÁTIS</strong>
+                            <small>para começar<br>com a Zenga</small>
+                        </div>
+                    </div>
+                    <div class="bf-offer-details" aria-label="Condições da campanha">
+                        <span class="bf-new-client"><i data-feather="user-plus"></i> Só para novos clientes</span>
+                        <span class="bf-valid-until"><i data-feather="clock"></i> Até 18/11</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-content-column bf-copy">
+                <img src="img/headerdark.png" alt="Zenga" class="modal-header-logo">
+                <span class="bf-copy-eyebrow">CONDIÇÃO ESPECIAL DE ENTRADA</span>
+                <h2>Seu escritório no modo Zenga. <span>Uma vantagem para começar.</span></h2>
+                <p class="bf-lead">Conheça como a Zenga reduz tarefas manuais e centraliza sua operação fiscal em uma demonstração gratuita.</p>
+
+                <div class="bf-advantages" aria-label="O que você automatiza com a Zenga">
+                    <span><i data-feather="check-circle"></i> MIT e DCTFWeb em lote</span>
+                    <span><i data-feather="check-circle"></i> Emissão de guias e recibos</span>
+                    <span><i data-feather="check-circle"></i> Pendências em um só lugar</span>
+                </div>
+
+                <div class="bf-small-print">
+                    <i data-feather="user-check"></i>
+                    <p><strong>Exclusivo para novos clientes.</strong> Contratação até <strong>18/11/2026</strong>: <strong>20% OFF nas mensalidades até janeiro + onboarding gratuito.</strong></p>
+                </div>
+
+                <div class="modal-contact-info bf-action">
+                    <a href="https://wa.me/5541987132156?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20demonstra%C3%A7%C3%A3o%20e%20conhecer%20a%20Black%20Friday%20Zenga%3A%2020%25%20de%20desconto%20nas%20mensalidades%20at%C3%A9%20janeiro%20e%20onboarding%20gratuito%2C%20exclusivo%20para%20novos%20clientes.%20Condi%C3%A7%C3%A3o%20v%C3%A1lida%20para%20contrata%C3%A7%C3%A3o%20at%C3%A9%2018%2F11%2F2026."
+                       target="_blank" rel="noopener noreferrer" class="modal-whatsapp-button">
+                        <i data-feather="message-circle"></i><span>Agendar demonstração gratuita</span>
+                    </a>
+                    <small>Conheça a plataforma e a condição para começar.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de vídeo: o arquivo só começa a carregar ao abrir -->
+    <div class="modal-overlay" id="platformVideoModal" role="dialog" aria-modal="true" aria-labelledby="platformVideoModalTitle" aria-hidden="true">
+        <div class="platform-video-panel" role="document">
+            <button type="button" class="platform-video-close" id="closePlatformVideo" aria-label="Fechar vídeo"><span aria-hidden="true">×</span></button>
+            <div class="platform-video-player">
+                <video id="platformVideo" controls playsinline preload="none" poster="img/preview-plataforma-zenga.jpg">
+                    <source src="videos/plataforma-zenga.mp4" type="video/mp4">
+                    Seu navegador não suporta a reprodução de vídeo.
+                </video>
+            </div>
+            <div class="platform-video-copy">
+                <span class="platform-video-kicker"><i data-feather="play-circle"></i> CONHEÇA A PLATAFORMA</span>
+                <h2 id="platformVideoModalTitle">Veja a Zenga em ação.</h2>
+                <p>Veja na prática como a Zenga automatiza MIT, DCTFWeb, guias e o acompanhamento das rotinas fiscais do seu escritório.</p>
+                <a href="https://wa.me/5541987132156?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20demonstra%C3%A7%C3%A3o%20da%20Zenga." target="_blank" rel="noopener noreferrer" class="platform-video-demo">Agendar demonstração <i data-feather="arrow-up-right"></i></a>
             </div>
         </div>
     </div>
@@ -1780,7 +1898,7 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
         <div class="chatbot">
             <div class="chatbot-fab" id="chatbot-fab">
                 <div class="chatbot-fab-bubble" id="chatbot-fab-bubble">
-                    Olá! 👋
+                    Faça seu diagnóstico gratuito ✨
                 </div>
                 <i class="icon-closed" data-feather="message-square"></i>
                 <i class="icon-open" data-feather="x"></i>
@@ -1815,6 +1933,7 @@ Uma plataforma inteligente que integra MIT, DCTFWeb e emissão de guias DARF, ga
     <script src="script.js"></script>
     <script src="planos.js"></script>
     <script src="chatbot.js"></script>
+    <script src="novidades-2026.js"></script>
     <script src="carousel-infinite.js"></script>
 
     <script>

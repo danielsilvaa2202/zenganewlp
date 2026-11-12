@@ -15,8 +15,33 @@ document.addEventListener('DOMContentLoaded', () => {
         let isChatOpen = false;
         let botState = 'initial';
 
-        const welcomeMessage = "Olá! Sou o assistente virtual da ZengaTax. Como posso ajudar você a mudar sua rotina fiscal hoje?";
-        const initialSuggestions = ["Como funciona?", "Quais as soluções?", "Agendar Reunião"];
+        // Boas-vindas em um único card compacto: não compete com as perguntas rápidas.
+        const welcomeMessage = `
+            <div class="zenga-chat-hero">
+                <div class="zenga-chat-hello"><span class="zenga-chat-hello-icon">✦</span> OLÁ! EU SOU O ASSISTENTE ZENGA</div>
+                <h4>Sua rotina fiscal pode ser mais simples.</h4>
+                <p>Posso te mostrar as automações da Zenga ou ajudar a identificar oportunidades no seu escritório.</p>
+                <div class="zenga-chat-diagnostico">
+                    <span class="zenga-chat-mini-badge">DIAGNÓSTICO GRATUITO</span>
+                    <div class="zenga-chat-diagnostico-main">
+                        <div class="zenga-chat-counter">06<small>perguntas</small></div>
+                        <div><strong>Descubra onde ganhar tempo</strong><small>Um diagnóstico rápido da sua operação.</small></div>
+                    </div>
+                    <a href="https://zengatax.com.br/diagnostico/" target="_blank" rel="noopener noreferrer">Fazer meu diagnóstico <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>`;
+
+        const diagnosticMessage = `
+            <div class="zenga-chat-diagnostico zenga-chat-diagnostico--reply">
+                <span class="zenga-chat-mini-badge">DIAGNÓSTICO GRATUITO</span>
+                <div class="zenga-chat-diagnostico-main">
+                    <div class="zenga-chat-counter">06<small>perguntas</small></div>
+                    <div><strong>Descubra onde ganhar tempo</strong><small>Identifique gargalos e oportunidades de automação.</small></div>
+                </div>
+                <a href="https://zengatax.com.br/diagnostico/" target="_blank" rel="noopener noreferrer">Fazer meu diagnóstico <span aria-hidden="true">↗</span></a>
+            </div>`;
+
+        const initialSuggestions = ["Como funciona?", "Agendar demonstração"];
 
         setTimeout(() => {
             if (!isChatOpen && fabBubble) {
@@ -32,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isChatOpen && messagesContainer.children.length === 0) {
                 addBotMessage(welcomeMessage);
                 addSuggestionChips(initialSuggestions);
+                // Na abertura, mostra o INÍCIO do card, não o final escondido pelas sugestões.
+                requestAnimationFrame(() => { messagesContainer.scrollTop = 0; });
             }
             if (isChatOpen) {
                 input.focus();
@@ -46,7 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
             messageDiv.className = `message ${sender}-message`;
             const bubble = document.createElement('div');
             bubble.className = 'message-bubble';
-            bubble.innerHTML = text;
+            if (sender === 'bot') bubble.innerHTML = text;
+            else bubble.textContent = text;
+            if (sender === 'bot' && (text.includes('zenga-chat-hero') || text.includes('zenga-chat-diagnostico'))) messageDiv.classList.add('welcome-message');
             messageDiv.appendChild(bubble);
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -90,7 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const encodedText = encodeURIComponent("Olá! Gostaria de agendar uma reunião de apresentação do sistema ZengaTax.");
             const whatsappLink = `https://wa.me/5541987132156?text=${encodedText}`;
 
-            if (botState === 'awaiting_schedule_confirmation' && (text.includes('sim') || text.includes('quero'))) {
+            if (text.includes('diagnóstico') || text.includes('diagnostico')) {
+                response.text = diagnosticMessage;
+                response.suggestions = ["Como funciona?", "Agendar Reunião"];
+                botState = 'initial';
+            } else if (botState === 'awaiting_schedule_confirmation' && (text.includes('sim') || text.includes('quero'))) {
                 response.text = `Ótimo! Para agendar, por favor, nos chame diretamente no WhatsApp clicando no link: <a href="${whatsappLink}" target="_blank">Iniciar Conversa</a>. Já deixei uma mensagem pronta para você!`;
                 botState = 'initial';
                 response.suggestions = initialSuggestions;

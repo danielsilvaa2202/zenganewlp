@@ -1,0 +1,479 @@
+/* Atualizações da landing page Zenga - novembro de 2026 */
+
+/* Chamada para ver vídeo, integrada ao bloco "A Zenga automatiza" */
+.produto-video-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin: 21px 0 1px;
+    padding: 10px 15px 10px 10px;
+    background: #042c4e;
+    border: 1px solid rgba(12, 192, 223, 0.38);
+    color: #fff;
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(4, 44, 78, .17);
+    font-family: 'Quicksand', sans-serif;
+    text-align: left;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.produto-video-cta:hover, .produto-video-cta:focus-visible {
+    background: #063d66;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 28px rgba(4, 44, 78, .24);
+}
+.produto-video-cta:focus-visible { outline: 3px solid #0cc0df; outline-offset: 3px; }
+.produto-video-play {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #0cc0df, #0594d1);
+    box-shadow: 0 3px 12px rgba(12,192,223,.3);
+    flex-shrink: 0;
+}
+.produto-video-play svg { width: 20px; height: 20px; fill: #fff; stroke: #fff; }
+.produto-video-label { display:flex; flex-direction:column; gap:2px; line-height:1.25; }
+.produto-video-label strong { font-size: .95rem; font-weight: 700; }
+.produto-video-label small { font-size: .77rem; color: #b8e5f1; }
+.produto-video-arrow { width:18px; height:18px; flex-shrink:0; margin-left:9px; color:#8ee3f2; }
+
+/* Campanha Black Friday, sem alterar a proposta da demonstração */
+.blackfriday-offer[hidden] { display: none !important; }
+#promoModalOverlay.promo-blackfriday .blackfriday-offer {
+    width: 100%;
+    margin: 6px auto 13px;
+    padding: 13px 16px 12px;
+    border: 1px solid rgba(225,173,87,.42);
+    border-radius: 16px;
+    background: radial-gradient(circle at 96% 6%, rgba(255,199,103,.16), transparent 42%), linear-gradient(135deg,#061d32,#082f4d);
+    color: #fff;
+    box-shadow: 0 11px 27px rgba(4,44,78,.16), inset 0 1px 0 rgba(255,255,255,.12);
+    text-align: left;
+}
+.blackfriday-offer-top { display:flex; justify-content:space-between; align-items:center; gap: 8px; }
+.blackfriday-offer-top > span:first-child { display:inline-flex; align-items:center; gap:6px; color:#ffe3a6; font-size:.7rem; font-weight:800; letter-spacing:.07em; }
+.blackfriday-offer-top svg { width:14px;height:14px; fill:#ffe3a6; stroke:#ffe3a6; }
+.blackfriday-deadline { padding:4px 8px; background:rgba(255,211,128,.12); border:1px solid rgba(255,211,128,.33); border-radius:30px; font-size:.7rem; color:#ffdeb0; font-weight:700; white-space:nowrap; }
+.blackfriday-offer-value { display:flex; align-items:center; gap:11px; margin:4px 0 1px; line-height:1; }
+.blackfriday-offer-value > strong { font-size:clamp(2.5rem,3.9vw,3.4rem); letter-spacing:-.09em; font-weight:800; background:linear-gradient(155deg,#fff4cf,#ffbf60); background-clip:text; -webkit-background-clip:text; color:transparent; }
+.blackfriday-offer-value > span { display:flex;flex-direction:column; gap:5px; color:#ffe8bc; font-size:1.2rem; font-weight:800; letter-spacing:.03em; }
+.blackfriday-offer-value small { display:block; color:#fff; font-size:.81rem; font-weight:600; letter-spacing:0; }
+#promoModalOverlay.promo-blackfriday .blackfriday-offer-terms { color:#f6f8ff; font-size:.81rem; line-height:1.43; opacity:1; margin:7px 0 8px; }
+.blackfriday-offer-terms strong { color:#ffe0a0; }
+.blackfriday-offer-footnote { display:flex;align-items:flex-start;gap:6px; padding-top:7px; border-top:1px solid rgba(255,255,255,.17); font-size:.71rem; line-height:1.35; color:#e7eef3; }
+.blackfriday-offer-footnote svg { width:13px;height:13px;flex-shrink:0;color:#ffe0a0; }
+#promoModalOverlay.promo-blackfriday .modal-container { max-height:calc(100dvh - 32px); overflow-y:auto; }
+#promoModalOverlay.promo-blackfriday .modal-content-column { padding-top:20px; padding-bottom:20px; }
+#promoModalOverlay.promo-blackfriday .modal-header-logo { max-height:65px; margin-bottom:7px; }
+#promoModalOverlay.promo-blackfriday .modal-tag { margin-bottom:7px; }
+#promoModalOverlay.promo-blackfriday .modal-features-list { margin-bottom:4px; }
+#promoModalOverlay.promo-blackfriday .modal-contact-info { margin-top:8px; }
+#promoModalOverlay.promo-blackfriday .modal-contact-info .modal-whatsapp-button { padding:12px 18px; font-size:1rem; }
+
+/* Segundo destaque no reconhecimento: SERPRO */
+.serpro-award {
+    position:relative;
+    z-index:1;
+    isolation:isolate;
+    display:grid;
+    grid-template-columns:minmax(170px, .75fr) minmax(0, 1.8fr);
+    align-items:center;
+    min-height:245px;
+    margin-top:22px;
+    padding: 18px clamp(24px,4.5vw,54px) 18px 22px;
+    gap:clamp(16px,4vw,44px);
+    overflow:hidden;
+    border:1px solid rgba(255,209,138,.28);
+    border-radius:25px;
+    background:radial-gradient(circle at 18% 50%, rgba(196,137,54,.19), transparent 35%), linear-gradient(117deg,#071a2a,#0a273d 80%,#042c4e);
+    box-shadow:0 20px 45px rgba(0,0,0,.14);
+}
+.serpro-award::before {
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(135deg,rgba(255,221,165,.08),transparent 45%);
+    z-index:-1;
+}
+.serpro-award-art { position:relative;height:235px;display:flex;align-items:center;justify-content:center; }
+.serpro-award-halo { position:absolute;width:190px;height:190px;border:1px solid rgba(240,179,85,.27);border-radius:50%;box-shadow:0 0 50px rgba(216,147,53,.1); }
+.serpro-award-trophy { display:block;position:relative;width:auto;max-width:100%;height:100%;object-fit:contain;object-position:center;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 86%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 86%,transparent 100%);filter:drop-shadow(0 7px 16px rgba(232,158,72,.2)); }
+.serpro-award-copy { position:relative; z-index:2; }
+.serpro-award-kicker { display:inline-flex;align-items:center;gap:9px;font-size:.72rem;font-weight:800;letter-spacing:.085em;text-transform:uppercase;color:#f4c886; }
+.serpro-award-kicker svg { width:17px;height:17px; }
+.serpro-award h3 { margin:12px 0 12px; font-size:clamp(1.45rem,3vw,2.45rem);line-height:1.14;letter-spacing:-.035em;font-weight:800;color:white; }
+.serpro-award h3 span { color:#e9ba77; }
+.serpro-award p { margin:0 0 15px;max-width:610px;color:#c5d7e3;line-height:1.62;font-size:.92rem; }
+.serpro-award-status { display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(240,179,85,.32);border-radius:30px;background:rgba(225,174,96,.09);font-size:.78rem;font-weight:700;color:#f7d9a4; }
+.serpro-award-status svg { width:14px;height:14px;fill:#e9ba77; }
+
+/* A logo é inserida pelo usuário no diretório img/parceiros/ */
+.partner-item--contabilstore { min-width:178px; }
+.partner-item--contabilstore img {max-height:72px; max-width:180px; }
+.contabilstore-fallback {display:block;padding:10px 8px;border:1px solid rgba(12,192,223,.5);border-radius:12px;color:white;font-size:.92rem;font-weight:800;letter-spacing:.015em;white-space:nowrap;line-height:1;}
+.contabilstore-fallback strong {color:#16bfe3;}
+.contabilstore-fallback[hidden] {display:none;}
+
+/* Modal vertical do vídeo anexado */
+#platformVideoModal {z-index:10040;background:rgba(3,17,31,.84);}
+.platform-video-panel {
+    position:relative;
+    display:grid;
+    grid-template-columns: minmax(200px,320px) minmax(260px,1fr);
+    gap:0;
+    width:min(790px,100%);
+    max-height:calc(100dvh - 36px);
+    border:1px solid rgba(12,192,223,.4);
+    border-radius:24px;
+    overflow:hidden;
+    background:linear-gradient(140deg,#06243d,#031724);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    transform:translateY(18px) scale(.98);
+    transition:transform .25s ease;
+}
+#platformVideoModal.visible .platform-video-panel {transform:translateY(0) scale(1);}
+.platform-video-player { display:flex;align-items:center;justify-content:center;min-height:0;background:#010c14; }
+.platform-video-player video { display:block; width:100%; max-height:calc(100dvh - 40px); aspect-ratio:9/16; object-fit:contain; background:#000; }
+.platform-video-copy { display:flex; flex-direction:column; justify-content:center;align-items:flex-start; padding:clamp(22px,4vw,46px); }
+.platform-video-kicker { display:flex;align-items:center;gap:8px;color:#7fdbec;font-size:.74rem;letter-spacing:.08em;font-weight:800; }
+.platform-video-kicker svg {width:18px;height:18px;}
+.platform-video-copy h2 {margin:16px 0;font-size:clamp(1.8rem,3vw,2.9rem);line-height:1.1;letter-spacing:-.04em;color:white;}
+.platform-video-copy p {color:#b9d7e7;font-size:.97rem;line-height:1.7;margin:0 0 24px;}
+.platform-video-demo {display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:13px 17px;border-radius:12px;background:#0cc0df;color:#042c4e;font-weight:800;text-decoration:none;font-size:.88rem;}
+.platform-video-demo:hover {background:white;color:#042c4e;}
+.platform-video-demo svg {width:17px;height:17px;}
+.platform-video-close {position:absolute;top:12px;right:12px;z-index:5;border:1px solid rgba(255,255,255,.2);background:rgba(4,44,78,.92);border-radius:50%;color:white;display:grid;place-items:center;width:37px;height:37px;cursor:pointer;}
+.platform-video-close:hover {background:#0c9dbf;}
+.platform-video-close svg {width:20px;height:20px;}
+
+/* Primeira mensagem do assistente com chamada para o diagnóstico */
+.message.diagnostic-message {max-width:96%;width:96%;}
+.diagnostic-message .message-bubble {padding:0;border-radius:15px;overflow:hidden;width:100%;background:transparent;box-shadow:0 4px 18px rgba(4,44,78,.1);}
+.diagnostico-chat-card {padding:15px;background:linear-gradient(135deg,#042c4e,#07517a);color:#fff;}
+.diagnostico-chat-kicker {display:flex;gap:7px;align-items:center;font-size:.68rem;font-weight:800;letter-spacing:.08em;color:#96effb;}
+.diagnostico-chat-card strong {display:block;font-size:1rem;margin:10px 0 6px;line-height:1.34;color:#fff;}
+.diagnostico-chat-card p {font-size:.81rem;line-height:1.5;color:#d2ebf5;margin:0 0 12px;}
+.bot-message .diagnostico-chat-card a {display:flex;justify-content:center;align-items:center;gap:8px;background:#0cc0df;border-radius:10px;padding:11px;text-align:center;color:#042c4e;font-weight:800;font-size:.83rem;text-decoration:none;}
+.bot-message .diagnostico-chat-card a:hover {background:white;text-decoration:none;}
+.chatbot-fab-bubble {max-width:calc(100vw - 110px);white-space:normal;text-align:center;font-size:.83rem;line-height:1.3;}
+
+@media (max-width: 768px) {
+    .serpro-award {grid-template-columns:1fr;gap:5px;padding:18px 22px 25px;text-align:center;}
+    .serpro-award-art {height:192px;}
+    .serpro-award-copy {display:flex;flex-direction:column;align-items:center;}
+    .serpro-award h3 {font-size:1.9rem;}
+    .serpro-award p {font-size:.88rem;}
+    #promoModalOverlay.promo-blackfriday .modal-container {max-width:410px;}
+    #promoModalOverlay.promo-blackfriday .modal-image-column {height:135px;flex-basis:auto;flex-shrink:0;}
+    #promoModalOverlay.promo-blackfriday .modal-content-column {padding:16px 23px 21px;flex-basis:auto;}
+    #promoModalOverlay.promo-blackfriday .modal-header-logo {max-height:45px;}
+    #promoModalOverlay.promo-blackfriday h2 {font-size:1.52rem;}
+    #promoModalOverlay.promo-blackfriday .modal-features-list li {font-size:.83rem;line-height:1.3;margin-bottom:5px;}
+    .platform-video-panel {width:min(440px,100%);grid-template-columns:1fr;overflow-y:auto;}
+    .platform-video-player video {width:auto;max-width:100%;height:min(54dvh,530px);aspect-ratio:9/16;}
+    .platform-video-copy {padding:14px 24px 19px;align-items:center;text-align:center;}
+    .platform-video-copy h2 {font-size:1.4rem;margin:6px 0;}
+    .platform-video-copy p {font-size:.82rem;line-height:1.45;margin-bottom:13px;}
+    .platform-video-kicker {font-size:.68rem;}
+    .platform-video-close {top:8px;right:8px;}
+}
+@media (max-width: 420px) {
+    #promoModalOverlay.promo-blackfriday {padding:10px;}
+    #promoModalOverlay.promo-blackfriday .modal-image-column {height:85px;}
+    #promoModalOverlay.promo-blackfriday .modal-content-column {padding:11px 18px 15px;}
+    #promoModalOverlay.promo-blackfriday .modal-header-logo {max-height:42px;margin-bottom:4px;}
+    #promoModalOverlay.promo-blackfriday .modal-tag {font-size:.67rem;padding:4px 9px;}
+    #promoModalOverlay.promo-blackfriday h2 {font-size:1.4rem;}
+    #promoModalOverlay.promo-blackfriday p {font-size:.83rem;margin-bottom:8px;line-height:1.45;}
+    #promoModalOverlay.promo-blackfriday .blackfriday-offer {padding:10px 12px;margin-bottom:9px;}
+    .blackfriday-offer-value > strong {font-size:2.75rem;}
+    #promoModalOverlay.promo-blackfriday .modal-features-list li {font-size:.78rem;}
+    #promoModalOverlay.promo-blackfriday .modal-contact-info .modal-whatsapp-button {padding:10px 15px;font-size:.93rem;}
+    .produto-video-cta {max-width:100%;}
+    .produto-video-arrow {margin-left:0;}
+}
+@media (prefers-reduced-motion: reduce) {
+    .produto-video-cta, .platform-video-panel {transition:none;}
+}
+/* No celular pequeno, a imagem do pop-up não fica recortada. */
+@media (max-width: 420px) {
+    #promoModalOverlay.promo-blackfriday .modal-image-column { display: none !important; }
+}
+
+.platform-video-close span { font-size:1.7rem; line-height:1; font-weight:400; }
+
+/* =====================================================================
+   BLACK FRIDAY — NOVO MODAL COMPLETO, NÃO É UM CARD DENTRO DO MODAL.
+   O modal padrão, comentado no HTML, não recebe estas regras.
+   ===================================================================== */
+#promoModalOverlay.promo-blackfriday { background:rgba(2,15,28,.78); backdrop-filter:blur(12px); }
+#promoModalOverlay.promo-blackfriday .bf-modal {
+    display:flex; max-width:880px; width:min(880px,100%);
+    max-height:calc(100dvh - 32px); overflow-y:auto;
+    border:1px solid rgba(255,255,255,.2); border-radius:23px;
+    background:#fff; box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+#promoModalOverlay.promo-blackfriday .bf-visual {
+    flex:0 0 45%; position:relative; min-height:480px;
+    isolation:isolate; display:flex; align-items:flex-end;
+    overflow:hidden; background:#042c4e;
+}
+#promoModalOverlay.promo-blackfriday .bf-visual-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:45% center; z-index:-2; }
+#promoModalOverlay.promo-blackfriday .bf-visual-overlay { position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,23,41,.1) 2%,rgba(3,25,45,.51) 35%,rgba(3,29,51,.97) 100%),linear-gradient(90deg,rgba(3,18,35,.1),rgba(3,18,35,.14)); }
+#promoModalOverlay.promo-blackfriday .bf-visual-content {width:100%;padding:32px 30px 29px;color:white;text-align:left;}
+#promoModalOverlay.promo-blackfriday .bf-label {display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(255,255,255,.31);border-radius:24px;background:rgba(1,22,40,.28);backdrop-filter:blur(8px);color:#f6fbfd;font-size:.72rem;letter-spacing:.07em;font-weight:800;white-space:nowrap;}
+#promoModalOverlay.promo-blackfriday .bf-label-dot {width:7px;height:7px;border-radius:50%;background:#0cc0df;box-shadow:0 0 12px rgba(12,192,223,.85);}
+#promoModalOverlay.promo-blackfriday .bf-big-offer {display:flex;align-items:flex-end;gap:10px;margin:20px 0 15px;line-height:.78;}
+#promoModalOverlay.promo-blackfriday .bf-big-offer > strong {font-size:clamp(4.8rem,8vw,7.2rem);letter-spacing:-.12em;font-weight:800;color:#fff;white-space:nowrap;}
+#promoModalOverlay.promo-blackfriday .bf-big-offer > strong small {font-size:.53em;letter-spacing:-.08em;vertical-align:top;line-height:1;}
+#promoModalOverlay.promo-blackfriday .bf-big-offer > span {display:flex;flex-direction:column;gap:8px;padding-bottom:8px;color:#92edfa;font-size:1.65rem;font-weight:800;line-height:1;}
+#promoModalOverlay.promo-blackfriday .bf-big-offer > span small {color:#f7fdff;font-size:.79rem;line-height:1.38;font-weight:600;letter-spacing:0;white-space:normal;}
+#promoModalOverlay.promo-blackfriday .bf-offer-details {display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:5px;}
+#promoModalOverlay.promo-blackfriday .bf-offer-details > span {display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(182,227,241,.38);border-radius:100px;padding:7px 10px;background:rgba(2,32,55,.35);backdrop-filter:blur(4px);color:#f2fbff;font-size:.72rem;font-weight:700;line-height:1.2;}
+#promoModalOverlay.promo-blackfriday .bf-offer-details svg {width:14px;height:14px;flex-shrink:0;color:#90edfb;}
+#promoModalOverlay.promo-blackfriday .bf-copy {flex:1 1 55%;padding:29px 39px 31px;text-align:left;align-items:stretch;justify-content:center;min-width:0;}
+#promoModalOverlay.promo-blackfriday .bf-copy .modal-header-logo {margin:0 0 15px;max-width:130px;max-height:55px;align-self:flex-start;object-fit:contain;}
+#promoModalOverlay.promo-blackfriday .bf-copy-eyebrow {display:inline-flex;align-self:flex-start;width:max-content;max-width:100%;padding:7px 10px;border-radius:7px;background:#eaf8fc;font-size:.65rem;letter-spacing:.075em;font-weight:800;color:#047e9b;margin-bottom:12px;line-height:1.22;}
+#promoModalOverlay.promo-blackfriday .bf-copy h2 {font-size:clamp(1.58rem,2.5vw,2.05rem);line-height:1.17;letter-spacing:-.035em;text-align:left;margin:0 0 12px;color:#042c4e;}
+#promoModalOverlay.promo-blackfriday .bf-copy h2 span {color:#0799b9;}
+#promoModalOverlay.promo-blackfriday .bf-copy p.bf-lead {color:#536879;opacity:1;font-size:.91rem;line-height:1.5;margin:0 0 18px;text-align:left;}
+#promoModalOverlay.promo-blackfriday .bf-advantages {display:grid;gap:10px;margin:0 0 19px;padding:0;}
+#promoModalOverlay.promo-blackfriday .bf-advantages span {display:flex;align-items:center;gap:9px;font-size:.83rem;line-height:1.25;color:#173d53;font-weight:700;}
+#promoModalOverlay.promo-blackfriday .bf-advantages svg {width:18px;height:18px;flex-shrink:0;color:#0a9dbd;stroke-width:2.5px;}
+#promoModalOverlay.promo-blackfriday .bf-small-print {display:flex;align-items:flex-start;gap:10px;border-left:3px solid #0cc0df;border-radius:0 10px 10px 0;background:#f0f9fc;padding:11px 13px;}
+#promoModalOverlay.promo-blackfriday .bf-small-print svg {width:17px;height:17px;flex-shrink:0;margin-top:2px;color:#0799b9;}
+#promoModalOverlay.promo-blackfriday .bf-copy .bf-small-print p {color:#536879;font-size:.78rem;line-height:1.47;opacity:1;text-align:left;margin:0;}
+#promoModalOverlay.promo-blackfriday .bf-small-print strong {color:#042c4e;}
+#promoModalOverlay.promo-blackfriday .bf-action {width:100%;margin-top:18px;text-align:center;}
+#promoModalOverlay.promo-blackfriday .bf-action .modal-whatsapp-button {width:100%;padding:14px 15px;font-size:.89rem;white-space:normal;line-height:1.2;background:linear-gradient(110deg,#042c4e,#064a70);color:white;box-shadow:0 7px 16px rgba(4,44,78,.2);border-radius:13px;}
+#promoModalOverlay.promo-blackfriday .bf-action .modal-whatsapp-button:hover {background:#075787;color:white;transform:translateY(-2px);}
+#promoModalOverlay.promo-blackfriday .bf-action .modal-whatsapp-button svg {width:18px;height:18px;flex-shrink:0;}
+#promoModalOverlay.promo-blackfriday .bf-action small {display:block;margin-top:9px;font-size:.71rem;color:#6d8290;}
+#promoModalOverlay.promo-blackfriday .modal-close {top:13px;right:13px;background:rgba(239,248,250,.94);border:1px solid #e8f2f4;}
+
+/* =====================================================================
+   CHAT: CORREÇÃO DE SOBREPOSIÇÃO + BOAS-VINDAS MAIS VISUAIS.
+   Flex com min-height:0 permite às mensagens rolar sem passar por baixo
+   da linha de sugestões ou do campo de digitação.
+   ===================================================================== */
+/* Cabeçalho do assistente: título e status agrupados, sem espaço excessivo. */
+#chatbot-window .chatbot-header {gap:11px;padding:12px 16px;min-height:70px;}
+#chatbot-window .chatbot-avatar {width:42px;height:42px;min-width:42px;flex-shrink:0;}
+#chatbot-window .chatbot-title {display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:0;}
+#chatbot-window .chatbot-title h3 {margin:0!important;padding:0;font-size:1.02rem;font-weight:700;line-height:1.12;letter-spacing:-.015em;color:#fff;}
+#chatbot-window .chatbot-title span {display:inline-flex;align-items:center;gap:6px;margin:0;padding:0;font-size:.73rem;font-weight:600;line-height:1.1;color:#e6f9fd;opacity:.95;}
+#chatbot-window .chatbot-title span::before {content:"";display:block;flex:0 0 7px;width:7px;height:7px;background:#55efbb;border-radius:50%;box-shadow:0 0 0 3px rgba(85,239,187,.15);}
+
+#chatbot-window {isolation:isolate;}
+#chatbot-window .chatbot-messages {flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:14px;scroll-padding-bottom:16px;}
+#chatbot-window .chatbot-suggestion-chips {flex:0 0 auto;min-height:0;max-height:96px;overflow-y:auto;gap:7px;padding:9px 13px 12px;border-top:1px solid #e2eaf1;background:#f4f7f9;}
+#chatbot-window .chatbot-input-area {flex:0 0 auto;position:relative;z-index:2;}
+#chatbot-window .message {flex:0 0 auto;min-height:min-content;}
+#chatbot-window .welcome-message {width:100%;max-width:100%;margin-bottom:10px;}
+#chatbot-window .welcome-message .message-bubble {width:100%;padding:0;background:transparent;box-shadow:none;border:0;border-radius:15px;overflow:visible;}
+#chatbot-window .zenga-chat-hero {border:1px solid #d9edf4;border-radius:16px;padding:16px;background:linear-gradient(160deg,#fff,#f1fbff);box-shadow:0 6px 17px rgba(4,44,78,.06);color:#042c4e;}
+#chatbot-window .zenga-chat-hello {display:flex;align-items:center;gap:7px;color:#087e9b;font-weight:800;letter-spacing:.055em;font-size:.66rem;line-height:1.3;}
+#chatbot-window .zenga-chat-hello-icon {display:grid;place-items:center;width:24px;height:24px;flex-shrink:0;border-radius:8px;background:#e2f8fe;color:#069bb6;font-size:1rem;}
+#chatbot-window .zenga-chat-hero h4 {font-size:1.02rem;line-height:1.25;letter-spacing:-.015em;margin:11px 0 7px;color:#042c4e;font-weight:800;}
+#chatbot-window .zenga-chat-hero > p {font-size:.76rem;line-height:1.43;color:#506c7f;margin:0 0 12px;}
+#chatbot-window .zenga-chat-diagnostico {background:#042c4e;border:1px solid rgba(12,192,223,.25);border-radius:13px;padding:12px;color:white;box-shadow:0 4px 13px rgba(4,44,78,.13);}
+#chatbot-window .zenga-chat-mini-badge {display:inline-block;color:#87e6f4;font-size:.63rem;letter-spacing:.07em;font-weight:800;line-height:1.25;}
+#chatbot-window .zenga-chat-diagnostico-main {display:flex;align-items:center;gap:10px;margin:10px 0 11px;}
+#chatbot-window .zenga-chat-counter {flex:0 0 48px;padding:6px 2px;background:rgba(12,192,223,.13);border:1px solid rgba(12,192,223,.25);color:white;border-radius:10px;text-align:center;font-size:1.36rem;line-height:1;font-weight:800;}
+#chatbot-window .zenga-chat-counter small {display:block;font-size:.45rem;font-weight:600;line-height:1.3;margin-top:3px;}
+#chatbot-window .zenga-chat-diagnostico-main strong {display:block;color:#fff;font-size:.8rem;line-height:1.22;}
+#chatbot-window .zenga-chat-diagnostico-main small {display:block;color:#d3e8f1;font-size:.69rem;line-height:1.34;margin-top:4px;}
+#chatbot-window .zenga-chat-diagnostico a {display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;border:0;border-radius:9px;padding:10px 8px;background:#0cc0df;color:#042c4e!important;font-size:.75rem;line-height:1.2;font-weight:800;transition:background .2s,transform .2s;}
+#chatbot-window .zenga-chat-diagnostico a:hover {background:white;text-decoration:none;transform:translateY(-1px);}
+#chatbot-window .zenga-chat-diagnostico--reply {margin:0;}
+#chatbot-window .chatbot-suggestion-chips .chip {font-size:.72rem;padding:7px 11px;color:#096b93;line-height:1.2;}
+
+/* PNG transparente do troféu. Não há mais retângulo preto ou máscara de borda. */
+.serpro-award-trophy {mix-blend-mode:normal;-webkit-mask-image:none;mask-image:none;filter:drop-shadow(0 9px 20px rgba(0,0,0,.27));}
+
+@media (max-width:768px) {
+    #promoModalOverlay.promo-blackfriday .bf-modal {flex-direction:column;width:min(430px,100%);max-height:calc(100dvh - 20px);overflow-y:auto;}
+    #promoModalOverlay.promo-blackfriday .bf-visual {flex:0 0 167px;min-height:167px;align-items:flex-end;}
+    #promoModalOverlay.promo-blackfriday .bf-visual-photo {object-position:center 34%;}
+    #promoModalOverlay.promo-blackfriday .bf-visual-content {display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:15px 23px;}
+    #promoModalOverlay.promo-blackfriday .bf-label {padding:5px 10px;font-size:.65rem;}
+    #promoModalOverlay.promo-blackfriday .bf-big-offer {gap:8px;margin:8px 0 6px;}
+    #promoModalOverlay.promo-blackfriday .bf-big-offer > strong {font-size:3.85rem;}
+    #promoModalOverlay.promo-blackfriday .bf-big-offer > span {font-size:1.1rem;padding-bottom:6px;gap:4px;}
+    #promoModalOverlay.promo-blackfriday .bf-big-offer > span small {font-size:.66rem;line-height:1.25;}
+    #promoModalOverlay.promo-blackfriday .bf-offer-details {gap:6px;}
+    #promoModalOverlay.promo-blackfriday .bf-offer-details > span {font-size:.63rem;padding:5px 8px;}
+    #promoModalOverlay.promo-blackfriday .bf-offer-details svg {width:12px;height:12px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy {flex:0 0 auto;padding:18px 24px 21px;text-align:left;}
+    #promoModalOverlay.promo-blackfriday .bf-copy .modal-header-logo {margin-bottom:11px;max-height:44px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy-eyebrow {font-size:.6rem;margin-bottom:8px;padding:6px 8px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy h2 {font-size:1.47rem;margin-bottom:8px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy p.bf-lead {font-size:.81rem;margin-bottom:11px;}
+    #promoModalOverlay.promo-blackfriday .bf-advantages {gap:7px;margin-bottom:11px;}
+    #promoModalOverlay.promo-blackfriday .bf-advantages span {font-size:.78rem;}
+    #promoModalOverlay.promo-blackfriday .bf-small-print {padding:9px 10px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy .bf-small-print p {font-size:.72rem;}
+    #promoModalOverlay.promo-blackfriday .bf-action {margin-top:12px;}
+    #promoModalOverlay.promo-blackfriday .bf-action .modal-whatsapp-button {font-size:.82rem;padding:12px;}
+    #promoModalOverlay.promo-blackfriday .modal-close {background:rgba(247,252,254,.96);}
+}
+@media (max-width:420px) {
+    #promoModalOverlay.promo-blackfriday .bf-visual {flex-basis:149px;min-height:149px;display:flex!important;}
+    #promoModalOverlay.promo-blackfriday .bf-visual-content {padding:11px 17px;}
+    #promoModalOverlay.promo-blackfriday .bf-big-offer > strong {font-size:3.2rem;}
+    #promoModalOverlay.promo-blackfriday .bf-offer-details > span {padding:4px 7px;font-size:.6rem;}
+    #promoModalOverlay.promo-blackfriday .bf-copy {padding:15px 18px 17px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy h2 {font-size:1.32rem;}
+}
+
+@media (max-width: 370px) {
+    #promoModalOverlay.promo-blackfriday .bf-visual {flex-basis:151px;min-height:151px;}
+    #promoModalOverlay.promo-blackfriday .bf-copy {padding:13px 16px 15px;}
+    #promoModalOverlay.promo-blackfriday .bf-offer-details {gap:4px;}
+    #promoModalOverlay.promo-blackfriday .bf-offer-details > span {font-size:.56rem;padding:4px 5px;}
+}
+
+
+/* =====================================================================
+   BLACK FRIDAY 2026 — DOIS BENEFÍCIOS DE IGUAL DESTAQUE
+   20% OFF + onboarding gratuito, lado a lado no painel fotográfico.
+   Tudo escopado ao modal da campanha; o modal original permanece intacto.
+   ===================================================================== */
+#promoModalOverlay.promo-blackfriday .bf-benefits-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:17px 0 14px;
+    width:100%;
+}
+#promoModalOverlay.promo-blackfriday .bf-benefit {
+    min-width:0;
+    min-height:142px;
+    padding:16px 14px 14px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.24);
+    background:linear-gradient(160deg,rgba(2,31,54,.76),rgba(3,31,54,.62));
+    box-shadow:0 8px 25px rgba(0,10,23,.16);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+}
+#promoModalOverlay.promo-blackfriday .bf-benefit-onboarding {
+    border-color:rgba(119,229,244,.56);
+    background:linear-gradient(160deg,rgba(4,63,82,.84),rgba(4,42,65,.76));
+}
+#promoModalOverlay.promo-blackfriday .bf-discount-value {
+    display:flex;
+    align-items:baseline;
+    gap:7px;
+    margin-bottom:5px;
+    line-height:1;
+}
+#promoModalOverlay.promo-blackfriday .bf-discount-value strong {
+    font-size:clamp(3.4rem,4.5vw,4.1rem);
+    font-weight:800;
+    color:#fff;
+    line-height:.9;
+    letter-spacing:-.1em;
+    white-space:nowrap;
+}
+#promoModalOverlay.promo-blackfriday .bf-discount-value strong small {
+    font-size:.48em;
+    line-height:1;
+    vertical-align:top;
+    letter-spacing:-.02em;
+}
+#promoModalOverlay.promo-blackfriday .bf-discount-value > span {
+    font-size:1.14rem;
+    color:#85efff;
+    font-weight:800;
+    letter-spacing:.005em;
+}
+#promoModalOverlay.promo-blackfriday .bf-benefit > small {
+    display:block;
+    color:#f3fbff;
+    font-size:.72rem;
+    font-weight:600;
+    line-height:1.33;
+}
+#promoModalOverlay.promo-blackfriday .bf-onboarding-label {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:#aff4fd;
+    font-size:.69rem;
+    font-weight:800;
+    letter-spacing:.055em;
+    margin-bottom:9px;
+    line-height:1.1;
+}
+#promoModalOverlay.promo-blackfriday .bf-onboarding-label svg {
+    width:17px;
+    height:17px;
+    stroke-width:2.1px;
+}
+#promoModalOverlay.promo-blackfriday .bf-benefit-onboarding > strong {
+    display:block;
+    color:#fff;
+    font-size:clamp(1.55rem,2.5vw,2rem);
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-.045em;
+    margin-bottom:9px;
+    white-space:nowrap;
+}
+@media (max-width:768px) {
+    #promoModalOverlay.promo-blackfriday .bf-visual {
+        flex-basis:212px;
+        min-height:212px;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-benefits-grid {
+        margin:11px 0 9px;
+        gap:8px;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-benefit {
+        min-height:97px;
+        padding:9px 12px;
+        border-radius:12px;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-discount-value strong {
+        font-size:3.55rem;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-discount-value > span {
+        font-size:1rem;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-onboarding-label {
+        font-size:.63rem;
+        margin-bottom:6px;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-benefit-onboarding > strong {
+        font-size:1.55rem;
+        margin-bottom:5px;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-benefit > small {
+        font-size:.65rem;
+    }
+}
+@media (max-width:420px) {
+    #promoModalOverlay.promo-blackfriday .bf-visual {
+        flex-basis:196px;
+        min-height:196px;
+    }
+    #promoModalOverlay.promo-blackfriday .bf-benefits-grid {gap:7px;margin:8px 0 7px;}
+    #promoModalOverlay.promo-blackfriday .bf-benefit {min-height:90px;padding:8px 9px;}
+    #promoModalOverlay.promo-blackfriday .bf-discount-value strong {font-size:3.1rem;}
+    #promoModalOverlay.promo-blackfriday .bf-discount-value > span {font-size:.92rem;}
+    #promoModalOverlay.promo-blackfriday .bf-benefit > small {font-size:.61rem;}
+    #promoModalOverlay.promo-blackfriday .bf-onboarding-label {font-size:.56rem;margin-bottom:5px;}
+    #promoModalOverlay.promo-blackfriday .bf-onboarding-label svg {width:14px;height:14px;}
+    #promoModalOverlay.promo-blackfriday .bf-benefit-onboarding > strong {font-size:1.4rem;}
+}
+@media (max-width:370px) {
+    #promoModalOverlay.promo-blackfriday .bf-visual {flex-basis:191px;min-height:191px;}
+    #promoModalOverlay.promo-blackfriday .bf-discount-value strong {font-size:2.8rem;}
+    #promoModalOverlay.promo-blackfriday .bf-discount-value {gap:4px;}
+    #promoModalOverlay.promo-blackfriday .bf-benefit-onboarding > strong {font-size:1.25rem;}
+}

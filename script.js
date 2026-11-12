@@ -1306,11 +1306,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         setTimeout(
             () => {
-
-                openModal(
-                    promoModal
-                );
-
+                // Não interromper o vídeo se ele já estiver aberto.
+                if (!document.querySelector('.modal-overlay.visible')) {
+                    openModal(promoModal);
+                }
             },
             5000
         );
