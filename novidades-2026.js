@@ -1,7 +1,7 @@
 // Experiências de novembro de 2026, sem alterar os demais scripts da Zenga.
 document.addEventListener('DOMContentLoaded', () => {
     // O pop-up original está comentado no index.html.
-    // Após 18/11, comente o bloco Black Friday e descomente o original.
+    // Após 30/11, comente o bloco Black Friday e descomente o original.
     // O vídeo e os demais recursos continuam funcionando sem outras mudanças.
 
     const overlay = document.getElementById('platformVideoModal');

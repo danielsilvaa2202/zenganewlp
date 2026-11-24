@@ -336,7 +336,7 @@
 
 /* =====================================================================
    BLACK FRIDAY 2026 — DOIS BENEFÍCIOS DE IGUAL DESTAQUE
-   20% OFF + onboarding gratuito, lado a lado no painel fotográfico.
+   Pagamento em janeiro + onboarding gratuito, lado a lado no painel fotográfico.
    Tudo escopado ao modal da campanha; o modal original permanece intacto.
    ===================================================================== */
 #promoModalOverlay.promo-blackfriday .bf-benefits-grid {
@@ -476,4 +476,25 @@
     #promoModalOverlay.promo-blackfriday .bf-discount-value strong {font-size:2.8rem;}
     #promoModalOverlay.promo-blackfriday .bf-discount-value {gap:4px;}
     #promoModalOverlay.promo-blackfriday .bf-benefit-onboarding > strong {font-size:1.25rem;}
+}
+
+/* Black Friday: condição de pagamento em janeiro. */
+#promoModalOverlay.promo-blackfriday .bf-benefit-payment > strong {
+    display:block;
+    color:#fff;
+    font-size:clamp(1.25rem,2.2vw,1.75rem);
+    line-height:1.05;
+    font-weight:800;
+    letter-spacing:-.045em;
+    margin-bottom:9px;
+    overflow-wrap:anywhere;
+}
+@media (max-width:768px) {
+    #promoModalOverlay.promo-blackfriday .bf-benefit-payment > strong {font-size:1.5rem;margin-bottom:5px;}
+}
+@media (max-width:420px) {
+    #promoModalOverlay.promo-blackfriday .bf-benefit-payment > strong {font-size:1.3rem;}
+}
+@media (max-width:370px) {
+    #promoModalOverlay.promo-blackfriday .bf-benefit-payment > strong {font-size:1.15rem;}
 }
